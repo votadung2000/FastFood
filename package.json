@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "copy-image": "bash scripts/react-native-copy-image/copy_image.sh"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.6",

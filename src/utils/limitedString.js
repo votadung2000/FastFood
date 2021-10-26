@@ -1,4 +1,4 @@
-export default (str = '', limited = 6) => {
+export default (str = '', limited) => {
   if (str) {
     let arr = str.split('');
     if (arr.length > limited) {
