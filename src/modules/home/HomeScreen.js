@@ -1,73 +1,53 @@
-import React, {useState, useRef, useCallback} from 'react';
-import {View, FlatList, Image, Animated, TextInput} from 'react-native';
+import React, { useState, useRef, useEffect, createRef } from 'react';
+import { View, Animated, TextInput } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {useFocusEffect} from '@react-navigation/native';
+import { observer } from 'mobx-react';
 
-import {Layout} from '../../views';
-import {Text, Button} from '../../components';
+import { Layout } from '../../views';
+import { Text, Button } from '../../components';
 import styles from './styles';
-import {dataMenu, dataProducts} from '../../actions/Data';
-import {limitedString} from '../../utils';
-import {Products} from './components';
-import {colors} from '../../constant';
+import { dataMenu } from '../../actions/Data';
+import { handleDataOdd } from '../../utils';
+import { Products, Menu } from './components';
+import { colors } from '../../constant';
+import { useStore } from '../../context';
 
 const HomeScreen = () => {
+  const {
+    productsStore: { products, fetchProducts, updateFilters },
+  } = useStore();
+
   const [itemMenu, setItemMenu] = useState(dataMenu[0]);
-  const [products, setProducts] = useState(null);
   const [hidden, setHidden] = useState(false);
   const [txtValue, setTxtValue] = useState(null);
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const scrollRef = createRef();
 
-  useFocusEffect(
-    useCallback(() => {
-      handleDataProducts();
-    }, []),
-  );
+  useEffect(() => {
+    fetchAPI();
+  }, []);
 
-  const handleDataProducts = item => {
-    try {
-      let newData;
-      if (item) {
-        newData = dataProducts.filter(data => data.group_type === item.id);
-      } else {
-        newData = dataProducts.filter(
-          data => data.group_type === dataMenu[0].id,
-        );
-      }
-      setProducts(newData);
-    } catch (error) {}
+  const fetchAPI = () => {
+    let params = {
+      group_type: dataMenu[0].id,
+    };
+    fetchProducts(params);
   };
 
-  const keyExtractor = (_, index) => index.toString();
 
   const handleItem = item => {
     setItemMenu(item);
-    handleDataProducts(item);
-  };
-
-  const renderItem = ({item}) => {
-    return (
-      <Button
-        onPress={() => handleItem(item)}
-        style={[
-          styles.item,
-          {shadowOpacity: item.id === itemMenu.id ? 0.3 : 0.05},
-        ]}>
-        <Image source={{uri: item.img}} style={styles.imgMenu} />
-        <Text bold style={styles.txtItem}>
-          {limitedString(item.title, 6)}
-        </Text>
-      </Button>
-    );
+    fetchProducts({ group_type: item.id });
+    updateFilters({ group_type: item.id });
   };
 
   const handlePlusCart = item => {
-    alert('Cart ' + item.name);
+    // alert('Cart ' + item.name);
   };
 
   const handleProduct = item => {
-    alert(item.name);
+    // alert(item.name);
   };
 
   const handleSearch = () => {
@@ -80,10 +60,17 @@ const HomeScreen = () => {
 
   const onChangeText = text => {
     setTxtValue(text);
+    fetchProducts({ name: text });
   };
 
+  const handleScrollRef = (value) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({ x: 0, y: value, animated: true });
+    }
+  }
+
   return (
-    <Layout>
+    <Layout >
       <View style={styles.container}>
         <View style={styles.header}>
           <AntDesign name="menu-fold" size={26} />
@@ -108,6 +95,7 @@ const HomeScreen = () => {
                 placeholderTextColor={colors.gray}
                 autoCapitalize="none"
                 onChangeText={onChangeText}
+                onFocus={() => handleScrollRef(700)}
               />
             </Animated.View>
           )}
@@ -115,19 +103,14 @@ const HomeScreen = () => {
         <Text bold style={styles.title}>
           {'Find Your\nDelicious Food'}
         </Text>
-        <View style={styles.menu}>
-          <FlatList
-            data={dataMenu}
-            horizontal
-            bounces={false}
-            showsHorizontalScrollIndicator={false}
-            keyExtractor={keyExtractor}
-            renderItem={renderItem}
-          />
-        </View>
+        <Menu
+          data={dataMenu}
+          itemMenu={itemMenu}
+          handleItem={handleItem}
+        />
         <Products
-          title={itemMenu.title}
-          data={products}
+          title={itemMenu?.title}
+          data={handleDataOdd(products)}
           handlePlusCart={handlePlusCart}
           handleProduct={handleProduct}
         />
@@ -136,4 +119,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default observer(HomeScreen);

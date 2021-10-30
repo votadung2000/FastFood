@@ -1,4 +1,5 @@
-import {Button} from './Button';
+import { Button } from './Button';
 import Text from './Text';
+import KeyboardListener from './KeyboardListener';
 
-export {Button, Text};
+export { Button, Text, KeyboardListener };

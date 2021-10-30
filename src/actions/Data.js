@@ -62,9 +62,17 @@ export const dataProducts = [
     price: '120000',
     group_type: 1,
   },
+  // {
+  //   id: 7,
+  //   name: 'Beef Cheese Burger',
+  //   img: 'two_tier_beef',
+  //   taste: 'Spicy',
+  //   price: '120000',
+  //   group_type: 1,
+  // },
   {
     id: 6,
-    name: 'Two Tier Beef',
+    name: 'Beef Cheese Burger',
     img: 'two_tier_beef',
     taste: 'Spicy',
     price: '8',
