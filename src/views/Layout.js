@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, StatusBar } from 'react-native';
+import {StyleSheet, SafeAreaView, StatusBar} from 'react-native';
 
-import { colors } from '../constant';
+import {colors} from '../constant';
 
-const Layout = ({ children }) => {
+const Layout = ({children}) => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar animated barStyle="dark-content" />

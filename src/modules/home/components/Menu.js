@@ -1,19 +1,16 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions, Image } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import {StyleSheet, View, Image} from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
 
-import { Text, Button } from '../../../components';
-import { colors, fontSize } from '../../../constant';
-import { scale } from '../../../utils/resolutions';
-import { limitedString } from '../../../utils'
+import {Text, Button} from '../../../components';
+import {colors, fontSize} from '../../../constant';
+import {scale} from '../../../utils/resolutions';
+import {limitedString} from '../../../utils';
 
-const { width } = Dimensions.get('window');
-
-const Menu = ({ data, itemMenu, handleItem }) => {
-
+const Menu = ({data, itemMenu, handleItem}) => {
   const keyExtractor = (_, index) => index.toString();
 
-  const renderItem = ({ item }) => {
+  const renderItem = ({item}) => {
     return (
       <Button
         onPress={() => handleItem(item)}
@@ -21,7 +18,7 @@ const Menu = ({ data, itemMenu, handleItem }) => {
           styles.item,
           item.id === itemMenu.id ? styles.upShadow : styles.shadow,
         ]}>
-        <Image source={{ uri: item.img }} style={styles.imgMenu} />
+        <Image source={{uri: item.img}} style={styles.imgMenu} />
         <Text bold style={styles.txtItem}>
           {limitedString(item.title, 6)}
         </Text>

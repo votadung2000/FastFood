@@ -1,20 +1,20 @@
-import React, { useState, useRef, useEffect, createRef } from 'react';
-import { View, Animated, TextInput } from 'react-native';
+import React, {useState, useRef, useEffect, createRef} from 'react';
+import {View, Animated, TextInput} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { observer } from 'mobx-react';
+import {observer} from 'mobx-react';
 
-import { Layout } from '../../views';
-import { Text, Button } from '../../components';
+import {Layout} from '../../views';
+import {Text, Button} from '../../components';
 import styles from './styles';
-import { dataMenu } from '../../actions/Data';
-import { handleDataOdd } from '../../utils';
-import { Products, Menu } from './components';
-import { colors } from '../../constant';
-import { useStore } from '../../context';
+import {dataMenu} from '../../actions/Data';
+import {handleDataOdd} from '../../utils';
+import {Products, Menu} from './components';
+import {colors} from '../../constant';
+import {useStore} from '../../context';
 
 const HomeScreen = () => {
   const {
-    productsStore: { products, fetchProducts, updateFilters },
+    productsStore: {products, fetchProducts, updateFilters},
   } = useStore();
 
   const [itemMenu, setItemMenu] = useState(dataMenu[0]);
@@ -35,20 +35,15 @@ const HomeScreen = () => {
     fetchProducts(params);
   };
 
-
   const handleItem = item => {
     setItemMenu(item);
-    fetchProducts({ group_type: item.id });
-    updateFilters({ group_type: item.id });
+    fetchProducts({group_type: item.id});
+    updateFilters({group_type: item.id});
   };
 
-  const handlePlusCart = item => {
-    // alert('Cart ' + item.name);
-  };
+  const handlePlusCart = item => {};
 
-  const handleProduct = item => {
-    // alert(item.name);
-  };
+  const handleProduct = item => {};
 
   const handleSearch = () => {
     setHidden(pve => !pve);
@@ -60,17 +55,17 @@ const HomeScreen = () => {
 
   const onChangeText = text => {
     setTxtValue(text);
-    fetchProducts({ name: text });
+    fetchProducts({name: text});
   };
 
-  const handleScrollRef = (value) => {
+  const handleScrollRef = value => {
     if (scrollRef.current) {
-      scrollRef.current.scrollTo({ x: 0, y: value, animated: true });
+      scrollRef.current.scrollTo({x: 0, y: value, animated: true});
     }
-  }
+  };
 
   return (
-    <Layout >
+    <Layout>
       <View style={styles.container}>
         <View style={styles.header}>
           <AntDesign name="menu-fold" size={26} />
@@ -103,11 +98,7 @@ const HomeScreen = () => {
         <Text bold style={styles.title}>
           {'Find Your\nDelicious Food'}
         </Text>
-        <Menu
-          data={dataMenu}
-          itemMenu={itemMenu}
-          handleItem={handleItem}
-        />
+        <Menu data={dataMenu} itemMenu={itemMenu} handleItem={handleItem} />
         <Products
           title={itemMenu?.title}
           data={handleDataOdd(products)}

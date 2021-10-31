@@ -1,5 +1,5 @@
-import { action, makeAutoObservable } from 'mobx';
-import { dataProducts } from '../actions/Data';
+import {action, makeAutoObservable} from 'mobx';
+import {dataProducts} from '../actions/Data';
 
 class ProductsStore {
   products = [];
@@ -14,7 +14,7 @@ class ProductsStore {
 
   fetchProducts(filters) {
     if (filters) {
-      let { name, group_type } = Object.assign(this.filters, filters);
+      let {name, group_type} = Object.assign(this.filters, filters);
       if (name || group_type) {
         if (name) {
           this.products = dataProducts.filter(item =>

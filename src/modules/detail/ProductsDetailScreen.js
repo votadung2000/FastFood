@@ -1,14 +1,12 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React from 'react';
+import {Text, View} from 'react-native';
 
-const ProductsDetailScreen = () => {
+const ProductsDetailScreen = ({navigation, route}) => {
   return (
     <View>
       <Text>ProductsDetailScreen</Text>
     </View>
-  )
-}
+  );
+};
 
-export default ProductsDetailScreen
-
-const styles = StyleSheet.create({})
+export default ProductsDetailScreen;

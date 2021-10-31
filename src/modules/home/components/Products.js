@@ -1,42 +1,36 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions, Image } from 'react-native';
+import {StyleSheet, View, Dimensions, Image} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { FlatList } from 'react-native-gesture-handler';
+import {FlatList} from 'react-native-gesture-handler';
 
-import { Text, Button } from '../../../components';
-import { colors, fontSize } from '../../../constant';
-import { hScale, scale } from '../../../utils/resolutions';
-import { formatCurrency } from '../../../utils';
+import {Text, Button} from '../../../components';
+import {colors, fontSize} from '../../../constant';
+import {hScale, scale} from '../../../utils/resolutions';
+import {formatCurrency} from '../../../utils';
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
-const Products = ({ title, data, handlePlusCart, handleProduct }) => {
+const Products = ({title, data, handlePlusCart, handleProduct}) => {
   const keyExtractor = (_, index) => index.toString();
 
-  const renderItem = ({ item }) => {
-    return (
-      <>
-        {item && Object.keys(item).length > 0 ? (
-          <Button onPress={() => handleProduct(item)} style={styles.item}>
-            <Image source={{ uri: item?.img }} style={styles.img} />
-            <View style={styles.content}>
-              <Text bold style={[styles.txtItem, styles.txtName]}>
-                {item?.name}
-              </Text>
-              <Text style={[styles.txtItem, styles.txtTaste]}>
-                {item?.taste}
-              </Text>
-              <Text bold style={styles.txtItem}>{`${formatCurrency(
-                item?.price,
-              )} VNĐ`}</Text>
-            </View>
-            <Button onPress={() => handlePlusCart(item)} style={styles.plus}>
-              <AntDesign name="pluscircle" size={26} color={colors.orange} />
-            </Button>
-          </Button>
-        ) : null}
-      </>
-    );
+  const renderItem = ({item}) => {
+    return item && Object.keys(item).length > 0 ? (
+      <Button onPress={() => handleProduct(item)} style={styles.item}>
+        <Image source={{uri: item?.img}} style={styles.img} />
+        <View style={styles.content}>
+          <Text bold style={[styles.txtItem, styles.txtName]}>
+            {item?.name}
+          </Text>
+          <Text style={[styles.txtItem, styles.txtTaste]}>{item?.taste}</Text>
+          <Text bold style={styles.txtItem}>{`${formatCurrency(
+            item?.price,
+          )} VNĐ`}</Text>
+        </View>
+        <Button onPress={() => handlePlusCart(item)} style={styles.plus}>
+          <AntDesign name="pluscircle" size={26} color={colors.orange} />
+        </Button>
+      </Button>
+    ) : null;
   };
 
   return (
@@ -50,8 +44,7 @@ const Products = ({ title, data, handlePlusCart, handleProduct }) => {
         renderItem={renderItem}
         columnWrapperStyle={styles.wrapperStyle}
         contentContainerStyle={styles.containerStyle}
-        scrollIndicatorInsets={{ right: 1 }}
-        showsVerticalScrollIndicator={false}
+        scrollIndicatorInsets={{right: 1}}
       />
     </View>
   );
@@ -63,6 +56,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: fontSize.fontSize28,
+    marginBottom: scale(10),
   },
   item: {
     width: width / 2.4,

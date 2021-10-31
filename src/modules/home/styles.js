@@ -1,6 +1,6 @@
-import { StyleSheet, Dimensions } from 'react-native';
-import { colors, fontSize } from '../../constant';
-import { hScale, scale } from '../../utils/resolutions';
+import {StyleSheet, Dimensions} from 'react-native';
+import {colors, fontSize} from '../../constant';
+import {hScale, scale} from '../../utils/resolutions';
 
 const width = Dimensions.get('window').width;
 
@@ -43,5 +43,4 @@ export default StyleSheet.create({
     height: hScale(38),
     paddingLeft: scale(6),
   },
-
 });
