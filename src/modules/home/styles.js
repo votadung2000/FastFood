@@ -33,7 +33,7 @@ export default StyleSheet.create({
     width: width * 0.75,
     height: hScale(40),
     right: 0,
-    borderColor: colors.gray,
+    borderColor: colors.black,
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingLeft: scale(10),

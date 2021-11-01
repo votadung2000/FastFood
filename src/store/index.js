@@ -1,3 +1,4 @@
 import productsStore from './products.store';
+import productsDetailStore from './productsDetail.store';
 
-export default {productsStore};
+export default {productsStore, productsDetailStore};

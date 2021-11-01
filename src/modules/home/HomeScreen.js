@@ -1,7 +1,8 @@
-import React, {useState, useRef, useEffect, createRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {View, Animated, TextInput} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {observer} from 'mobx-react';
+import _debounce from 'lodash/debounce';
 
 import {Layout} from '../../views';
 import {Text, Button} from '../../components';
@@ -11,8 +12,9 @@ import {handleDataOdd} from '../../utils';
 import {Products, Menu} from './components';
 import {colors} from '../../constant';
 import {useStore} from '../../context';
+import routes from '../routes';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   const {
     productsStore: {products, fetchProducts, updateFilters},
   } = useStore();
@@ -22,7 +24,6 @@ const HomeScreen = () => {
   const [txtValue, setTxtValue] = useState(null);
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
-  const scrollRef = createRef();
 
   useEffect(() => {
     fetchAPI();
@@ -43,7 +44,9 @@ const HomeScreen = () => {
 
   const handlePlusCart = item => {};
 
-  const handleProduct = item => {};
+  const handleProduct = item => {
+    navigation.navigate(routes.ProductsDetailScreen, {id: item?.id});
+  };
 
   const handleSearch = () => {
     setHidden(pve => !pve);
@@ -53,15 +56,14 @@ const HomeScreen = () => {
     }).start();
   };
 
+  const handleSearchText = _debounce(text => {
+    fetchProducts({name: text});
+    updateFilters({name: text});
+  }, 600);
+
   const onChangeText = text => {
     setTxtValue(text);
-    fetchProducts({name: text});
-  };
-
-  const handleScrollRef = value => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTo({x: 0, y: value, animated: true});
-    }
+    handleSearchText(text);
   };
 
   return (
@@ -90,7 +92,6 @@ const HomeScreen = () => {
                 placeholderTextColor={colors.gray}
                 autoCapitalize="none"
                 onChangeText={onChangeText}
-                onFocus={() => handleScrollRef(700)}
               />
             </Animated.View>
           )}

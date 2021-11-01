@@ -3,6 +3,7 @@ import limitedString from './limitedString';
 import removeAccent from './removeAccent';
 import formatCurrency from './formatCurrency';
 import handleDataOdd from './handleDataOdd';
+import findId from './findId';
 
 export {
   resolutions,
@@ -10,4 +11,5 @@ export {
   removeAccent,
   formatCurrency,
   handleDataOdd,
+  findId,
 };
