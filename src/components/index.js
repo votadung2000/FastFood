@@ -1,5 +1,5 @@
-import {Button} from './Button';
+import {Button, Back} from './Button';
 import Text from './Text';
 import ImagesViewer from './ImagesViewer';
 
-export {Button, Text, ImagesViewer};
+export {Button, Back, Text, ImagesViewer};

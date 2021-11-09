@@ -4,4 +4,6 @@ export default {
   black: '#000000',
   gray: '#8c8c8c',
   orange: '#ffbb33',
+  heart: '#FE5D5D',
+  price: '#FB3C00',
 };

@@ -121,6 +121,7 @@ export const dataProductsDetail = [
     price: '80000',
     group_type: 1,
     description: 'Description for all products',
+    extra_food: [1, 2, 3, 4, 5],
   },
   {
     id: 2,
@@ -130,6 +131,7 @@ export const dataProductsDetail = [
     price: '100000',
     group_type: 1,
     description: 'Description for all products',
+    extra_food: [1, 2, 3, 4, 5],
   },
   {
     id: 3,
@@ -139,6 +141,7 @@ export const dataProductsDetail = [
     price: '80000',
     group_type: 1,
     description: 'Description for all products',
+    extra_food: [1, 2, 3, 4, 5],
   },
   {
     id: 4,
@@ -148,6 +151,7 @@ export const dataProductsDetail = [
     price: '120000',
     group_type: 1,
     description: 'Description for all products',
+    extra_food: [1, 2, 3, 4, 5],
   },
   {
     id: 5,
@@ -157,6 +161,7 @@ export const dataProductsDetail = [
     price: '120000',
     group_type: 1,
     description: 'Description for all products',
+    extra_food: [1, 2, 3, 4, 5],
   },
   {
     id: 6,
@@ -166,6 +171,7 @@ export const dataProductsDetail = [
     price: '80000',
     group_type: 1,
     description: 'Description for all products',
+    extra_food: [1, 2, 3, 4, 5],
   },
   {
     id: 7,
@@ -175,6 +181,7 @@ export const dataProductsDetail = [
     price: '100000',
     group_type: 1,
     description: 'Description for all products',
+    extra_food: [1, 2, 3, 4, 5],
   },
   {
     id: 8,
@@ -184,6 +191,7 @@ export const dataProductsDetail = [
     price: '80000',
     group_type: 1,
     description: 'Description for all products',
+    extra_food: [1, 2, 3, 4, 5],
   },
   {
     id: 9,
@@ -192,6 +200,7 @@ export const dataProductsDetail = [
     taste: 'Spicy',
     price: '120000',
     group_type: 1,
+    extra_food: [1, 2, 3, 4, 5],
   },
   {
     id: 10,
@@ -201,6 +210,7 @@ export const dataProductsDetail = [
     price: '120000',
     group_type: 1,
     description: 'Description for all products',
+    extra_food: [1, 2, 3, 4, 5],
   },
   {
     id: 11,
@@ -210,5 +220,34 @@ export const dataProductsDetail = [
     price: '8',
     group_type: 2,
     description: 'Description for all products',
+    extra_food: [1, 2, 3, 4, 5],
+  },
+];
+
+export const dataExtraFood = [
+  {
+    id: 1,
+    name: 'Beef',
+    img: '',
+  },
+  {
+    id: 2,
+    name: 'salad',
+    img: '',
+  },
+  {
+    id: 3,
+    name: 'Purple Onion',
+    img: '',
+  },
+  {
+    id: 4,
+    name: 'Tomato',
+    img: '',
+  },
+  {
+    id: 5,
+    name: 'Cheese',
+    img: '',
   },
 ];

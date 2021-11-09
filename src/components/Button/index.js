@@ -1,3 +1,4 @@
 import Button from './Button';
+import Back from './Back';
 
-export {Button};
+export {Button, Back};

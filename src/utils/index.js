@@ -4,6 +4,7 @@ import removeAccent from './removeAccent';
 import formatCurrency from './formatCurrency';
 import handleDataOdd from './handleDataOdd';
 import findId from './findId';
+import filterExtraFood from './filterExtraFood';
 
 export {
   resolutions,
@@ -12,4 +13,5 @@ export {
   formatCurrency,
   handleDataOdd,
   findId,
+  filterExtraFood,
 };

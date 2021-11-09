@@ -2,6 +2,7 @@ import {RFValue} from '../utils/resolutions';
 
 const STANDARD_SCREEN_HEIGHT = 720;
 
+export const tiny = RFValue(9, STANDARD_SCREEN_HEIGHT);
 export const smaller = RFValue(11, STANDARD_SCREEN_HEIGHT);
 export const small = RFValue(12, STANDARD_SCREEN_HEIGHT);
 export const fontSize14 = RFValue(14, STANDARD_SCREEN_HEIGHT);
