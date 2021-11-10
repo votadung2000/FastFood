@@ -3,22 +3,19 @@ import {dataProductsDetail, dataExtraFood} from '../actions/Data';
 import {findId, filterExtraFood} from '../utils';
 class ProductsDetailStore {
   productDetail = {};
-  // extraFood = [];
+  extraFood = [];
 
   constructor() {
     makeAutoObservable(this, {
       fetchProductsDetail: action.bound,
-      fetchExtraFood: action.bound,
     });
   }
 
   fetchProductsDetail(id) {
-    this.productDetail = findId(dataProductsDetail, id);
+    const data = findId(dataProductsDetail, id);
+    this.productDetail = data;
+    this.extraFood = filterExtraFood(dataExtraFood, data?.extra_food);
   }
-
-  // fetchExtraFood() {
-  //   this.extraFood = filterExtraFood(dataExtraFood, productDetail?.extra_food);
-  // }
 }
 
 export default new ProductsDetailStore();

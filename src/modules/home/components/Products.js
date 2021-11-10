@@ -27,7 +27,7 @@ const Products = ({title, data, handlePlusCart, handleProduct}) => {
           )} VNĐ`}</Text>
         </View>
         <Button onPress={() => handlePlusCart(item)} style={styles.plus}>
-          <AntDesign name="pluscircle" size={26} color={colors.orange} />
+          <AntDesign name="pluscircle" size={scale(26)} color={colors.orange} />
         </Button>
       </Button>
     ) : null;

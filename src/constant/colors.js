@@ -6,4 +6,5 @@ export default {
   orange: '#ffbb33',
   heart: '#FE5D5D',
   price: '#FB3C00',
+  green: '#33cc33',
 };

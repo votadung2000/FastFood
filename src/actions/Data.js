@@ -228,26 +228,26 @@ export const dataExtraFood = [
   {
     id: 1,
     name: 'Beef',
-    img: '',
+    img: 'beef',
   },
   {
     id: 2,
-    name: 'salad',
-    img: '',
+    name: 'Salad',
+    img: 'salad',
   },
   {
     id: 3,
     name: 'Purple Onion',
-    img: '',
+    img: 'purple_onion',
   },
   {
     id: 4,
     name: 'Tomato',
-    img: '',
+    img: 'tomato',
   },
   {
     id: 5,
     name: 'Cheese',
-    img: '',
+    img: 'cheese',
   },
 ];
