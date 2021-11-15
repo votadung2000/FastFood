@@ -3,4 +3,5 @@ export default {
   ProductsDetailScreen: 'ProductsDetailScreen',
   HeartScreen: 'HeartScreen',
   CartScreen: 'CartScreen',
+  Logging: 'Logging',
 };

@@ -13,6 +13,7 @@ import HomeScreen from './home/HomeScreen';
 import ProductsDetailScreen from './detail/ProductsDetailScreen';
 import HeartScreen from './heart/HeartScreen';
 import CartScreen from './cart/CartScreen';
+import Logging from './Logging';
 
 import {scale} from '../utils/resolutions';
 import {colors, fontSize} from '../constant';
@@ -109,7 +110,8 @@ const AppContainer = () => {
           gestureEnabled: false,
           animation: 'slide_from_right',
         }}>
-        <Stack.Screen name={'TabApp'} component={TabApp} />
+        <Stack.Screen name={'Logging'} component={Logging} />
+        {/* <Stack.Screen name={'TabApp'} component={TabApp} /> */}
         <Stack.Screen
           name={routes.ProductsDetailScreen}
           component={ProductsDetailScreen}

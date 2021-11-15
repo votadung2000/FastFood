@@ -12,7 +12,6 @@ const Back = ({handleFavorite, heart, favorite}) => {
   const navigation = useNavigation();
 
   const goBack = () => {
-    console.log('111');
     navigation.goBack();
   };
 

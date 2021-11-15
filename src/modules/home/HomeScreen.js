@@ -53,6 +53,7 @@ const HomeScreen = ({navigation}) => {
     Animated.timing(fadeAnim, {
       toValue: 2,
       duration: 3000,
+      useNativeDriver: false,
     }).start();
   };
 
