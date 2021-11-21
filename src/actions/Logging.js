@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 const KEY = '@LOGGING';
 
-export const logging = async ({ response }) => {
+export const logging = async ({response}) => {
   if (response) {
     let error = {
       url: response?.config?.url,

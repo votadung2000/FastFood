@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
-import { LOGGING } from 'react-native-dotenv';
-import { useNavigation } from '@react-navigation/native';
-import { isIphoneX } from 'react-native-iphone-x-helper';
-import { hScale, wScale } from '../../utils/resolutions';
+import React, {useState} from 'react';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import {LOGGING} from 'react-native-dotenv';
+import {useNavigation} from '@react-navigation/native';
+import {isIphoneX} from 'react-native-iphone-x-helper';
+import {hScale, wScale} from '../../utils/resolutions';
 import routes from '../../routes';
-
 
 const Developer = () => {
   const navigation = useNavigation();
@@ -18,13 +17,13 @@ const Developer = () => {
     } else {
       setCount(prev => prev + 1);
     }
-  }
+  };
 
   if (LOGGING === 'TRUE') {
     return <TouchableOpacity style={styles.btn} onPress={handleCount} />;
-  };
+  }
   return null;
-}
+};
 
 const styles = StyleSheet.create({
   btn: {

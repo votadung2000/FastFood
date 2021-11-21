@@ -13,7 +13,6 @@ import HomeScreen from './home/HomeScreen';
 import ProductsDetailScreen from './detail/ProductsDetailScreen';
 import HeartScreen from './heart/HeartScreen';
 import CartScreen from './cart/CartScreen';
-import Logging from './Logging';
 
 import {scale} from '../utils/resolutions';
 import {colors, fontSize} from '../constant';
@@ -46,6 +45,8 @@ const TabApp = () => {
       initialRouteName={routes.HomeScreen}
       backBehavior="initialRoute"
       screenOptions={({route}) => ({
+        headerShown: false,
+        gestureEnabled: false,
         tabBarIcon: ({focused}) => {
           if (route.name === routes.HomeScreen) {
             return (
@@ -110,8 +111,7 @@ const AppContainer = () => {
           gestureEnabled: false,
           animation: 'slide_from_right',
         }}>
-        <Stack.Screen name={'Logging'} component={Logging} />
-        {/* <Stack.Screen name={'TabApp'} component={TabApp} /> */}
+        <Stack.Screen name={'TabApp'} component={TabApp} />
         <Stack.Screen
           name={routes.ProductsDetailScreen}
           component={ProductsDetailScreen}
