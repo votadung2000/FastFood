@@ -20,6 +20,7 @@ export default StyleSheet.create({
     fontSize: fontSize.fontSize28,
     lineHeight: scale(35),
     marginBottom: scale(15),
+    fontWeight: '700',
   },
   btnSearch: {
     paddingLeft: scale(10),

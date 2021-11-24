@@ -1,7 +1,6 @@
 import React from 'react';
-import {StyleSheet, View, Dimensions, Image} from 'react-native';
+import {StyleSheet, View, Dimensions, Image, Animated} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {FlatList} from 'react-native-gesture-handler';
 
 import {Text, Button} from '../../../components';
 import {colors, fontSize} from '../../../constant';
@@ -10,7 +9,7 @@ import {formatCurrency} from '../../../utils';
 
 const {width} = Dimensions.get('window');
 
-const Products = ({title, data, handlePlusCart, handleProduct}) => {
+const Products = ({title, data, handlePlusCart, handleProduct, scrollY}) => {
   const keyExtractor = (_, index) => index.toString();
 
   const renderItem = ({item}) => {
@@ -36,15 +35,21 @@ const Products = ({title, data, handlePlusCart, handleProduct}) => {
   return (
     <View style={styles.container}>
       <Text bold style={styles.title}>{`Popular ${title}`}</Text>
-      <FlatList
+      <Animated.FlatList
         numColumns={2}
         data={data}
         showsVerticalScrollIndicator={false}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
+        bounces={false}
         columnWrapperStyle={styles.wrapperStyle}
         contentContainerStyle={styles.containerStyle}
         scrollIndicatorInsets={{right: 1}}
+        onScroll={Animated.event(
+          [{nativeEvent: {contentOffset: {y: scrollY}}}],
+          {useNativeDriver: true},
+        )}
+        scrollEventThrottle={16}
       />
     </View>
   );

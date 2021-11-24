@@ -5,7 +5,7 @@ import {observer} from 'mobx-react';
 import _debounce from 'lodash/debounce';
 
 import {Layout} from '../../views';
-import {Text, Button} from '../../components';
+import {Button} from '../../components';
 import styles from './styles';
 import {dataMenu} from '../../actions/Data';
 import {handleDataOdd} from '../../utils';
@@ -13,6 +13,8 @@ import {Products, Menu} from './components';
 import {colors} from '../../constant';
 import {useStore} from '../../context';
 import routes from '../routes';
+
+const BANNER_H = 100;
 
 const HomeScreen = ({navigation}) => {
   const {
@@ -67,6 +69,8 @@ const HomeScreen = ({navigation}) => {
     handleSearchText(text);
   };
 
+  const scrollY = useRef(new Animated.Value(0)).current;
+
   return (
     <Layout>
       <View style={styles.container}>
@@ -97,15 +101,35 @@ const HomeScreen = ({navigation}) => {
             </Animated.View>
           )}
         </View>
-        <Text bold style={styles.title}>
+        <Animated.Text
+          style={[
+            styles.title,
+            {
+              transform: [
+                {
+                  translateY: scrollY.interpolate({
+                    inputRange: [0, BANNER_H, BANNER_H + 1],
+                    outputRange: [0, BANNER_H * 0.35, BANNER_H * 0.7],
+                  }),
+                },
+                {
+                  scale: scrollY.interpolate({
+                    inputRange: [-BANNER_H, 0, BANNER_H],
+                    outputRange: [2, 1, 0.5],
+                  }),
+                },
+              ],
+            },
+          ]}>
           {'Find Your\nDelicious Food'}
-        </Text>
+        </Animated.Text>
         <Menu data={dataMenu} itemMenu={itemMenu} handleItem={handleItem} />
         <Products
           title={itemMenu?.title}
           data={handleDataOdd(products)}
           handlePlusCart={handlePlusCart}
           handleProduct={handleProduct}
+          scrollY={scrollY}
         />
       </View>
     </Layout>
