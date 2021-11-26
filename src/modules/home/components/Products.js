@@ -9,7 +9,7 @@ import {formatCurrency} from '../../../utils';
 
 const {width} = Dimensions.get('window');
 
-const Products = ({title, data, handlePlusCart, handleProduct, scrollY}) => {
+const Products = ({title, data, handlePlusCart, handleProduct}) => {
   const keyExtractor = (_, index) => index.toString();
 
   const renderItem = ({item}) => {
@@ -45,11 +45,6 @@ const Products = ({title, data, handlePlusCart, handleProduct, scrollY}) => {
         columnWrapperStyle={styles.wrapperStyle}
         contentContainerStyle={styles.containerStyle}
         scrollIndicatorInsets={{right: 1}}
-        onScroll={Animated.event(
-          [{nativeEvent: {contentOffset: {y: scrollY}}}],
-          {useNativeDriver: true},
-        )}
-        scrollEventThrottle={16}
       />
     </View>
   );
