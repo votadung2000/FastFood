@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Dimensions, Image, Animated} from 'react-native';
+import {StyleSheet, View, Dimensions, Image, FlatList} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {Text, Button} from '../../../components';
@@ -35,7 +35,7 @@ const Products = ({title, data, handlePlusCart, handleProduct}) => {
   return (
     <View style={styles.container}>
       <Text bold style={styles.title}>{`Popular ${title}`}</Text>
-      <Animated.FlatList
+      <FlatList
         numColumns={2}
         data={data}
         showsVerticalScrollIndicator={false}

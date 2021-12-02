@@ -3,12 +3,13 @@ import {StyleSheet, View} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 
-import {colors} from '../../constant';
+import {colors, fontSize} from '../../constant';
 import {scale} from '../../utils/resolutions';
 
 import Button from './Button';
+import Text from '../Text';
 
-const Back = ({handleFavorite, heart, favorite}) => {
+const Back = ({handleFavorite, heart, favorite, title, position}) => {
   const navigation = useNavigation();
 
   const goBack = () => {
@@ -16,7 +17,7 @@ const Back = ({handleFavorite, heart, favorite}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, position && styles.position]}>
       <Button onPress={() => goBack()} style={styles.btn}>
         <Ionicons name="chevron-back-outline" size={scale(28)} />
       </Button>
@@ -29,26 +30,35 @@ const Back = ({handleFavorite, heart, favorite}) => {
           />
         </Button>
       )}
+      {title && (
+        <Text bold style={styles.title}>
+          {title}
+        </Text>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    paddingHorizontal: scale(15),
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     width: '100%',
     zIndex: 999,
   },
+  position: {
+    position: 'absolute',
+    paddingHorizontal: scale(15),
+  },
   btn: {
     paddingRight: scale(10),
-    paddingBottom: scale(5),
   },
   heart: {
     paddingLeft: scale(10),
-    paddingBottom: scale(5),
+  },
+  title: {
+    fontSize: fontSize.big,
   },
 });
 

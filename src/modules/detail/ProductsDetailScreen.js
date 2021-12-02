@@ -54,7 +54,12 @@ const ProductsDetailScreen = ({route}) => {
         showsVerticalScrollIndicator={false}
         scrollIndicatorInsets={{right: 1}}>
         <View style={styles.container}>
-          <Back heart favorite={false} handleFavorite={handleFavorite} />
+          <Back
+            heart
+            position
+            favorite={false}
+            handleFavorite={handleFavorite}
+          />
           <View style={styles.header}>
             {img && <Image source={{uri: img}} style={styles.img} />}
           </View>

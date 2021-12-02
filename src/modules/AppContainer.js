@@ -4,15 +4,18 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 // routes
 import routes from './routes';
 
 // modules
+import HelloScreen from './HelloScreen';
 import HomeScreen from './home/HomeScreen';
 import ProductsDetailScreen from './detail/ProductsDetailScreen';
 import HeartScreen from './heart/HeartScreen';
 import CartScreen from './cart/CartScreen';
+import UserScreen from './user/UserScreen';
 
 import {scale} from '../utils/resolutions';
 import {colors, fontSize} from '../constant';
@@ -72,6 +75,14 @@ const TabApp = () => {
                 color={focused ? colors.orange : colors.gray}
               />
             );
+          } else if (route.name === routes.UserScreen) {
+            return (
+              <FontAwesome
+                name="user"
+                size={scale(24)}
+                color={focused ? colors.green : colors.gray}
+              />
+            );
           }
         },
       })}>
@@ -96,6 +107,13 @@ const TabApp = () => {
           tabBarLabel: ({focused}) => <Label {...{focused}}>{'Cart'}</Label>,
         }}
       />
+      <Tab.Screen
+        name={routes.UserScreen}
+        component={UserScreen}
+        options={{
+          tabBarLabel: ({focused}) => <Label {...{focused}}>{'User'}</Label>,
+        }}
+      />
     </Tab.Navigator>
   );
 };
@@ -111,6 +129,7 @@ const AppContainer = () => {
           gestureEnabled: false,
           animation: 'slide_from_right',
         }}>
+        <Stack.Screen name={routes.HelloScreen} component={HelloScreen} />
         <Stack.Screen name={'TabApp'} component={TabApp} />
         <Stack.Screen
           name={routes.ProductsDetailScreen}
