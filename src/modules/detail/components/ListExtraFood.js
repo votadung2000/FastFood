@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet, FlatList, View} from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {scale} from '../../../utils/resolutions';
 import {Button, Text} from '../../../components';
@@ -19,14 +18,14 @@ const ListExtraFood = ({data, handleExtraFood, extra}) => {
         <Text bold style={styles.name}>
           {item?.name}
         </Text>
-        {checkItem && (
-          <AntDesign
-            name="check"
-            size={scale(30)}
-            color={colors.green}
-            style={styles.icon}
-          />
-        )}
+        {/* {checkItem && (
+          // <AntDesign
+          //   name="check"
+          //   size={scale(30)}
+          //   color={colors.green}
+          //   style={styles.icon}
+          // />
+        )} */}
       </Button>
     );
   };

@@ -5,6 +5,10 @@ import {hScale, scale} from '../../utils/resolutions';
 const width = Dimensions.get('window').width;
 
 export default StyleSheet.create({
+  layout: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
   container: {
     flex: 1,
     marginHorizontal: scale(15),

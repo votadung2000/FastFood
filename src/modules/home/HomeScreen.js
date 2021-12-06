@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react';
 
-import {Layout} from '../../views';
 import {Text} from '../../components';
 import styles from './styles';
 import {dataMenu} from '../../actions/Data';
@@ -42,7 +41,7 @@ const HomeScreen = ({navigation}) => {
   };
 
   return (
-    <Layout>
+    <View style={styles.layout}>
       <View style={styles.container}>
         <Text style={styles.title}>{'Find Your\nDelicious Food'}</Text>
         <Menu data={dataMenu} itemMenu={itemMenu} handleItem={handleItem} />
@@ -53,7 +52,7 @@ const HomeScreen = ({navigation}) => {
           handleProduct={handleProduct}
         />
       </View>
-    </Layout>
+    </View>
   );
 };
 

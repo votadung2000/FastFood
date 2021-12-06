@@ -5,6 +5,10 @@ import {scale} from '../../utils/resolutions';
 const {height} = Dimensions.get('window');
 
 export default StyleSheet.create({
+  layout: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
   scroll: {
     flex: 1,
   },

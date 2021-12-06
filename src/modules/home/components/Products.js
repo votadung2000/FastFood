@@ -23,7 +23,7 @@ const Products = ({title, data, handlePlusCart, handleProduct}) => {
           <Text style={[styles.txtItem, styles.txtTaste]}>{item?.taste}</Text>
           <Text bold style={styles.txtItem}>{`${formatCurrency(
             item?.price,
-          )} VNĐ`}</Text>
+          )} Đ`}</Text>
         </View>
         <Button onPress={() => handlePlusCart(item)} style={styles.plus}>
           <AntDesign name="pluscircle" size={scale(26)} color={colors.orange} />
@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
   },
   txtName: {
     fontSize: fontSize.fontSize16,
+    textAlign: 'center',
   },
   plus: {
     position: 'absolute',

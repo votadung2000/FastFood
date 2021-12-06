@@ -4,7 +4,6 @@ import {observer} from 'mobx-react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import _uniqBy from 'lodash/uniqBy';
 
-import {Layout} from '../../views';
 import {Text, Back, Button} from '../../components';
 import styles from './styles';
 import {useStore} from '../../context';
@@ -48,8 +47,9 @@ const ProductsDetailScreen = ({route}) => {
   }
 
   return (
-    <Layout>
+    <View style={styles.layout}>
       <ScrollView
+        bounces={false}
         style={styles.scroll}
         showsVerticalScrollIndicator={false}
         scrollIndicatorInsets={{right: 1}}>
@@ -87,7 +87,7 @@ const ProductsDetailScreen = ({route}) => {
       <Button onPress={() => handlePlusCart()} style={styles.plus}>
         <AntDesign name="shoppingcart" size={scale(24)} color={colors.white} />
       </Button>
-    </Layout>
+    </View>
   );
 };
 

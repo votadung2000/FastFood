@@ -12,6 +12,7 @@ export default {
   gray: '#8c8c8c',
   graySystem: '#DDDDDD',
   graySystem1: '#888888',
+  graySystem2: '#C7C6C4',
 
   // Orange
   orange: '#ffbb33',
@@ -27,4 +28,8 @@ export default {
   heart: '#FE5D5D',
   price: '#FB3C00',
   background1: '#387C2B',
+
+  // Yellow
+  yellow: '#F6C012',
+  yellowSystem: '#FFD543',
 };

@@ -9,7 +9,6 @@ import {getLogs, removeLogs} from '../../actions/Logging';
 import {Text, Back, Button} from '../../components';
 import {colors, fontSize} from '../../constant';
 import {scale} from '../../utils/resolutions';
-import {Layout} from '../../views';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -95,7 +94,7 @@ const Logging = () => {
   );
 
   return (
-    <Layout>
+    <View style={styles.container}>
       <View style={styles.header}>
         <Back />
         <Text bold color={colors.background1} style={styles.title}>
@@ -128,11 +127,15 @@ const Logging = () => {
           </View>
         }
       />
-    </Layout>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
   header: {
     flexDirection: 'row',
     justifyContent: 'center',

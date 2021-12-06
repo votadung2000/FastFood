@@ -8,6 +8,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 // routes
 import routes from './routes';
+import {Layout} from '../views';
 
 // modules
 import HelloScreen from './HelloScreen';
@@ -122,21 +123,23 @@ const Stack = createNativeStackNavigator();
 
 const AppContainer = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-          gestureEnabled: false,
-          animation: 'slide_from_right',
-        }}>
-        <Stack.Screen name={routes.HelloScreen} component={HelloScreen} />
-        <Stack.Screen name={'TabApp'} component={TabApp} />
-        <Stack.Screen
-          name={routes.ProductsDetailScreen}
-          component={ProductsDetailScreen}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Layout>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+            gestureEnabled: false,
+            animation: 'slide_from_right',
+          }}>
+          <Stack.Screen name={routes.HelloScreen} component={HelloScreen} />
+          <Stack.Screen name={'TabApp'} component={TabApp} />
+          <Stack.Screen
+            name={routes.ProductsDetailScreen}
+            component={ProductsDetailScreen}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Layout>
   );
 };
 
