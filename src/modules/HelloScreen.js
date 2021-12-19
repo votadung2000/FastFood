@@ -19,13 +19,13 @@ const HelloScreen = () => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={{uri: 'bander'}}
+        // source={{uri: 'bander'}}
         resizeMode="stretch"
         style={styles.image}>
         <LinearGradient
           start={{x: 0, y: 0}}
           end={{x: 1, y: 0}}
-          colors={[colors.price, colors.orange, colors.price]}
+          colors={[colors.price, colors.orange]}
           style={styles.linearGradient}>
           <Button onPress={() => onPress()} style={styles.btn}>
             <Text bold style={styles.text}>

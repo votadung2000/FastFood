@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, Dimensions, Image, FlatList} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import {Text, Button} from '../../../components';
+import {Text, Button, ModalLoading} from '../../../components';
 import {colors, fontSize} from '../../../constant';
 import {hScale, scale} from '../../../utils/resolutions';
 import {formatCurrency} from '../../../utils';
@@ -45,6 +45,9 @@ const Products = ({title, data, handlePlusCart, handleProduct}) => {
         columnWrapperStyle={styles.wrapperStyle}
         contentContainerStyle={styles.containerStyle}
         scrollIndicatorInsets={{right: 1}}
+        ListHeaderComponent={
+          <ModalLoading isVisible={data?.length ? false : true} />
+        }
       />
     </View>
   );

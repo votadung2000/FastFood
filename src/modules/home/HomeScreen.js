@@ -13,6 +13,8 @@ import routes from '../routes';
 const HomeScreen = ({navigation}) => {
   const {
     productsStore: {products, fetchProducts, updateFilters},
+    productsDetailStore: {fetchProductsDetail},
+    cartProductsStore: {updateCartProduct},
   } = useStore();
 
   const [itemMenu, setItemMenu] = useState(dataMenu[0]);
@@ -34,10 +36,13 @@ const HomeScreen = ({navigation}) => {
     updateFilters({group_type: item.id});
   };
 
-  const handlePlusCart = item => {};
+  const handlePlusCart = item => {
+    updateCartProduct(item);
+  };
 
   const handleProduct = item => {
-    navigation.navigate(routes.ProductsDetailScreen, {id: item?.id});
+    fetchProductsDetail(item?.id);
+    navigation.navigate(routes.ProductsDetailScreen);
   };
 
   return (

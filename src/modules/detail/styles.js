@@ -53,8 +53,8 @@ export default StyleSheet.create({
   },
   plus: {
     position: 'absolute',
-    bottom: 40,
-    right: 15,
+    bottom: scale(20),
+    right: scale(15),
     backgroundColor: colors.orange,
     width: scale(58),
     height: scale(58),

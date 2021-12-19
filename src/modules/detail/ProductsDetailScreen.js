@@ -1,33 +1,35 @@
-import React, {useEffect, useState} from 'react';
-import {View, Image, ActivityIndicator, ScrollView} from 'react-native';
+import React, {useState} from 'react';
+import {View, Image, ScrollView} from 'react-native';
 import {observer} from 'mobx-react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import _uniqBy from 'lodash/uniqBy';
 
-import {Text, Back, Button} from '../../components';
+import {Text, Back, Button, ModalLoading} from '../../components';
 import styles from './styles';
 import {useStore} from '../../context';
 import {colors} from '../../constant';
-import {formatCurrency, findId} from '../../utils';
+import {formatCurrency, findId, handleHeart} from '../../utils';
 import {scale} from '../../utils/resolutions';
 import ListExtraFood from './components/ListExtraFood';
 
-const ProductsDetailScreen = ({route}) => {
+const ProductsDetailScreen = () => {
   const {
-    productsDetailStore: {extraFood, productDetail, fetchProductsDetail},
+    productsDetailStore: {extraFood, productDetail},
+    cartProductsStore: {updateCartProduct},
+    heartProductsStore: {heartProducts, updateHeartProduct},
   } = useStore();
 
   const [extra, setExtra] = useState(null);
 
-  useEffect(() => {
-    fetchProductsDetail(route.params?.id);
-  }, []);
+  const {id, img, name, price, description, taste} = productDetail;
 
-  const {img, name, price, description, taste} = productDetail;
+  const handleFavorite = () => {
+    updateHeartProduct(productDetail);
+  };
 
-  const handleFavorite = () => {};
-
-  const handlePlusCart = () => {};
+  const handlePlusCart = () => {
+    updateCartProduct(productDetail);
+  };
 
   const handleExtraFood = item => {
     if (extra && extra.length > 0) {
@@ -42,8 +44,8 @@ const ProductsDetailScreen = ({route}) => {
     }
   };
 
-  if (!productDetail) {
-    return <ActivityIndicator color={colors.gray} />;
+  if (!Object.keys(productDetail)?.length) {
+    return <ModalLoading />;
   }
 
   return (
@@ -57,7 +59,7 @@ const ProductsDetailScreen = ({route}) => {
           <Back
             heart
             position
-            favorite={false}
+            favorite={handleHeart(id, heartProducts)}
             handleFavorite={handleFavorite}
           />
           <View style={styles.header}>

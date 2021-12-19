@@ -6,13 +6,13 @@ import {colors, fontSize} from '../../constant';
 import {scale} from '../../utils/resolutions';
 import {Button, Text} from '../index';
 
-const ChangeQuantity = ({handlePlus, handleMinus}) => {
+const ChangeQuantity = ({quantity, handlePlus, handleMinus}) => {
   return (
     <View style={styles.container}>
       <Button onPress={handlePlus} style={styles.btn}>
         <Entypo name="plus" color={colors.green} size={20} />
       </Button>
-      <Text style={styles.total}>{'1'}</Text>
+      <Text style={styles.total}>{quantity}</Text>
       <Button onPress={handleMinus} style={styles.btn}>
         <Entypo name="minus" color={colors.green} size={20} />
       </Button>

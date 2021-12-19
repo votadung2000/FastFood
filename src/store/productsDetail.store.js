@@ -12,9 +12,11 @@ class ProductsDetailStore {
   }
 
   fetchProductsDetail(id) {
-    const data = findId(dataProductsDetail, id);
-    this.productDetail = data;
-    this.extraFood = filterExtraFood(dataExtraFood, data?.extra_food);
+    try {
+      const data = findId(dataProductsDetail, id);
+      this.productDetail = data;
+      this.extraFood = filterExtraFood(dataExtraFood, data?.extra_food);
+    } catch (error) {}
   }
 }
 

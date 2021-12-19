@@ -1,60 +1,39 @@
 import React from 'react';
 import {View, FlatList, Image} from 'react-native';
+import {observer} from 'mobx-react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import LinearGradient from 'react-native-linear-gradient';
 
-import {Text, Button, Back, ChangeQuantity} from '../../components';
+import {Text, Button, ChangeQuantity} from '../../components';
 import {colors} from '../../constant';
 import {formatCurrency} from '../../utils';
 import styles from './styles';
 import {Item} from './components';
-
-const data = [
-  {
-    id: 1,
-    name: 'Beef Burger',
-    img: 'beef_big_size',
-    taste: 'Spicy',
-    price: '80000',
-    group_type: 1,
-  },
-  {
-    id: 2,
-    name: 'Chicken Burger',
-    img: 'beef_chicken',
-    taste: 'Spicy',
-    price: '100000',
-    group_type: 1,
-  },
-  {
-    id: 1,
-    name: 'Beef Burger',
-    img: 'beef_big_size',
-    taste: 'Spicy',
-    price: '80000',
-    group_type: 1,
-  },
-  {
-    id: 2,
-    name: 'Chicken Burger',
-    img: 'beef_chicken',
-    taste: 'Spicy',
-    price: '100000',
-    group_type: 1,
-  },
-];
+import {useStore} from '../../context';
 
 const CartScreen = () => {
-  const handleRemove = () => {
-    alert('Remove Cart');
+  const {
+    cartProductsStore: {
+      cartProducts,
+      total,
+      discount,
+      totalCost,
+      plusProducts,
+      minusProducts,
+      removeProducts,
+    },
+  } = useStore();
+
+  const handleRemove = item => {
+    removeProducts(item);
   };
 
-  const handlePlus = () => {
-    alert('Handle Plus');
+  const handlePlus = item => {
+    plusProducts(item);
   };
 
-  const handleMinus = () => {
-    alert('Handle Minus');
+  const handleMinus = item => {
+    minusProducts(item);
   };
 
   const handlePayment = () => {
@@ -82,6 +61,7 @@ const CartScreen = () => {
           </View>
           <View style={styles.headerItem}>
             <ChangeQuantity
+              quantity={item?.quantity}
               handlePlus={() => handlePlus(item)}
               handleMinus={() => handleMinus(item)}
             />
@@ -96,39 +76,58 @@ const CartScreen = () => {
     );
   };
 
+  const EmptyCart = () => {
+    return (
+      <View style={styles.emptyContainer}>
+        <Image source={{uri: 'cart_empty'}} style={styles.emptyImg} />
+        <Text bold style={styles.txtEmpty}>
+          {"Cart's Empty"}
+        </Text>
+      </View>
+    );
+  };
+
   return (
     <View style={styles.layout}>
-      <View style={styles.container}>
-        <View style={styles.body}>
-          <Back title={'Your Order'} />
-          <FlatList
-            data={data}
-            keyExtractor={keyExtractor}
-            renderItem={renderItem}
-            bounces={false}
-            style={styles.flatList}
-            contentContainerStyle={styles.ccStyle}
-          />
+      <Text bold style={styles.title}>
+        {'Your Order'}
+      </Text>
+      {cartProducts?.length === 0 ? (
+        <EmptyCart />
+      ) : (
+        <View style={styles.container}>
+          <View style={styles.body}>
+            <FlatList
+              data={cartProducts}
+              keyExtractor={keyExtractor}
+              renderItem={renderItem}
+              bounces={false}
+              style={styles.flatList}
+              contentContainerStyle={styles.ccStyle}
+            />
+          </View>
+          {cartProducts?.length ? (
+            <View style={styles.footer}>
+              <Item bold label="Items" value={formatCurrency(total)} />
+              <Item bold label="Discount" value={formatCurrency(discount)} />
+              <Item bold label="Cost" value={formatCurrency(totalCost)} />
+              <LinearGradient
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}
+                colors={[colors.yellow, colors.yellowSystem]}
+                style={styles.linearGradient}>
+                <Button onPress={() => handlePayment()} style={styles.btnLG}>
+                  <Text bold style={styles.textLG}>
+                    {'Payment & Delivery'}
+                  </Text>
+                </Button>
+              </LinearGradient>
+            </View>
+          ) : null}
         </View>
-        <View style={styles.footer}>
-          <Item bold label="Items" value={'2000'} />
-          <Item bold label="Discount" value={'0'} />
-          <Item bold label="Cost" value={'2000'} />
-          <LinearGradient
-            start={{x: 0, y: 0}}
-            end={{x: 1, y: 0}}
-            colors={[colors.yellow, colors.yellowSystem]}
-            style={styles.linearGradient}>
-            <Button onPress={() => handlePayment()} style={styles.btnLG}>
-              <Text bold style={styles.textLG}>
-                {'Payment & Delivery'}
-              </Text>
-            </Button>
-          </LinearGradient>
-        </View>
-      </View>
+      )}
     </View>
   );
 };
 
-export default CartScreen;
+export default observer(CartScreen);

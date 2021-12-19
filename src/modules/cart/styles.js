@@ -102,4 +102,23 @@ export default StyleSheet.create({
     fontSize: fontSize.large,
     color: colors.white,
   },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  emptyImg: {
+    width: scale(100),
+    height: scale(100),
+    marginBottom: scale(8),
+  },
+  txtEmpty: {
+    color: colors.graySystem2,
+    fontSize: fontSize.large,
+  },
+  title: {
+    fontSize: fontSize.huge,
+    alignSelf: 'flex-end',
+    marginRight: scale(5),
+  },
 });

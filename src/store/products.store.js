@@ -13,30 +13,34 @@ class ProductsStore {
   }
 
   fetchProducts(filters) {
-    if (filters) {
-      let {name, group_type} = Object.assign(this.filters, filters);
-      if (name || group_type) {
-        if (name) {
-          this.products = dataProducts.filter(item =>
-            item.name.toLocaleLowerCase().includes(name.toLocaleLowerCase()),
-          );
-        }
-        if (group_type) {
-          this.products = dataProducts.filter(
-            item => item.group_type === group_type,
-          );
-        }
-        if (name && group_type) {
-          this.products = dataProducts.filter(
-            item =>
-              item.group_type === group_type &&
+    try {
+      if (filters) {
+        let {name, group_type} = Object.assign(this.filters, filters);
+        if (name || group_type) {
+          if (name) {
+            this.products = dataProducts.filter(item =>
               item.name.toLocaleLowerCase().includes(name.toLocaleLowerCase()),
-          );
+            );
+          }
+          if (group_type) {
+            this.products = dataProducts.filter(
+              item => item.group_type === group_type,
+            );
+          }
+          if (name && group_type) {
+            this.products = dataProducts.filter(
+              item =>
+                item.group_type === group_type &&
+                item.name
+                  .toLocaleLowerCase()
+                  .includes(name.toLocaleLowerCase()),
+            );
+          }
         }
+      } else {
+        this.products = dataProducts;
       }
-    } else {
-      this.products = dataProducts;
-    }
+    } catch (error) {}
   }
 
   updateFilters(filters) {
