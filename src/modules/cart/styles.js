@@ -119,6 +119,6 @@ export default StyleSheet.create({
   title: {
     fontSize: fontSize.huge,
     alignSelf: 'flex-end',
-    marginRight: scale(5),
+    marginRight: scale(15),
   },
 });

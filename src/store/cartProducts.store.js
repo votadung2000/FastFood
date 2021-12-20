@@ -2,7 +2,6 @@ import {action, makeAutoObservable} from 'mobx';
 import {Notifier, NotifierComponents} from 'react-native-notifier';
 
 import {formatCartProducts} from '../utils';
-
 class CartProductsStore {
   cartProducts = [];
   total = 0;
@@ -11,7 +10,7 @@ class CartProductsStore {
 
   constructor() {
     makeAutoObservable(this, {
-      updateCartProduct: action.bound,
+      fetchCartProduct: action.bound,
       updateTotal: action.bound,
       updateDiscount: action.bound,
       updateCost: action.bound,
@@ -21,7 +20,7 @@ class CartProductsStore {
     });
   }
 
-  updateCartProduct(item) {
+  fetchCartProduct(item) {
     try {
       if (this.cartProducts?.length) {
         let indexPr = this.cartProducts.findIndex(pr => pr?.id === item?.id);

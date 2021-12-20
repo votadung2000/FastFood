@@ -5,29 +5,33 @@ class HeartProductsStore {
 
   constructor() {
     makeAutoObservable(this, {
-      updateHeartProduct: action.bound,
+      fetchHeartProduct: action.bound,
       removeProducts: action.bound,
     });
   }
 
-  updateHeartProduct(item) {
+  fetchHeartProduct(item) {
     try {
-      if (this.heartProducts?.length) {
-        let findPr = this.heartProducts.find(pr => pr?.id === item?.id);
-        if (findPr) {
-          this.removeProducts(item);
-        } else {
-          this.heartProducts.push(item);
-        }
+      // if (this.heartProducts?.length) {
+      let findPr = this.heartProducts.find(pr => pr?.id === item?.id);
+      if (findPr) {
+        this.removeProducts(item);
       } else {
         this.heartProducts.push(item);
       }
+      // } else {
+      //   this.heartProducts.push(item);
+      // }
     } catch (error) {}
   }
 
   removeProducts(item) {
     try {
-      this.heartProducts = this.heartProducts.filter(pr => pr?.id !== item?.id);
+      if (this.heartProducts?.length) {
+        this.heartProducts = this.heartProducts.filter(
+          pr => pr?.id !== item?.id,
+        );
+      }
     } catch (error) {}
   }
 }

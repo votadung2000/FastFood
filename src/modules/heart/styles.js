@@ -1,10 +1,7 @@
 import {StyleSheet} from 'react-native';
-import {Dimensions} from 'react-native';
 
 import {colors, fontSize} from '../../constant';
-import {hScale, scale} from '../../utils/resolutions';
-
-const {width} = Dimensions.get('window');
+import {scale} from '../../utils/resolutions';
 
 export default StyleSheet.create({
   container: {
@@ -14,15 +11,15 @@ export default StyleSheet.create({
   title: {
     fontSize: fontSize.huge,
     alignSelf: 'flex-end',
-    marginRight: scale(5),
+    marginRight: scale(15),
   },
   item: {
-    width: width / 2.4,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: scale(80),
+    marginBottom: scale(20),
     backgroundColor: colors.white,
     borderRadius: scale(15),
+    flexDirection: 'row',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -37,9 +34,6 @@ export default StyleSheet.create({
   img: {
     width: scale(80),
     height: scale(80),
-    position: 'absolute',
-    top: -hScale(60),
-    zIndex: 9999,
   },
   txtItem: {
     textAlign: 'auto',
@@ -47,8 +41,7 @@ export default StyleSheet.create({
     marginBottom: scale(6),
   },
   content: {
-    width: '100%',
-    marginTop: scale(25),
+    width: '50%',
   },
   txtTaste: {
     fontSize: fontSize.small,
@@ -56,20 +49,15 @@ export default StyleSheet.create({
   },
   txtName: {
     fontSize: fontSize.fontSize16,
-    textAlign: 'center',
   },
   plus: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
     paddingHorizontal: scale(8),
     paddingVertical: scale(8),
-  },
-  wrapperStyle: {
-    justifyContent: 'space-around',
+    zIndex: 999,
   },
   containerStyle: {
-    marginTop: scale(65),
+    marginTop: scale(15),
+    paddingHorizontal: scale(15),
   },
   emptyContainer: {
     flex: 1,
@@ -84,5 +72,8 @@ export default StyleSheet.create({
   txtEmpty: {
     color: colors.graySystem2,
     fontSize: fontSize.large,
+  },
+  footer: {
+    alignItems: 'center',
   },
 });

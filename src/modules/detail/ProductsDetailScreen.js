@@ -15,8 +15,8 @@ import ListExtraFood from './components/ListExtraFood';
 const ProductsDetailScreen = () => {
   const {
     productsDetailStore: {extraFood, productDetail},
-    cartProductsStore: {updateCartProduct},
-    heartProductsStore: {heartProducts, updateHeartProduct},
+    cartProductsStore: {fetchCartProduct},
+    heartProductsStore: {heartProducts, fetchHeartProduct},
   } = useStore();
 
   const [extra, setExtra] = useState(null);
@@ -24,11 +24,11 @@ const ProductsDetailScreen = () => {
   const {id, img, name, price, description, taste} = productDetail;
 
   const handleFavorite = () => {
-    updateHeartProduct(productDetail);
+    fetchHeartProduct(productDetail);
   };
 
   const handlePlusCart = () => {
-    updateCartProduct(productDetail);
+    fetchCartProduct(productDetail);
   };
 
   const handleExtraFood = item => {

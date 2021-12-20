@@ -14,7 +14,7 @@ const HomeScreen = ({navigation}) => {
   const {
     productsStore: {products, fetchProducts, updateFilters},
     productsDetailStore: {fetchProductsDetail},
-    cartProductsStore: {updateCartProduct},
+    cartProductsStore: {fetchCartProduct},
   } = useStore();
 
   const [itemMenu, setItemMenu] = useState(dataMenu[0]);
@@ -37,7 +37,7 @@ const HomeScreen = ({navigation}) => {
   };
 
   const handlePlusCart = item => {
-    updateCartProduct(item);
+    fetchCartProduct(item);
   };
 
   const handleProduct = item => {
@@ -52,6 +52,7 @@ const HomeScreen = ({navigation}) => {
         <Menu data={dataMenu} itemMenu={itemMenu} handleItem={handleItem} />
         <Products
           title={itemMenu?.title}
+          imgMenu={itemMenu?.img}
           data={handleDataOdd(products)}
           handlePlusCart={handlePlusCart}
           handleProduct={handleProduct}

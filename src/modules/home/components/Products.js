@@ -2,14 +2,14 @@ import React from 'react';
 import {StyleSheet, View, Dimensions, Image, FlatList} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import {Text, Button, ModalLoading} from '../../../components';
+import {Text, Button} from '../../../components';
 import {colors, fontSize} from '../../../constant';
 import {hScale, scale} from '../../../utils/resolutions';
 import {formatCurrency} from '../../../utils';
 
 const {width} = Dimensions.get('window');
 
-const Products = ({title, data, handlePlusCart, handleProduct}) => {
+const Products = ({title, imgMenu, data, handlePlusCart, handleProduct}) => {
   const keyExtractor = (_, index) => index.toString();
 
   const renderItem = ({item}) => {
@@ -32,23 +32,35 @@ const Products = ({title, data, handlePlusCart, handleProduct}) => {
     ) : null;
   };
 
+  const EmptyProduct = () => {
+    return (
+      <View style={styles.emptyContainer}>
+        <Image source={{uri: imgMenu}} style={styles.emptyImg} />
+        <Text bold style={styles.txtEmpty}>
+          {"Product's Empty"}
+        </Text>
+      </View>
+    );
+  };
+
   return (
     <View style={styles.container}>
       <Text bold style={styles.title}>{`Popular ${title}`}</Text>
-      <FlatList
-        numColumns={2}
-        data={data}
-        showsVerticalScrollIndicator={false}
-        keyExtractor={keyExtractor}
-        renderItem={renderItem}
-        bounces={false}
-        columnWrapperStyle={styles.wrapperStyle}
-        contentContainerStyle={styles.containerStyle}
-        scrollIndicatorInsets={{right: 1}}
-        ListHeaderComponent={
-          <ModalLoading isVisible={data?.length ? false : true} />
-        }
-      />
+      {data?.length ? (
+        <FlatList
+          numColumns={2}
+          data={data}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={keyExtractor}
+          renderItem={renderItem}
+          bounces={false}
+          columnWrapperStyle={styles.wrapperStyle}
+          contentContainerStyle={styles.containerStyle}
+          scrollIndicatorInsets={{right: 1}}
+        />
+      ) : (
+        <EmptyProduct />
+      )}
     </View>
   );
 };
@@ -115,6 +127,20 @@ const styles = StyleSheet.create({
   },
   containerStyle: {
     marginTop: scale(65),
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  emptyImg: {
+    width: scale(100),
+    height: scale(100),
+    marginBottom: scale(8),
+  },
+  txtEmpty: {
+    color: colors.graySystem2,
+    fontSize: fontSize.large,
   },
 });
 
