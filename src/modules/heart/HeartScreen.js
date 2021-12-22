@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
-import { View } from 'react-native';
-import { observer } from 'mobx-react';
+import React, {useState} from 'react';
+import {View} from 'react-native';
+import {observer} from 'mobx-react';
 
-import { Text } from '../../components';
+import {Text} from '../../components';
 import styles from './styles';
-import { useStore } from '../../context';
+import {useStore} from '../../context';
 import routes from '../routes';
-import { Menu, HeartProducts } from './components'
-import { dataMenu } from '../../actions/Data';
-import { toJS } from 'mobx';
+import {Menu, HeartProducts} from './components';
+import {dataMenu} from '../../actions/Data';
 
-const HeartScreen = ({ navigation }) => {
+const HeartScreen = ({navigation}) => {
   const {
-    heartProductsStore: { heartProducts, addHeartProduct, fetchHeartProduct },
-    productsDetailStore: { fetchProductsDetail },
-    cartProductsStore: { fetchCartProduct },
+    heartProductsStore: {heartProducts, addHeartProduct, fetchHeartProduct},
+    productsDetailStore: {fetchProductsDetail},
+    cartProductsStore: {fetchCartProduct},
   } = useStore();
 
   const [itemMenu, setItemMenu] = useState(null);

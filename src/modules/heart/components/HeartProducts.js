@@ -1,13 +1,12 @@
 import React from 'react';
-import { StyleSheet, View, Image, FlatList } from 'react-native';
+import {StyleSheet, View, Image, FlatList} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { observer } from 'mobx-react';
 
-import { Text, Button } from '../../../components';
-import { colors, fontSize } from '../../../constant';
-import { scale } from '../../../utils/resolutions';
-import { formatCurrency, limitedString, handleHeart } from '../../../utils';
+import {Text, Button} from '../../../components';
+import {colors, fontSize} from '../../../constant';
+import {scale} from '../../../utils/resolutions';
+import {formatCurrency, limitedString, handleHeart} from '../../../utils';
 
 const HeartProducts = ({
   itemMenu,
@@ -18,10 +17,10 @@ const HeartProducts = ({
 }) => {
   const keyExtractor = (_, index) => index.toString();
 
-  const renderItem = ({ item }) => {
+  const renderItem = ({item}) => {
     return (
       <Button onPress={() => handleProduct(item)} style={styles.item}>
-        <Image source={{ uri: item?.img }} style={styles.img} />
+        <Image source={{uri: item?.img}} style={styles.img} />
         <View style={styles.content}>
           <Text bold style={[styles.txtItem, styles.txtName]}>
             {limitedString(item?.name, 10)}
@@ -34,9 +33,7 @@ const HeartProducts = ({
         <View style={styles.footer}>
           <Button onPress={() => handleRemoveHeart(item)} style={styles.plus}>
             <Ionicons
-              name={
-                handleHeart(item?.id, data) ? 'heart' : 'heart-outline'
-              }
+              name={handleHeart(item?.id, data) ? 'heart' : 'heart-outline'}
               size={scale(26)}
               color={colors.heart}
             />
@@ -56,7 +53,7 @@ const HeartProducts = ({
   const EmptyHeart = () => {
     return (
       <View style={styles.emptyContainer}>
-        <Image source={{ uri: 'hearts_empty' }} style={styles.emptyImg} />
+        <Image source={{uri: 'hearts_empty'}} style={styles.emptyImg} />
         <Text bold style={styles.txtEmpty}>
           {"Heart's Empty"}
         </Text>
@@ -79,7 +76,7 @@ const HeartProducts = ({
           renderItem={renderItem}
           bounces={false}
           contentContainerStyle={styles.containerStyle}
-          scrollIndicatorInsets={{ right: 1 }}
+          scrollIndicatorInsets={{right: 1}}
         />
       )}
     </View>
@@ -143,7 +140,7 @@ const styles = StyleSheet.create({
   },
   containerStyle: {
     paddingHorizontal: scale(10),
-    marginTop:scale(5),
+    marginTop: scale(5),
   },
   emptyContainer: {
     flex: 1,

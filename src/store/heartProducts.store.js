@@ -1,7 +1,7 @@
-import { action, makeAutoObservable, toJS } from 'mobx';
+import {action, makeAutoObservable} from 'mobx';
 class HeartProductsStore {
   heartProducts = [];
-  save = [];
+  allHeartProducts = [];
   menu = {};
 
   constructor() {
@@ -15,41 +15,43 @@ class HeartProductsStore {
   fetchHeartProduct(itemMenu) {
     try {
       this.menu = itemMenu;
-      this.heartProducts = this.save.filter(
-        item => item?.group_type === itemMenu?.id
+      this.heartProducts = this.allHeartProducts.filter(
+        item => item?.group_type === itemMenu?.id,
       );
-    } catch (error) { }
+    } catch (error) {}
   }
 
   addHeartProduct(item) {
     try {
-      let findPr = this.save.find(pr => pr?.id === item?.id);
-      if (!!findPr) {
+      let findPr = this.allHeartProducts.find(pr => pr?.id === item?.id);
+      if (findPr) {
         this.removeProducts(item);
       } else {
         if (Object.keys(this.menu)?.length) {
-          let newArrPr = [...this.heartProducts, item]
-          this.heartProducts = newArrPr.filter(nw => nw?.group_type === this.menu?.id);
+          let newArrPr = [...this.heartProducts, item];
+          this.heartProducts = newArrPr.filter(
+            nw => nw?.group_type === this.menu?.id,
+          );
         } else {
           this.heartProducts.push(item);
         }
-        this.save.push(item);
+        this.allHeartProducts.push(item);
       }
-    } catch (error) { }
+    } catch (error) {}
   }
 
   removeProducts(item) {
     try {
-      let newArrPr = this.save.filter(
-        pr => pr?.id !== item?.id,
-      );
+      let newArrPr = this.allHeartProducts.filter(pr => pr?.id !== item?.id);
       if (Object.keys(this.menu)?.length) {
-        this.heartProducts = newArrPr.filter(nw => nw?.group_type === this.menu?.id);
+        this.heartProducts = newArrPr.filter(
+          nw => nw?.group_type === this.menu?.id,
+        );
       } else {
         this.heartProducts = newArrPr;
       }
-      this.save = newArrPr;
-    } catch (error) { }
+      this.allHeartProducts = newArrPr;
+    } catch (error) {}
   }
 }
 

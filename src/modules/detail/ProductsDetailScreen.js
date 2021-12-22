@@ -16,7 +16,7 @@ const ProductsDetailScreen = () => {
   const {
     productsDetailStore: {extraFood, productDetail},
     cartProductsStore: {fetchCartProduct},
-    heartProductsStore: {heartProducts, addHeartProduct},
+    heartProductsStore: {allHeartProducts, addHeartProduct},
   } = useStore();
 
   const [extra, setExtra] = useState(null);
@@ -59,7 +59,7 @@ const ProductsDetailScreen = () => {
           <Back
             heart
             position
-            favorite={handleHeart(id, heartProducts)}
+            favorite={handleHeart(id, allHeartProducts)}
             handleFavorite={handleFavorite}
           />
           <View style={styles.header}>
