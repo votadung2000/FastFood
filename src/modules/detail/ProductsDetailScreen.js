@@ -16,7 +16,7 @@ const ProductsDetailScreen = () => {
   const {
     productsDetailStore: {extraFood, productDetail},
     cartProductsStore: {fetchCartProduct},
-    heartProductsStore: {heartProducts, fetchHeartProduct},
+    heartProductsStore: {heartProducts, addHeartProduct},
   } = useStore();
 
   const [extra, setExtra] = useState(null);
@@ -24,7 +24,7 @@ const ProductsDetailScreen = () => {
   const {id, img, name, price, description, taste} = productDetail;
 
   const handleFavorite = () => {
-    fetchHeartProduct(productDetail);
+    addHeartProduct(productDetail);
   };
 
   const handlePlusCart = () => {

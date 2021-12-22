@@ -19,19 +19,19 @@ class ProductsStore {
         if (name || group_type) {
           if (name) {
             this.products = dataProducts.filter(item =>
-              item.name.toLocaleLowerCase().includes(name.toLocaleLowerCase()),
+              item?.name.toLocaleLowerCase().includes(name.toLocaleLowerCase()),
             );
           }
           if (group_type) {
             this.products = dataProducts.filter(
-              item => item.group_type === group_type,
+              item => item?.group_type === group_type,
             );
           }
           if (name && group_type) {
             this.products = dataProducts.filter(
               item =>
-                item.group_type === group_type &&
-                item.name
+                item?.group_type === group_type &&
+                item?.name
                   .toLocaleLowerCase()
                   .includes(name.toLocaleLowerCase()),
             );

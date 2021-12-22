@@ -1,43 +1,64 @@
 import React from 'react';
-import {StyleSheet, View, Dimensions, Image, FlatList} from 'react-native';
+import { StyleSheet, View, Image, FlatList } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { observer } from 'mobx-react';
 
-import {Text, Button} from '../../../components';
-import {colors, fontSize} from '../../../constant';
-import {hScale, scale} from '../../../utils/resolutions';
-import {formatCurrency} from '../../../utils';
+import { Text, Button } from '../../../components';
+import { colors, fontSize } from '../../../constant';
+import { scale } from '../../../utils/resolutions';
+import { formatCurrency, limitedString, handleHeart } from '../../../utils';
 
-const {width} = Dimensions.get('window');
-
-const Products = ({title, imgMenu, data, handlePlusCart, handleProduct}) => {
+const HeartProducts = ({
+  itemMenu,
+  data,
+  handlePlusCart,
+  handleProduct,
+  handleRemoveHeart,
+}) => {
   const keyExtractor = (_, index) => index.toString();
 
-  const renderItem = ({item}) => {
-    return item && Object.keys(item).length > 0 ? (
+  const renderItem = ({ item }) => {
+    return (
       <Button onPress={() => handleProduct(item)} style={styles.item}>
-        <Image source={{uri: item?.img}} style={styles.img} />
+        <Image source={{ uri: item?.img }} style={styles.img} />
         <View style={styles.content}>
           <Text bold style={[styles.txtItem, styles.txtName]}>
-            {item?.name}
+            {limitedString(item?.name, 10)}
           </Text>
           <Text style={[styles.txtItem, styles.txtTaste]}>{item?.taste}</Text>
           <Text bold style={styles.txtItem}>{`${formatCurrency(
             item?.price,
           )} Đ`}</Text>
         </View>
-        <Button onPress={() => handlePlusCart(item)} style={styles.plus}>
-          <AntDesign name="pluscircle" size={scale(26)} color={colors.orange} />
-        </Button>
+        <View style={styles.footer}>
+          <Button onPress={() => handleRemoveHeart(item)} style={styles.plus}>
+            <Ionicons
+              name={
+                handleHeart(item?.id, data) ? 'heart' : 'heart-outline'
+              }
+              size={scale(26)}
+              color={colors.heart}
+            />
+          </Button>
+          <Button onPress={() => handlePlusCart(item)} style={styles.plus}>
+            <AntDesign
+              name="pluscircle"
+              size={scale(26)}
+              color={colors.orange}
+            />
+          </Button>
+        </View>
       </Button>
-    ) : null;
+    );
   };
 
-  const EmptyProduct = () => {
+  const EmptyHeart = () => {
     return (
       <View style={styles.emptyContainer}>
-        <Image source={{uri: imgMenu}} style={styles.emptyImg} />
+        <Image source={{ uri: 'hearts_empty' }} style={styles.emptyImg} />
         <Text bold style={styles.txtEmpty}>
-          {"Product's Empty"}
+          {"Heart's Empty"}
         </Text>
       </View>
     );
@@ -45,43 +66,44 @@ const Products = ({title, imgMenu, data, handlePlusCart, handleProduct}) => {
 
   return (
     <View style={styles.container}>
-      <Text bold style={styles.title}>{`Popular ${title}`}</Text>
-      {data?.length ? (
+      <Text bold style={styles.title}>
+        {itemMenu ? itemMenu?.title : 'All'}
+      </Text>
+      {data?.length === 0 ? (
+        <EmptyHeart />
+      ) : (
         <FlatList
-          numColumns={2}
           data={data}
           showsVerticalScrollIndicator={false}
           keyExtractor={keyExtractor}
           renderItem={renderItem}
           bounces={false}
-          columnWrapperStyle={styles.wrapperStyle}
           contentContainerStyle={styles.containerStyle}
-          scrollIndicatorInsets={{right: 1}}
+          scrollIndicatorInsets={{ right: 1 }}
         />
-      ) : (
-        <EmptyProduct />
       )}
     </View>
   );
 };
 
-export default Products;
+export default HeartProducts;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   title: {
-    fontSize: fontSize.fontSize28,
+    fontSize: fontSize.normal,
+    marginTop: scale(5),
     marginBottom: scale(10),
   },
   item: {
-    width: width / 2.4,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: scale(80),
+    marginBottom: scale(20),
     backgroundColor: colors.white,
     borderRadius: scale(15),
+    flexDirection: 'row',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -94,41 +116,34 @@ const styles = StyleSheet.create({
     paddingHorizontal: scale(8),
   },
   img: {
-    width: scale(80),
-    height: scale(80),
-    position: 'absolute',
-    top: -hScale(60),
-    zIndex: 9999,
+    width: scale(70),
+    height: scale(70),
   },
   txtItem: {
     textAlign: 'auto',
     fontSize: fontSize.fontSize14,
-    marginBottom: scale(6),
   },
   content: {
-    width: '100%',
-    marginTop: scale(25),
+    width: '50%',
+    paddingHorizontal: scale(5),
   },
   txtTaste: {
     fontSize: fontSize.small,
     color: colors.gray,
+    marginBottom: scale(6),
   },
   txtName: {
     fontSize: fontSize.fontSize16,
-    textAlign: 'center',
+    marginBottom: scale(6),
   },
   plus: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
     paddingHorizontal: scale(8),
     paddingVertical: scale(8),
-  },
-  wrapperStyle: {
-    justifyContent: 'space-around',
+    zIndex: 999,
   },
   containerStyle: {
-    marginTop: scale(65),
+    paddingHorizontal: scale(10),
+    marginTop:scale(5),
   },
   emptyContainer: {
     flex: 1,
@@ -143,5 +158,8 @@ const styles = StyleSheet.create({
   txtEmpty: {
     color: colors.graySystem2,
     fontSize: fontSize.large,
+  },
+  footer: {
+    alignItems: 'center',
   },
 });
