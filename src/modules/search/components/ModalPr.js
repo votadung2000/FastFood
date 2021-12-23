@@ -9,7 +9,7 @@ import {Layout} from '../../../views';
 import {scale} from '../../../utils/resolutions';
 import Products from './Products';
 
-const ModalPr = ({isVisible, menu, products, goBack}) => {
+const ModalPr = ({isVisible, menu, productsSearch, goBack}) => {
   return (
     <Modal
       useNativeDriver
@@ -26,7 +26,7 @@ const ModalPr = ({isVisible, menu, products, goBack}) => {
             </Button>
             <Text style={styles.title}>{`Popular ${menu?.title}`}</Text>
           </View>
-          <Products imgMenu={menu?.img} data={products} />
+          <Products imgMenu={menu?.img} data={productsSearch} />
         </View>
       </Layout>
     </Modal>

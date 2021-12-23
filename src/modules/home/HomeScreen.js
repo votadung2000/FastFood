@@ -12,7 +12,7 @@ import routes from '../routes';
 
 const HomeScreen = ({navigation}) => {
   const {
-    productsStore: {products, fetchProducts, updateFilters},
+    productsStore: {products, fetchProducts},
     productsDetailStore: {fetchProductsDetail},
     cartProductsStore: {fetchCartProduct},
   } = useStore();
@@ -33,7 +33,6 @@ const HomeScreen = ({navigation}) => {
   const handleItem = item => {
     setItemMenu(item);
     fetchProducts({group_type: item.id});
-    updateFilters({group_type: item.id});
   };
 
   const handlePlusCart = item => {

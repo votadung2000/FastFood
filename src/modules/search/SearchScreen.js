@@ -11,7 +11,7 @@ import {findBgLg, handleDataOdd} from '../../utils';
 
 const SearchScreen = () => {
   const {
-    productsStore: {products, fetchProducts, updateFilters},
+    searchProductsStore: {productsSearch, fetchProductsSearch},
   } = useStore();
 
   const [isVisible, setIsVisible] = useState(false);
@@ -19,8 +19,7 @@ const SearchScreen = () => {
 
   const onPressCard = item => {
     setMenu(item);
-    fetchProducts({group_type: item.id});
-    updateFilters({group_type: item.id});
+    fetchProductsSearch({group_type: item.id});
     handleOpenModal();
   };
 
@@ -53,7 +52,7 @@ const SearchScreen = () => {
       <ModalPr
         isVisible={isVisible}
         menu={menu}
-        products={handleDataOdd(products)}
+        productsSearch={handleDataOdd(productsSearch)}
         goBack={handleCloseModal}
       />
     </ScrollView>
