@@ -6,11 +6,7 @@ import {colors, fontSize} from '../../../constant';
 import {scale} from '../../../utils/resolutions';
 import {Text, Button} from '../../../components';
 
-const Card = ({
-  // index,
-  data,
-  bgLG,
-}) => {
+const Card = ({item, bgLG, onPressCard}) => {
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -18,13 +14,11 @@ const Card = ({
         end={{x: 1, y: 0}}
         colors={bgLG}
         style={styles.linearGradient}>
-        <Button
-          // onPress={() => onPress()}
-          style={styles.btn}>
+        <Button onPress={() => onPressCard(item)} style={styles.btn}>
           <Text bold style={styles.text}>
-            {data?.title}
+            {item?.title}
           </Text>
-          <Image source={{uri: data.img}} style={styles.img} />
+          <Image source={{uri: item.img}} style={styles.img} />
         </Button>
       </LinearGradient>
     </View>
@@ -39,10 +33,10 @@ const styles = StyleSheet.create({
   },
   linearGradient: {
     zIndex: 9999,
-    borderRadius: scale(15),
+    borderRadius: scale(6),
   },
   text: {
-    fontSize: fontSize.big,
+    fontSize: fontSize.huge,
     color: colors.white,
   },
   btn: {
