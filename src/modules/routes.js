@@ -7,4 +7,5 @@ export default {
   CartScreen: 'CartScreen',
   Logging: 'Logging',
   UserScreen: 'UserScreen',
+  SearchScreen: 'SearchScreen',
 };

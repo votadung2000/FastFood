@@ -7,6 +7,7 @@ import findId from './findId';
 import filterExtraFood from './filterExtraFood';
 import formatCartProducts from './formatCartProducts';
 import handleHeart from './handleHeart';
+import findBgLg from './findBgLg';
 
 export {
   resolutions,
@@ -18,4 +19,5 @@ export {
   filterExtraFood,
   formatCartProducts,
   handleHeart,
+  findBgLg,
 };

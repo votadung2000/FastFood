@@ -15,8 +15,9 @@ import HelloScreen from './HelloScreen';
 import HomeScreen from './home/HomeScreen';
 import ProductsDetailScreen from './detail/ProductsDetailScreen';
 import HeartScreen from './heart/HeartScreen';
-import CartScreen from './cart/CartScreen';
+// import CartScreen from './cart/CartScreen';
 import UserScreen from './user/UserScreen';
+import SearchScreen from './search/SearchScreen';
 
 import {scale} from '../utils/resolutions';
 import {colors, fontSize} from '../constant';
@@ -60,6 +61,14 @@ const TabApp = () => {
                 color={focused ? colors.price : colors.gray}
               />
             );
+          } else if (route.name === routes.SearchScreen) {
+            return (
+              <Ionicons
+                name="search"
+                size={scale(24)}
+                color={focused ? colors.orange : colors.gray}
+              />
+            );
           } else if (route.name === routes.HeartScreen) {
             return (
               <Ionicons
@@ -68,15 +77,17 @@ const TabApp = () => {
                 color={focused ? colors.heart : colors.gray}
               />
             );
-          } else if (route.name === routes.CartScreen) {
-            return (
-              <Ionicons
-                name="cart"
-                size={scale(24)}
-                color={focused ? colors.orange : colors.gray}
-              />
-            );
-          } else if (route.name === routes.UserScreen) {
+          }
+          // else if (route.name === routes.CartScreen) {
+          //   return (
+          //     <Ionicons
+          //       name="cart"
+          //       size={scale(24)}
+          //       color={focused ? colors.orange : colors.gray}
+          //     />
+          //   );
+          // }
+          else if (route.name === routes.UserScreen) {
             return (
               <FontAwesome
                 name="user"
@@ -95,19 +106,26 @@ const TabApp = () => {
         }}
       />
       <Tab.Screen
+        name={routes.SearchScreen}
+        component={SearchScreen}
+        options={{
+          tabBarLabel: ({focused}) => <Label {...{focused}}>{'Heart'}</Label>,
+        }}
+      />
+      <Tab.Screen
         name={routes.HeartScreen}
         component={HeartScreen}
         options={{
           tabBarLabel: ({focused}) => <Label {...{focused}}>{'Heart'}</Label>,
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name={routes.CartScreen}
         component={CartScreen}
         options={{
-          tabBarLabel: ({focused}) => <Label {...{focused}}>{'Cart'}</Label>,
+          tabBarLabel: ({ focused }) => <Label {...{ focused }}>{'Cart'}</Label>,
         }}
-      />
+      /> */}
       <Tab.Screen
         name={routes.UserScreen}
         component={UserScreen}
