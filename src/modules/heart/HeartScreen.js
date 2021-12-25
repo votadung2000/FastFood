@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react';
+import {useNavigationState} from '@react-navigation/native';
 
 import {Text} from '../../components';
 import styles from './styles';
@@ -10,13 +11,26 @@ import {Menu, HeartProducts} from './components';
 import {dataMenu} from '../../actions/Data';
 
 const HeartScreen = ({navigation}) => {
+  const indexRoute = useNavigationState(state => state?.index);
+
   const {
-    heartProductsStore: {heartProducts, addHeartProduct, fetchHeartProduct},
+    heartProductsStore: {
+      heartProducts,
+      addHeartProduct,
+      fetchHeartProduct,
+    },
     productsDetailStore: {fetchProductsDetail},
     cartProductsStore: {fetchCartProduct},
   } = useStore();
 
   const [itemMenu, setItemMenu] = useState(null);
+
+  useEffect(() => {
+    if (indexRoute === 2) {
+      setItemMenu(null);
+      fetchHeartProduct();
+    }
+  }, [indexRoute]);
 
   const handleItem = item => {
     setItemMenu(item);

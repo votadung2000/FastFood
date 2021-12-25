@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react';
+import {useNavigationState} from '@react-navigation/native';
 
 import {Text} from '../../components';
 import styles from './styles';
@@ -11,6 +12,8 @@ import {useStore} from '../../context';
 import routes from '../routes';
 
 const HomeScreen = ({navigation}) => {
+  const indexRoute = useNavigationState(state => state?.index);
+
   const {
     productsStore: {products, fetchProducts},
     productsDetailStore: {fetchProductsDetail},
@@ -20,8 +23,11 @@ const HomeScreen = ({navigation}) => {
   const [itemMenu, setItemMenu] = useState(dataMenu[0]);
 
   useEffect(() => {
-    fetchAPI();
-  }, []);
+    if (indexRoute === 0) {
+      fetchAPI();
+      setItemMenu(dataMenu[0]);
+    }
+  }, [indexRoute]);
 
   const fetchAPI = () => {
     let params = {

@@ -7,17 +7,21 @@ class HeartProductsStore {
   constructor() {
     makeAutoObservable(this, {
       addHeartProduct: action.bound,
-      removeProducts: action.bound,
+      removeHeartProducts: action.bound,
       fetchHeartProduct: action.bound,
     });
   }
 
   fetchHeartProduct(itemMenu) {
     try {
-      this.menu = itemMenu;
-      this.heartProducts = this.allHeartProducts.filter(
-        item => item?.group_type === itemMenu?.id,
-      );
+      if (itemMenu) {
+        this.menu = itemMenu;
+        this.heartProducts = this.allHeartProducts.filter(
+          item => item?.group_type === itemMenu?.id,
+        );
+      } else {
+        this.heartProducts = this.allHeartProducts;
+      }
     } catch (error) {}
   }
 
@@ -25,7 +29,7 @@ class HeartProductsStore {
     try {
       let findPr = this.allHeartProducts.find(pr => pr?.id === item?.id);
       if (findPr) {
-        this.removeProducts(item);
+        this.removeHeartProducts(item);
       } else {
         if (Object.keys(this.menu)?.length) {
           let newArrPr = [...this.heartProducts, item];
@@ -40,7 +44,7 @@ class HeartProductsStore {
     } catch (error) {}
   }
 
-  removeProducts(item) {
+  removeHeartProducts(item) {
     try {
       let newArrPr = this.allHeartProducts.filter(pr => pr?.id !== item?.id);
       if (Object.keys(this.menu)?.length) {
