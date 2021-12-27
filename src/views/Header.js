@@ -6,7 +6,11 @@ import {hScale, scale, wScale} from '../utils/resolutions';
 const Header = () => {
   return (
     <View style={styles.container}>
-      <Image source={{uri: 'logo'}} style={styles.logo} resizeMode="stretch" />
+      <Image
+        source={{uri: 'logo_home'}}
+        style={styles.logo}
+        resizeMode="stretch"
+      />
     </View>
   );
 };

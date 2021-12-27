@@ -14,11 +14,7 @@ const HeartScreen = ({navigation}) => {
   const indexRoute = useNavigationState(state => state?.index);
 
   const {
-    heartProductsStore: {
-      heartProducts,
-      addHeartProduct,
-      fetchHeartProduct,
-    },
+    heartProductsStore: {heartProducts, addHeartProduct, fetchHeartProduct},
     productsDetailStore: {fetchProductsDetail},
     cartProductsStore: {fetchCartProduct},
   } = useStore();

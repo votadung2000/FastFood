@@ -40,6 +40,8 @@ const Menu = ({data, itemMenu, handleItem}) => {
   );
 };
 
+export default React.memo(Menu);
+
 const styles = StyleSheet.create({
   container: {
     marginBottom: scale(15),
@@ -76,5 +78,3 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
   },
 });
-
-export default Menu;

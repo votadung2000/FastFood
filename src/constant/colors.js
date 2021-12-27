@@ -16,6 +16,7 @@ export default {
 
   // Orange
   orange: '#ffbb33',
+  orangeSystem: '#ffdd99',
 
   // Green
   green: '#33cc33',
@@ -32,4 +33,7 @@ export default {
   // Yellow
   yellow: '#F6C012',
   yellowSystem: '#FFD543',
+
+  // Purple
+  purple: '#c44dff',
 };
