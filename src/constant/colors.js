@@ -1,6 +1,7 @@
 export default {
   // White
   white: '#FFFFFF',
+  whiteSystem: '#f2f2f2',
 
   // Blue
   blue: '#0F2F8E',
