@@ -4,7 +4,7 @@ import {observer} from 'mobx-react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import LinearGradient from 'react-native-linear-gradient';
 
-import {Text, Button, ChangeQuantity} from '../../components';
+import {Text, Button, ChangeQuantity, Back} from '../../components';
 import {colors} from '../../constant';
 import {formatCurrency} from '../../utils';
 import styles from './styles';
@@ -89,9 +89,7 @@ const CartScreen = () => {
 
   return (
     <View style={styles.layout}>
-      <Text bold style={styles.title}>
-        {'Your Order'}
-      </Text>
+      <Back title={'Your Order'} stTitle={styles.title} />
       {cartProducts?.length === 0 ? (
         <EmptyCart />
       ) : (
@@ -104,6 +102,7 @@ const CartScreen = () => {
               bounces={false}
               style={styles.flatList}
               contentContainerStyle={styles.ccStyle}
+              showsVerticalScrollIndicator={false}
             />
           </View>
           {cartProducts?.length ? (

@@ -9,7 +9,7 @@ import {scale} from '../../utils/resolutions';
 import Button from './Button';
 import Text from '../Text';
 
-const Back = ({handleFavorite, heart, favorite, title, position}) => {
+const Back = ({handleFavorite, heart, favorite, title, position, stTitle}) => {
   const navigation = useNavigation();
 
   const goBack = () => {
@@ -31,7 +31,7 @@ const Back = ({handleFavorite, heart, favorite, title, position}) => {
         </Button>
       )}
       {title && (
-        <Text bold style={styles.title}>
+        <Text bold style={[styles.title, stTitle]}>
           {title}
         </Text>
       )}
@@ -46,10 +46,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     zIndex: 999,
+    paddingHorizontal: scale(10),
   },
   position: {
     position: 'absolute',
-    paddingHorizontal: scale(15),
   },
   btn: {
     paddingRight: scale(10),

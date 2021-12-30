@@ -32,7 +32,10 @@ const SearchScreen = () => {
   };
 
   return (
-    <ScrollView bounces={false} style={styles.layout}>
+    <ScrollView
+      bounces={false}
+      style={styles.layout}
+      showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <Text style={styles.title}>{'Discover\nNew Flavors'}</Text>
         <Search placeholder={'Search'} />

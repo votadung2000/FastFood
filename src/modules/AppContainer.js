@@ -21,7 +21,7 @@ import SearchScreen from './search/SearchScreen';
 
 import {scale} from '../utils/resolutions';
 import {colors, fontSize} from '../constant';
-import {Text} from '../components';
+import {Text, ButtonCart} from '../components';
 
 const styles = StyleSheet.create({
   label: {
@@ -121,7 +121,7 @@ const TabApp = () => {
         name={routes.CartScreen}
         component={CartScreen}
         options={{
-          tabBarLabel: ({focused}) => <Label {...{focused}}>{'Cart'}</Label>,
+          tabBarLabel: ({focused}) => <ButtonCart {...{focused}} />,
         }}
       />
       <Tab.Screen
@@ -149,6 +149,7 @@ const AppContainer = () => {
           }}>
           <Stack.Screen name={routes.HelloScreen} component={HelloScreen} />
           <Stack.Screen name={'TabApp'} component={TabApp} />
+          <Stack.Screen name={routes.CartScreen} component={CartScreen} />
           <Stack.Screen
             name={routes.ProductsDetailScreen}
             component={ProductsDetailScreen}
