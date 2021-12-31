@@ -83,7 +83,7 @@ const HeartProducts = ({
   );
 };
 
-export default HeartProducts;
+export default React.memo(HeartProducts);
 
 const styles = StyleSheet.create({
   container: {

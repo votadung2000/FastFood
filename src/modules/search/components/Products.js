@@ -64,7 +64,7 @@ const Products = ({imgMenu, data, handlePlusCart, handleProduct}) => {
   );
 };
 
-export default Products;
+export default React.memo(Products);
 
 const styles = StyleSheet.create({
   container: {

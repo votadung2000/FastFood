@@ -14,6 +14,8 @@ const Item = ({label, value, bold}) => {
   );
 };
 
+export default React.memo(Item);
+
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: scale(20),
@@ -31,4 +33,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default React.memo(Item);

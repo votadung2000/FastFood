@@ -1,17 +1,20 @@
-import React, {useState} from 'react';
-import {View, ScrollView} from 'react-native';
-import {observer} from 'mobx-react';
+import React, { useState } from 'react';
+import { View, ScrollView } from 'react-native';
+import { observer } from 'mobx-react';
 
-import {Text, Search} from '../../components';
+import { Text, Search } from '../../components';
 import styles from './styles';
-import {Card, ModalPr} from './components';
-import {useStore} from '../../context';
-import {dataMenu} from '../../actions/Data';
-import {findBgLg, handleDataOdd} from '../../utils';
+import { Card, ModalPr } from './components';
+import { useStore } from '../../context';
+import { dataMenu } from '../../actions/Data';
+import { findBgLg, handleDataOdd } from '../../utils';
+import routes from '../routes';
 
-const SearchScreen = () => {
+const SearchScreen = ({navigation}) => {
   const {
-    searchProductsStore: {productsSearch, fetchProductsSearch},
+    searchProductsStore: { productsSearch, fetchProductsSearch },
+    productsDetailStore: { fetchProductsDetail },
+    cartProductsStore: { fetchCartProduct },
   } = useStore();
 
   const [isVisible, setIsVisible] = useState(false);
@@ -19,7 +22,7 @@ const SearchScreen = () => {
 
   const onPressCard = item => {
     setMenu(item);
-    fetchProductsSearch({group_type: item.id});
+    fetchProductsSearch({ group_type: item.id });
     handleOpenModal();
   };
 
@@ -29,6 +32,16 @@ const SearchScreen = () => {
 
   const handleCloseModal = () => {
     setIsVisible(false);
+  };
+
+  const handlePlusCart = item => {
+    fetchCartProduct(item);
+  };
+
+  const handleProduct = item => {
+    handleCloseModal();
+    fetchProductsDetail(item?.id);
+    navigation.navigate(routes.ProductsDetailScreen);
   };
 
   return (
@@ -57,6 +70,8 @@ const SearchScreen = () => {
         menu={menu}
         productsSearch={handleDataOdd(productsSearch)}
         goBack={handleCloseModal}
+        handlePlusCart={handlePlusCart}
+        handleProduct={handleProduct}
       />
     </ScrollView>
   );

@@ -15,6 +15,7 @@ export default StyleSheet.create({
   },
   body: {
     paddingHorizontal: scale(15),
+    height:'75%'
   },
   vwImg: {
     width: '20%',
@@ -71,6 +72,7 @@ export default StyleSheet.create({
     marginTop: scale(2),
   },
   footer: {
+    height:'25%',
     backgroundColor: colors.white,
     zIndex: 999,
     shadowColor: '#000',

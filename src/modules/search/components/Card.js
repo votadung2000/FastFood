@@ -25,7 +25,7 @@ const Card = ({item, bgLG, onPressCard}) => {
   );
 };
 
-export default Card;
+export default React.memo(Card);
 
 const styles = StyleSheet.create({
   container: {

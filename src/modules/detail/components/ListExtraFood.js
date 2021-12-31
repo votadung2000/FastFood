@@ -44,6 +44,8 @@ const ListExtraFood = ({data, handleExtraFood, extra}) => {
   );
 };
 
+export default React.memo(ListExtraFood);
+
 const styles = StyleSheet.create({
   container: {
     marginBottom: scale(10),
@@ -84,5 +86,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-export default React.memo(ListExtraFood);

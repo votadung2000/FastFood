@@ -1,15 +1,22 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Modal from 'react-native-modal';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {Text, Button} from '../../../components';
-import {colors, fontSize} from '../../../constant';
-import {Layout} from '../../../views';
-import {scale} from '../../../utils/resolutions';
+import { Text, Button } from '../../../components';
+import { colors, fontSize } from '../../../constant';
+import { Layout } from '../../../views';
+import { scale } from '../../../utils/resolutions';
 import Products from './Products';
 
-const ModalPr = ({isVisible, menu, productsSearch, goBack}) => {
+const ModalPr = ({
+  isVisible,
+  menu,
+  productsSearch,
+  goBack,
+  handlePlusCart,
+  handleProduct,
+}) => {
   return (
     <Modal
       useNativeDriver
@@ -26,14 +33,18 @@ const ModalPr = ({isVisible, menu, productsSearch, goBack}) => {
             </Button>
             <Text style={styles.title}>{`Popular ${menu?.title}`}</Text>
           </View>
-          <Products imgMenu={menu?.img} data={productsSearch} />
+          <Products
+            imgMenu={menu?.img}
+            data={productsSearch}
+            handlePlusCart={handlePlusCart}
+            handleProduct={handleProduct} />
         </View>
       </Layout>
     </Modal>
   );
 };
 
-export default ModalPr;
+export default React.memo(ModalPr);
 
 const styles = StyleSheet.create({
   modal: {
