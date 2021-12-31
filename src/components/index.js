@@ -3,7 +3,7 @@ import Text from './Text';
 import ImagesViewer from './ImagesViewer';
 import ModalLoading from './ModalLoading';
 import {Search} from './Search';
-import ButtonCart from './ButtonCart';
+import TotalCart from './TotalCart';
 
 export {
   Button,
@@ -13,5 +13,5 @@ export {
   ImagesViewer,
   ModalLoading,
   Search,
-  ButtonCart,
+  TotalCart,
 };

@@ -1,12 +1,11 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {observer} from 'mobx-react';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { StyleSheet, View } from 'react-native';
+import { observer } from 'mobx-react';
 
-import {Text} from '../../components';
-import {scale, wScale} from '../../utils/resolutions';
-import {colors, fontSize} from '../../constant';
-import {useStore} from '../../context';
+import { Text } from '..';
+import { scale, wScale } from '../../utils/resolutions';
+import { colors, fontSize } from '../../constant';
+import { useStore } from '../../context';
 
 const formatCount = value => {
   if (value && parseInt(value, 10) > 9) {
@@ -15,18 +14,13 @@ const formatCount = value => {
   return value;
 };
 
-const ButtonCart = ({focused}) => {
+const TotalCart = ({ focused }) => {
   const {
-    cartProductsStore: {cartProducts},
+    cartProductsStore: { cartProducts },
   } = useStore();
 
   return (
-    <View style={styles.container}>
-      <Ionicons
-        name="cart"
-        size={scale(22)}
-        color={focused ? colors.orange : colors.gray}
-      />
+    <View >
       <Text
         bold={focused ? true : false}
         color={focused ? colors.orange : colors.gray}
@@ -44,13 +38,9 @@ const ButtonCart = ({focused}) => {
   );
 };
 
-export default observer(ButtonCart);
+export default observer(TotalCart);
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   label: {
     textAlign: 'center',
     fontSize: fontSize.tiny,
@@ -62,7 +52,7 @@ const styles = StyleSheet.create({
     height: wScale(13),
     backgroundColor: colors.orange,
     position: 'absolute',
-    top: -scale(5),
+    top: -scale(30),
     left: scale(15),
     justifyContent: 'center',
     alignItems: 'center',
