@@ -8,4 +8,5 @@ export default {
   Logging: 'Logging',
   UserScreen: 'UserScreen',
   SearchScreen: 'SearchScreen',
+  DetailCardSearch: 'DetailCardSearch',
 };

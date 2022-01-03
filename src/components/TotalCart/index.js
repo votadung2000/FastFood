@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { observer } from 'mobx-react';
+import {StyleSheet, View} from 'react-native';
+import {observer} from 'mobx-react';
 
-import { Text } from '..';
-import { scale, wScale } from '../../utils/resolutions';
-import { colors, fontSize } from '../../constant';
-import { useStore } from '../../context';
+import {Text} from '..';
+import {scale, wScale} from '../../utils/resolutions';
+import {colors, fontSize} from '../../constant';
+import {useStore} from '../../context';
 
 const formatCount = value => {
   if (value && parseInt(value, 10) > 9) {
@@ -14,13 +14,13 @@ const formatCount = value => {
   return value;
 };
 
-const TotalCart = ({ focused }) => {
+const TotalCart = ({focused}) => {
   const {
-    cartProductsStore: { cartProducts },
+    cartProductsStore: {cartProducts},
   } = useStore();
 
   return (
-    <View >
+    <View>
       <Text
         bold={focused ? true : false}
         color={focused ? colors.orange : colors.gray}

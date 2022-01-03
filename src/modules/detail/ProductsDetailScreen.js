@@ -58,7 +58,7 @@ const ProductsDetailScreen = () => {
         <View style={styles.container}>
           <Back
             heart
-            position
+            style={styles.back}
             favorite={handleHeart(id, allHeartProducts)}
             handleFavorite={handleFavorite}
           />

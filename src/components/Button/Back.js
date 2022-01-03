@@ -9,7 +9,7 @@ import {scale} from '../../utils/resolutions';
 import Button from './Button';
 import Text from '../Text';
 
-const Back = ({handleFavorite, heart, favorite, title, position, stTitle}) => {
+const Back = ({style, handleFavorite, heart, favorite, title, stTitle}) => {
   const navigation = useNavigation();
 
   const goBack = () => {
@@ -17,7 +17,7 @@ const Back = ({handleFavorite, heart, favorite, title, position, stTitle}) => {
   };
 
   return (
-    <View style={[styles.container, position && styles.position]}>
+    <View style={[styles.container, style]}>
       <Button onPress={() => goBack()} style={styles.btn}>
         <Ionicons name="chevron-back-outline" size={scale(28)} />
       </Button>
@@ -44,12 +44,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '100%',
     zIndex: 999,
-    paddingHorizontal: scale(10),
-  },
-  position: {
-    position: 'absolute',
   },
   btn: {
     paddingRight: scale(10),

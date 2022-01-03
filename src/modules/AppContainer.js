@@ -18,6 +18,7 @@ import HeartScreen from './heart/HeartScreen';
 import CartScreen from './cart/CartScreen';
 import UserScreen from './user/UserScreen';
 import SearchScreen from './search/SearchScreen';
+import DetailCardSearch from './detail_card_search/DetailCardSearch';
 
 import {scale} from '../utils/resolutions';
 import {colors, fontSize} from '../constant';
@@ -153,6 +154,10 @@ const AppContainer = () => {
           <Stack.Screen
             name={routes.ProductsDetailScreen}
             component={ProductsDetailScreen}
+          />
+          <Stack.Screen
+            name={routes.DetailCardSearch}
+            component={DetailCardSearch}
           />
         </Stack.Navigator>
       </NavigationContainer>

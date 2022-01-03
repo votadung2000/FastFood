@@ -89,7 +89,7 @@ const CartScreen = () => {
 
   return (
     <View style={styles.layout}>
-      <Back title={'Your Order'} stTitle={styles.title} />
+      <Back title={'Your Order'} stTitle={styles.title} style={styles.back} />
       {cartProducts?.length === 0 ? (
         <EmptyCart />
       ) : (

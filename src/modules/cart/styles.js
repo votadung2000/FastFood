@@ -9,13 +9,16 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
+  back: {
+    paddingHorizontal: scale(15),
+  },
   container: {
     flex: 1,
     justifyContent: 'space-between',
   },
   body: {
     paddingHorizontal: scale(15),
-    height:'75%'
+    height: '75%',
   },
   vwImg: {
     width: '20%',
@@ -72,7 +75,7 @@ export default StyleSheet.create({
     marginTop: scale(2),
   },
   footer: {
-    height:'25%',
+    height: '25%',
     backgroundColor: colors.white,
     zIndex: 999,
     shadowColor: '#000',

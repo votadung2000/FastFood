@@ -5,7 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {colors, fontSize} from '../../constant';
 import {hScale, scale} from '../../utils/resolutions';
 
-const Search = ({placeholder, onChangeText}) => {
+const Search = ({value, placeholder, onChangeText}) => {
   return (
     <View style={styles.container}>
       <Ionicons
@@ -15,17 +15,20 @@ const Search = ({placeholder, onChangeText}) => {
         style={styles.icon}
       />
       <TextInput
+        value={value}
         placeholder={placeholder}
-        placeholderTextColor={colors.graySystem}
         autoCapitalize="none"
         style={styles.inputSearch}
         onChangeText={onChangeText}
+        placeholderTextColor={colors.graySystem}
+        // blurOnSubmit={false}
+        removeClippedSubviews={false}
       />
     </View>
   );
 };
 
-export default Search;
+export default React.memo(Search);
 
 const styles = StyleSheet.create({
   container: {
