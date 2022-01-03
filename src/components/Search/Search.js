@@ -5,9 +5,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {colors, fontSize} from '../../constant';
 import {hScale, scale} from '../../utils/resolutions';
 
-const Search = ({value, placeholder, onChangeText}) => {
+const Search = ({style, value, placeholder, onChangeText}) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <Ionicons
         name="search"
         size={scale(22)}
@@ -21,8 +21,6 @@ const Search = ({value, placeholder, onChangeText}) => {
         style={styles.inputSearch}
         onChangeText={onChangeText}
         placeholderTextColor={colors.graySystem}
-        // blurOnSubmit={false}
-        removeClippedSubviews={false}
       />
     </View>
   );

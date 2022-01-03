@@ -49,52 +49,43 @@ const SearchScreen = ({navigation}) => {
     handleFetchSearch(text);
   };
 
-  if (productsSearchContainer?.length) {
-    return (
-      <View style={styles.layout}>
-        <View style={styles.container}>
-          <Text style={styles.title}>{'Discover\nNew Flavors'}</Text>
-          <Search
-            value={txtSearch}
-            placeholder={'Search'}
-            onChangeText={onChangeText}
-          />
-          <Products
-            data={handleDataOdd(productsSearchContainer)}
-            handlePlusCart={handlePlusCart}
-            handleProduct={handleProduct}
-          />
-        </View>
-      </View>
-    );
-  }
-
   return (
-    <ScrollView
-      bounces={false}
-      style={styles.layout}
-      showsVerticalScrollIndicator={false}>
+    <View style={styles.layout}>
       <View style={styles.container}>
         <Text style={styles.title}>{'Discover\nNew Flavors'}</Text>
         <Search
           value={txtSearch}
           placeholder={'Search'}
           onChangeText={onChangeText}
+          style={styles.search}
         />
-        {dataMenu &&
-          dataMenu?.map((item, index) => {
-            return (
-              <Card
-                key={index.toString()}
-                item={item}
-                index={index}
-                bgLG={findBgLg(index)}
-                onPressCard={onPressCard}
-              />
-            );
-          })}
+        {productsSearchContainer?.length || txtSearch?.length ? (
+          <Products
+            data={handleDataOdd(productsSearchContainer)}
+            handlePlusCart={handlePlusCart}
+            handleProduct={handleProduct}
+          />
+        ) : (
+          <ScrollView
+            bounces={false}
+            style={styles.scroll}
+            showsVerticalScrollIndicator={false}>
+            {dataMenu &&
+              dataMenu?.map((item, index) => {
+                return (
+                  <Card
+                    key={index.toString()}
+                    item={item}
+                    index={index}
+                    bgLG={findBgLg(index)}
+                    onPressCard={onPressCard}
+                  />
+                );
+              })}
+          </ScrollView>
+        )}
       </View>
-    </ScrollView>
+    </View>
   );
 };
 

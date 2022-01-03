@@ -8,6 +8,7 @@ import filterExtraFood from './filterExtraFood';
 import formatCartProducts from './formatCartProducts';
 import handleHeart from './handleHeart';
 import findBgLg from './findBgLg';
+import randomImgEmpty from './randomImgEmpty';
 
 export {
   resolutions,
@@ -20,4 +21,5 @@ export {
   formatCartProducts,
   handleHeart,
   findBgLg,
+  randomImgEmpty,
 };

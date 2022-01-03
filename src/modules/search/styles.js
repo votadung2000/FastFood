@@ -8,14 +8,19 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
+  scroll: {
+    flex: 1,
+  },
   title: {
     fontSize: fontSize.fontSize28,
-    lineHeight: scale(35),
     marginBottom: scale(15),
     fontWeight: '700',
   },
   container: {
     flex: 1,
     marginHorizontal: scale(15),
+  },
+  search: {
+    marginBottom: scale(20),
   },
 });

@@ -29,7 +29,7 @@ export default React.memo(Card);
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: scale(20),
+    marginBottom: scale(20),
   },
   linearGradient: {
     zIndex: 9999,
