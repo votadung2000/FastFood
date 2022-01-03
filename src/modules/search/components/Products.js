@@ -5,7 +5,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {Text, Button} from '../../../components';
 import {colors, fontSize} from '../../../constant';
 import {hScale, scale} from '../../../utils/resolutions';
-import {formatCurrency, randomImgEmpty} from '../../../utils';
+import {formatCurrency} from '../../../utils';
 
 const {width} = Dimensions.get('window');
 
@@ -35,7 +35,7 @@ const Products = ({data, handlePlusCart, handleProduct}) => {
   const EmptyProduct = () => {
     return (
       <View style={styles.emptyContainer}>
-        <Image source={{uri: randomImgEmpty()}} style={styles.emptyImg} />
+        <Image source={{uri: 'search_empty'}} style={styles.emptyImg} />
         <Text bold style={styles.txtEmpty}>
           {"Product's Empty"}
         </Text>
