@@ -43,7 +43,6 @@ class HeartProductsStore {
   }
 
   removeHeartProducts(item) {
-    console.log("removeHeartProducts ~ item", item)
     try {
       let newArrPr = this.allHeartProducts.filter(pr => pr?.id !== item?.id);
       if (Object.keys(this.menu)?.length) {
