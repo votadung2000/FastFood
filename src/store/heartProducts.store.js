@@ -1,4 +1,4 @@
-import {action, makeAutoObservable} from 'mobx';
+import {action, makeAutoObservable, toJS} from 'mobx';
 class HeartProductsStore {
   heartProducts = [];
   allHeartProducts = [];
@@ -36,8 +36,6 @@ class HeartProductsStore {
           this.heartProducts = newArrPr.filter(
             nw => nw?.group_type === this.menu?.id,
           );
-        } else {
-          this.heartProducts.push(item);
         }
         this.allHeartProducts.push(item);
       }
@@ -45,6 +43,7 @@ class HeartProductsStore {
   }
 
   removeHeartProducts(item) {
+    console.log("removeHeartProducts ~ item", item)
     try {
       let newArrPr = this.allHeartProducts.filter(pr => pr?.id !== item?.id);
       if (Object.keys(this.menu)?.length) {
