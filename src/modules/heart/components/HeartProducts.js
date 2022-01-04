@@ -7,7 +7,6 @@ import {Text, Button} from '../../../components';
 import {colors, fontSize} from '../../../constant';
 import {scale} from '../../../utils/resolutions';
 import {formatCurrency, limitedString, handleHeart} from '../../../utils';
-import { toJS } from 'mobx';
 
 const HeartProducts = ({
   itemMenu,

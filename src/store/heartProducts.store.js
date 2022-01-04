@@ -1,4 +1,4 @@
-import {action, makeAutoObservable, toJS} from 'mobx';
+import {action, makeAutoObservable} from 'mobx';
 class HeartProductsStore {
   heartProducts = [];
   allHeartProducts = [];
