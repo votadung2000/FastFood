@@ -4,13 +4,11 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-// routes
 import routes from './routes';
+
 import {Layout} from '../views';
 
-// modules
 import HelloScreen from './HelloScreen';
 import HomeScreen from './home/HomeScreen';
 import ProductsDetailScreen from './detail/ProductsDetailScreen';
@@ -30,14 +28,16 @@ const styles = StyleSheet.create({
     fontSize: fontSize.tiny,
     paddingBottom: scale(4),
   },
+  fcText: {
+    color: colors.orange,
+  },
 });
 
 const Label = ({children, focused}) => {
   return (
     <Text
       bold={focused ? true : false}
-      color={focused ? colors.orange : colors.gray}
-      style={styles.label}>
+      style={[styles.label, focused && styles.fcText]}>
       {children}
     </Text>
   );
@@ -86,14 +86,6 @@ const TabApp = () => {
                 color={focused ? colors.orange : colors.gray}
               />
             );
-          } else if (route.name === routes.UserScreen) {
-            return (
-              <FontAwesome
-                name="user"
-                size={scale(24)}
-                color={focused ? colors.green : colors.gray}
-              />
-            );
           }
         },
       })}>
@@ -125,13 +117,6 @@ const TabApp = () => {
           tabBarLabel: ({focused}) => <TotalCart {...{focused}} />,
         }}
       />
-      <Tab.Screen
-        name={routes.UserScreen}
-        component={UserScreen}
-        options={{
-          tabBarLabel: ({focused}) => <Label {...{focused}}>{'User'}</Label>,
-        }}
-      />
     </Tab.Navigator>
   );
 };
@@ -159,6 +144,7 @@ const AppContainer = () => {
             name={routes.DetailCardSearch}
             component={DetailCardSearch}
           />
+          <Stack.Screen name={routes.UserScreen} component={UserScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Layout>

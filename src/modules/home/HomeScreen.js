@@ -2,14 +2,17 @@ import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react';
 import {useNavigationState} from '@react-navigation/native';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import {Text} from '../../components';
+import {Text, Button} from '../../components';
 import styles from './styles';
 import {dataMenu} from '../../actions/Data';
 import {handleDataOdd} from '../../utils';
 import {Products, Menu} from './components';
 import {useStore} from '../../context';
 import routes from '../routes';
+import {scale} from '../../utils/resolutions';
+import {colors} from '../../constant';
 
 const HomeScreen = ({navigation}) => {
   const indexRoute = useNavigationState(state => state?.index);
@@ -50,10 +53,19 @@ const HomeScreen = ({navigation}) => {
     navigation.navigate(routes.ProductsDetailScreen);
   };
 
+  const goToUser = () => {
+    navigation.navigate(routes.UserScreen);
+  };
+
   return (
     <View style={styles.layout}>
       <View style={styles.container}>
-        <Text style={styles.title}>{'Find Your\nDelicious Food'}</Text>
+        <View style={styles.header}>
+          <Text style={styles.title}>{'Find Your\nDelicious Food'}</Text>
+          <Button onPress={goToUser} style={styles.btnUser}>
+            <AntDesign size={scale(22)} name="user" color={colors.black} />
+          </Button>
+        </View>
         <Menu data={dataMenu} itemMenu={itemMenu} handleItem={handleItem} />
         <Products
           title={itemMenu?.title}
