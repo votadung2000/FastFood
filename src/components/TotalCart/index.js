@@ -38,8 +38,6 @@ const TotalCart = ({focused}) => {
   );
 };
 
-export default observer(TotalCart);
-
 const styles = StyleSheet.create({
   label: {
     textAlign: 'center',
@@ -62,3 +60,5 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
 });
+
+export default observer(TotalCart);

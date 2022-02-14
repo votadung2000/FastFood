@@ -1,3 +1,12 @@
 import {StyleSheet} from 'react-native';
 
-export default StyleSheet.create({});
+import {scale} from '../../utils/resolutions';
+
+export default StyleSheet.create({
+  form: {
+    paddingHorizontal: scale(15),
+  },
+  input: {
+    marginBottom: scale(30),
+  },
+});

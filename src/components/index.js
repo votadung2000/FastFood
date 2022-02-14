@@ -4,6 +4,7 @@ import ImagesViewer from './ImagesViewer';
 import ModalLoading from './ModalLoading';
 import {Search} from './Search';
 import TotalCart from './TotalCart';
+import {Input, InputPassword} from './Input';
 
 export {
   Button,
@@ -14,4 +15,6 @@ export {
   ModalLoading,
   Search,
   TotalCart,
+  Input,
+  InputPassword,
 };

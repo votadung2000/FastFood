@@ -26,8 +26,6 @@ const Search = ({style, value, placeholder, onChangeText}) => {
   );
 };
 
-export default React.memo(Search);
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
@@ -58,3 +56,5 @@ const styles = StyleSheet.create({
     paddingLeft: scale(40),
   },
 });
+
+export default React.memo(Search);

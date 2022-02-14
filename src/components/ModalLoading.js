@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ModalLoading;
+export default React.memo(ModalLoading);
