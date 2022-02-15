@@ -1,3 +1,11 @@
+export const dataUser = [
+  {
+    id: 1,
+    user_name: 'admin',
+    password: '123456',
+  },
+];
+
 export const dataMenu = [
   {
     id: 1,

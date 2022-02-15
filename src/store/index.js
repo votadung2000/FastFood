@@ -3,6 +3,7 @@ import productsDetailStore from './productsDetail.store';
 import cartProductsStore from './cartProducts.store';
 import heartProductsStore from './heartProducts.store';
 import searchProductsStore from './searchProducts.store';
+import userStore from './user.store';
 
 export default {
   productsStore,
@@ -10,4 +11,5 @@ export default {
   cartProductsStore,
   heartProductsStore,
   searchProductsStore,
+  userStore,
 };

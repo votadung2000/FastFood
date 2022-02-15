@@ -2,6 +2,7 @@ import React, {createRef, useState} from 'react';
 import {View, Image} from 'react-native';
 import {useFormik} from 'formik';
 import DeviceInfo from 'react-native-device-info';
+import {Notifier, NotifierComponents} from 'react-native-notifier';
 
 import {Layout} from '../../views';
 import {Input, InputPassword} from '../../components';
@@ -9,6 +10,9 @@ import {Text, Button} from '../../components';
 
 import LoginSchema from './LoginSchema';
 import styles from './styles';
+
+import routes from '../routes';
+import {useStore} from '../../context';
 
 let appName = DeviceInfo.getApplicationName();
 
@@ -22,7 +26,11 @@ const initialErrors = {
   password: true,
 };
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
+  const {
+    userStore: {fetchUser},
+  } = useStore();
+
   const refPassword = createRef();
 
   const [isSubmitting, setSubmitting] = useState(false);
@@ -44,8 +52,41 @@ const LoginScreen = () => {
   });
 
   const onSubmit = () => {
-    setSubmitting(false);
-    resetForm();
+    setSubmitting(true);
+    try {
+      let response = fetchUser(values?.user_name, values?.password);
+      Promise(resolve => {
+        if (response) {
+          setSubmitting(false);
+          navigation.navigate(routes.HomeScreen);
+          resetForm(initialValues);
+          resolve();
+        } else {
+          setSubmitting(false);
+          Notifier.showNotification({
+            duration: 4000,
+            title: 'Thông tin đăng nhập không chính xác',
+            description: 'Vui lòng kiểm tra lại Tên người dùng hoặc Mật khẩu',
+            Component: NotifierComponents.Alert,
+            componentProps: {
+              alertType: 'error',
+            },
+          });
+        }
+      });
+    } catch (error) {
+      Notifier.showNotification({
+        title: 'Vui lòng thử lại',
+        Component: NotifierComponents.Alert,
+        componentProps: {
+          alertType: 'info',
+        },
+      });
+    }
+  };
+
+  const goHome = () => {
+    navigation.goBack();
   };
 
   const focusPassword = () => {
@@ -94,6 +135,11 @@ const LoginScreen = () => {
           </Button>
         </View>
       </View>
+      <Button onPress={goHome} style={styles.home}>
+        <Text bold style={styles.txtHome}>
+          {'<-  Go Home  ->'}
+        </Text>
+      </Button>
     </Layout>
   );
 };

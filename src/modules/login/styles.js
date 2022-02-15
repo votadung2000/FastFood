@@ -13,7 +13,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   nameApp: {
-    fontSize: fontSize.fontSize28,
+    fontSize: fontSize.fontSize34,
   },
   imgLogin: {
     width: wScale(160),
@@ -31,7 +31,7 @@ export default StyleSheet.create({
     color: colors.white,
   },
   btnLogin: {
-    width: '50%',
+    width: '80%',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.yellow,
@@ -40,5 +40,14 @@ export default StyleSheet.create({
   },
   footer: {
     alignItems: 'center',
+  },
+  home: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    paddingHorizontal: scale(20),
+    paddingVertical: scale(5),
+  },
+  txtHome: {
+    fontSize: fontSize.fontSize16,
   },
 });
