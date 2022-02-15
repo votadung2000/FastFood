@@ -9,4 +9,5 @@ export default {
   UserScreen: 'UserScreen',
   SearchScreen: 'SearchScreen',
   DetailCardSearch: 'DetailCardSearch',
+  LoginScreen: 'LoginScreen',
 };

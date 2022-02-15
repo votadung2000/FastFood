@@ -17,6 +17,7 @@ import CartScreen from './cart/CartScreen';
 import UserScreen from './user/UserScreen';
 import SearchScreen from './search/SearchScreen';
 import DetailCardSearch from './detail_card_search/DetailCardSearch';
+import LoginScreen from './login/LoginScreen';
 
 import {scale} from '../utils/resolutions';
 import {colors, fontSize} from '../constant';
@@ -145,6 +146,7 @@ const AppContainer = () => {
             component={DetailCardSearch}
           />
           <Stack.Screen name={routes.UserScreen} component={UserScreen} />
+          <Stack.Screen name={routes.LoginScreen} component={LoginScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Layout>

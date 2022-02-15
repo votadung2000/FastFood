@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: colors.white,
   },
   linearGradient: {
     position: 'absolute',

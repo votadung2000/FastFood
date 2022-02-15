@@ -54,7 +54,7 @@ const HomeScreen = ({navigation}) => {
   };
 
   const goToUser = () => {
-    navigation.navigate(routes.UserScreen);
+    navigation.navigate(routes.LoginScreen);
   };
 
   return (
