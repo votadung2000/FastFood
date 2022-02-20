@@ -51,15 +51,23 @@ const LoginScreen = ({navigation}) => {
     onSubmit: () => onSubmit(),
   });
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     setSubmitting(true);
     try {
       let response = fetchUser(values?.user_name, values?.password);
-      Promise(resolve => {
+      await new Promise(resolve => {
         if (response) {
           setSubmitting(false);
           navigation.navigate(routes.HomeScreen);
           resetForm(initialValues);
+          Notifier.showNotification({
+            duration: 4000,
+            title: 'Đăng nhập thành công',
+            Component: NotifierComponents.Alert,
+            componentProps: {
+              alertType: 'success',
+            },
+          });
           resolve();
         } else {
           setSubmitting(false);
@@ -75,6 +83,7 @@ const LoginScreen = ({navigation}) => {
         }
       });
     } catch (error) {
+      setSubmitting(false);
       Notifier.showNotification({
         title: 'Vui lòng thử lại',
         Component: NotifierComponents.Alert,
