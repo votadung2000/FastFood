@@ -4,9 +4,13 @@ import {colors, fontSize} from '../../constant';
 import {hScale, scale, wScale} from '../../utils/resolutions';
 
 export default StyleSheet.create({
+  scroll: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
   container: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
   },
   header: {
     justifyContent: 'center',

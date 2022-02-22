@@ -3,8 +3,8 @@ import {View, Image} from 'react-native';
 import {useFormik} from 'formik';
 import DeviceInfo from 'react-native-device-info';
 import {Notifier, NotifierComponents} from 'react-native-notifier';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-import {Layout} from '../../views';
 import {Input, InputPassword} from '../../components';
 import {Text, Button} from '../../components';
 
@@ -103,7 +103,9 @@ const LoginScreen = ({navigation}) => {
   };
 
   return (
-    <Layout>
+    <KeyboardAwareScrollView
+      contentContainerStyle={styles.scroll}
+      showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <View style={styles.header}>
           <Image source={{uri: 'logo_home'}} style={styles.imgLogin} />
@@ -143,13 +145,13 @@ const LoginScreen = ({navigation}) => {
             </Text>
           </Button>
         </View>
+        <Button onPress={goHome} style={styles.home}>
+          <Text bold style={styles.txtHome}>
+            {'<-  Go Home  ->'}
+          </Text>
+        </Button>
       </View>
-      <Button onPress={goHome} style={styles.home}>
-        <Text bold style={styles.txtHome}>
-          {'<-  Go Home  ->'}
-        </Text>
-      </Button>
-    </Layout>
+    </KeyboardAwareScrollView>
   );
 };
 

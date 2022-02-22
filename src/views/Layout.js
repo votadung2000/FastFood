@@ -7,7 +7,7 @@ import {colors} from '../constant';
 const Layout = ({children}) => {
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar animated barStyle="dark-content" />
+      <StatusBar animated barStyle="light-content" />
       {children}
     </SafeAreaView>
   );
