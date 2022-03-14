@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View, Dimensions, ImageBackground} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useNavigation} from '@react-navigation/native';
+import RNBootSplash from 'react-native-bootsplash';
 
 import {Text, Button} from '../components';
 import {colors, fontSize} from '../constant';
@@ -12,6 +13,11 @@ const {width} = Dimensions.get('window');
 
 const HelloScreen = () => {
   const navigation = useNavigation();
+
+  useEffect(() => {
+    RNBootSplash.hide();
+  }, []);
+
   const onPress = () => {
     navigation.navigate(routes.TabApp);
   };
