@@ -14,6 +14,7 @@
 		267B1D42F9D91D880DF49D80 /* libPods-fastfood.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F376796DD1EAB958EFBC58 /* libPods-fastfood.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8D62FF420E066E7E689B6342 /* libPods-fastfood-fastfoodTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F076CAA7D6A98F10B7CADA70 /* libPods-fastfood-fastfoodTests.a */; };
+		C9CBA38C27DF7BAF005517C1 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9CBA38B27DF7BAF005517C1 /* BootSplash.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		885F0676F53E4B85AD8AC0A1 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		C0E0E155E22E4E34ACA767A6 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		C667C326DDB7238B4762FB79 /* Pods-fastfood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fastfood.release.xcconfig"; path = "Target Support Files/Pods-fastfood/Pods-fastfood.release.xcconfig"; sourceTree = "<group>"; };
+		C9CBA38B27DF7BAF005517C1 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = fastfood/BootSplash.storyboard; sourceTree = "<group>"; };
 		D0875FD789E34C86AF00A79B /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		DC19E7A4136E9F57638628EF /* Pods-fastfood-fastfoodTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fastfood-fastfoodTests.debug.xcconfig"; path = "Target Support Files/Pods-fastfood-fastfoodTests/Pods-fastfood-fastfoodTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E2199234B75341539D3245E0 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 		13B07FAE1A68108700A75B9A /* fastfood */ = {
 			isa = PBXGroup;
 			children = (
+				C9CBA38B27DF7BAF005517C1 /* BootSplash.storyboard */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -282,6 +285,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9CBA38C27DF7BAF005517C1 /* BootSplash.storyboard in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);

@@ -25,7 +25,7 @@ const HelloScreen = () => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        // source={{uri: 'bander'}}
+        source={{uri: 'bander'}}
         resizeMode="stretch"
         style={styles.image}>
         <LinearGradient
