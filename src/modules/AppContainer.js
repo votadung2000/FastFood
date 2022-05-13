@@ -101,7 +101,7 @@ const TabApp = () => {
         name={routes.SearchScreen}
         component={SearchScreen}
         options={{
-          tabBarLabel: ({focused}) => <Label {...{focused}}>{'Heart'}</Label>,
+          tabBarLabel: ({focused}) => <Label {...{focused}}>{'Search'}</Label>,
         }}
       />
       <Tab.Screen
