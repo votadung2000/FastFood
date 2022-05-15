@@ -4,7 +4,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {Text, Button} from '../../../components';
 import {colors, fontSize} from '../../../constant';
-import {hScale, scale} from '../../../utils/resolutions';
+import {scale} from '../../../utils/resolutions';
 import {formatCurrency} from '../../../utils';
 
 const {width} = Dimensions.get('window');
@@ -54,7 +54,6 @@ const Products = ({imgMenu, data, handlePlusCart, handleProduct}) => {
           renderItem={renderItem}
           bounces={false}
           columnWrapperStyle={styles.wrapperStyle}
-          contentContainerStyle={styles.containerStyle}
           scrollIndicatorInsets={{right: 1}}
         />
       ) : (
@@ -74,7 +73,8 @@ const styles = StyleSheet.create({
     width: width / 2.4,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: scale(80),
+    marginBottom: scale(25),
+    marginTop: scale(5),
     backgroundColor: colors.white,
     borderRadius: scale(15),
     shadowColor: '#000',
@@ -91,9 +91,6 @@ const styles = StyleSheet.create({
   img: {
     width: scale(80),
     height: scale(80),
-    position: 'absolute',
-    top: -hScale(60),
-    zIndex: 9999,
   },
   txtItem: {
     textAlign: 'auto',
@@ -121,9 +118,6 @@ const styles = StyleSheet.create({
   },
   wrapperStyle: {
     justifyContent: 'space-around',
-  },
-  containerStyle: {
-    marginTop: scale(65),
   },
   emptyContainer: {
     flex: 1,

@@ -1,21 +1,21 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions, Image, FlatList } from 'react-native';
+import {StyleSheet, View, Dimensions, Image, FlatList} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import { Text, Button } from '../../../components';
-import { colors, fontSize } from '../../../constant';
-import { hScale, scale } from '../../../utils/resolutions';
-import { formatCurrency } from '../../../utils';
+import {Text, Button} from '../../../components';
+import {colors, fontSize} from '../../../constant';
+import {scale} from '../../../utils/resolutions';
+import {formatCurrency} from '../../../utils';
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
-const Products = ({ data, handlePlusCart, handleProduct }) => {
+const Products = ({data, handlePlusCart, handleProduct}) => {
   const keyExtractor = (_, index) => index.toString();
 
-  const renderItem = ({ item }) => {
+  const renderItem = ({item}) => {
     return item && Object.keys(item).length > 0 ? (
       <Button onPress={() => handleProduct(item)} style={styles.item}>
-        <Image source={{ uri: item?.img }} style={styles.img} />
+        <Image source={{uri: item?.img}} style={styles.img} />
         <View style={styles.content}>
           <Text bold style={[styles.txtItem, styles.txtName]}>
             {item?.name}
@@ -35,7 +35,7 @@ const Products = ({ data, handlePlusCart, handleProduct }) => {
   const EmptyProduct = () => {
     return (
       <View style={styles.emptyContainer}>
-        <Image source={{ uri: 'search_empty' }} style={styles.emptyImg} />
+        <Image source={{uri: 'search_empty'}} style={styles.emptyImg} />
         <Text bold style={styles.txtEmpty}>
           {"Product's Empty"}
         </Text>
@@ -54,8 +54,7 @@ const Products = ({ data, handlePlusCart, handleProduct }) => {
           renderItem={renderItem}
           bounces={false}
           columnWrapperStyle={styles.wrapperStyle}
-          contentContainerStyle={styles.containerStyle}
-          scrollIndicatorInsets={{ right: 1 }}
+          scrollIndicatorInsets={{right: 1}}
         />
       ) : (
         <EmptyProduct />
@@ -74,9 +73,9 @@ const styles = StyleSheet.create({
     width: width / 2.4,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: scale(80),
-    // backgroundColor: colors.white,
-    backgroundColor: 'red',
+    marginBottom: scale(25),
+    marginTop: scale(5),
+    backgroundColor: colors.white,
     borderRadius: scale(15),
     shadowColor: '#000',
     shadowOffset: {
@@ -92,9 +91,6 @@ const styles = StyleSheet.create({
   img: {
     width: scale(80),
     height: scale(80),
-    position: 'absolute',
-    top: -hScale(60),
-    zIndex: 999,
   },
   txtItem: {
     textAlign: 'auto',
@@ -122,10 +118,6 @@ const styles = StyleSheet.create({
   },
   wrapperStyle: {
     justifyContent: 'space-around',
-    backgroundColor: 'blue',
-  },
-  containerStyle: {
-    // marginTop: scale(65),
   },
   emptyContainer: {
     flex: 1,
