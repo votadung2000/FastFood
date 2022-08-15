@@ -5,7 +5,7 @@ import ModalLoading from './ModalLoading';
 import {Search} from './Search';
 import TotalCart from './TotalCart';
 import {Input, InputPassword} from './Input';
-import EmptyProduct from './EmptyProduct';
+import EmptyComponent from './EmptyComponent';
 
 export {
   Button,
@@ -18,5 +18,5 @@ export {
   TotalCart,
   Input,
   InputPassword,
-  EmptyProduct,
+  EmptyComponent,
 };

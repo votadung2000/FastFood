@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, Dimensions, Image, FlatList} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import {Text, Button, EmptyProduct} from '@components';
+import {Text, Button, EmptyComponent} from '@components';
 import {colors, fontSize} from '@constant';
 import {resolutions, formatCurrency} from '@utils';
 
@@ -47,7 +47,7 @@ const Products = ({title, imgMenu, data, handlePlusCart, handleProduct}) => {
           scrollIndicatorInsets={{right: 1}}
         />
       ) : (
-        <EmptyProduct title="Product's Empty" uri={imgMenu} />
+        <EmptyComponent title="Product's Empty" uri={imgMenu} />
       )}
     </View>
   );
