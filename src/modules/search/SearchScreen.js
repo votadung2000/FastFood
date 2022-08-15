@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {View, ScrollView} from 'react-native';
 import {observer} from 'mobx-react';
-import _debounce from 'lodash/debounce';
+import debounce from 'lodash/debounce';
 
 import {Text, Search} from '@components';
 import {useStore} from '@context';
@@ -41,9 +41,12 @@ const SearchScreen = ({navigation}) => {
     navigation.navigate(routes.ProductsDetailScreen);
   };
 
-  const handleFetchSearch = _debounce(text => {
-    fetchProductsSearchContainer({name: text});
-  }, 400);
+  const handleFetchSearch = useCallback(
+    debounce(text => {
+      fetchProductsSearchContainer({name: text});
+    }, 400),
+    [],
+  );
 
   const onChangeText = text => {
     setTxtSearch(text);

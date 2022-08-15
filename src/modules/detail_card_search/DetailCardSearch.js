@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react';
-import _debounce from 'lodash/debounce';
+import debounce from 'lodash/debounce';
 
 import {Text, Search, Back} from '@components';
 import {useStore} from '@context';
@@ -21,9 +21,12 @@ const DetailCardSearch = ({navigation}) => {
     cartProductsStore: {fetchCartProduct},
   } = useStore();
 
-  const handleFetchSearch = _debounce(text => {
-    fetchProductsSearch({name: text, group_type: menuSearch?.id});
-  }, 400);
+  const handleFetchSearch = useCallback(
+    debounce(text => {
+      fetchProductsSearch({name: text, group_type: menuSearch?.id});
+    }, 400),
+    [],
+  );
 
   const onChangeText = text => {
     setTxtSearch(text);
