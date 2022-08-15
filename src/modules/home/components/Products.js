@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, Dimensions, Image, FlatList} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import {Text, Button} from '@components';
+import {Text, Button, EmptyProduct} from '@components';
 import {colors, fontSize} from '@constant';
 import {resolutions, formatCurrency} from '@utils';
 
@@ -32,17 +32,6 @@ const Products = ({title, imgMenu, data, handlePlusCart, handleProduct}) => {
     ) : null;
   };
 
-  const EmptyProduct = () => {
-    return (
-      <View style={styles.emptyContainer}>
-        <Image source={{uri: imgMenu}} style={styles.emptyImg} />
-        <Text bold style={styles.txtEmpty}>
-          {"Product's Empty"}
-        </Text>
-      </View>
-    );
-  };
-
   return (
     <View style={styles.container}>
       <Text bold style={styles.title}>{`Popular ${title}`}</Text>
@@ -58,7 +47,7 @@ const Products = ({title, imgMenu, data, handlePlusCart, handleProduct}) => {
           scrollIndicatorInsets={{right: 1}}
         />
       ) : (
-        <EmptyProduct />
+        <EmptyProduct title="Product's Empty" uri={imgMenu} />
       )}
     </View>
   );
@@ -124,18 +113,18 @@ const styles = StyleSheet.create({
   wrapperStyle: {
     justifyContent: 'space-around',
   },
-  emptyContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  emptyImg: {
-    width: scale(100),
-    height: scale(100),
-    marginBottom: scale(8),
-  },
-  txtEmpty: {
-    color: colors.graySystem2,
-    fontSize: fontSize.large,
-  },
+  // emptyContainer: {
+  //   flex: 1,
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  // },
+  // emptyImg: {
+  //   width: scale(100),
+  //   height: scale(100),
+  //   marginBottom: scale(8),
+  // },
+  // txtEmpty: {
+  //   color: colors.graySystem2,
+  //   fontSize: fontSize.large,
+  // },
 });
