@@ -23,10 +23,7 @@ const TotalCart = ({focused}) => {
 
   return (
     <View>
-      <Text
-        bold={focused ? true : false}
-        color={focused ? colors.orange : colors.gray}
-        style={styles.label}>
+      <Text bold={focused} style={[styles.label, focused && styles.fcText]}>
         {'Cart'}
       </Text>
       {cartProducts?.length > 0 && (
@@ -60,6 +57,9 @@ const styles = StyleSheet.create({
   counter: {
     fontSize: fontSize.smaller,
     color: colors.white,
+  },
+  fcText: {
+    color: colors.orange,
   },
 });
 

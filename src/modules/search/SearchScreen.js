@@ -5,7 +5,7 @@ import _debounce from 'lodash/debounce';
 
 import {Text, Search} from '@components';
 import {useStore} from '@context';
-import {dataMenu} from '@actions';
+import {dataMenu} from '@api';
 import {findBgLg, handleDataOdd} from '@utils';
 import routes from '@routes';
 

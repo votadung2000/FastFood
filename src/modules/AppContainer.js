@@ -38,9 +38,7 @@ const styles = StyleSheet.create({
 
 const Label = ({children, focused}) => {
   return (
-    <Text
-      bold={focused ? true : false}
-      style={[styles.label, focused && styles.fcText]}>
+    <Text bold={focused} style={[styles.label, focused && styles.fcText]}>
       {children}
     </Text>
   );
@@ -85,7 +83,7 @@ const TabApp = () => {
             return (
               <Ionicons
                 name="cart"
-                size={scale(24)}
+                size={scale(25)}
                 color={focused ? colors.orange : colors.gray}
               />
             );

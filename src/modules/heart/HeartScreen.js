@@ -5,7 +5,7 @@ import {useNavigationState} from '@react-navigation/native';
 
 import {Text} from '@components';
 import {useStore} from '@context';
-import {dataMenu} from '@actions';
+import {dataMenu} from '@api';
 import routes from '@routes';
 
 import {Menu, HeartProducts} from './components';
