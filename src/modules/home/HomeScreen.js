@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react';
 import {useNavigationState} from '@react-navigation/native';
@@ -20,17 +20,16 @@ const HomeScreen = ({navigation}) => {
   const indexRoute = useNavigationState(state => state?.index);
 
   const {
+    categoryStore: {category, updateCategory},
     productsStore: {products, fetchProducts},
     productsDetailStore: {fetchProductsDetail},
     cartProductsStore: {fetchCartProduct},
   } = useStore();
 
-  const [itemMenu, setItemMenu] = useState(dataMenu[0]);
-
   useEffect(() => {
     if (indexRoute === 0) {
       fetchAPI();
-      setItemMenu(dataMenu[0]);
+      updateCategory(dataMenu[0]);
     }
   }, [indexRoute]);
 
@@ -42,7 +41,7 @@ const HomeScreen = ({navigation}) => {
   };
 
   const handleItem = item => {
-    setItemMenu(item);
+    updateCategory(item);
     fetchProducts({group_type: item.id});
   };
 
@@ -68,10 +67,10 @@ const HomeScreen = ({navigation}) => {
             <AntDesign size={scale(22)} name="user" color={colors.black} />
           </Button>
         </View>
-        <Menu data={dataMenu} itemMenu={itemMenu} handleItem={handleItem} />
+        <Menu data={dataMenu} itemMenu={category} handleItem={handleItem} />
         <Products
-          title={itemMenu?.title}
-          imgMenu={itemMenu?.img}
+          title={category?.title}
+          imgMenu={category?.img}
           data={handleDataOdd(products)}
           handlePlusCart={handlePlusCart}
           handleProduct={handleProduct}

@@ -1,8 +1,10 @@
 import {action, makeAutoObservable} from 'mobx';
-import {dataProducts} from '../actions/Data';
+
+import {dataProducts} from '@api';
 
 class ProductsStore {
   products = [];
+  filterPr = {};
 
   constructor() {
     makeAutoObservable(this, {
@@ -10,9 +12,10 @@ class ProductsStore {
     });
   }
 
-  fetchProducts(filters) {
+  fetchProducts(params) {
     try {
-      if (filters) {
+      let filters = {...this.filterPr, ...params};
+      if (filters?.group_type) {
         this.products = dataProducts.filter(
           item => item?.group_type === filters?.group_type,
         );
