@@ -3,13 +3,14 @@ import {View} from 'react-native';
 import {observer} from 'mobx-react';
 import _debounce from 'lodash/debounce';
 
-import styles from './styles';
-import {Text, Search, Back} from '../../components';
+import {Text, Search, Back} from '@components';
+import {useStore} from '@context';
+import {Layout} from '@views';
+import {handleDataOdd} from '@utils';
+import routes from '@routes';
+
 import {Products} from './components';
-import {useStore} from '../../context';
-import {Layout} from '../../views';
-import routes from '../routes';
-import {handleDataOdd} from '../../utils';
+import styles from './styles';
 
 const DetailCardSearch = ({navigation}) => {
   const [txtSearch, setTxtSearch] = useState(null);

@@ -1,10 +1,11 @@
 import React from 'react';
 import {StyleSheet, FlatList, View} from 'react-native';
 
-import {scale} from '../../../utils/resolutions';
-import {Button, Text} from '../../../components';
-import {colors, fontSize} from '../../../constant';
-import {findId} from '../../../utils';
+import {Button, Text} from '@components';
+import {colors, fontSize} from '@constant';
+import {findId, resolutions} from '@utils';
+
+const {scale} = resolutions;
 
 const ListExtraFood = ({data, handleExtraFood, extra}) => {
   const keyExtractor = (_, index) => index.toString();

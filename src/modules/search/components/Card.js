@@ -2,9 +2,11 @@ import React from 'react';
 import {StyleSheet, View, Image} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import {colors, fontSize} from '../../../constant';
-import {scale} from '../../../utils/resolutions';
-import {Text, Button} from '../../../components';
+import {colors, fontSize} from '@constant';
+import {resolutions} from '@utils';
+import {Text, Button} from '@components';
+
+const {scale} = resolutions;
 
 const Card = ({item, bgLG, onPressCard}) => {
   return (

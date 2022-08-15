@@ -5,9 +5,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import routes from './routes';
+import routes from '@routes';
 
-import {Layout} from '../views';
+import {Layout} from '@views';
 
 import HelloScreen from './HelloScreen';
 import HomeScreen from './home/HomeScreen';
@@ -19,9 +19,11 @@ import SearchScreen from './search/SearchScreen';
 import DetailCardSearch from './detail_card_search/DetailCardSearch';
 import LoginScreen from './login/LoginScreen';
 
-import {scale} from '../utils/resolutions';
-import {colors, fontSize} from '../constant';
-import {Text, TotalCart} from '../components';
+import {resolutions} from '@utils';
+import {colors, fontSize} from '@constant';
+import {Text, TotalCart} from '@components';
+
+const {scale} = resolutions;
 
 const styles = StyleSheet.create({
   label: {

@@ -4,15 +4,17 @@ import {observer} from 'mobx-react';
 import {useNavigationState} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import {Text, Button} from '../../components';
-import styles from './styles';
-import {dataMenu} from '../../actions/Data';
-import {handleDataOdd} from '../../utils';
+import {Text, Button} from '@components';
+import {dataMenu} from '@api';
+import {useStore} from '@context';
+import routes from '@routes';
+import {resolutions, handleDataOdd} from '@utils';
+import {colors} from '@constant';
+
 import {Products, Menu} from './components';
-import {useStore} from '../../context';
-import routes from '../routes';
-import {scale} from '../../utils/resolutions';
-import {colors} from '../../constant';
+import styles from './styles';
+
+const {scale} = resolutions;
 
 const HomeScreen = ({navigation}) => {
   const indexRoute = useNavigationState(state => state?.index);

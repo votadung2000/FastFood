@@ -4,13 +4,15 @@ import {observer} from 'mobx-react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import _uniqBy from 'lodash/uniqBy';
 
-import {Text, Back, Button, ModalLoading} from '../../components';
+import {Text, Back, Button, ModalLoading} from '@components';
+import {useStore} from '@context';
+import {colors} from '@constant';
+import {formatCurrency, findId, handleHeart, resolutions} from '@utils';
+
+import {ListExtraFood} from './components';
 import styles from './styles';
-import {useStore} from '../../context';
-import {colors} from '../../constant';
-import {formatCurrency, findId, handleHeart} from '../../utils';
-import {scale} from '../../utils/resolutions';
-import ListExtraFood from './components/ListExtraFood';
+
+const {scale} = resolutions;
 
 const ProductsDetailScreen = () => {
   const {

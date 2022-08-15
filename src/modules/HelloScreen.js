@@ -4,12 +4,13 @@ import LinearGradient from 'react-native-linear-gradient';
 import {useNavigation} from '@react-navigation/native';
 import RNBootSplash from 'react-native-bootsplash';
 
-import {Text, Button} from '../components';
-import {colors, fontSize} from '../constant';
-import {hScale, scale} from '../utils/resolutions';
-import routes from './routes';
+import {Text, Button} from '@components';
+import {colors, fontSize} from '@constant';
+import {resolutions} from '@utils';
+import routes from '@routes';
 
 const {width} = Dimensions.get('window');
+const {hScale, scale} = resolutions;
 
 const HelloScreen = () => {
   const navigation = useNavigation();

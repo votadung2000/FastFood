@@ -5,9 +5,11 @@ import Modal from 'react-native-modal';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {isIphoneX} from 'react-native-iphone-x-helper';
 
-import {colors} from '../constant';
-import {Button} from './index';
-import {scale} from '../utils/resolutions';
+import {colors} from '@constant';
+import {Button} from '@components';
+import {resolutions} from '@utils';
+
+const {scale} = resolutions;
 
 const ImagesViewer = ({images, index, closeModal}) => {
   const imageUrls = images?.map(image => ({

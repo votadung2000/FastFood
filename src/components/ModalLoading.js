@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, ActivityIndicator} from 'react-native';
 import Modal from 'react-native-modal';
 
-import {colors} from '../constant';
+import {colors} from '@constant';
 
 const ModalLoading = ({isVisible}) => {
   return (

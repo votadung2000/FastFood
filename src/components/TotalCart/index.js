@@ -2,10 +2,12 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {observer} from 'mobx-react';
 
-import {Text} from '..';
-import {scale, wScale} from '../../utils/resolutions';
-import {colors, fontSize} from '../../constant';
-import {useStore} from '../../context';
+import {Text} from '@components';
+import {resolutions} from '@utils';
+import {colors, fontSize} from '@constant';
+import {useStore} from '@context';
+
+const {scale, wScale} = resolutions;
 
 const formatCount = value => {
   if (value && parseInt(value, 10) > 9) {

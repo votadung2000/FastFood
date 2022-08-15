@@ -1,18 +1,16 @@
 import React, {createRef, useState} from 'react';
 import {View, Image} from 'react-native';
 import {useFormik} from 'formik';
-import DeviceInfo from 'react-native-device-info';
 import {Notifier, NotifierComponents} from 'react-native-notifier';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import DeviceInfo from 'react-native-device-info';
 
-import {Input, InputPassword} from '../../components';
-import {Text, Button} from '../../components';
+import {Input, InputPassword, Text, Button} from '@components';
+import routes from '@routes';
+import {useStore} from '@context';
 
 import LoginSchema from './LoginSchema';
 import styles from './styles';
-
-import routes from '../routes';
-import {useStore} from '../../context';
 
 let appName = DeviceInfo.getApplicationName();
 

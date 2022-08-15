@@ -3,13 +3,14 @@ import {View, ScrollView} from 'react-native';
 import {observer} from 'mobx-react';
 import _debounce from 'lodash/debounce';
 
-import {Text, Search} from '../../components';
-import styles from './styles';
+import {Text, Search} from '@components';
+import {useStore} from '@context';
+import {dataMenu} from '@actions';
+import {findBgLg, handleDataOdd} from '@utils';
+import routes from '@routes';
+
 import {Card, Products} from './components';
-import {useStore} from '../../context';
-import {dataMenu} from '../../actions/Data';
-import {findBgLg, handleDataOdd} from '../../utils';
-import routes from '../routes';
+import styles from './styles';
 
 const SearchScreen = ({navigation}) => {
   const {

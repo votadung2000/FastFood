@@ -4,12 +4,13 @@ import {observer} from 'mobx-react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import LinearGradient from 'react-native-linear-gradient';
 
-import {Text, Button, ChangeQuantity, Back} from '../../components';
-import {colors} from '../../constant';
-import {formatCurrency} from '../../utils';
-import styles from './styles';
+import {Text, Button, ChangeQuantity, Back} from '@components';
+import {colors} from '@constant';
+import {formatCurrency} from '@utils';
+import {useStore} from '@context';
+
 import {Item} from './components';
-import {useStore} from '../../context';
+import styles from './styles';
 
 const CartScreen = () => {
   const {

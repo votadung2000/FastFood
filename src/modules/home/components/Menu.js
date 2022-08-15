@@ -2,10 +2,11 @@ import React from 'react';
 import {StyleSheet, View, Image} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 
-import {Text, Button} from '../../../components';
-import {colors, fontSize} from '../../../constant';
-import {scale} from '../../../utils/resolutions';
-import {limitedString} from '../../../utils';
+import {Text, Button} from '@components';
+import {colors, fontSize} from '@constant';
+import {resolutions, limitedString} from '@utils';
+
+const {scale} = resolutions;
 
 const Menu = ({data, itemMenu, handleItem}) => {
   const keyExtractor = (_, index) => index.toString();

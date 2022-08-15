@@ -3,10 +3,11 @@ import {StyleSheet, View, Image, FlatList} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {Text, Button} from '../../../components';
-import {colors, fontSize} from '../../../constant';
-import {scale} from '../../../utils/resolutions';
-import {formatCurrency, limitedString, handleHeart} from '../../../utils';
+import {Text, Button} from '@components';
+import {colors, fontSize} from '@constant';
+import {formatCurrency, limitedString, handleHeart, resolutions} from '@utils';
+
+const {scale} = resolutions;
 
 const HeartProducts = ({
   itemMenu,

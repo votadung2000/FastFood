@@ -2,12 +2,12 @@ import React from 'react';
 import {StyleSheet, View, Dimensions, Image, FlatList} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import {Text, Button} from '../../../components';
-import {colors, fontSize} from '../../../constant';
-import {scale} from '../../../utils/resolutions';
-import {formatCurrency} from '../../../utils';
+import {Text, Button} from '@components';
+import {colors, fontSize} from '@constant';
+import {resolutions, formatCurrency} from '@utils';
 
 const {width} = Dimensions.get('window');
+const {scale} = resolutions;
 
 const Products = ({title, imgMenu, data, handlePlusCart, handleProduct}) => {
   const keyExtractor = (_, index) => index.toString();
