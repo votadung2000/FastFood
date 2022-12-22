@@ -6,8 +6,9 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import DeviceInfo from 'react-native-device-info';
 
 import {Input, InputPassword, Text, Button} from '@components';
-import routes from '@routes';
 import {useStore} from '@context';
+import {ApiLogin} from '@actionApi';
+import routes from '@routes';
 
 import LoginSchema from './LoginSchema';
 import styles from './styles';
@@ -15,8 +16,8 @@ import styles from './styles';
 let appName = DeviceInfo.getApplicationName();
 
 const initialValues = {
-  user_name: '',
-  password: '',
+  user_name: 'register5',
+  password: 'register5',
 };
 
 const initialErrors = {
@@ -26,7 +27,7 @@ const initialErrors = {
 
 const LoginScreen = ({navigation}) => {
   const {
-    userStore: {fetchUser},
+    // userStore: {updateUser},
   } = useStore();
 
   const refPassword = createRef();
@@ -52,43 +53,44 @@ const LoginScreen = ({navigation}) => {
   const onSubmit = async () => {
     setSubmitting(true);
     try {
-      let response = fetchUser(values?.user_name, values?.password);
-      await new Promise(resolve => {
-        if (response) {
-          setSubmitting(false);
-          navigation.navigate(routes.HomeScreen);
-          resetForm(initialValues);
-          Notifier.showNotification({
-            duration: 4000,
-            title: 'Đăng nhập thành công',
-            Component: NotifierComponents.Alert,
-            componentProps: {
-              alertType: 'success',
-            },
-          });
-          resolve();
-        } else {
-          setSubmitting(false);
-          Notifier.showNotification({
-            duration: 4000,
-            title: 'Thông tin đăng nhập không chính xác',
-            description: 'Vui lòng kiểm tra lại Tên người dùng hoặc Mật khẩu',
-            Component: NotifierComponents.Alert,
-            componentProps: {
-              alertType: 'error',
-            },
-          });
-        }
-      });
-    } catch (error) {
+      let body = {
+        username: values?.user_name,
+        password: values?.password,
+      };
+      let response = await ApiLogin(body);
+      console.log('response', response.data);
+      if (response?.data) {
+        setSubmitting(false);
+        resetForm(initialValues);
+        navigation.navigate(routes.HomeScreen);
+        Notifier.showNotification({
+          duration: 4000,
+          title: 'Đăng nhập thành công',
+          Component: NotifierComponents.Alert,
+          componentProps: {
+            alertType: 'success',
+          },
+        });
+      }
+    } catch ({response}) {
       setSubmitting(false);
-      Notifier.showNotification({
-        title: 'Vui lòng thử lại',
-        Component: NotifierComponents.Alert,
-        componentProps: {
-          alertType: 'info',
-        },
-      });
+      if (!response) {
+        Notifier.showNotification({
+          title: 'Vui lòng kiểm tra kết nối mạng',
+          Component: NotifierComponents.Alert,
+          componentProps: {
+            alertType: 'warn',
+          },
+        });
+      } else {
+        Notifier.showNotification({
+          title: 'Vui lòng thử lại',
+          Component: NotifierComponents.Alert,
+          componentProps: {
+            alertType: 'error',
+          },
+        });
+      }
     }
   };
 

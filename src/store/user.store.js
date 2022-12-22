@@ -1,23 +1,28 @@
-import {action, makeAutoObservable} from 'mobx';
-import {dataUser} from '../actions/Data';
+import {action, makeAutoObservable, runInAction} from 'mobx';
+
+import {ApiLogin} from '@actionApi';
 
 class UserStore {
+  user = null;
+
   constructor() {
     makeAutoObservable(this, {
       fetchUser: action.bound,
+
+      updateUser: action.bound,
     });
   }
 
-  fetchUser(user_name, password) {
+  updateUser(params) {
+    this.user = params;
+  }
+
+  async fetchUser(data) {
     try {
-      let findUser = dataUser.find(
-        user => user?.user_name === user_name.trim().toLocaleLowerCase(),
-      );
-      if (findUser) {
-        return findUser?.password === password.trim().toLocaleLowerCase();
-      } else {
-        return false;
-      }
+      let response = await ApiLogin(data);
+      runInAction(() => {
+        this.user = response.data;
+      });
     } catch (error) {}
   }
 }

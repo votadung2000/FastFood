@@ -5,6 +5,9 @@
       "@api": [
         "./actions/Data"
       ],
+      "@actionApi": [
+        "./actions/Api"
+      ],
       "@components": [
         "./components"
       ],
