@@ -24,14 +24,12 @@ const infoDevices = {
 
 axios.interceptors.request.use(
   async config => {
-    console.log('API_HOST_V1', Config.API_HOST_V1);
     config.baseURL = Config.API_HOST_V1;
     config.headers;
     if (!config.url.includes(ApiRoutes.login)) {
       // const token = await getToken();
       // config.headers.Authorization = 'Bearer' + token;
     }
-    console.log('config', config);
     return config;
   },
   error => {
@@ -62,5 +60,12 @@ export const ApiLogin = body => {
     method: 'post',
     url: ApiRoutes.login,
     data: data,
+  });
+};
+
+export const ApiGetListCategories = () => {
+  return axios({
+    method: 'get',
+    url: ApiRoutes.category,
   });
 };

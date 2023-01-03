@@ -9,6 +9,7 @@ import formatCartProducts from './formatCartProducts';
 import handleHeart from './handleHeart';
 import findBgLg from './findBgLg';
 import randomImgEmpty from './randomImgEmpty';
+import checkIfValidUUID from './checkIfValidUUID';
 
 export {
   resolutions,
@@ -22,4 +23,5 @@ export {
   handleHeart,
   findBgLg,
   randomImgEmpty,
+  checkIfValidUUID,
 };

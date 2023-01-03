@@ -1,14 +1,20 @@
 import React from 'react';
-import {StyleSheet, View, Image} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
+import {observer} from 'mobx-react';
 
-import {Text, Button} from '@components';
+import {Text, Button, EmptyComponent, FastImage} from '@components';
 import {colors, fontSize} from '@constant';
 import {resolutions, limitedString} from '@utils';
+import {useStore} from '@context';
 
 const {scale} = resolutions;
 
-const Menu = ({data, itemMenu, handleItem}) => {
+const Menu = ({itemMenu, handleItem}) => {
+  const {
+    categoryStore: {categories, isLoadingCategories},
+  } = useStore();
+
   const keyExtractor = (_, index) => index.toString();
 
   const renderItem = ({item}) => {
@@ -17,11 +23,11 @@ const Menu = ({data, itemMenu, handleItem}) => {
         onPress={() => handleItem(item)}
         style={[
           styles.item,
-          item.id === itemMenu.id ? styles.upShadow : styles.shadow,
+          item?.id === itemMenu?.id ? styles.upShadow : styles.shadow,
         ]}>
-        <Image source={{uri: item.img}} style={styles.imgMenu} />
+        <FastImage source={{uri: item?.img}} style={styles.imgMenu} />
         <Text bold style={styles.txtItem}>
-          {limitedString(item.title, 6)}
+          {limitedString(item?.name, 6)}
         </Text>
       </Button>
     );
@@ -30,18 +36,19 @@ const Menu = ({data, itemMenu, handleItem}) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={data}
         horizontal
         bounces={false}
+        data={categories?.data}
         showsHorizontalScrollIndicator={false}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
+        ListEmptyComponent={
+          !isLoadingCategories && <EmptyComponent title={"Menu's Empty"} />
+        }
       />
     </View>
   );
 };
-
-export default React.memo(Menu);
 
 const styles = StyleSheet.create({
   container: {
@@ -79,3 +86,5 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
   },
 });
+
+export default observer(Menu);

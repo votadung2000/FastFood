@@ -2,36 +2,36 @@ import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react';
 import {useNavigationState} from '@react-navigation/native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import {Text, Button} from '@components';
 import {dataMenu} from '@api';
 import {useStore} from '@context';
 import routes from '@routes';
-import {resolutions, handleDataOdd} from '@utils';
-import {colors} from '@constant';
+import {handleDataOdd} from '@utils';
 
-import {Products, Menu} from './components';
+import {Products, Menu, Header} from './components';
 import styles from './styles';
-
-const {scale} = resolutions;
 
 const HomeScreen = ({navigation}) => {
   const indexRoute = useNavigationState(state => state?.index);
 
   const {
-    categoryStore: {category, updateCategory},
+    categoryStore: {category, updateCategory, fetchApiGetListCategories},
     productsStore: {products, fetchProducts},
     productsDetailStore: {fetchProductsDetail},
     cartProductsStore: {fetchCartProduct},
   } = useStore();
 
   useEffect(() => {
-    if (indexRoute === 0) {
-      fetchAPI();
-      updateCategory(dataMenu[0]);
-    }
-  }, [indexRoute]);
+    fetchApiGetListCategories();
+    fetchAPI();
+  }, []);
+
+  // useEffect(() => {
+  //   if (indexRoute === 0) {
+  //     fetchAPI();
+  //     updateCategory(dataMenu[0]);
+  //   }
+  // }, [indexRoute]);
 
   const fetchAPI = () => {
     let params = {
@@ -54,19 +54,10 @@ const HomeScreen = ({navigation}) => {
     navigation.navigate(routes.ProductsDetailScreen);
   };
 
-  const goToUser = () => {
-    navigation.navigate(routes.LoginScreen);
-  };
-
   return (
     <View style={styles.layout}>
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.title}>{'Find Your\nDelicious Food'}</Text>
-          <Button onPress={goToUser} style={styles.btnUser}>
-            <AntDesign size={scale(22)} name="user" color={colors.black} />
-          </Button>
-        </View>
+        <Header />
         <Menu data={dataMenu} itemMenu={category} handleItem={handleItem} />
         <Products
           title={category?.title}

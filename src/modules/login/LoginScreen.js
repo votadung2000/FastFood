@@ -58,7 +58,6 @@ const LoginScreen = ({navigation}) => {
         password: values?.password,
       };
       let response = await ApiLogin(body);
-      console.log('response', response.data);
       if (response?.data) {
         setSubmitting(false);
         resetForm(initialValues);

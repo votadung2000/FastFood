@@ -1,22 +1,23 @@
-import {Button, Back, ChangeQuantity} from './Button';
 import Text from './Text';
-import ImagesViewer from './ImagesViewer';
 import ModalLoading from './ModalLoading';
-import {Search} from './Search';
 import TotalCart from './TotalCart';
-import {Input, InputPassword} from './Input';
 import EmptyComponent from './EmptyComponent';
+import {Button, Back, ChangeQuantity} from './Button';
+import {Search} from './Search';
+import {Input, InputPassword} from './Input';
+import {FastImage, ImagesViewer} from './Image';
 
 export {
+  Text,
+  ModalLoading,
+  TotalCart,
+  EmptyComponent,
   Button,
   Back,
   ChangeQuantity,
-  Text,
-  ImagesViewer,
-  ModalLoading,
   Search,
-  TotalCart,
   Input,
   InputPassword,
-  EmptyComponent,
+  FastImage,
+  ImagesViewer,
 };
