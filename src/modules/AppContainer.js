@@ -1,6 +1,9 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import {
+  NavigationContainer,
+  useNavigationContainerRef,
+} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -125,9 +128,11 @@ const TabApp = () => {
 const Stack = createNativeStackNavigator();
 
 const AppContainer = () => {
+  const navigationRef = useNavigationContainerRef();
+
   return (
-    <Layout>
-      <NavigationContainer>
+    <Layout {...{navigationRef}}>
+      <NavigationContainer ref={navigationRef}>
         <Stack.Navigator
           screenOptions={{
             headerShown: false,
