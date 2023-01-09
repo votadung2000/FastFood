@@ -6,6 +6,7 @@ import {Button, Back, ChangeQuantity} from './Button';
 import {Search} from './Search';
 import {Input, InputPassword} from './Input';
 import {FastImage, ImagesViewer} from './Image';
+import LoadingComponent from './LoadingComponent';
 
 export {
   Text,
@@ -20,4 +21,5 @@ export {
   InputPassword,
   FastImage,
   ImagesViewer,
+  LoadingComponent,
 };

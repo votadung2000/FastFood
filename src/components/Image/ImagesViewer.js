@@ -28,7 +28,9 @@ const ImagesViewer = ({images, index, closeModal}) => {
     </View>
   );
 
-  const loadingRender = () => <ActivityIndicator color={colors.white} />;
+  const loadingRender = () => (
+    <ActivityIndicator size="small" color={colors.white} />
+  );
 
   return (
     <Modal

@@ -63,9 +63,24 @@ export const ApiLogin = body => {
   });
 };
 
-export const ApiGetListCategories = () => {
+export const ApiListCategories = () => {
   return axios({
     method: 'get',
     url: ApiRoutes.category,
+  });
+};
+
+export const ApiListProducts = params => {
+  return axios({
+    method: 'get',
+    url: ApiRoutes.product,
+    params,
+  });
+};
+
+export const ApiDetailProduct = id => {
+  return axios({
+    method: 'get',
+    url: `${ApiRoutes.product}/${id}`,
   });
 };

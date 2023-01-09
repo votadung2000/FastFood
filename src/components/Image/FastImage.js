@@ -60,8 +60,19 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   error: {
+    paddingVertical: scale(5),
+    borderRadius: scale(10),
+    backgroundColor: colors.white,
     justifyContent: 'center',
     alignItems: 'center',
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
   },
 });
 

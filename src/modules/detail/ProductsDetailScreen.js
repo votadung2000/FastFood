@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import {View, Image, ScrollView} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import {observer} from 'mobx-react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import _uniqBy from 'lodash/uniqBy';
 
-import {Text, Back, Button, ModalLoading} from '@components';
+import {Text, Back, Button, ModalLoading, FastImage} from '@components';
 import {useStore} from '@context';
 import {colors} from '@constant';
 import {formatCurrency, findId, handleHeart, resolutions} from '@utils';
@@ -19,11 +19,12 @@ const ProductsDetailScreen = () => {
     productsDetailStore: {extraFood, productDetail},
     cartProductsStore: {fetchCartProduct},
     heartProductsStore: {allHeartProducts, addHeartProduct},
+    productsStore: {product},
   } = useStore();
 
   const [extra, setExtra] = useState(null);
 
-  const {id, img, name, price, description, taste} = productDetail;
+  const {id, image, name, price, description, taste} = product;
 
   const handleFavorite = () => {
     addHeartProduct(productDetail);
@@ -46,7 +47,7 @@ const ProductsDetailScreen = () => {
     }
   };
 
-  if (!Object.keys(productDetail)?.length) {
+  if (!product) {
     return <ModalLoading />;
   }
 
@@ -65,18 +66,16 @@ const ProductsDetailScreen = () => {
             handleFavorite={handleFavorite}
           />
           <View style={styles.header}>
-            {img && <Image source={{uri: img}} style={styles.img} />}
+            <FastImage source={{uri: image}} style={styles.img} />
           </View>
           <View style={styles.body}>
             <View style={styles.headerContent}>
               <Text bold style={styles.txtTitle}>
                 {name}
               </Text>
-              <Text
-                bold
-                style={[styles.txtTitle, styles.price]}>{`${formatCurrency(
-                price,
-              )} VNĐ`}</Text>
+              <Text bold style={[styles.txtTitle, styles.price]}>
+                {`${formatCurrency(price)} VNĐ`}
+              </Text>
             </View>
             <Text style={styles.txtContent}>{taste}</Text>
             <ListExtraFood

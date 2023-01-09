@@ -1,16 +1,16 @@
 import React from 'react';
-import {StyleSheet, View, Image} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
-import {Text} from '@components';
+import {Text, FastImage} from '@components';
 import {colors, fontSize} from '@constant';
 import {resolutions} from '@utils';
 
 const {scale} = resolutions;
 
-const EmptyComponent = ({uri, title}) => {
+const EmptyComponent = ({img, title}) => {
   return (
     <View style={styles.emptyContainer}>
-      {uri && <Image source={{uri: uri}} style={styles.emptyImg} />}
+      {img && <FastImage source={{uri: img?.image}} style={styles.emptyImg} />}
       <Text bold style={styles.txtEmpty}>
         {title || "Product's Empty"}
       </Text>
@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingVertical: scale(8),
   },
   emptyImg: {
     width: scale(100),

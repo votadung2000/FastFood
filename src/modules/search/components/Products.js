@@ -46,7 +46,7 @@ const Products = ({data, handlePlusCart, handleProduct}) => {
           scrollIndicatorInsets={{right: 1}}
         />
       ) : (
-        <EmptyComponent title="Product's Empty" uri={'search_empty'} />
+        <EmptyComponent title="Product's Empty" img={'search_empty'} />
       )}
     </View>
   );

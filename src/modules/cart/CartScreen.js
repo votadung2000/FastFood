@@ -81,7 +81,7 @@ const CartScreen = () => {
     <View style={styles.layout}>
       <Back title={'Your Order'} stTitle={styles.title} style={styles.back} />
       {cartProducts?.length === 0 ? (
-        <EmptyComponent title="Cart's Empty" uri={'cart_empty'} />
+        <EmptyComponent title="Cart's Empty" img={'cart_empty'} />
       ) : (
         <View style={styles.container}>
           <View style={styles.body}>

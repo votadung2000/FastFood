@@ -1,6 +1,8 @@
 import {action, makeAutoObservable, runInAction} from 'mobx';
 
-import {ApiGetListCategories} from '@actionApi';
+import {ApiListCategories} from '@actionApi';
+
+import productsStore from './products.store';
 
 class CategoryStore {
   categories = null;
@@ -8,20 +10,20 @@ class CategoryStore {
 
   constructor() {
     makeAutoObservable(this, {
-      fetchApiGetListCategories: action.bound,
+      fetchApiListCategories: action.bound,
     });
   }
 
-  updateCategory(item) {
-    this.category = item;
-  }
-
-  async fetchApiGetListCategories() {
+  async fetchApiListCategories() {
     this.isLoadingCategories = true;
     try {
-      let response = await ApiGetListCategories();
+      let response = await ApiListCategories();
       runInAction(() => {
         this.categories = response.data;
+        this.isLoadingCategories = false;
+        productsStore.fetchApiListProducts({
+          category_id: response.data?.data[0],
+        });
       });
     } catch (error) {
       this.isLoadingCategories = false;
