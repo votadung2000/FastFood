@@ -71,19 +71,19 @@ const ProductsDetailScreen = () => {
           <View style={styles.body}>
             <View style={styles.headerContent}>
               <Text bold style={styles.txtTitle}>
-                {name}
+                {name || ''}
               </Text>
               <Text bold style={[styles.txtTitle, styles.price]}>
                 {`${formatCurrency(price)} VNĐ`}
               </Text>
             </View>
-            <Text style={styles.txtContent}>{taste}</Text>
+            <Text style={styles.txtContent}>{taste || ''}</Text>
             <ListExtraFood
               data={extraFood}
               handleExtraFood={handleExtraFood}
               extra={extra}
             />
-            <Text style={styles.txtContent}>{description}</Text>
+            <Text style={styles.txtContent}>{description || ''}</Text>
           </View>
         </View>
       </ScrollView>
