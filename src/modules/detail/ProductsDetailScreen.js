@@ -24,8 +24,6 @@ const ProductsDetailScreen = () => {
 
   const [extra, setExtra] = useState(null);
 
-  const {id, image, name, price, description, taste} = product;
-
   const handleFavorite = () => {
     addHeartProduct(productDetail);
   };
@@ -62,28 +60,28 @@ const ProductsDetailScreen = () => {
           <Back
             heart
             style={styles.back}
-            favorite={handleHeart(id, allHeartProducts)}
+            favorite={handleHeart(product?.id, allHeartProducts)}
             handleFavorite={handleFavorite}
           />
           <View style={styles.header}>
-            <FastImage source={{uri: image}} style={styles.img} />
+            <FastImage source={{uri: product?.image}} style={styles.img} />
           </View>
           <View style={styles.body}>
             <View style={styles.headerContent}>
               <Text bold style={styles.txtTitle}>
-                {name || ''}
+                {product?.name || ''}
               </Text>
               <Text bold style={[styles.txtTitle, styles.price]}>
-                {`${formatCurrency(price)} VNĐ`}
+                {`${formatCurrency(product?.price)} VNĐ`}
               </Text>
             </View>
-            <Text style={styles.txtContent}>{taste || ''}</Text>
+            <Text style={styles.txtContent}>{product?.taste || ''}</Text>
             <ListExtraFood
               data={extraFood}
               handleExtraFood={handleExtraFood}
               extra={extra}
             />
-            <Text style={styles.txtContent}>{description || ''}</Text>
+            <Text style={styles.txtContent}>{product?.description || ''}</Text>
           </View>
         </View>
       </ScrollView>

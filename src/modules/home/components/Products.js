@@ -13,7 +13,13 @@ const {scale} = resolutions;
 
 const Products = () => {
   const {
-    productsStore: {filterPr, products, isLoadingProducts},
+    productsStore: {
+      filterPr,
+      products,
+      isLoadingProducts,
+      isFetchingProducts,
+      loadMoreListProducts,
+    },
   } = useStore();
 
   const keyExtractor = (_, index) => index.toString();
@@ -22,6 +28,12 @@ const Products = () => {
     return item && Object.keys(item).length > 0 ? (
       <CardProducts data={item} />
     ) : null;
+  };
+
+  const onEndReached = () => {
+    if (!isFetchingProducts && products?.total > products?.data?.length) {
+      loadMoreListProducts();
+    }
   };
 
   return (
@@ -35,10 +47,12 @@ const Products = () => {
         showsVerticalScrollIndicator={false}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
+        onEndReached={onEndReached}
         bounces={false}
         columnWrapperStyle={styles.wrapperStyle}
         scrollIndicatorInsets={{right: 1}}
         ListHeaderComponent={isLoadingProducts && <LoadingComponent />}
+        ListFooterComponent={isFetchingProducts && <LoadingComponent />}
         ListEmptyComponent={
           !isLoadingProducts && (
             <EmptyComponent

@@ -11,6 +11,7 @@ class ProductsStore {
   products = null;
   filterPr = {};
   isLoadingProducts = false;
+  isFetchingProducts = false;
 
   product = null;
 
@@ -18,6 +19,8 @@ class ProductsStore {
     makeAutoObservable(this, {
       fetchApiListProducts: action.bound,
       fetchApiDetailProducts: action.bound,
+
+      loadMoreListProducts: action.bound,
     });
   }
 
@@ -32,7 +35,7 @@ class ProductsStore {
       this.filterPr = newFilter;
       let response = await ApiListProducts(filter);
       runInAction(() => {
-        this.products = response.data;
+        this.products = response?.data;
         this.isLoadingProducts = false;
       });
     } catch (error) {
@@ -40,11 +43,39 @@ class ProductsStore {
     }
   }
 
+  async loadMoreListProducts() {
+    this.isFetchingProducts = true;
+    try {
+      let newFilter = {
+        ...this.filterPr,
+        page: this.filterPr?.page + 1,
+      };
+      let filter = {
+        ...initFilter,
+        page: this.filterPr?.page + 1,
+      };
+      if (newFilter?.category_id) {
+        filter.category_id = newFilter?.category_id?.id;
+      }
+      this.filterPr = newFilter;
+      let response = await ApiListProducts(filter);
+      runInAction(() => {
+        this.products = {
+          ...response?.data,
+          data: [...this.products, ...response?.data?.data],
+        };
+        this.isFetchingProducts = false;
+      });
+    } catch (error) {
+      this.isFetchingProducts = false;
+    }
+  }
+
   async fetchApiDetailProducts(id) {
     try {
       let response = await ApiDetailProduct(id);
       runInAction(() => {
-        this.product = response.data;
+        this.product = response?.data?.data;
       });
     } catch (error) {}
   }
