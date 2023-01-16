@@ -1,14 +1,14 @@
 import React from 'react';
-import {StyleSheet, View, Image} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import {colors, fontSize} from '@constant';
 import {resolutions} from '@utils';
-import {Text, Button} from '@components';
+import {Text, Button, FastImage} from '@components';
 
 const {scale} = resolutions;
 
-const Card = ({item, bgLG, onPressCard}) => {
+const Card = ({data, bgLG, onPressCard}) => {
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -16,11 +16,11 @@ const Card = ({item, bgLG, onPressCard}) => {
         end={{x: 1, y: 0}}
         colors={bgLG}
         style={styles.linearGradient}>
-        <Button onPress={() => onPressCard(item)} style={styles.btn}>
+        <Button onPress={() => onPressCard(data)} style={styles.btn}>
           <Text bold style={styles.text}>
-            {item?.title}
+            {data?.name}
           </Text>
-          <Image source={{uri: item.img}} style={styles.img} />
+          <FastImage source={{uri: data?.image}} style={styles.img} />
         </Button>
       </LinearGradient>
     </View>

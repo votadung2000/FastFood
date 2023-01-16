@@ -14,16 +14,18 @@ class CategoryStore {
     });
   }
 
-  async fetchApiListCategories() {
+  async fetchApiListCategories({isFetchingProducts}) {
     this.isLoadingCategories = true;
     try {
       let response = await ApiListCategories();
       runInAction(() => {
         this.categories = response.data;
         this.isLoadingCategories = false;
-        productsStore.fetchApiListProducts({
-          category_id: response.data?.data[0],
-        });
+        if (isFetchingProducts) {
+          productsStore.fetchApiListProducts({
+            category_id: response.data?.data[0],
+          });
+        }
       });
     } catch (error) {
       this.isLoadingCategories = false;

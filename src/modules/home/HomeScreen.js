@@ -16,7 +16,7 @@ const HomeScreen = () => {
   } = useStore();
 
   useEffect(() => {
-    fetchApiListCategories();
+    fetchApiListCategories({isFetchingProducts: true});
   }, [indexRoute]);
 
   return (
