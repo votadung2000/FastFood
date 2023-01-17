@@ -2,8 +2,10 @@ import React from 'react';
 import {StyleSheet, View, TextInput} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {colors, fontSize} from '../../constant';
-import {hScale, scale} from '../../utils/resolutions';
+import {colors, fontSize} from '@constant';
+import {resolutions} from '@utils';
+
+const {hScale, scale} = resolutions;
 
 const Search = ({style, value, placeholder, onChangeText}) => {
   return (

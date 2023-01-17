@@ -1,7 +1,9 @@
 import {StyleSheet} from 'react-native';
 
-import {colors, fontSize} from '../../constant';
-import {hScale, scale, wScale} from '../../utils/resolutions';
+import {colors, fontSize} from '@constant';
+import {resolutions} from '@utils';
+
+const {hScale, scale, wScale} = resolutions;
 
 export default StyleSheet.create({
   scroll: {

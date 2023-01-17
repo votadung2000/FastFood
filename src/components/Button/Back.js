@@ -4,10 +4,12 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 
 import {colors, fontSize} from '../../constant';
-import {scale} from '../../utils/resolutions';
+import {resolutions} from '@utils';
 
 import Button from './Button';
 import Text from '../Text';
+
+const {scale} = resolutions;
 
 const Back = ({style, handleFavorite, heart, favorite, title, stTitle}) => {
   const navigation = useNavigation();

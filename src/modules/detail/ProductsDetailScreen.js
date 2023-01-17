@@ -1,27 +1,28 @@
 import React, {useState} from 'react';
-import {View, Image, ScrollView} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import {observer} from 'mobx-react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import _uniqBy from 'lodash/uniqBy';
 
-import {Text, Back, Button, ModalLoading} from '../../components';
+import {Text, Back, Button, ModalLoading, FastImage} from '@components';
+import {useStore} from '@context';
+import {colors} from '@constant';
+import {formatCurrency, findId, handleHeart, resolutions} from '@utils';
+
+import {ListExtraFood} from './components';
 import styles from './styles';
-import {useStore} from '../../context';
-import {colors} from '../../constant';
-import {formatCurrency, findId, handleHeart} from '../../utils';
-import {scale} from '../../utils/resolutions';
-import ListExtraFood from './components/ListExtraFood';
+
+const {scale} = resolutions;
 
 const ProductsDetailScreen = () => {
   const {
     productsDetailStore: {extraFood, productDetail},
     cartProductsStore: {fetchCartProduct},
     heartProductsStore: {allHeartProducts, addHeartProduct},
+    productsStore: {product},
   } = useStore();
 
   const [extra, setExtra] = useState(null);
-
-  const {id, img, name, price, description, taste} = productDetail;
 
   const handleFavorite = () => {
     addHeartProduct(productDetail);
@@ -44,7 +45,7 @@ const ProductsDetailScreen = () => {
     }
   };
 
-  if (!Object.keys(productDetail)?.length) {
+  if (!product) {
     return <ModalLoading />;
   }
 
@@ -59,30 +60,28 @@ const ProductsDetailScreen = () => {
           <Back
             heart
             style={styles.back}
-            favorite={handleHeart(id, allHeartProducts)}
+            favorite={handleHeart(product?.id, allHeartProducts)}
             handleFavorite={handleFavorite}
           />
           <View style={styles.header}>
-            {img && <Image source={{uri: img}} style={styles.img} />}
+            <FastImage source={{uri: product?.image}} style={styles.img} />
           </View>
           <View style={styles.body}>
             <View style={styles.headerContent}>
               <Text bold style={styles.txtTitle}>
-                {name}
+                {product?.name || ''}
               </Text>
-              <Text
-                bold
-                style={[styles.txtTitle, styles.price]}>{`${formatCurrency(
-                price,
-              )} VNĐ`}</Text>
+              <Text bold style={[styles.txtTitle, styles.price]}>
+                {`${formatCurrency(product?.price)} VNĐ`}
+              </Text>
             </View>
-            <Text style={styles.txtContent}>{taste}</Text>
+            <Text style={styles.txtContent}>{product?.taste || ''}</Text>
             <ListExtraFood
               data={extraFood}
               handleExtraFood={handleExtraFood}
               extra={extra}
             />
-            <Text style={styles.txtContent}>{description}</Text>
+            <Text style={styles.txtContent}>{product?.description || ''}</Text>
           </View>
         </View>
       </ScrollView>

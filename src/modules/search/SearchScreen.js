@@ -1,17 +1,20 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {View, ScrollView} from 'react-native';
 import {observer} from 'mobx-react';
-import _debounce from 'lodash/debounce';
+import debounce from 'lodash/debounce';
 
-import {Text, Search} from '../../components';
-import styles from './styles';
+import {Text, Search} from '@components';
+import {useStore} from '@context';
+import {findBgLg, handleDataOdd} from '@utils';
+import {useNavigationState} from '@react-navigation/native';
+import routes from '@routes';
+
 import {Card, Products} from './components';
-import {useStore} from '../../context';
-import {dataMenu} from '../../actions/Data';
-import {findBgLg, handleDataOdd} from '../../utils';
-import routes from '../routes';
+import styles from './styles';
 
 const SearchScreen = ({navigation}) => {
+  const indexRoute = useNavigationState(state => state?.index);
+
   const {
     searchProductsStore: {
       productsSearchContainer,
@@ -19,11 +22,16 @@ const SearchScreen = ({navigation}) => {
       fetchProductsSearchContainer,
       updateMenuSearch,
     },
+    categoryStore: {categories, fetchApiListCategories},
     productsDetailStore: {fetchProductsDetail},
     cartProductsStore: {fetchCartProduct},
   } = useStore();
 
   const [txtSearch, setTxtSearch] = useState(null);
+
+  useEffect(() => {
+    fetchApiListCategories();
+  }, [indexRoute]);
 
   const onPressCard = item => {
     fetchProductsSearch({group_type: item.id});
@@ -40,9 +48,12 @@ const SearchScreen = ({navigation}) => {
     navigation.navigate(routes.ProductsDetailScreen);
   };
 
-  const handleFetchSearch = _debounce(text => {
-    fetchProductsSearchContainer({name: text});
-  }, 400);
+  const handleFetchSearch = useCallback(
+    debounce(text => {
+      fetchProductsSearchContainer({name: text});
+    }, 400),
+    [],
+  );
 
   const onChangeText = text => {
     setTxtSearch(text);
@@ -70,13 +81,12 @@ const SearchScreen = ({navigation}) => {
             bounces={false}
             style={styles.scroll}
             showsVerticalScrollIndicator={false}>
-            {dataMenu &&
-              dataMenu?.map((item, index) => {
+            {categories?.data &&
+              categories?.data?.map((item, index) => {
                 return (
                   <Card
                     key={index.toString()}
-                    item={item}
-                    index={index}
+                    data={item}
                     bgLG={findBgLg(index)}
                     onPressCard={onPressCard}
                   />

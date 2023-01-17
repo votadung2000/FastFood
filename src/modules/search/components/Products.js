@@ -2,12 +2,12 @@ import React from 'react';
 import {StyleSheet, View, Dimensions, Image, FlatList} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import {Text, Button} from '../../../components';
-import {colors, fontSize} from '../../../constant';
-import {scale} from '../../../utils/resolutions';
-import {formatCurrency} from '../../../utils';
+import {Text, Button, EmptyComponent} from '@components';
+import {colors, fontSize} from '@constant';
+import {resolutions, formatCurrency} from '@utils';
 
 const {width} = Dimensions.get('window');
+const {scale} = resolutions;
 
 const Products = ({data, handlePlusCart, handleProduct}) => {
   const keyExtractor = (_, index) => index.toString();
@@ -32,17 +32,6 @@ const Products = ({data, handlePlusCart, handleProduct}) => {
     ) : null;
   };
 
-  const EmptyProduct = () => {
-    return (
-      <View style={styles.emptyContainer}>
-        <Image source={{uri: 'search_empty'}} style={styles.emptyImg} />
-        <Text bold style={styles.txtEmpty}>
-          {"Product's Empty"}
-        </Text>
-      </View>
-    );
-  };
-
   return (
     <View style={styles.container}>
       {data?.length ? (
@@ -57,7 +46,7 @@ const Products = ({data, handlePlusCart, handleProduct}) => {
           scrollIndicatorInsets={{right: 1}}
         />
       ) : (
-        <EmptyProduct />
+        <EmptyComponent title="Product's Empty" img={'search_empty'} />
       )}
     </View>
   );
@@ -118,19 +107,5 @@ const styles = StyleSheet.create({
   },
   wrapperStyle: {
     justifyContent: 'space-around',
-  },
-  emptyContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  emptyImg: {
-    width: scale(100),
-    height: scale(100),
-    marginBottom: scale(8),
-  },
-  txtEmpty: {
-    color: colors.graySystem2,
-    fontSize: fontSize.large,
   },
 });

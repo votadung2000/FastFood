@@ -1,9 +1,11 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
-import {scale} from '../../../utils/resolutions';
-import {Text} from '../../../components';
-import {colors, fontSize} from '../../../constant';
+import {resolutions} from '@utils';
+import {Text} from '@components';
+import {colors, fontSize} from '@constant';
+
+const {scale} = resolutions;
 
 const Item = ({label, value, bold}) => {
   return (

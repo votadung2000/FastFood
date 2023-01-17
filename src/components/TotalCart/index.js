@@ -2,10 +2,12 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {observer} from 'mobx-react';
 
-import {Text} from '..';
-import {scale, wScale} from '../../utils/resolutions';
-import {colors, fontSize} from '../../constant';
-import {useStore} from '../../context';
+import {Text} from '@components';
+import {resolutions} from '@utils';
+import {colors, fontSize} from '@constant';
+import {useStore} from '@context';
+
+const {scale, wScale} = resolutions;
 
 const formatCount = value => {
   if (value && parseInt(value, 10) > 9) {
@@ -21,10 +23,7 @@ const TotalCart = ({focused}) => {
 
   return (
     <View>
-      <Text
-        bold={focused ? true : false}
-        color={focused ? colors.orange : colors.gray}
-        style={styles.label}>
+      <Text bold={focused} style={[styles.label, focused && styles.fcText]}>
         {'Cart'}
       </Text>
       {cartProducts?.length > 0 && (
@@ -58,6 +57,9 @@ const styles = StyleSheet.create({
   counter: {
     fontSize: fontSize.smaller,
     color: colors.white,
+  },
+  fcText: {
+    color: colors.orange,
   },
 });
 

@@ -3,12 +3,13 @@ import {View} from 'react-native';
 import {observer} from 'mobx-react';
 import {useNavigationState} from '@react-navigation/native';
 
-import {Text} from '../../components';
-import styles from './styles';
-import {useStore} from '../../context';
-import routes from '../routes';
+import {Text} from '@components';
+import {useStore} from '@context';
+import {dataMenu} from '@api';
+import routes from '@routes';
+
 import {Menu, HeartProducts} from './components';
-import {dataMenu} from '../../actions/Data';
+import styles from './styles';
 
 const HeartScreen = ({navigation}) => {
   const indexRoute = useNavigationState(state => state?.index);
