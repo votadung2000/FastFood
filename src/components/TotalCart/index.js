@@ -29,7 +29,7 @@ const TotalCart = ({focused}) => {
       {cartProducts?.length > 0 && (
         <View style={styles.badge}>
           <Text style={styles.counter}>
-            {`${formatCount(cartProducts.length)}`}
+            {`${formatCount(cartProducts?.length)}`}
           </Text>
         </View>
       )}

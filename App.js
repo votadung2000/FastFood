@@ -1,13 +1,15 @@
 import React from 'react';
 import {NotifierWrapper} from 'react-native-notifier';
 
-import store, {Context} from './src/context';
+import {Context} from '@context';
+import store from '@store';
+
 import AppContainer from './src/modules/AppContainer';
 
 const App = () => {
   return (
     <Context.Provider value={store}>
-      <NotifierWrapper children={undefined}>
+      <NotifierWrapper>
         <AppContainer />
       </NotifierWrapper>
     </Context.Provider>
