@@ -18,13 +18,12 @@ const SearchScreen = ({navigation}) => {
   const {
     searchProductsStore: {
       productsSearchContainer,
-      fetchProductsSearch,
       fetchProductsSearchContainer,
-      updateMenuSearch,
     },
     categoryStore: {categories, fetchApiListCategories},
     productsDetailStore: {fetchProductsDetail},
     cartProductsStore: {fetchCartProduct},
+    productsStore: {fetchApiListProducts},
   } = useStore();
 
   const [txtSearch, setTxtSearch] = useState(null);
@@ -34,8 +33,7 @@ const SearchScreen = ({navigation}) => {
   }, [indexRoute]);
 
   const onPressCard = item => {
-    fetchProductsSearch({group_type: item.id});
-    updateMenuSearch(item);
+    fetchApiListProducts({category_id: item});
     navigation.navigate(routes.DetailCardSearch);
   };
 
@@ -85,7 +83,7 @@ const SearchScreen = ({navigation}) => {
               categories?.data?.map((item, index) => {
                 return (
                   <Card
-                    key={index.toString()}
+                    key={index?.toString()}
                     data={item}
                     bgLG={findBgLg(index)}
                     onPressCard={onPressCard}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View, FlatList} from 'react-native';
 import {observer} from 'mobx-react';
 
@@ -13,14 +13,20 @@ const {scale} = resolutions;
 
 const Products = () => {
   const {
+    categoryStore: {categories},
     productsStore: {
       filterPr,
       products,
       isLoadingProducts,
       isFetchingProducts,
       loadMoreListProducts,
+      fetchApiListProducts,
     },
   } = useStore();
+
+  useEffect(() => {
+    fetchApiListProducts({category_id: categories?.data[0]});
+  }, []);
 
   const keyExtractor = (_, index) => index.toString();
 

@@ -4,7 +4,13 @@ import {observer} from 'mobx-react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import _uniqBy from 'lodash/uniqBy';
 
-import {Text, Back, Button, ModalLoading, FastImage} from '@components';
+import {
+  Text,
+  Back,
+  Button,
+  FastImage,
+  LoadingComponent,
+} from '@components';
 import {useStore} from '@context';
 import {colors} from '@constant';
 import {formatCurrency, findId, handleHeart, resolutions} from '@utils';
@@ -46,7 +52,12 @@ const ProductsDetailScreen = () => {
   };
 
   if (!product) {
-    return <ModalLoading />;
+    return (
+      <View style={styles.layout}>
+        <Back heart style={styles.back} />
+        <LoadingComponent />
+      </View>
+    );
   }
 
   return (

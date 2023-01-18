@@ -32,6 +32,9 @@ class ProductsStore {
       if (newFilter?.category_id) {
         filter.category_id = newFilter?.category_id?.id;
       }
+      if (newFilter?.name) {
+        filter.name = newFilter?.name;
+      }
       this.filterPr = newFilter;
       let response = await ApiListProducts(filter);
       runInAction(() => {
@@ -56,6 +59,9 @@ class ProductsStore {
       };
       if (newFilter?.category_id) {
         filter.category_id = newFilter?.category_id?.id;
+      }
+      if (newFilter?.name) {
+        filter.name = newFilter?.name;
       }
       this.filterPr = newFilter;
       let response = await ApiListProducts(filter);
