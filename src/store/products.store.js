@@ -21,6 +21,8 @@ class ProductsStore {
       fetchApiDetailProducts: action.bound,
 
       loadMoreListProducts: action.bound,
+
+      clearFilterPr: action.bound,
     });
   }
 
@@ -36,6 +38,7 @@ class ProductsStore {
         filter.name = newFilter?.name;
       }
       this.filterPr = newFilter;
+
       let response = await ApiListProducts(filter);
       runInAction(() => {
         this.products = response?.data;
@@ -84,6 +87,10 @@ class ProductsStore {
         this.product = response?.data?.data;
       });
     } catch (error) {}
+  }
+
+  clearFilterPr() {
+    this.filterPr = {};
   }
 }
 

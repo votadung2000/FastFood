@@ -1,35 +1,37 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import {View, ScrollView} from 'react-native';
 import {observer} from 'mobx-react';
+import {useNavigationState, useIsFocused} from '@react-navigation/native';
 import debounce from 'lodash/debounce';
 
 import {Text, Search} from '@components';
 import {useStore} from '@context';
-import {findBgLg, handleDataOdd} from '@utils';
-import {useNavigationState} from '@react-navigation/native';
+import {findBgLg} from '@utils';
 import routes from '@routes';
 
 import {Card, Products} from './components';
 import styles from './styles';
 
 const SearchScreen = ({navigation}) => {
+  const isFocused = useIsFocused();
   const indexRoute = useNavigationState(state => state?.index);
 
   const {
-    searchProductsStore: {
-      productsSearchContainer,
-      fetchProductsSearchContainer,
-    },
     categoryStore: {categories, fetchApiListCategories},
-    productsDetailStore: {fetchProductsDetail},
-    cartProductsStore: {fetchCartProduct},
-    productsStore: {fetchApiListProducts},
+    productsStore: {filterPr, fetchApiListProducts, clearFilterPr},
   } = useStore();
 
   const [txtSearch, setTxtSearch] = useState(null);
 
   useEffect(() => {
-    fetchApiListCategories();
+    if (isFocused) {
+      fetchApiListCategories();
+
+      return () => {
+        clearFilterPr();
+        setTxtSearch(null);
+      };
+    }
   }, [indexRoute]);
 
   const onPressCard = item => {
@@ -37,18 +39,9 @@ const SearchScreen = ({navigation}) => {
     navigation.navigate(routes.DetailCardSearch);
   };
 
-  const handlePlusCart = item => {
-    fetchCartProduct(item);
-  };
-
-  const handleProduct = item => {
-    fetchProductsDetail(item?.id);
-    navigation.navigate(routes.ProductsDetailScreen);
-  };
-
   const handleFetchSearch = useCallback(
     debounce(text => {
-      fetchProductsSearchContainer({name: text});
+      fetchApiListProducts({name: text});
     }, 400),
     [],
   );
@@ -68,12 +61,8 @@ const SearchScreen = ({navigation}) => {
           onChangeText={onChangeText}
           style={styles.search}
         />
-        {productsSearchContainer?.length || txtSearch?.length ? (
-          <Products
-            data={handleDataOdd(productsSearchContainer)}
-            handlePlusCart={handlePlusCart}
-            handleProduct={handleProduct}
-          />
+        {filterPr?.name ? (
+          <Products />
         ) : (
           <ScrollView
             bounces={false}

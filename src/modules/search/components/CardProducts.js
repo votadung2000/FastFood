@@ -6,7 +6,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {Text, Button, FastImage} from '@components';
 import {colors, fontSize} from '@constant';
-import {formatCurrency, resolutions} from '@utils';
+import {resolutions, formatCurrency} from '@utils';
 import {useStore} from '@context';
 import routes from '@routes';
 
@@ -37,9 +37,9 @@ const CardProducts = ({data}) => {
           {data?.name}
         </Text>
         <Text style={[styles.txtItem, styles.txtTaste]}>{data?.taste}</Text>
-        <Text bold style={styles.txtItem}>{`${formatCurrency(
-          data?.price,
-        )} Đ`}</Text>
+        <Text bold style={styles.txtItem}>
+          {`${formatCurrency(data?.price)} Đ`}
+        </Text>
       </View>
       <Button onPress={() => handlePlusCart()} style={styles.plus}>
         <AntDesign name="pluscircle" size={scale(26)} color={colors.orange} />

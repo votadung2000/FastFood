@@ -30,7 +30,7 @@ const CardProducts = ({data}) => {
   };
 
   return (
-    <Button onPress={() => handleProduct()} style={styles.item}>
+    <Button onPress={() => handleProduct()} style={styles.container}>
       <FastImage source={{uri: data?.image}} style={styles.img} />
       <View style={styles.content}>
         <Text bold style={[styles.txtItem, styles.txtName]}>
@@ -49,7 +49,7 @@ const CardProducts = ({data}) => {
 };
 
 const styles = StyleSheet.create({
-  item: {
+  container: {
     width: width / 2.4,
     justifyContent: 'center',
     alignItems: 'center',
