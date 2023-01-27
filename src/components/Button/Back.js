@@ -11,11 +11,23 @@ import Text from '../Text';
 
 const {scale} = resolutions;
 
-const Back = ({style, handleFavorite, heart, favorite, title, stTitle}) => {
+const Back = ({
+  style,
+  handleFavorite,
+  heart,
+  favorite,
+  title,
+  stTitle,
+  handleGoBack,
+}) => {
   const navigation = useNavigation();
 
   const goBack = () => {
-    navigation.goBack();
+    if (handleGoBack) {
+      handleGoBack();
+    } else {
+      navigation.goBack();
+    }
   };
 
   return (
