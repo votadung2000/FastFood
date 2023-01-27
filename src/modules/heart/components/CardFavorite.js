@@ -1,19 +1,19 @@
 import React from 'react';
-import {StyleSheet, View, Dimensions} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {observer} from 'mobx-react';
 import {useNavigation} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {Text, Button, FastImage} from '@components';
 import {colors, fontSize} from '@constant';
-import {resolutions, formatCurrency} from '@utils';
 import {useStore} from '@context';
+import {formatCurrency, limitedString, resolutions} from '@utils';
 import routes from '@routes';
 
-const {width} = Dimensions.get('window');
 const {scale} = resolutions;
 
-const CardProducts = ({data}) => {
+const CardFavorite = ({data}) => {
   const navigation = useNavigation();
 
   const {
@@ -29,36 +29,42 @@ const CardProducts = ({data}) => {
     // fetchCartProduct(item);
   };
 
+  const handleRemoveHeart = () => {
+    // addHeartProduct(item);
+  };
+
   return (
     <Button onPress={() => handleProduct()} style={styles.container}>
       <FastImage source={{uri: data?.image}} style={styles.img} />
       <View style={styles.content}>
         <Text bold style={[styles.txtItem, styles.txtName]}>
-          {data?.name || ''}
+          {limitedString(data?.name, 10)}
         </Text>
-        <Text style={[styles.txtItem, styles.txtTaste]}>
-          {data?.taste || ''}
-        </Text>
-        <Text bold style={styles.txtItem}>
-          {`${formatCurrency(data?.price)} Đ`}
-        </Text>
+        <Text style={[styles.txtItem, styles.txtTaste]}>{data?.taste}</Text>
+        <Text bold style={styles.txtItem}>{`${formatCurrency(
+          data?.price,
+        )} Đ`}</Text>
       </View>
-      <Button onPress={() => handlePlusCart()} style={styles.plus}>
-        <AntDesign name="pluscircle" size={scale(26)} color={colors.orange} />
-      </Button>
+      <View style={styles.footer}>
+        <Button onPress={() => handleRemoveHeart()} style={styles.plus}>
+          <Ionicons name={'heart'} size={scale(26)} color={colors.heart} />
+        </Button>
+        <Button onPress={() => handlePlusCart()} style={styles.plus}>
+          <AntDesign name="pluscircle" size={scale(26)} color={colors.orange} />
+        </Button>
+      </View>
     </Button>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: width / 2.4,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: scale(25),
-    marginTop: scale(5),
+    marginBottom: scale(20),
     backgroundColor: colors.white,
     borderRadius: scale(15),
+    flexDirection: 'row',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -71,33 +77,34 @@ const styles = StyleSheet.create({
     paddingHorizontal: scale(8),
   },
   img: {
-    width: scale(80),
-    height: scale(80),
-  },
-  content: {
-    width: '100%',
-    marginTop: scale(25),
+    width: scale(70),
+    height: scale(70),
   },
   txtItem: {
     textAlign: 'auto',
     fontSize: fontSize.fontSize14,
-    marginBottom: scale(6),
   },
-  txtName: {
-    fontSize: fontSize.fontSize16,
-    textAlign: 'center',
+  content: {
+    width: '50%',
+    paddingHorizontal: scale(5),
   },
   txtTaste: {
     fontSize: fontSize.small,
     color: colors.gray,
+    marginBottom: scale(6),
+  },
+  txtName: {
+    fontSize: fontSize.fontSize16,
+    marginBottom: scale(6),
   },
   plus: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
     paddingHorizontal: scale(8),
     paddingVertical: scale(8),
+    zIndex: 999,
+  },
+  footer: {
+    alignItems: 'center',
   },
 });
 
-export default observer(CardProducts);
+export default observer(CardFavorite);

@@ -5,6 +5,7 @@ import heartProductsStore from './heartProducts.store';
 import searchProductsStore from './searchProducts.store';
 import userStore from './user.store';
 import categoryStore from './category.store';
+import favoritesStore from './favorites.store';
 
 export default {
   productsStore,
@@ -14,4 +15,5 @@ export default {
   searchProductsStore,
   userStore,
   categoryStore,
+  favoritesStore,
 };

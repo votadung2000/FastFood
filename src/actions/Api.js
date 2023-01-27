@@ -84,3 +84,11 @@ export const ApiDetailProduct = id => {
     url: `${ApiRoutes.product}/${id}`,
   });
 };
+
+export const ApiFavorites = params => {
+  return axios({
+    method: 'get',
+    url: ApiRoutes.favorite,
+    params,
+  });
+};
