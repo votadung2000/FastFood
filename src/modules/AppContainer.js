@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet} from 'react-native';
 import {
   NavigationContainer,
@@ -6,6 +6,8 @@ import {
 } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Notifier, NotifierComponents} from 'react-native-notifier';
+import NetInfo from '@react-native-community/netinfo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import routes from '@routes';
@@ -129,6 +131,22 @@ const Stack = createNativeStackNavigator();
 
 const AppContainer = () => {
   const navigationRef = useNavigationContainerRef();
+
+  useEffect(() => {
+    NetInfo.addEventListener(state => {
+      if (!state?.isConnected) {
+        Notifier.showNotification({
+          title: 'Disconnected',
+          description: 'Please check the network connect!',
+          duration: 4000,
+          Component: NotifierComponents.Alert,
+          componentProps: {
+            alertType: 'error',
+          },
+        });
+      }
+    });
+  }, []);
 
   return (
     <Layout {...{navigationRef}}>

@@ -8,6 +8,7 @@ import DeviceInfo from 'react-native-device-info';
 import {Input, InputPassword, Text, Button, Back} from '@components';
 import {useStore} from '@context';
 import {ApiLogin} from '@actionApi';
+import {setToken} from '@storage';
 import routes from '@routes';
 
 import LoginSchema from './LoginSchema';
@@ -27,7 +28,7 @@ const initialErrors = {
 
 const LoginScreen = ({navigation}) => {
   const {
-    // userStore: {updateUser},
+    userStore: {updateUser},
   } = useStore();
 
   const refPassword = createRef();
@@ -59,6 +60,8 @@ const LoginScreen = ({navigation}) => {
       };
       let response = await ApiLogin(body);
       if (response?.data) {
+        updateUser(response?.data);
+        setToken(response?.data?.token);
         setSubmitting(false);
         resetForm(initialValues);
         navigation.navigate(routes.HomeScreen);

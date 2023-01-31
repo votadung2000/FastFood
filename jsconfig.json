@@ -20,6 +20,9 @@
       "@modules": [
         "./modules"
       ],
+      "@storage": [
+        "./storage"
+      ],
       "@store": [
         "./store"
       ],

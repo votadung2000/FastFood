@@ -7,6 +7,8 @@ import {
 import Config from 'react-native-config';
 import axios from 'axios';
 
+import {getToken} from '@storage';
+
 import ApiRoutes from './ApiRoutes';
 
 // Android os = 2
@@ -27,8 +29,8 @@ axios.interceptors.request.use(
     config.baseURL = Config.API_HOST_V1;
     config.headers;
     if (!config.url.includes(ApiRoutes.login)) {
-      // const token = await getToken();
-      // config.headers.Authorization = 'Bearer' + token;
+      const token = await getToken();
+      config.headers.Authorization = 'Bearer' + token;
     }
     return config;
   },
