@@ -2,12 +2,13 @@ import React, {memo} from 'react';
 import {StyleSheet, View} from 'react-native';
 import Modal from 'react-native-modal';
 
-import {Text, Button} from './index';
 import {colors, fontSize, radius} from '@constant';
 import {scale} from 'utils/resolutions';
 
+import {Text, Button} from './index';
+
 const Popup = ({
-  isVisible = true,
+  isVisible,
   Icon,
   title,
   content,
@@ -38,7 +39,9 @@ const Popup = ({
           {require && <Text style={styles.require}>{require}</Text>}
         </View>
         <View style={styles.action}>
-          <Button style={styles.btn} onPress={handleCancel}>
+          <Button
+            style={[styles.btn, !txtAccept && styles.w100]}
+            onPress={handleCancel}>
             <Text style={styles.txt}>{txtCancel}</Text>
           </Button>
           {txtAccept && (
@@ -98,6 +101,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: scale(5),
+  },
+  w100: {
+    width: '100%',
   },
   btnAccept: {
     borderLeftColor: colors.graySystem,
