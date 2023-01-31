@@ -4,7 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {scale} from '../utils/resolutions';
-import {colors} from '../constant';
+import {colors, radius} from '../constant';
 import {Button} from '../components';
 import routes from '../modules/routes';
 
@@ -46,6 +46,6 @@ const styles = StyleSheet.create({
     elevation: 5,
     paddingHorizontal: scale(10),
     paddingVertical: scale(10),
-    borderRadius: scale(6),
+    borderRadius: radius.radius6,
   },
 });

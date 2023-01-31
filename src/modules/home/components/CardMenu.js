@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 import {observer} from 'mobx-react';
 
 import {Text, Button, FastImage} from '@components';
-import {colors, fontSize} from '@constant';
+import {colors, fontSize, radius} from '@constant';
 import {resolutions, limitedString} from '@utils';
 import {useStore} from '@context';
 
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: scale(10),
     paddingVertical: scale(5),
-    borderRadius: scale(10),
+    borderRadius: radius.radius10,
     justifyContent: 'center',
     alignItems: 'center',
     margin: scale(10),
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   imgMenu: {
     width: scale(42),
     height: scale(42),
-    borderRadius: scale(10),
+    borderRadius: radius.radius10,
     marginBottom: scale(8),
   },
   txtItem: {

@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {Text, Button, FastImage} from '@components';
-import {colors, fontSize} from '@constant';
+import {colors, fontSize, radius} from '@constant';
 import {formatCurrency, resolutions} from '@utils';
 import {useStore} from '@context';
 import routes from '@routes';
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     marginBottom: scale(25),
     marginTop: scale(5),
     backgroundColor: colors.white,
-    borderRadius: scale(15),
+    borderRadius: radius.radius14,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,

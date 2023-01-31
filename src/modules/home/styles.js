@@ -1,6 +1,6 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
-import {colors} from '@constant';
+import {colors, radius} from '@constant';
 import {resolutions} from '@utils';
 
 const {hScale, scale} = resolutions;
@@ -23,7 +23,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     borderWidth: 1,
     position: 'absolute',
-    borderRadius: scale(10),
+    borderRadius: radius.radius10,
     zIndex: 9999,
     width: width * 0.75,
     height: hScale(40),

@@ -1,6 +1,6 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
-import {colors, fontSize} from '@constant';
+import {colors, fontSize, radius} from '@constant';
 import {resolutions} from '@utils';
 
 const {width} = Dimensions.get('window');
@@ -47,7 +47,7 @@ export default StyleSheet.create({
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
     elevation: 3,
-    borderRadius: scale(15),
+    borderRadius: radius.radius14,
   },
   flatList: {
     marginTop: scale(20),
@@ -95,7 +95,7 @@ export default StyleSheet.create({
   },
   linearGradient: {
     width: width * 0.75,
-    borderRadius: scale(15),
+    borderRadius: radius.radius14,
     alignSelf: 'center',
     marginTop: scale(10),
   },

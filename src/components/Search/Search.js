@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, TextInput} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {colors, fontSize} from '@constant';
+import {colors, fontSize, radius} from '@constant';
 import {resolutions} from '@utils';
 
 const {hScale, scale} = resolutions;
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     alignItems: 'center',
     flexDirection: 'row',
-    borderRadius: scale(6),
+    borderRadius: radius.radius6,
     marginBottom: scale(10),
   },
   icon: {

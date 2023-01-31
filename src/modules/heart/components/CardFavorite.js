@@ -6,7 +6,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {Text, Button, FastImage} from '@components';
-import {colors, fontSize} from '@constant';
+import {colors, fontSize, radius} from '@constant';
 import {useStore} from '@context';
 import {formatCurrency, limitedString, resolutions} from '@utils';
 import routes from '@routes';
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: scale(20),
     backgroundColor: colors.white,
-    borderRadius: scale(15),
+    borderRadius: radius.radius14,
     flexDirection: 'row',
     shadowColor: '#000',
     shadowOffset: {

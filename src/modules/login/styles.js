@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-import {colors, fontSize} from '@constant';
+import {colors, fontSize, radius} from '@constant';
 import {resolutions} from '@utils';
 
 const {hScale, scale, wScale} = resolutions;
@@ -42,7 +42,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: colors.yellow,
     paddingVertical: scale(14),
-    borderRadius: scale(14),
+    borderRadius: radius.radius14,
   },
   footer: {
     alignItems: 'center',

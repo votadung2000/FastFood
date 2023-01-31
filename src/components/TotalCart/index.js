@@ -4,7 +4,7 @@ import {observer} from 'mobx-react';
 
 import {Text} from '@components';
 import {resolutions} from '@utils';
-import {colors, fontSize} from '@constant';
+import {colors, fontSize, radius} from '@constant';
 import {useStore} from '@context';
 
 const {scale, wScale} = resolutions;
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     paddingBottom: scale(4),
   },
   badge: {
-    borderRadius: scale(13),
+    borderRadius: radius.radius14,
     width: wScale(13),
     height: wScale(13),
     backgroundColor: colors.orange,

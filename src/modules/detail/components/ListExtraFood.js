@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, FlatList, View} from 'react-native';
 
 import {Button, Text} from '@components';
-import {colors, fontSize} from '@constant';
+import {colors, fontSize, radius} from '@constant';
 import {findId, resolutions} from '@utils';
 
 const {scale} = resolutions;
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     height: scale(56),
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: scale(15),
+    borderRadius: radius.radius14,
     backgroundColor: colors.white,
     shadowColor: colors.black,
     shadowOffset: {

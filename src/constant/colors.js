@@ -17,6 +17,7 @@ export default {
 
   // Orange
   orange: '#ffbb33',
+  orangePopup: '#e75f3a',
   orangeSystem: '#ffdd99',
 
   // Green

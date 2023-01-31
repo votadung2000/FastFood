@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 
-import {colors, fontSize} from '@constant';
+import {colors, fontSize, radius} from '@constant';
 import {resolutions} from '@utils';
 import {Button, Text} from '@components';
 
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   btn: {
     paddingHorizontal: scale(5),
     paddingVertical: scale(3),
-    borderRadius: scale(5),
+    borderRadius: radius.radius2,
     backgroundColor: colors.white,
     shadowColor: '#000',
     shadowOffset: {

@@ -7,6 +7,7 @@ import {Search} from './Search';
 import {Input, InputPassword} from './Input';
 import {FastImage, ImagesViewer} from './Image';
 import LoadingComponent from './LoadingComponent';
+import Popup from './Popup';
 
 export {
   Text,
@@ -22,4 +23,5 @@ export {
   FastImage,
   ImagesViewer,
   LoadingComponent,
+  Popup,
 };

@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import RNBootSplash from 'react-native-bootsplash';
 
 import {Text, Button} from '@components';
-import {colors, fontSize} from '@constant';
+import {colors, fontSize, radius} from '@constant';
 import {resolutions} from '@utils';
 import routes from '@routes';
 
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     bottom: hScale(30),
     zIndex: 9999,
     width: width * 0.75,
-    borderRadius: scale(15),
+    borderRadius: radius.radius14,
   },
   text: {
     fontSize: fontSize.large,

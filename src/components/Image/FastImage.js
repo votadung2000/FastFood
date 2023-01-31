@@ -4,7 +4,7 @@ import RNFastImage from 'react-native-fast-image';
 import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {checkIfValidUUID} from '@utils';
-import {colors} from '@constant';
+import {colors, radius} from '@constant';
 import {scale} from 'utils/resolutions';
 
 const FastImage = ({source, resizeMode, handleError, style, ...rest}) => {
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   error: {
     paddingVertical: scale(5),
-    borderRadius: scale(10),
+    borderRadius: radius.radius10,
     backgroundColor: colors.white,
     justifyContent: 'center',
     alignItems: 'center',

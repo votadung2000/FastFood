@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import {colors, fontSize} from '@constant';
+import {colors, fontSize, radius} from '@constant';
 import {resolutions} from '@utils';
 import {Text, Button, FastImage} from '@components';
 
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
   linearGradient: {
     zIndex: 9999,
-    borderRadius: scale(6),
+    borderRadius: radius.radius6,
   },
   text: {
     fontSize: fontSize.huge,
