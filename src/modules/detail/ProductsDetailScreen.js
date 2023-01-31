@@ -11,15 +11,17 @@ import {formatCurrency, findId, handleHeart, resolutions} from '@utils';
 
 import {ListExtraFood} from './components';
 import styles from './styles';
+import routes from '@routes';
 
 const {scale} = resolutions;
 
-const ProductsDetailScreen = () => {
+const ProductsDetailScreen = ({navigation}) => {
   const {
     productsDetailStore: {extraFood, productDetail},
     cartProductsStore: {fetchCartProduct},
     heartProductsStore: {allHeartProducts, addHeartProduct},
     productsStore: {product},
+    userStore: {user},
   } = useStore();
 
   const [extra, setExtra] = useState(null);
@@ -29,7 +31,11 @@ const ProductsDetailScreen = () => {
   };
 
   const handlePlusCart = () => {
-    fetchCartProduct(productDetail);
+    if (user) {
+      fetchCartProduct(productDetail);
+    } else {
+      navigation.navigate(routes.LoginScreen);
+    }
   };
 
   const handleExtraFood = item => {

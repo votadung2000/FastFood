@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, ActivityIndicator, Text, View} from 'react-native';
+import {StyleSheet, ActivityIndicator, View} from 'react-native';
 import Modal from 'react-native-modal';
 
 import {colors} from '@constant';
@@ -13,7 +13,6 @@ const ModalLoading = ({isVisible}) => {
       animationIn="fadeIn"
       animationOut="fadeOut">
       <View style={styles.container}>
-        <Text>aaaa</Text>
         <ActivityIndicator size="small" color={colors.gray} />
       </View>
     </Modal>
