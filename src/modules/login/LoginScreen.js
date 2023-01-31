@@ -5,7 +5,7 @@ import {Notifier, NotifierComponents} from 'react-native-notifier';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import DeviceInfo from 'react-native-device-info';
 
-import {Input, InputPassword, Text, Button} from '@components';
+import {Input, InputPassword, Text, Button, Back} from '@components';
 import {useStore} from '@context';
 import {ApiLogin} from '@actionApi';
 import routes from '@routes';
@@ -93,10 +93,6 @@ const LoginScreen = ({navigation}) => {
     }
   };
 
-  const goHome = () => {
-    navigation.goBack();
-  };
-
   const focusPassword = () => {
     refPassword.current?.focus();
   };
@@ -105,6 +101,7 @@ const LoginScreen = ({navigation}) => {
     <KeyboardAwareScrollView
       contentContainerStyle={styles.scroll}
       showsVerticalScrollIndicator={false}>
+      <Back title="Login" style={styles.back} />
       <View style={styles.container}>
         <View style={styles.header}>
           <Image source={{uri: 'logo_home'}} style={styles.imgLogin} />
@@ -144,11 +141,6 @@ const LoginScreen = ({navigation}) => {
             </Text>
           </Button>
         </View>
-        <Button onPress={goHome} style={styles.home}>
-          <Text bold style={styles.txtHome}>
-            {'<-  Go Home  ->'}
-          </Text>
-        </Button>
       </View>
     </KeyboardAwareScrollView>
   );

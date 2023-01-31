@@ -13,6 +13,11 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
+    paddingBottom: scale(30),
+  },
+  back: {
+    paddingHorizontal: scale(15),
+    marginBottom: scale(15),
   },
   header: {
     justifyContent: 'center',
@@ -46,14 +51,5 @@ export default StyleSheet.create({
   },
   footer: {
     alignItems: 'center',
-  },
-  home: {
-    alignItems: 'center',
-    alignSelf: 'center',
-    paddingHorizontal: scale(20),
-    paddingVertical: scale(5),
-  },
-  txtHome: {
-    fontSize: fontSize.fontSize16,
   },
 });

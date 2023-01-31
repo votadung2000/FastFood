@@ -12,8 +12,8 @@ const Popup = ({
   Icon,
   title,
   content,
-  txtCancel,
-  txtAccept,
+  cancel,
+  accept,
   require,
   handleCancel,
   handleAccept,
@@ -40,16 +40,16 @@ const Popup = ({
         </View>
         <View style={styles.action}>
           <Button
-            style={[styles.btn, !txtAccept && styles.w100]}
+            style={[styles.btn, !accept && styles.w100]}
             onPress={handleCancel}>
-            <Text style={styles.txt}>{txtCancel}</Text>
+            <Text style={styles.txt}>{cancel}</Text>
           </Button>
-          {txtAccept && (
+          {accept && (
             <Button
               style={[styles.btn, styles.btnAccept]}
               onPress={handleAccept}>
               <Text bold style={styles.txt}>
-                {txtAccept}
+                {accept}
               </Text>
             </Button>
           )}
@@ -60,7 +60,7 @@ const Popup = ({
 };
 
 Popup.defaultProps = {
-  txtCancel: 'Quay lại',
+  cancel: 'Cancel',
 };
 
 const styles = StyleSheet.create({
