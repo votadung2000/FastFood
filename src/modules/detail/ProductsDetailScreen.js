@@ -35,7 +35,18 @@ const ProductsDetailScreen = ({navigation}) => {
   const [popup, setPopup] = useState(null);
 
   const handleFavorite = () => {
-    addHeartProduct(productDetail);
+    if (user) {
+      addHeartProduct(productDetail);
+    } else {
+      setPopup({
+        title: 'Attention',
+        accept: 'Accept',
+        content:
+          'You need to login before adding products to favorites.\nSign in now!',
+        handleAccept: handleAccept,
+        handleCancel: handleCancel,
+      });
+    }
   };
 
   const handlePlusCart = () => {
