@@ -1,8 +1,10 @@
 import {StyleSheet, Dimensions} from 'react-native';
-import {colors, fontSize} from '../../constant';
-import {scale} from '../../utils/resolutions';
+
+import {colors, fontSize, radius} from '@constant';
+import {resolutions} from '@utils';
 
 const {width} = Dimensions.get('window');
+const {scale} = resolutions;
 
 export default StyleSheet.create({
   layout: {
@@ -45,7 +47,7 @@ export default StyleSheet.create({
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
     elevation: 3,
-    borderRadius: scale(15),
+    borderRadius: radius.radius14,
   },
   flatList: {
     marginTop: scale(20),
@@ -93,7 +95,7 @@ export default StyleSheet.create({
   },
   linearGradient: {
     width: width * 0.75,
-    borderRadius: scale(15),
+    borderRadius: radius.radius14,
     alignSelf: 'center',
     marginTop: scale(10),
   },
@@ -106,20 +108,6 @@ export default StyleSheet.create({
   textLG: {
     fontSize: fontSize.large,
     color: colors.white,
-  },
-  emptyContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  emptyImg: {
-    width: scale(100),
-    height: scale(100),
-    marginBottom: scale(8),
-  },
-  txtEmpty: {
-    color: colors.graySystem2,
-    fontSize: fontSize.large,
   },
   title: {
     fontSize: fontSize.huge,

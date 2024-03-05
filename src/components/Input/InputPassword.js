@@ -2,10 +2,11 @@ import React, {useState} from 'react';
 import {StyleSheet, View, TextInput} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import Text from '../Text';
-import {Button} from '../Button';
-import {scale} from '../../utils/resolutions';
-import {colors, fontSize} from '../../constant';
+import {Text, Button} from '@components';
+import {resolutions} from '@utils';
+import {colors, fontSize} from '@constant';
+
+const {scale} = resolutions;
 
 const InputPassword = (
   {

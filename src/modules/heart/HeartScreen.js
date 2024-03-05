@@ -1,50 +1,33 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react';
-import {useNavigationState} from '@react-navigation/native';
+import {useNavigationState, useIsFocused} from '@react-navigation/native';
 
-import {Text} from '../../components';
-import styles from './styles';
-import {useStore} from '../../context';
-import routes from '../routes';
+import {Text} from '@components';
+import {useStore} from '@context';
+
 import {Menu, HeartProducts} from './components';
-import {dataMenu} from '../../actions/Data';
+import styles from './styles';
 
-const HeartScreen = ({navigation}) => {
+const HeartScreen = () => {
+  const isFocused = useIsFocused();
   const indexRoute = useNavigationState(state => state?.index);
 
   const {
-    heartProductsStore: {heartProducts, addHeartProduct, fetchHeartProduct},
-    productsDetailStore: {fetchProductsDetail},
-    cartProductsStore: {fetchCartProduct},
+    categoryStore: {fetchApiListCategories},
+    favoritesStore: {fetchApiListFavorites, clearFilterFavorites},
   } = useStore();
 
-  const [itemMenu, setItemMenu] = useState(null);
-
   useEffect(() => {
-    if (indexRoute === 2) {
-      setItemMenu(null);
-      fetchHeartProduct();
+    if (isFocused) {
+      fetchApiListCategories();
+      fetchApiListFavorites();
+
+      return () => {
+        clearFilterFavorites();
+      };
     }
   }, [indexRoute]);
-
-  const handleItem = item => {
-    setItemMenu(item);
-    fetchHeartProduct(item);
-  };
-
-  const handleProduct = item => {
-    fetchProductsDetail(item?.id);
-    navigation.navigate(routes.ProductsDetailScreen);
-  };
-
-  const handlePlusCart = item => {
-    fetchCartProduct(item);
-  };
-
-  const handleRemoveHeart = item => {
-    addHeartProduct(item);
-  };
 
   return (
     <View style={styles.container}>
@@ -52,14 +35,8 @@ const HeartScreen = ({navigation}) => {
         {'Your Heart'}
       </Text>
       <View style={styles.body}>
-        <Menu data={dataMenu} itemMenu={itemMenu} handleItem={handleItem} />
-        <HeartProducts
-          data={heartProducts}
-          itemMenu={itemMenu}
-          handleProduct={handleProduct}
-          handlePlusCart={handlePlusCart}
-          handleRemoveHeart={handleRemoveHeart}
-        />
+        <Menu />
+        <HeartProducts />
       </View>
     </View>
   );

@@ -1,8 +1,8 @@
 import React from 'react';
 import {View} from 'react-native';
 
-import {Layout} from '../../views';
-import {Text} from '../../components';
+import {Layout} from '@views';
+import {Text} from '@components';
 
 const UserScreen = () => {
   return (

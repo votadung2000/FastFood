@@ -1,4 +1,5 @@
 import {action, makeAutoObservable} from 'mobx';
+
 class HeartProductsStore {
   heartProducts = [];
   allHeartProducts = [];

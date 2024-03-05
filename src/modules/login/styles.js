@@ -1,7 +1,9 @@
 import {StyleSheet} from 'react-native';
 
-import {colors, fontSize} from '../../constant';
-import {hScale, scale, wScale} from '../../utils/resolutions';
+import {colors, fontSize, radius} from '@constant';
+import {resolutions} from '@utils';
+
+const {hScale, scale, wScale} = resolutions;
 
 export default StyleSheet.create({
   scroll: {
@@ -11,6 +13,11 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
+    paddingBottom: scale(30),
+  },
+  back: {
+    paddingHorizontal: scale(15),
+    marginBottom: scale(15),
   },
   header: {
     justifyContent: 'center',
@@ -40,18 +47,9 @@ export default StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: colors.yellow,
     paddingVertical: scale(14),
-    borderRadius: scale(14),
+    borderRadius: radius.radius14,
   },
   footer: {
     alignItems: 'center',
-  },
-  home: {
-    alignItems: 'center',
-    alignSelf: 'center',
-    paddingHorizontal: scale(20),
-    paddingVertical: scale(5),
-  },
-  txtHome: {
-    fontSize: fontSize.fontSize16,
   },
 });

@@ -1,34 +1,76 @@
 import React, {useState} from 'react';
-import {View, Image, ScrollView} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import {observer} from 'mobx-react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import _uniqBy from 'lodash/uniqBy';
 
-import {Text, Back, Button, ModalLoading} from '../../components';
-import styles from './styles';
-import {useStore} from '../../context';
-import {colors} from '../../constant';
-import {formatCurrency, findId, handleHeart} from '../../utils';
-import {scale} from '../../utils/resolutions';
-import ListExtraFood from './components/ListExtraFood';
+import {
+  Text,
+  Back,
+  Button,
+  FastImage,
+  Popup,
+  LoadingComponent,
+} from '@components';
+import {useStore} from '@context';
+import {colors} from '@constant';
+import {formatCurrency, findId, handleHeart, resolutions} from '@utils';
 
-const ProductsDetailScreen = () => {
+import {ListExtraFood} from './components';
+import styles from './styles';
+import routes from '@routes';
+
+const {scale} = resolutions;
+
+const ProductsDetailScreen = ({navigation}) => {
   const {
     productsDetailStore: {extraFood, productDetail},
     cartProductsStore: {fetchCartProduct},
     heartProductsStore: {allHeartProducts, addHeartProduct},
+    productsStore: {product},
+    userStore: {user},
   } = useStore();
 
   const [extra, setExtra] = useState(null);
-
-  const {id, img, name, price, description, taste} = productDetail;
+  const [popup, setPopup] = useState(null);
 
   const handleFavorite = () => {
-    addHeartProduct(productDetail);
+    if (user) {
+      addHeartProduct(productDetail);
+    } else {
+      setPopup({
+        title: 'Attention',
+        accept: 'Accept',
+        content:
+          'You need to login before adding products to favorites.\nSign in now!',
+        handleAccept: handleAccept,
+        handleCancel: handleCancel,
+      });
+    }
   };
 
   const handlePlusCart = () => {
-    fetchCartProduct(productDetail);
+    if (user) {
+      fetchCartProduct(productDetail);
+    } else {
+      setPopup({
+        title: 'Attention',
+        accept: 'Accept',
+        content:
+          'You need to login before adding products to cart.\nSign in now!',
+        handleAccept: handleAccept,
+        handleCancel: handleCancel,
+      });
+    }
+  };
+
+  const handleAccept = () => {
+    setPopup(null);
+    navigation.navigate(routes.LoginScreen);
+  };
+
+  const handleCancel = () => {
+    setPopup(null);
   };
 
   const handleExtraFood = item => {
@@ -44,8 +86,13 @@ const ProductsDetailScreen = () => {
     }
   };
 
-  if (!Object.keys(productDetail)?.length) {
-    return <ModalLoading />;
+  if (!product) {
+    return (
+      <View style={styles.layout}>
+        <Back heart style={styles.back} />
+        <LoadingComponent />
+      </View>
+    );
   }
 
   return (
@@ -59,36 +106,35 @@ const ProductsDetailScreen = () => {
           <Back
             heart
             style={styles.back}
-            favorite={handleHeart(id, allHeartProducts)}
+            favorite={handleHeart(product?.id, allHeartProducts)}
             handleFavorite={handleFavorite}
           />
           <View style={styles.header}>
-            {img && <Image source={{uri: img}} style={styles.img} />}
+            <FastImage source={{uri: product?.image}} style={styles.img} />
           </View>
           <View style={styles.body}>
             <View style={styles.headerContent}>
               <Text bold style={styles.txtTitle}>
-                {name}
+                {product?.name || ''}
               </Text>
-              <Text
-                bold
-                style={[styles.txtTitle, styles.price]}>{`${formatCurrency(
-                price,
-              )} VNĐ`}</Text>
+              <Text bold style={[styles.txtTitle, styles.price]}>
+                {`${formatCurrency(product?.price)} VNĐ`}
+              </Text>
             </View>
-            <Text style={styles.txtContent}>{taste}</Text>
+            <Text style={styles.txtContent}>{product?.taste || ''}</Text>
             <ListExtraFood
               data={extraFood}
               handleExtraFood={handleExtraFood}
               extra={extra}
             />
-            <Text style={styles.txtContent}>{description}</Text>
+            <Text style={styles.txtContent}>{product?.description || ''}</Text>
           </View>
         </View>
       </ScrollView>
       <Button onPress={() => handlePlusCart()} style={styles.plus}>
         <AntDesign name="shoppingcart" size={scale(24)} color={colors.white} />
       </Button>
+      <Popup isVisible={Boolean(popup)} {...popup} />
     </View>
   );
 };

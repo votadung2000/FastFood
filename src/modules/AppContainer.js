@@ -1,13 +1,18 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import {
+  NavigationContainer,
+  useNavigationContainerRef,
+} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Notifier, NotifierComponents} from 'react-native-notifier';
+import NetInfo from '@react-native-community/netinfo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import routes from './routes';
+import routes from '@routes';
 
-import {Layout} from '../views';
+import {Layout} from '@views';
 
 import HelloScreen from './HelloScreen';
 import HomeScreen from './home/HomeScreen';
@@ -19,9 +24,11 @@ import SearchScreen from './search/SearchScreen';
 import DetailCardSearch from './detail_card_search/DetailCardSearch';
 import LoginScreen from './login/LoginScreen';
 
-import {scale} from '../utils/resolutions';
-import {colors, fontSize} from '../constant';
-import {Text, TotalCart} from '../components';
+import {resolutions} from '@utils';
+import {colors, fontSize} from '@constant';
+import {Text, TotalCart} from '@components';
+
+const {scale} = resolutions;
 
 const styles = StyleSheet.create({
   label: {
@@ -36,9 +43,7 @@ const styles = StyleSheet.create({
 
 const Label = ({children, focused}) => {
   return (
-    <Text
-      bold={focused ? true : false}
-      style={[styles.label, focused && styles.fcText]}>
+    <Text bold={focused} style={[styles.label, focused && styles.fcText]}>
       {children}
     </Text>
   );
@@ -83,7 +88,7 @@ const TabApp = () => {
             return (
               <Ionicons
                 name="cart"
-                size={scale(24)}
+                size={scale(25)}
                 color={focused ? colors.orange : colors.gray}
               />
             );
@@ -125,9 +130,27 @@ const TabApp = () => {
 const Stack = createNativeStackNavigator();
 
 const AppContainer = () => {
+  const navigationRef = useNavigationContainerRef();
+
+  useEffect(() => {
+    NetInfo.addEventListener(state => {
+      if (!state?.isConnected) {
+        Notifier.showNotification({
+          title: 'Disconnected',
+          description: 'Please check the network connect!',
+          duration: 4000,
+          Component: NotifierComponents.Alert,
+          componentProps: {
+            alertType: 'error',
+          },
+        });
+      }
+    });
+  }, []);
+
   return (
-    <Layout>
-      <NavigationContainer>
+    <Layout {...{navigationRef}}>
+      <NavigationContainer ref={navigationRef}>
         <Stack.Navigator
           screenOptions={{
             headerShown: false,

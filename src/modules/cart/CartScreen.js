@@ -4,12 +4,13 @@ import {observer} from 'mobx-react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import LinearGradient from 'react-native-linear-gradient';
 
-import {Text, Button, ChangeQuantity, Back} from '../../components';
-import {colors} from '../../constant';
-import {formatCurrency} from '../../utils';
-import styles from './styles';
+import {Text, Button, ChangeQuantity, Back, EmptyComponent} from '@components';
+import {colors} from '@constant';
+import {formatCurrency} from '@utils';
+import {useStore} from '@context';
+
 import {Item} from './components';
-import {useStore} from '../../context';
+import styles from './styles';
 
 const CartScreen = () => {
   const {
@@ -76,22 +77,11 @@ const CartScreen = () => {
     );
   };
 
-  const EmptyCart = () => {
-    return (
-      <View style={styles.emptyContainer}>
-        <Image source={{uri: 'cart_empty'}} style={styles.emptyImg} />
-        <Text bold style={styles.txtEmpty}>
-          {"Cart's Empty"}
-        </Text>
-      </View>
-    );
-  };
-
   return (
     <View style={styles.layout}>
       <Back title={'Your Order'} stTitle={styles.title} style={styles.back} />
       {cartProducts?.length === 0 ? (
-        <EmptyCart />
+        <EmptyComponent title="Cart's Empty" img={'cart_empty'} />
       ) : (
         <View style={styles.container}>
           <View style={styles.body}>

@@ -1,48 +1,50 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {View, ScrollView} from 'react-native';
 import {observer} from 'mobx-react';
-import _debounce from 'lodash/debounce';
+import {useNavigationState, useIsFocused} from '@react-navigation/native';
+import debounce from 'lodash/debounce';
 
-import {Text, Search} from '../../components';
-import styles from './styles';
+import {Text, Search} from '@components';
+import {useStore} from '@context';
+import {findBgLg} from '@utils';
+import routes from '@routes';
+
 import {Card, Products} from './components';
-import {useStore} from '../../context';
-import {dataMenu} from '../../actions/Data';
-import {findBgLg, handleDataOdd} from '../../utils';
-import routes from '../routes';
+import styles from './styles';
 
 const SearchScreen = ({navigation}) => {
+  const isFocused = useIsFocused();
+  const indexRoute = useNavigationState(state => state?.index);
+
   const {
-    searchProductsStore: {
-      productsSearchContainer,
-      fetchProductsSearch,
-      fetchProductsSearchContainer,
-      updateMenuSearch,
-    },
-    productsDetailStore: {fetchProductsDetail},
-    cartProductsStore: {fetchCartProduct},
+    categoryStore: {categories, fetchApiListCategories},
+    productsStore: {filterPr, fetchApiListProducts, clearFilterPr},
   } = useStore();
 
   const [txtSearch, setTxtSearch] = useState(null);
 
+  useEffect(() => {
+    if (isFocused) {
+      fetchApiListCategories();
+
+      return () => {
+        clearFilterPr();
+        setTxtSearch(null);
+      };
+    }
+  }, [indexRoute]);
+
   const onPressCard = item => {
-    fetchProductsSearch({group_type: item.id});
-    updateMenuSearch(item);
+    fetchApiListProducts({category_id: item});
     navigation.navigate(routes.DetailCardSearch);
   };
 
-  const handlePlusCart = item => {
-    fetchCartProduct(item);
-  };
-
-  const handleProduct = item => {
-    fetchProductsDetail(item?.id);
-    navigation.navigate(routes.ProductsDetailScreen);
-  };
-
-  const handleFetchSearch = _debounce(text => {
-    fetchProductsSearchContainer({name: text});
-  }, 400);
+  const handleFetchSearch = useCallback(
+    debounce(text => {
+      fetchApiListProducts({name: text});
+    }, 400),
+    [],
+  );
 
   const onChangeText = text => {
     setTxtSearch(text);
@@ -59,24 +61,19 @@ const SearchScreen = ({navigation}) => {
           onChangeText={onChangeText}
           style={styles.search}
         />
-        {productsSearchContainer?.length || txtSearch?.length ? (
-          <Products
-            data={handleDataOdd(productsSearchContainer)}
-            handlePlusCart={handlePlusCart}
-            handleProduct={handleProduct}
-          />
+        {filterPr?.name ? (
+          <Products />
         ) : (
           <ScrollView
             bounces={false}
             style={styles.scroll}
             showsVerticalScrollIndicator={false}>
-            {dataMenu &&
-              dataMenu?.map((item, index) => {
+            {categories?.data &&
+              categories?.data?.map((item, index) => {
                 return (
                   <Card
-                    key={index.toString()}
-                    item={item}
-                    index={index}
+                    key={index?.toString()}
+                    data={item}
                     bgLG={findBgLg(index)}
                     onPressCard={onPressCard}
                   />

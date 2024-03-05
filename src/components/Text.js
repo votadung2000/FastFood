@@ -1,7 +1,8 @@
 import React from 'react';
 
 import {StyleSheet, Text as RNText, Platform} from 'react-native';
-import {colors, fontSize} from '../constant';
+
+import {colors, fontSize} from '@constant';
 
 const Text = ({children, style, bold, ...rest}) => {
   return (
