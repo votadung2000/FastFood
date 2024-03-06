@@ -31,7 +31,9 @@ const CardMenu = ({data}) => {
           : styles.shadow,
       ]}>
       <FastImage
-        source={{uri: Config.API_IMAGE + data?.image?.url}}
+        source={{
+          uri: data?.image?.url ? Config.API_IMAGE + data?.image?.url : '',
+        }}
         style={styles.imgMenu}
       />
       <Text bold style={styles.txtItem}>
