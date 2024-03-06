@@ -24,7 +24,9 @@ class CategoryStore {
         this.isLoadingCategories = false;
       });
     } catch (error) {
-      this.isLoadingCategories = false;
+      runInAction(() => {
+        this.isLoadingCategories = false;
+      });
     }
   }
 
@@ -40,7 +42,9 @@ class CategoryStore {
         });
       });
     } catch (error) {
-      this.isLoadingCategories = false;
+      runInAction(() => {
+        this.isLoadingCategories = false;
+      });
     }
   }
 }

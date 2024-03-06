@@ -45,7 +45,9 @@ class ProductsStore {
         this.isLoadingProducts = false;
       });
     } catch (error) {
-      this.isLoadingProducts = false;
+      runInAction(() => {
+        this.isLoadingProducts = false;
+      });
     }
   }
 
@@ -76,7 +78,9 @@ class ProductsStore {
         this.isFetchingProducts = false;
       });
     } catch (error) {
-      this.isFetchingProducts = false;
+      runInAction(() => {
+        this.isFetchingProducts = false;
+      });
     }
   }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {observer} from 'mobx-react';
+import Config from 'react-native-config';
 
 import {Text, Button, FastImage} from '@components';
 import {colors, fontSize, radius} from '@constant';
@@ -29,7 +30,10 @@ const CardMenu = ({data}) => {
           ? styles.upShadow
           : styles.shadow,
       ]}>
-      <FastImage source={{uri: data?.image}} style={styles.imgMenu} />
+      <FastImage
+        source={{uri: Config.API_IMAGE + data?.image?.url}}
+        style={styles.imgMenu}
+      />
       <Text bold style={styles.txtItem}>
         {limitedString(data?.name, 6) || ''}
       </Text>
