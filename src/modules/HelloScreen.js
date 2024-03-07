@@ -20,7 +20,7 @@ const HelloScreen = () => {
   }, []);
 
   const onPress = () => {
-    navigation.navigate(routes.TabApp);
+    navigation.navigate(routes.RoutesNavigator);
   };
 
   return (

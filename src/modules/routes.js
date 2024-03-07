@@ -1,6 +1,7 @@
 export default {
+  BottomTabNavigator: 'BottomTabNavigator',
+  RoutesNavigator: 'RoutesNavigator',
   HelloScreen: 'HelloScreen',
-  TabApp: 'TabApp',
   HomeScreen: 'HomeScreen',
   ProductsDetailScreen: 'ProductsDetailScreen',
   HeartScreen: 'HeartScreen',

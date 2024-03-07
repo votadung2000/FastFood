@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
 import {
   NavigationContainer,
   useNavigationContainerRef,
@@ -28,13 +28,17 @@ import {resolutions} from '@utils';
 import {colors, fontSize} from '@constant';
 import {Text, TotalCart} from '@components';
 
-const {scale} = resolutions;
+const {scale, hScale} = resolutions;
 
 const styles = StyleSheet.create({
+  tabBarStyle: {
+    position: 'absolute',
+    height: hScale(52),
+    paddingBottom: 0,
+  },
   label: {
     textAlign: 'center',
-    fontSize: fontSize.tiny,
-    paddingBottom: scale(4),
+    fontSize: fontSize.fontSize14,
   },
   fcText: {
     color: colors.orange,
@@ -51,7 +55,7 @@ const Label = ({children, focused}) => {
 
 const Tab = createBottomTabNavigator();
 
-const TabApp = () => {
+const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
       initialRouteName={routes.HomeScreen}
@@ -59,6 +63,7 @@ const TabApp = () => {
       screenOptions={({route}) => ({
         headerShown: false,
         gestureEnabled: false,
+        tabBarStyle: styles.tabBarStyle,
         tabBarIcon: ({focused}) => {
           if (route.name === routes.HomeScreen) {
             return (
@@ -129,6 +134,35 @@ const TabApp = () => {
 
 const Stack = createNativeStackNavigator();
 
+const RoutesNavigator = () => {
+  return (
+    <Layout>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          gestureEnabled: false,
+          animation: 'slide_from_right',
+        }}>
+        <Stack.Screen
+          name={routes.BottomTabNavigator}
+          component={BottomTabNavigator}
+        />
+        <Stack.Screen name={routes.CartScreen} component={CartScreen} />
+        <Stack.Screen
+          name={routes.ProductsDetailScreen}
+          component={ProductsDetailScreen}
+        />
+        <Stack.Screen
+          name={routes.DetailCardSearch}
+          component={DetailCardSearch}
+        />
+        <Stack.Screen name={routes.UserScreen} component={UserScreen} />
+        <Stack.Screen name={routes.LoginScreen} component={LoginScreen} />
+      </Stack.Navigator>
+    </Layout>
+  );
+};
+
 const AppContainer = () => {
   const navigationRef = useNavigationContainerRef();
 
@@ -149,30 +183,20 @@ const AppContainer = () => {
   }, []);
 
   return (
-    <Layout {...{navigationRef}}>
-      <NavigationContainer ref={navigationRef}>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-            gestureEnabled: false,
-            animation: 'slide_from_right',
-          }}>
-          <Stack.Screen name={routes.HelloScreen} component={HelloScreen} />
-          <Stack.Screen name={'TabApp'} component={TabApp} />
-          <Stack.Screen name={routes.CartScreen} component={CartScreen} />
-          <Stack.Screen
-            name={routes.ProductsDetailScreen}
-            component={ProductsDetailScreen}
-          />
-          <Stack.Screen
-            name={routes.DetailCardSearch}
-            component={DetailCardSearch}
-          />
-          <Stack.Screen name={routes.UserScreen} component={UserScreen} />
-          <Stack.Screen name={routes.LoginScreen} component={LoginScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </Layout>
+    <NavigationContainer ref={navigationRef}>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          gestureEnabled: false,
+          animation: 'slide_from_right',
+        }}>
+        <Stack.Screen name={routes.HelloScreen} component={HelloScreen} />
+        <Stack.Screen
+          name={routes.RoutesNavigator}
+          component={RoutesNavigator}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
