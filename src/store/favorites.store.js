@@ -43,7 +43,9 @@ class FavoritesStore {
         this.isLoadingFavorites = false;
       });
     } catch (error) {
-      this.isLoadingFavorites = false;
+      runInAction(() => {
+        this.isLoadingFavorites = false;
+      });
     }
   }
 
@@ -75,7 +77,9 @@ class FavoritesStore {
         this.isFetchingFavorites = false;
       });
     } catch (error) {
-      this.isFetchingFavorites = false;
+      runInAction(() => {
+        this.isFetchingFavorites = false;
+      });
     }
   }
 

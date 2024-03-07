@@ -29,7 +29,11 @@ const CardMenu = ({data}) => {
           ? styles.upShadow
           : styles.shadow,
       ]}>
-      <FastImage source={{uri: data?.image}} style={styles.imgMenu} />
+      <FastImage
+        isPath
+        source={{uri: data?.image?.url}}
+        style={styles.imgMenu}
+      />
       <Text bold style={styles.txtItem}>
         {limitedString(data.name, 6) || ''}
       </Text>

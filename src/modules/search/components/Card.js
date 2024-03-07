@@ -20,7 +20,11 @@ const Card = ({data, bgLG, onPressCard}) => {
           <Text bold style={styles.text}>
             {data?.name}
           </Text>
-          <FastImage source={{uri: data?.image}} style={styles.img} />
+          <FastImage
+            isPath
+            source={{uri: data?.image?.url}}
+            style={styles.img}
+          />
         </Button>
       </LinearGradient>
     </View>

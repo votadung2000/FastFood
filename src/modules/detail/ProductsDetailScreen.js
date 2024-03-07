@@ -110,7 +110,11 @@ const ProductsDetailScreen = ({navigation}) => {
             handleFavorite={handleFavorite}
           />
           <View style={styles.header}>
-            <FastImage source={{uri: product?.image}} style={styles.img} />
+            <FastImage
+              isPath
+              source={{uri: product?.image?.url}}
+              style={styles.img}
+            />
           </View>
           <View style={styles.body}>
             <View style={styles.headerContent}>

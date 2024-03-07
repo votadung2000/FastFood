@@ -35,7 +35,7 @@ const CardFavorite = ({data}) => {
 
   return (
     <Button onPress={() => handleProduct()} style={styles.container}>
-      <FastImage source={{uri: data?.image}} style={styles.img} />
+      <FastImage isPath source={{uri: data?.image?.url}} style={styles.img} />
       <View style={styles.content}>
         <Text bold style={[styles.txtItem, styles.txtName]}>
           {limitedString(data?.name, 10)}
