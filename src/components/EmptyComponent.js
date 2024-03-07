@@ -7,10 +7,10 @@ import {resolutions} from '@utils';
 
 const {scale} = resolutions;
 
-const EmptyComponent = ({img, title}) => {
+const EmptyComponent = ({url, title}) => {
   return (
     <View style={styles.emptyContainer}>
-      {img && <FastImage source={{uri: img?.image}} style={styles.emptyImg} />}
+      {url && <FastImage isPath source={{uri: url}} style={styles.emptyImg} />}
       <Text bold style={styles.txtEmpty}>
         {title || "Product's Empty"}
       </Text>

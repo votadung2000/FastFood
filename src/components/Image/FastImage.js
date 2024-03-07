@@ -2,17 +2,33 @@ import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, Image as RNImage} from 'react-native';
 import RNFastImage from 'react-native-fast-image';
 import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Config from 'react-native-config';
 
 import {checkIfValidUUID} from '@utils';
 import {colors, radius} from '@constant';
 import {scale} from 'utils/resolutions';
 
-const FastImage = ({source, resizeMode, handleError, style, ...rest}) => {
+const FastImage = ({
+  isPath,
+  source,
+  resizeMode,
+  handleError,
+  style,
+  ...rest
+}) => {
   const [isError, setIsError] = useState(false);
   const [aspectRadio, setAspectRadio] = useState(1);
 
   useEffect(() => {
-    if (source?.uri) {
+    if (isPath) {
+      RNImage.getSize(Config.API_IMAGE + source?.uri, (width, height) => {
+        if (width > 0 && height > 0) {
+          setAspectRadio(width / height);
+        } else {
+          setAspectRadio(1);
+        }
+      });
+    } else if (source?.uri) {
       RNImage.getSize(source?.uri, (width, height) => {
         if (width > 0 && height > 0) {
           setAspectRadio(width / height);
@@ -47,7 +63,7 @@ const FastImage = ({source, resizeMode, handleError, style, ...rest}) => {
   return (
     <RNFastImage
       {...rest}
-      source={source}
+      source={isPath ? {uri: Config.API_IMAGE + source?.uri} : source}
       resizeMode={resizeMode || RNFastImage.resizeMode.cover}
       style={[styles.img, {aspectRadio}, style]}
       onError={onError}

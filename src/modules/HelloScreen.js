@@ -34,7 +34,7 @@ const HelloScreen = () => {
           end={{x: 1, y: 0}}
           colors={[colors.price, colors.orange]}
           style={styles.linearGradient}>
-          <Button onPress={() => onPress()} style={styles.btn}>
+          <Button onPress={onPress} style={styles.btn}>
             <Text bold style={styles.text}>
               {"Let's order a meal"}
             </Text>

@@ -63,7 +63,7 @@ const Products = () => {
           !isLoadingProducts && (
             <EmptyComponent
               title="Product's Empty"
-              img={filterPr?.category_id}
+              url={filterPr?.category_id?.image?.url}
             />
           )
         }
