@@ -40,7 +40,7 @@ const TotalCart = ({focused}) => {
 const styles = StyleSheet.create({
   label: {
     textAlign: 'center',
-    fontSize: fontSize.fontSize14,
+    fontSize: fontSize.small,
   },
   badge: {
     borderRadius: radius.radius14,

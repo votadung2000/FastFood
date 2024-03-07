@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, Platform} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {
   NavigationContainer,
   useNavigationContainerRef,
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   },
   label: {
     textAlign: 'center',
-    fontSize: fontSize.fontSize14,
+    fontSize: fontSize.small,
   },
   fcText: {
     color: colors.orange,

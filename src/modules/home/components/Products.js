@@ -8,6 +8,7 @@ import {handleDataOdd, resolutions} from '@utils';
 import {useStore} from '@context';
 
 import {CardProducts} from './index';
+import {hScale} from 'utils/resolutions';
 
 const {scale} = resolutions;
 
@@ -56,6 +57,7 @@ const Products = () => {
         onEndReached={onEndReached}
         bounces={false}
         columnWrapperStyle={styles.wrapperStyle}
+        contentContainerStyle={styles.ccSt}
         scrollIndicatorInsets={{right: 1}}
         ListHeaderComponent={isLoadingProducts && <LoadingComponent />}
         ListFooterComponent={isFetchingProducts && <LoadingComponent />}
@@ -79,6 +81,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: fontSize.fontSize28,
     marginBottom: scale(10),
+  },
+  ccSt: {
+    flexGrow: 1,
+    paddingBottom: hScale(50),
   },
   wrapperStyle: {
     justifyContent: 'space-around',

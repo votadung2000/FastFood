@@ -17,8 +17,8 @@ import styles from './styles';
 let appName = DeviceInfo.getApplicationName();
 
 const initialValues = {
-  user_name: 'register5',
-  password: 'register5',
+  user_name: '',
+  password: '',
 };
 
 const initialErrors = {
