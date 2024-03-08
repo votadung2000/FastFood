@@ -11,4 +11,5 @@ export default {
   SearchScreen: 'SearchScreen',
   DetailCardSearch: 'DetailCardSearch',
   LoginScreen: 'LoginScreen',
+  WelcomeScreen: 'WelcomeScreen',
 };

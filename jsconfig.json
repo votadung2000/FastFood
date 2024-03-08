@@ -32,6 +32,9 @@
       "@views": [
         "./views"
       ],
+      "@svg": [
+        "./svg"
+      ],
       "@routes": [
         "./modules/routes"
       ],

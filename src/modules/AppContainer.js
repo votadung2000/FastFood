@@ -14,7 +14,6 @@ import routes from '@routes';
 
 import {Layout} from '@views';
 
-import HelloScreen from './HelloScreen';
 import HomeScreen from './home/HomeScreen';
 import ProductsDetailScreen from './detail/ProductsDetailScreen';
 import HeartScreen from './heart/HeartScreen';
@@ -23,6 +22,7 @@ import UserScreen from './user/UserScreen';
 import SearchScreen from './search/SearchScreen';
 import DetailCardSearch from './detail_card_search/DetailCardSearch';
 import LoginScreen from './login/LoginScreen';
+import WelcomeScreen from './welcome/WelcomeScreen';
 
 import {resolutions} from '@utils';
 import {colors, fontSize} from '@constant';
@@ -143,6 +143,7 @@ const RoutesNavigator = () => {
           gestureEnabled: false,
           animation: 'slide_from_right',
         }}>
+        <Stack.Screen name={routes.WelcomeScreen} component={WelcomeScreen} />
         <Stack.Screen
           name={routes.BottomTabNavigator}
           component={BottomTabNavigator}
@@ -190,7 +191,7 @@ const AppContainer = () => {
           gestureEnabled: false,
           animation: 'slide_from_right',
         }}>
-        <Stack.Screen name={routes.HelloScreen} component={HelloScreen} />
+        {/* <Stack.Screen name={routes.HelloScreen} component={HelloScreen} /> */}
         <Stack.Screen
           name={routes.RoutesNavigator}
           component={RoutesNavigator}

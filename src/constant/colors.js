@@ -5,6 +5,7 @@ export default {
 
   // Blue
   blue: '#0F2F8E',
+  blue_30384F: '#30384F',
 
   // Black
   black: '#000000',
@@ -19,6 +20,7 @@ export default {
   orange: '#ffbb33',
   orangePopup: '#e75f3a',
   orangeSystem: '#ffdd99',
+  orange_FE724C: '#FE724C',
 
   // Green
   green: '#33cc33',

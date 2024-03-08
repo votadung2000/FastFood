@@ -1,18 +1,17 @@
 import React from 'react';
-import {StyleSheet, StatusBar, Platform, View} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {StyleSheet, SafeAreaView, StatusBar, View} from 'react-native';
 
 import {colors} from '../constant';
 
 const Layout = ({children}) => {
-  // return
-
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
-        {Platform.OS === 'ios' && (
-          <StatusBar animated barStyle="light-content" />
-        )}
+        <StatusBar
+          animated
+          barStyle="dark-content"
+          backgroundColor={colors.white}
+        />
         {children}
       </SafeAreaView>
     </View>

@@ -1,13 +1,19 @@
 import React from 'react';
 
-import {StyleSheet, Text as RNText, Platform} from 'react-native';
+import {StyleSheet, Text as RNText} from 'react-native';
 
 import {colors, fontSize} from '@constant';
 
-const Text = ({children, style, bold, ...rest}) => {
+const Text = ({children, style, bold, medium, ...rest}) => {
   return (
     <RNText
-      style={[bold ? styles.bold : styles.regular, styles.text, style]}
+      style={[
+        styles.regular,
+        bold && styles.bold,
+        medium && styles.medium,
+        styles.text,
+        style,
+      ]}
       {...rest}>
       {children}
     </RNText>
@@ -16,22 +22,17 @@ const Text = ({children, style, bold, ...rest}) => {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: fontSize.normal,
+    fontSize: fontSize.fontSize16,
     color: colors.black,
   },
   regular: {
     fontFamily: 'Inter-Regular',
-    ...Platform.select({
-      android: {},
-      ios: {},
-    }),
   },
   bold: {
+    fontFamily: 'Inter-Bold',
+  },
+  medium: {
     fontFamily: 'Inter-Medium',
-    ...Platform.select({
-      android: {},
-      ios: {},
-    }),
   },
 });
 

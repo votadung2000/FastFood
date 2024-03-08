@@ -14,6 +14,7 @@ const plugins = [
         '@store': './store',
         '@utils': './utils',
         '@views': './views',
+        '@svg': './svg',
         '@routes': './modules/routes',
       }
     }

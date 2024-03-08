@@ -2,8 +2,8 @@ import {Platform, StatusBar, Dimensions} from 'react-native';
 import {isIphoneX} from 'react-native-iphone-x-helper';
 
 const {height, width} = Dimensions.get('window');
-const guidelineBaseWidth = 360;
-const guidelineBaseHeight = 592;
+const guidelineBaseWidth = 375;
+const guidelineBaseHeight = 812;
 const standardLength = width > height ? width : height;
 const offset =
   width > height ? 0 : Platform.OS === 'ios' ? 78 : StatusBar.currentHeight;
