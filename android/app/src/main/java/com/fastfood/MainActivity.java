@@ -2,6 +2,7 @@ package com.fastfood;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
+import android.os.Bundle;
 import com.zoontek.rnbootsplash.RNBootSplash;
 
 public class MainActivity extends ReactActivity {
@@ -16,12 +17,17 @@ public class MainActivity extends ReactActivity {
   }
 
   @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    RNBootSplash.init(this, R.style.BootTheme);
+    super.onCreate(savedInstanceState);
+  }
+
+  @Override
   protected ReactActivityDelegate createReactActivityDelegate() {
     return new ReactActivityDelegate(this, getMainComponentName()) {
 
       @Override
       protected void loadApp(String appKey) {
-        RNBootSplash.init(MainActivity.this);
         super.loadApp(appKey);
       }
     };
