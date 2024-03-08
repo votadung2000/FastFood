@@ -20,13 +20,14 @@ const styles = StyleSheet.create({
     color: colors.black,
   },
   regular: {
+    fontFamily: 'Inter-Regular',
     ...Platform.select({
       android: {},
       ios: {},
     }),
   },
   bold: {
-    fontWeight: '700',
+    fontFamily: 'Inter-Medium',
     ...Platform.select({
       android: {},
       ios: {},

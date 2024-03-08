@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     paddingVertical: scale(5),
     paddingRight: scale(40),
+    fontFamily: 'Inter-Regular',
   },
   btnEye: {
     position: 'absolute',

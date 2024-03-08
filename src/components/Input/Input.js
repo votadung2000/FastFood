@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.graySystem,
     borderBottomWidth: 1,
     paddingVertical: scale(6),
+    fontFamily: 'Inter-Regular',
   },
   label: {
     marginBottom: scale(6),
