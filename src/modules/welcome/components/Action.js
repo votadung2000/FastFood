@@ -16,7 +16,9 @@ const Action = () => {
         <View style={styles.vwLine} />
       </View>
       <Button style={styles.btnWithEP}>
-        <Text style={styles.txtWithEP}>{'Start with email or phone'}</Text>
+        <Text medium style={styles.txtWithEP}>
+          {'Start with email or phone'}
+        </Text>
       </Button>
       <View style={styles.vwSocial}>
         <Button style={styles.btnSocial}>
@@ -72,7 +74,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: radius.radius30,
-    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    borderWidth: scale(1),
+    borderColor: colors.white,
   },
   txtWithEP: {
     color: colors.white,
