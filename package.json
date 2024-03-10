@@ -8,7 +8,8 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "copy-image": "bash scripts/react-native-copy-image/copy_image.sh"
+    "copy-image": "bash scripts/react-native-copy-image/copy_image.sh",
+    "postinstall": "bash fix_node_modules.sh && npx pod-install"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^4",

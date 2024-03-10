@@ -41,6 +41,9 @@
       "@routes": [
         "./src/modules/routes"
       ],
+      "@images": [
+        "./assets/images"
+      ],
     }
   },
   "exclude": [

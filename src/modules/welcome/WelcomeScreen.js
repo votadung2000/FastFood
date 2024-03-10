@@ -11,7 +11,7 @@ const WelcomeScreen = () => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require('../../../assets/images/welcome.png')}
+        source={require('@images/welcome.png')}
         resizeMode="stretch"
         style={styles.image}
       />

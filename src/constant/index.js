@@ -2,4 +2,6 @@ import * as fontSize from './fontSize';
 import colors from './colors';
 import radius from './radius';
 
-export {colors, fontSize, radius};
+import DATA_CAROUSEL from './dataCarousel';
+
+export {colors, fontSize, radius, DATA_CAROUSEL};

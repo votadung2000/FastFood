@@ -19,8 +19,10 @@ module.exports = {
           '@views': './src/views',
           '@svg': './src/svg',
           '@routes': './src/modules/routes',
+          '@images': './assets/images',
         },
       },
     ],
+    'react-native-reanimated/plugin',
   ],
 };

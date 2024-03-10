@@ -17,6 +17,7 @@ const plugins = [
         '@views': './src/views',
         '@svg': './src/svg',
         '@routes': './src/modules/routes',
+        '@images': './assets/images'
       }
     }
 
