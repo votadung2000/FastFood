@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 
 import {Button, Text} from '@components';
 
-import {hScale, scale, wScale} from 'utils/resolutions';
+import {hScale, scale} from 'utils/resolutions';
 import {colors, fontSize, radius} from '@constant';
 import {SVG_Facebook, SVG_Google} from '@svg';
 
@@ -15,11 +15,6 @@ const Action = () => {
         <Text style={styles.txtTile}>{'sign in with'}</Text>
         <View style={styles.vwLine} />
       </View>
-      <Button style={styles.btnWithEP}>
-        <Text medium style={styles.txtWithEP}>
-          {'Start with email or phone'}
-        </Text>
-      </Button>
       <View style={styles.vwSocial}>
         <Button style={styles.btnSocial}>
           <SVG_Facebook />
@@ -34,6 +29,11 @@ const Action = () => {
           </Text>
         </Button>
       </View>
+      <Button style={styles.btnWithEP}>
+        <Text medium style={styles.txtWithEP}>
+          {'Start with email or phone'}
+        </Text>
+      </Button>
       <View style={styles.vwRequest}>
         <Text style={styles.txtRequest}>{'Already have an account?'}</Text>
         <Button style={styles.btnSignIn}>
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   btnWithEP: {
     width: '100%',
     height: hScale(54),
-    marginTop: scale(19),
+    marginTop: scale(23),
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: radius.radius30,
@@ -86,10 +86,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: scale(23),
+    marginTop: scale(19),
   },
   btnSocial: {
-    width: wScale(140),
+    width: '45%',
     height: hScale(54),
     flexDirection: 'row',
     justifyContent: 'center',

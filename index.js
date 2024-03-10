@@ -4,6 +4,8 @@ import App from './App';
 import {name as appName} from './app.json';
 
 LogBox.ignoreLogs(['Remote debugger']);
+LogBox.ignoreLogs(['Warning: ...']);
+LogBox.ignoreAllLogs();
 
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.allowFontScaling = false;
