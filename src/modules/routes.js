@@ -1,6 +1,8 @@
 export default {
   BottomTabNavigator: 'BottomTabNavigator',
   RoutesNavigator: 'RoutesNavigator',
+  CarouselScreen: 'CarouselScreen',
+  WelcomeScreen: 'WelcomeScreen',
   HelloScreen: 'HelloScreen',
   HomeScreen: 'HomeScreen',
   ProductsDetailScreen: 'ProductsDetailScreen',
@@ -11,5 +13,4 @@ export default {
   SearchScreen: 'SearchScreen',
   DetailCardSearch: 'DetailCardSearch',
   LoginScreen: 'LoginScreen',
-  WelcomeScreen: 'WelcomeScreen',
 };

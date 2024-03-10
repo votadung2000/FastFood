@@ -3,9 +3,9 @@ import {StyleSheet, View} from 'react-native';
 
 import {Button, Text} from '@components';
 
-import {hScale, scale} from 'utils/resolutions';
 import {colors, fontSize, radius} from '@constant';
 import {SVG_Facebook, SVG_Google} from '@svg';
+import {hScale, scale} from '@resolutions';
 
 const Action = () => {
   return (
@@ -35,9 +35,9 @@ const Action = () => {
         </Text>
       </Button>
       <View style={styles.vwRequest}>
-        <Text style={styles.txtRequest}>{'Already have an account?'}</Text>
-        <Button style={styles.btnSignIn}>
-          <Text style={styles.txtSignIn}>{'Sign in'}</Text>
+        <Text style={styles.txtRequest}>{"Don't have an account?"}</Text>
+        <Button style={styles.btnSignUp}>
+          <Text style={styles.txtSignUp}>{'Sign up'}</Text>
         </Button>
       </View>
     </View>
@@ -111,13 +111,13 @@ const styles = StyleSheet.create({
     fontSize: fontSize.fontSize14,
     color: colors.white,
   },
-  btnSignIn: {
+  btnSignUp: {
     marginLeft: scale(6),
     paddingBottom: scale(1),
     borderBottomWidth: scale(1),
     borderBottomColor: colors.white,
   },
-  txtSignIn: {
+  txtSignUp: {
     fontSize: fontSize.fontSize14,
     color: colors.white,
   },

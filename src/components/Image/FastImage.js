@@ -6,7 +6,7 @@ import Config from 'react-native-config';
 
 import {checkIfValidUUID} from '@utils';
 import {colors, radius} from '@constant';
-import {scale} from 'utils/resolutions';
+import {scale} from '@resolutions';
 
 const FastImage = ({
   isPath,

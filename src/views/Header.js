@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Image, View} from 'react-native';
 
-import {hScale, scale, wScale} from '../utils/resolutions';
+import {hScale, scale, wScale} from '@resolutions';
 
 const Header = () => {
   return (

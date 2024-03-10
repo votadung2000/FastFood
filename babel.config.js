@@ -4,7 +4,7 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: ['./src/'],
+        root: ['./'],
         alias: {
           '@api': './src/actions/Data',
           '@actionApi': './src/actions/Api',
@@ -15,6 +15,7 @@ module.exports = {
           '@storage': './src/storage',
           '@store': './src/store',
           '@utils': './src/utils',
+          '@resolutions': './src/utils/resolutions',
           '@views': './src/views',
           '@svg': './src/svg',
           '@routes': './src/modules/routes',

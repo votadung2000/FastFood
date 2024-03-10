@@ -1,4 +1,4 @@
-import {scale} from 'utils/resolutions';
+import {scale} from '@resolutions';
 
 export default {
   radius2: scale(2),

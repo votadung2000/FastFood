@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import Modal from 'react-native-modal';
 
 import {colors, fontSize, radius} from '@constant';
-import {scale} from 'utils/resolutions';
+import {scale} from '@resolutions';
 
 import {Text, Button} from './index';
 

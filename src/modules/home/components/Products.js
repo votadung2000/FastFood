@@ -8,7 +8,7 @@ import {handleDataOdd, resolutions} from '@utils';
 import {useStore} from '@context';
 
 import {CardProducts} from './index';
-import {hScale} from 'utils/resolutions';
+import {hScale} from '@resolutions';
 
 const {scale} = resolutions;
 

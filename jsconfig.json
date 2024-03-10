@@ -1,42 +1,45 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
       "@api": [
-        "./actions/Data"
+        "./src/actions/Data"
       ],
       "@actionApi": [
-        "./actions/Api"
+        "./src/actions/Api"
       ],
       "@components": [
-        "./components"
+        "./src/components"
       ],
       "@constant": [
-        "./constant"
+        "./src/constant"
       ],
       "@context": [
-        "./context"
+        "./src/context"
       ],
       "@modules": [
-        "./modules"
+        "./src/modules"
       ],
       "@storage": [
-        "./storage"
+        "./src/storage"
       ],
       "@store": [
-        "./store"
+        "./src/store"
       ],
       "@utils": [
-        "./utils"
+        "./src/utils"
+      ],
+      "@resolutions": [
+        "./src/utils/resolutions"
       ],
       "@views": [
-        "./views"
+        "./src/views"
       ],
       "@svg": [
-        "./svg"
+        "./src/svg"
       ],
       "@routes": [
-        "./modules/routes"
+        "./src/modules/routes"
       ],
     }
   },

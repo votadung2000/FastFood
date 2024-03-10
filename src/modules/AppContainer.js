@@ -14,6 +14,8 @@ import routes from '@routes';
 
 import {Layout} from '@views';
 
+import CarouselScreen from './carousel/CarouselScreen';
+import WelcomeScreen from './welcome/WelcomeScreen';
 import HomeScreen from './home/HomeScreen';
 import ProductsDetailScreen from './detail/ProductsDetailScreen';
 import HeartScreen from './heart/HeartScreen';
@@ -22,7 +24,6 @@ import UserScreen from './user/UserScreen';
 import SearchScreen from './search/SearchScreen';
 import DetailCardSearch from './detail_card_search/DetailCardSearch';
 import LoginScreen from './login/LoginScreen';
-import WelcomeScreen from './welcome/WelcomeScreen';
 
 import {resolutions} from '@utils';
 import {colors, fontSize} from '@constant';
@@ -192,6 +193,7 @@ const AppContainer = () => {
           animation: 'slide_from_right',
         }}>
         {/* <Stack.Screen name={routes.HelloScreen} component={HelloScreen} /> */}
+        <Stack.Screen name={routes.CarouselScreen} component={CarouselScreen} />
         <Stack.Screen
           name={routes.RoutesNavigator}
           component={RoutesNavigator}

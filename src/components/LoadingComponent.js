@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, ActivityIndicator} from 'react-native';
 
 import {colors} from '@constant';
-import {scale} from 'utils/resolutions';
+import {scale} from '@resolutions';
 
 const LoadingComponent = () => {
   return (

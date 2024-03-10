@@ -1,18 +1,13 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {StyleSheet, View, ImageBackground} from 'react-native';
-import RNBootSplash from 'react-native-bootsplash';
 
 import {Text} from '@components';
 import {colors, fontSize} from '@constant';
-import {hScale, scale} from 'utils/resolutions';
+import {hScale, scale} from '@resolutions';
 
 import {Action} from './components';
 
 const WelcomeScreen = () => {
-  useEffect(() => {
-    RNBootSplash.hide();
-  }, []);
-
   return (
     <View style={styles.container}>
       <ImageBackground

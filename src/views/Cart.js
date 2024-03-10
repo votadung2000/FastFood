@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import {scale} from '../utils/resolutions';
+import {scale} from '@resolutions';
 import {colors, radius} from '../constant';
 import {Button} from '../components';
 import routes from '../modules/routes';

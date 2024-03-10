@@ -3,19 +3,20 @@ const plugins = [
   [
     require.resolve('babel-plugin-module-resolver'),
     {
-      root: ["./src/"],
+      root: [""],
       alias: {
-        '@api': './actions/Data',
-        '@actionApi': './actions/Api',
-        '@components': './components',
-        '@constant': './constant',
-        '@context': './context',
-        '@modules': './modules',
-        '@store': './store',
-        '@utils': './utils',
-        '@views': './views',
-        '@svg': './svg',
-        '@routes': './modules/routes',
+        '@api': './src/actions/Data',
+        '@actionApi': './src/actions/Api',
+        '@components': './src/components',
+        '@constant': './src/constant',
+        '@context': './src/context',
+        '@modules': './src/modules',
+        '@store': './src/store',
+        '@utils': './src/utils',
+        '@resolutions': './src/utils/resolutions',
+        '@views': './src/views',
+        '@svg': './src/svg',
+        '@routes': './src/modules/routes',
       }
     }
 
