@@ -41,7 +41,6 @@ const InputPassword = (
     setInput(false);
   };
 
-  console.log('errors[name]', errors[name], touched[name]);
   return (
     <View {...style}>
       {label && <Text style={styles.label}>{label}</Text>}

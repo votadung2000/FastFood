@@ -101,6 +101,10 @@ const LoginScreen = ({navigation}) => {
     }
   };
 
+  const goToScreen = route => {
+    navigation.navigate(route);
+  };
+
   const focusPassword = () => {
     refPassword.current?.focus();
   };
@@ -123,9 +127,9 @@ const LoginScreen = ({navigation}) => {
           <View style={styles.form}>
             <Input
               medium
-              label="E-mail"
+              label="Username"
               name="user_name"
-              placeholder="Your email or phone"
+              placeholder="Your username"
               value={values.user_name}
               returnKeyType="next"
               style={styles.input}
@@ -165,8 +169,7 @@ const LoginScreen = ({navigation}) => {
               </Text>
               <Button
                 style={styles.btnSignUp}
-                // onPress={() => goToScreen(routes.LoginScreen)}
-              >
+                onPress={() => goToScreen(routes.RegisterScreen)}>
                 <Text medium style={styles.txtSignUp}>
                   {'Sign up'}
                 </Text>
@@ -186,7 +189,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   scroll: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: colors.white,
   },
   image: {

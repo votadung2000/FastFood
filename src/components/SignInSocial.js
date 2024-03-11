@@ -38,11 +38,8 @@ const SignInSocial = () => {
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
+    marginTop: scale(30),
     paddingHorizontal: scale(25),
-    bottom: scale(20),
-    right: 0,
-    left: 0,
     alignItems: 'center',
     justifyContent: 'center',
   },

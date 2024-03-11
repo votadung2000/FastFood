@@ -40,7 +40,7 @@ const Action = () => {
         style={styles.btnWithEP}
         onPress={() => goToScreen(routes.LoginScreen)}>
         <Text medium style={styles.txtWithEP}>
-          {'Start with email or phone'}
+          {'Start with username'}
         </Text>
       </Button>
       <View style={styles.vwRequest}>
