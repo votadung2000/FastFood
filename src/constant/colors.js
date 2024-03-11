@@ -6,6 +6,7 @@ export default {
   // Blue
   blue: '#0F2F8E',
   blue_30384F: '#30384F',
+  blue_131A38: '#131A38',
 
   // Black
   black: '#000000',
@@ -15,6 +16,7 @@ export default {
   graySystem: '#DDDDDD',
   graySystem1: '#888888',
   graySystem2: '#C7C6C4',
+  gray_616772: '#616772',
 
   // Orange
   orange: '#ffbb33',
@@ -23,6 +25,7 @@ export default {
   orange_FE724C: '#FE724C',
   orange_FFC529: '#FFC529',
   orange_FFE8A8: '#FFE8A8',
+  orange_FD724C: '#FD724C',
 
   // Green
   green: '#33cc33',

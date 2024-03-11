@@ -47,7 +47,7 @@ const Action = () => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    bottom: hScale(45),
+    bottom: hScale(50),
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: scale(30),

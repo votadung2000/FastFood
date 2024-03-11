@@ -1,17 +1,23 @@
 const DATA = [
   {
     id: 1,
-    context: 'Browse your menu\nand order directly',
+    title: 'Browse your menu\nand order directly',
+    context:
+      'Our app can send you everywhere, even\nspace. For only $2.99 per month',
     image: require('@images/carousel_header.png'),
   },
   {
     id: 2,
-    context: 'Even to space with\nus! Together',
+    title: 'Even to space with\nus! Together',
+    context:
+      'Our app can send you everywhere, even\nspace. For only $2.99 per month',
     image: require('@images/carousel_body.png'),
   },
   {
     id: 3,
-    context: 'Pickup delivery at\nyour door',
+    title: 'Pickup delivery at\nyour door',
+    context:
+      'Our app can send you everywhere, even\nspace. For only $2.99 per month',
     image: require('@images/carousel_footer.png'),
   },
 ];

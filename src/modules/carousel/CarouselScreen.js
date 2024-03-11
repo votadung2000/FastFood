@@ -1,106 +1,105 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Dimensions, View, Image} from 'react-native';
-import {Pagination} from 'react-native-snap-carousel';
-import ReanimatedCarousel from 'react-native-reanimated-carousel';
+import {View, Image, StyleSheet, Dimensions, Platform} from 'react-native';
 import RNBootSplash from 'react-native-bootsplash';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import {Text} from '@components';
+import {Button, Text} from '@components';
 import {hScale, scale, wScale} from '@resolutions';
-import {DATA_CAROUSEL, colors} from '@constant';
+import {DATA_CAROUSEL, colors, fontSize} from '@constant';
+import routes from '@routes';
 
 const {width} = Dimensions.get('window');
 
-const CarouselScreen = () => {
+const CarouselScreen = ({navigation}) => {
+  const [indexCarousel, setIndexCarousel] = useState(0);
+
   useEffect(() => {
     RNBootSplash.hide();
   }, []);
 
-  const [activeSlide, setActiveSlide] = useState(0);
-
-  const renderItem = ({item}) => {
-    return (
-      <View style={styles.card}>
-        <Image source={item?.image} style={styles.imgCard} />
-        <View style={styles.vwDes}>
-          <Text>{item?.context}</Text>
-        </View>
-      </View>
-    );
-  };
-
-  const pagination = () => {
-    return (
-      <Pagination
-        dotsLength={DATA_CAROUSEL?.length}
-        activeDotIndex={activeSlide}
-        containerStyle={styles.containerStyle}
-        dotStyle={styles.dotStyle}
-        inactiveDotStyle={styles.inactiveDotStyle}
-        inactiveDotOpacity={1}
-        inactiveDotScale={1}
-      />
-    );
-  };
-
-  const handleChangeItem = index => {
-    setActiveSlide(index);
+  const handleCarousel = () => {
+    if (indexCarousel + 1 === DATA_CAROUSEL?.length) {
+      navigation.navigate(routes.WelcomeScreen);
+    } else {
+      let index = indexCarousel + 1;
+      setIndexCarousel(index);
+    }
   };
 
   return (
     <View style={styles.container}>
-      <ReanimatedCarousel
-        loop={true}
-        width={width - scale(40)}
-        height={hScale(400)}
-        autoPlay={true}
-        // mode={"horizontal-stack"}
-        data={DATA_CAROUSEL}
-        scrollAnimationDuration={3000}
-        onProgressChange={(_, absoluteProgress) => {
-          handleChangeItem(Math.round(absoluteProgress));
-        }}
-        renderItem={renderItem}
-        style={styles.stSnapCarousel}
-      />
-      {pagination()}
+      <View style={styles.card}>
+        <Image
+          source={DATA_CAROUSEL[indexCarousel]?.image}
+          style={styles.imgCard}
+          resizeMode="contain"
+        />
+        <View style={styles.vwDes}>
+          <Text style={styles.title}>
+            {DATA_CAROUSEL[indexCarousel]?.title}
+          </Text>
+          <Text style={styles.context}>
+            {DATA_CAROUSEL[indexCarousel]?.context}
+          </Text>
+        </View>
+      </View>
+      <Button style={styles.btnNext} onPress={handleCarousel}>
+        <AntDesign name="arrowright" size={wScale(28)} color={colors.white} />
+      </Button>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
-    paddingHorizontal: scale(20),
     backgroundColor: colors.white,
   },
-  stSnapCarousel: {
-    // marginTop: scale(20),
+  container: {
+    flex: 1,
+    backgroundColor: colors.white,
+    ...Platform.select({
+      android: {
+        paddingTop: scale(50),
+      },
+      ios: {
+        paddingTop: scale(70),
+      },
+    }),
   },
   card: {
+    width: width,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   imgCard: {
     width: wScale(330),
-    height: hScale(300),
-    // borderRadius: radius.radius30,
+    height: hScale(345),
     backgroundColor: colors.white,
     paddingBottom: scale(14),
   },
   vwDes: {
     marginTop: scale(14),
   },
-  containerStyle: {
-    paddingVertical: scale(18),
+  title: {
+    fontSize: fontSize.fontSize34,
+    color: colors.blue_131A38,
+    textAlign: 'center',
   },
-  dotStyle: {
-    width: wScale(10),
-    height: hScale(10),
-    borderRadius: scale(10),
-    marginHorizontal: scale(4),
-    backgroundColor: colors.orange_FFE8A8,
+  context: {
+    color: colors.gray_616772,
+    textAlign: 'center',
+    marginTop: scale(16),
   },
-  inactiveDotStyle: {
-    backgroundColor: colors.orange_FFC529,
+  btnNext: {
+    width: wScale(67),
+    height: wScale(67),
+    borderRadius: scale(67),
+    marginTop: scale(50),
+    backgroundColor: colors.orange_FD724C,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
   },
 });
 

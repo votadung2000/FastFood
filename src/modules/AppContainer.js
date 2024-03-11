@@ -144,7 +144,7 @@ const RoutesNavigator = () => {
           gestureEnabled: false,
           animation: 'slide_from_right',
         }}>
-        <Stack.Screen name={routes.WelcomeScreen} component={WelcomeScreen} />
+        {/* <Stack.Screen name={routes.WelcomeScreen} component={WelcomeScreen} /> */}
         <Stack.Screen
           name={routes.BottomTabNavigator}
           component={BottomTabNavigator}
@@ -192,8 +192,8 @@ const AppContainer = () => {
           gestureEnabled: false,
           animation: 'slide_from_right',
         }}>
-        {/* <Stack.Screen name={routes.HelloScreen} component={HelloScreen} /> */}
         <Stack.Screen name={routes.CarouselScreen} component={CarouselScreen} />
+        <Stack.Screen name={routes.WelcomeScreen} component={WelcomeScreen} />
         <Stack.Screen
           name={routes.RoutesNavigator}
           component={RoutesNavigator}

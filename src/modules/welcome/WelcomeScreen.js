@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   txtDes: {
     fontSize: fontSize.large,
     color: colors.blue_30384F,
-    marginTop: hScale(19),
+    marginTop: scale(19),
   },
 });
 
