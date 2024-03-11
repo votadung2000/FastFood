@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Platform, StyleSheet, View} from 'react-native';
 import {observer} from 'mobx-react';
 
 import {Text} from '@components';
@@ -16,15 +16,18 @@ const formatCount = value => {
   return value;
 };
 
-const TotalCart = ({focused}) => {
+const TotalCart = ({focused, data}) => {
   const {
     cartProductsStore: {cartProducts},
   } = useStore();
 
   return (
     <View>
-      <Text bold={focused} style={[styles.label, focused && styles.fcText]}>
-        {'Cart'}
+      <View style={styles.vwIconViewTab}>
+        {focused ? data?.IconFocused : data?.Icon}
+      </View>
+      <Text medium style={[styles.label, focused && styles.fcText]}>
+        {data?.keyLabel}
       </Text>
       {cartProducts?.length > 0 && (
         <View style={styles.badge}>
@@ -38,6 +41,13 @@ const TotalCart = ({focused}) => {
 };
 
 const styles = StyleSheet.create({
+  vwIconViewTab: {
+    width: wScale(25),
+    height: wScale(25),
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingBottom: Platform.OS === 'ios' ? 0 : scale(2),
+  },
   label: {
     textAlign: 'center',
     fontSize: fontSize.small,

@@ -19,7 +19,7 @@ const CarouselScreen = ({navigation}) => {
 
   const handleCarousel = () => {
     if (indexCarousel + 1 === DATA_CAROUSEL?.length) {
-      navigation.navigate(routes.WelcomeScreen);
+      navigation.navigate(routes.RoutesNavigator);
     } else {
       let index = indexCarousel + 1;
       setIndexCarousel(index);

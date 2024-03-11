@@ -1,13 +1,20 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import {Button, Text} from '@components';
-
 import {colors, fontSize, radius} from '@constant';
 import {SVG_Facebook, SVG_Google} from '@svg';
 import {hScale, scale} from '@resolutions';
+import routes from '@routes';
 
 const Action = () => {
+  const navigation = useNavigation();
+
+  const goToScreen = route => {
+    navigation.navigate(route);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.vwTitle}>
@@ -29,14 +36,18 @@ const Action = () => {
           </Text>
         </Button>
       </View>
-      <Button style={styles.btnWithEP}>
+      <Button
+        style={styles.btnWithEP}
+        onPress={() => goToScreen(routes.LoginScreen)}>
         <Text medium style={styles.txtWithEP}>
           {'Start with email or phone'}
         </Text>
       </Button>
       <View style={styles.vwRequest}>
         <Text style={styles.txtRequest}>{"Don't have an account?"}</Text>
-        <Button style={styles.btnSignUp}>
+        <Button
+          style={styles.btnSignUp}
+          onPress={() => goToScreen(routes.LoginScreen)}>
           <Text style={styles.txtSignUp}>{'Sign up'}</Text>
         </Button>
       </View>
