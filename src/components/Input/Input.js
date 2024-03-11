@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter-Medium',
   },
   label: {
-    marginBottom: scale(12),
+    marginBottom: scale(10),
     color: colors.gray_9796A1,
   },
   error: {

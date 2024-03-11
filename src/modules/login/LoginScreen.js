@@ -106,79 +106,85 @@ const LoginScreen = ({navigation}) => {
   };
 
   return (
-    <KeyboardAwareScrollView
-      contentContainerStyle={styles.scroll}
-      showsVerticalScrollIndicator={false}>
-      <ImageBackground
-        source={require('@images/bg.png')}
-        resizeMode="stretch"
-        style={styles.image}
-      />
-      <Back style={styles.back} />
-      <View style={styles.container}>
-        <Text bold style={styles.title}>
-          {'Login'}
-        </Text>
-        <View style={styles.form}>
-          <Input
-            medium
-            label="E-mail"
-            name="user_name"
-            placeholder="Your email or phone"
-            value={values.user_name}
-            returnKeyType="next"
-            style={styles.input}
-            onSubmitEditing={focusPassword}
-            {...{errors, touched, handleBlur, handleChange}}
-          />
-          <InputPassword
-            medium
-            ref={refPassword}
-            label="Password"
-            name="password"
-            placeholder="Password"
-            value={values.password}
-            returnKeyType="done"
-            maxLength={30}
-            onSubmitEditing={handleSubmit}
-            {...{errors, touched, handleBlur, handleChange}}
-          />
-        </View>
-        <View style={styles.footer}>
-          <Button>
-            <Text medium style={styles.txtForgotPass}>
-              {'Forgot password?'}
-            </Text>
-          </Button>
-          <Button
-            disabled={!isValid || isSubmitting}
-            style={styles.btnLogin}
-            onPress={handleSubmit}>
-            <Text bold style={styles.textLogin}>
-              {'ĐĂNG NHẬP'}
-            </Text>
-          </Button>
-          <View style={styles.vwQuestion}>
-            <Text medium style={styles.txtQuestion}>
-              {"Don't have an account?"}
-            </Text>
-            <Button
-              style={styles.btnSignUp}
-              // onPress={() => goToScreen(routes.LoginScreen)}
-            >
-              <Text medium style={styles.txtSignUp}>
-                {'Sign up'}
+    <View style={styles.container}>
+      <KeyboardAwareScrollView
+        contentContainerStyle={styles.scroll}
+        showsVerticalScrollIndicator={false}>
+        <ImageBackground
+          source={require('@images/bg.png')}
+          resizeMode="stretch"
+          style={styles.image}
+        />
+        <Back style={styles.back} />
+        <View style={styles.content}>
+          <Text bold style={styles.title}>
+            {'Login'}
+          </Text>
+          <View style={styles.form}>
+            <Input
+              medium
+              label="E-mail"
+              name="user_name"
+              placeholder="Your email or phone"
+              value={values.user_name}
+              returnKeyType="next"
+              style={styles.input}
+              onSubmitEditing={focusPassword}
+              {...{errors, touched, handleBlur, handleChange}}
+            />
+            <InputPassword
+              medium
+              ref={refPassword}
+              label="Password"
+              name="password"
+              placeholder="Password"
+              value={values.password}
+              returnKeyType="done"
+              maxLength={30}
+              onSubmitEditing={handleSubmit}
+              {...{errors, touched, handleBlur, handleChange}}
+            />
+          </View>
+          <View style={styles.footer}>
+            <Button>
+              <Text medium style={styles.txtForgotPass}>
+                {'Forgot password?'}
               </Text>
             </Button>
+            <Button
+              disabled={!isValid || isSubmitting}
+              style={styles.btnLogin}
+              onPress={handleSubmit}>
+              <Text bold style={styles.textLogin}>
+                {'ĐĂNG NHẬP'}
+              </Text>
+            </Button>
+            <View style={styles.vwQuestion}>
+              <Text medium style={styles.txtQuestion}>
+                {"Don't have an account?"}
+              </Text>
+              <Button
+                style={styles.btnSignUp}
+                // onPress={() => goToScreen(routes.LoginScreen)}
+              >
+                <Text medium style={styles.txtSignUp}>
+                  {'Sign up'}
+                </Text>
+              </Button>
+            </View>
           </View>
+          <SignInSocial />
         </View>
-        <SignInSocial />
-      </View>
-    </KeyboardAwareScrollView>
+      </KeyboardAwareScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
   scroll: {
     flex: 1,
     backgroundColor: colors.white,
@@ -193,7 +199,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: scale(25),
     marginTop: scale(27),
   },
-  container: {
+  content: {
     flex: 1,
     paddingHorizontal: scale(25),
   },
@@ -203,10 +209,10 @@ const styles = StyleSheet.create({
     marginTop: scale(80),
   },
   form: {
-    marginTop: scale(30),
+    marginTop: scale(25),
   },
   input: {
-    marginBottom: scale(25),
+    marginBottom: scale(20),
   },
   textLogin: {
     color: colors.white,

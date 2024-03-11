@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     paddingRight: scale(6),
   },
   label: {
-    marginBottom: scale(12),
+    marginBottom: scale(10),
     color: colors.gray_9796A1,
   },
   error: {
