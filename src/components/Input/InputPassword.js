@@ -4,12 +4,14 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {Text, Button} from '@components';
 import {resolutions} from '@utils';
-import {colors, fontSize} from '@constant';
+import {colors, fontSize, radius} from '@constant';
+import {hScale} from '@resolutions';
 
 const {scale} = resolutions;
 
 const InputPassword = (
   {
+    medium,
     label,
     value,
     name,
@@ -32,18 +34,14 @@ const InputPassword = (
 
   return (
     <View {...style}>
-      {label && (
-        <Text bold style={styles.label}>
-          {label}
-        </Text>
-      )}
+      {label && <Text style={styles.label}>{label}</Text>}
       <View>
         <TextInput
           ref={ref}
           {...rest}
           autoCapitalize="none"
-          placeholderTextColor={colors.graySystem}
-          style={[styles.input, inputStyle]}
+          placeholderTextColor={colors.gray_C4C4C4}
+          style={[styles.input, medium && styles.medium, inputStyle]}
           secureTextEntry={secureText}
           onChangeText={handleChange(name)}
           onBlur={handleBlur(name)}
@@ -53,6 +51,7 @@ const InputPassword = (
             <Ionicons
               size={scale(18)}
               name={secureText ? 'eye-outline' : 'eye-off-outline'}
+              color={colors.gray_C4C4C4}
             />
           </Button>
         ) : null}
@@ -66,13 +65,19 @@ const InputPassword = (
 
 const styles = StyleSheet.create({
   input: {
+    height: hScale(65),
     color: colors.black,
-    fontSize: fontSize.normal,
-    borderBottomColor: colors.graySystem,
-    borderBottomWidth: 1,
-    paddingVertical: scale(5),
-    paddingRight: scale(40),
+    fontSize: fontSize.fontSize16,
+    borderColor: colors.gray_EEEEEE,
+    borderWidth: 1,
+    borderRadius: radius.radius10,
+    padding: 0,
+    paddingLeft: scale(20),
+    paddingRight: scale(10),
     fontFamily: 'Inter-Regular',
+  },
+  medium: {
+    fontFamily: 'Inter-Medium',
   },
   btnEye: {
     position: 'absolute',
@@ -84,7 +89,8 @@ const styles = StyleSheet.create({
     paddingRight: scale(6),
   },
   label: {
-    marginBottom: scale(6),
+    marginBottom: scale(12),
+    color: colors.gray_9796A1,
   },
   error: {
     color: colors.redSystem,

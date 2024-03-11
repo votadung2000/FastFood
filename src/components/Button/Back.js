@@ -3,8 +3,9 @@ import {StyleSheet, View} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 
-import {colors, fontSize} from '../../constant';
+import {colors, fontSize, radius} from '../../constant';
 import {resolutions} from '@utils';
+import {wScale} from '@resolutions';
 
 import Button from './Button';
 import Text from '../Text';
@@ -33,7 +34,7 @@ const Back = ({
   return (
     <View style={[styles.container, style]}>
       <Button onPress={() => goBack()} style={styles.btn}>
-        <Ionicons name="chevron-back-outline" size={scale(28)} />
+        <Ionicons name="chevron-back" size={scale(22)} color={colors.black} />
       </Button>
       {heart && (
         <Button onPress={handleFavorite} style={styles.heart}>
@@ -61,7 +62,13 @@ const styles = StyleSheet.create({
     zIndex: 999,
   },
   btn: {
-    paddingRight: scale(10),
+    width: wScale(38),
+    height: wScale(38),
+    backgroundColor: colors.white,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: scale(10),
+    ...radius.shadow,
   },
   heart: {
     paddingLeft: scale(10),

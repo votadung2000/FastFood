@@ -3,12 +3,14 @@ import {StyleSheet, View, TextInput} from 'react-native';
 
 import {Text} from '@components';
 import {resolutions} from '@utils';
-import {colors, fontSize} from '@constant';
+import {colors, fontSize, radius} from '@constant';
+import {hScale} from '@resolutions';
 
 const {scale} = resolutions;
 
 const Input = (
   {
+    medium,
     label,
     name,
     touched,
@@ -24,17 +26,13 @@ const Input = (
 ) => {
   return (
     <View {...style}>
-      {label && (
-        <Text bold style={styles.label}>
-          {label}
-        </Text>
-      )}
+      {label && <Text style={styles.label}>{label}</Text>}
       <TextInput
         ref={ref}
         {...rest}
         autoCapitalize="none"
-        placeholderTextColor={colors.graySystem}
-        style={[styles.input, inputStyle]}
+        placeholderTextColor={colors.gray_C4C4C4}
+        style={[styles.input, medium && styles.medium, inputStyle]}
         onChangeText={
           onChangeText ? text => onChangeText(text) : handleChange(name)
         }
@@ -49,15 +47,23 @@ const Input = (
 
 const styles = StyleSheet.create({
   input: {
+    height: hScale(65),
     color: colors.black,
-    fontSize: fontSize.normal,
-    borderBottomColor: colors.graySystem,
-    borderBottomWidth: 1,
-    paddingVertical: scale(6),
+    fontSize: fontSize.fontSize16,
+    borderColor: colors.gray_EEEEEE,
+    borderWidth: 1,
+    borderRadius: radius.radius10,
+    padding: 0,
+    paddingLeft: scale(20),
+    paddingRight: scale(10),
     fontFamily: 'Inter-Regular',
   },
+  medium: {
+    fontFamily: 'Inter-Medium',
+  },
   label: {
-    marginBottom: scale(6),
+    marginBottom: scale(12),
+    color: colors.gray_9796A1,
   },
   error: {
     color: colors.redSystem,

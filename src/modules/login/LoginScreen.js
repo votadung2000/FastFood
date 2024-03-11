@@ -1,20 +1,25 @@
 import React, {createRef, useState} from 'react';
-import {View, Image} from 'react-native';
+import {View, StyleSheet, ImageBackground} from 'react-native';
 import {useFormik} from 'formik';
 import {Notifier, NotifierComponents} from 'react-native-notifier';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import DeviceInfo from 'react-native-device-info';
 
-import {Input, InputPassword, Text, Button, Back} from '@components';
+import {
+  Input,
+  InputPassword,
+  Text,
+  Button,
+  Back,
+  SignInSocial,
+} from '@components';
 import {useStore} from '@context';
 import {ApiLogin} from '@actionApi';
 import {setToken} from '@storage';
+import {colors, fontSize, radius} from '@constant';
+import {scale} from '@resolutions';
 import routes from '@routes';
 
 import LoginSchema from './LoginSchema';
-import styles from './styles';
-
-let appName = DeviceInfo.getApplicationName();
 
 const initialValues = {
   user_name: '',
@@ -104,18 +109,22 @@ const LoginScreen = ({navigation}) => {
     <KeyboardAwareScrollView
       contentContainerStyle={styles.scroll}
       showsVerticalScrollIndicator={false}>
-      <Back title="Login" style={styles.back} />
+      <ImageBackground
+        source={require('@images/bg.png')}
+        resizeMode="stretch"
+        style={styles.image}
+      />
+      <Back style={styles.back} />
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Image source={{uri: 'logo_home'}} style={styles.imgLogin} />
-          <Text bold style={styles.nameApp}>
-            {appName}
-          </Text>
-        </View>
+        <Text bold style={styles.title}>
+          {'Login'}
+        </Text>
         <View style={styles.form}>
           <Input
+            medium
+            label="E-mail"
             name="user_name"
-            placeholder="Tên người dùng"
+            placeholder="Your email or phone"
             value={values.user_name}
             returnKeyType="next"
             style={styles.input}
@@ -123,18 +132,24 @@ const LoginScreen = ({navigation}) => {
             {...{errors, touched, handleBlur, handleChange}}
           />
           <InputPassword
+            medium
             ref={refPassword}
+            label="Password"
             name="password"
-            placeholder="Mật khẩu"
+            placeholder="Password"
             value={values.password}
             returnKeyType="done"
             maxLength={30}
-            style={styles.input}
             onSubmitEditing={handleSubmit}
             {...{errors, touched, handleBlur, handleChange}}
           />
         </View>
         <View style={styles.footer}>
+          <Button>
+            <Text medium style={styles.txtForgotPass}>
+              {'Forgot password?'}
+            </Text>
+          </Button>
           <Button
             disabled={!isValid || isSubmitting}
             style={styles.btnLogin}
@@ -143,10 +158,93 @@ const LoginScreen = ({navigation}) => {
               {'ĐĂNG NHẬP'}
             </Text>
           </Button>
+          <View style={styles.vwQuestion}>
+            <Text medium style={styles.txtQuestion}>
+              {"Don't have an account?"}
+            </Text>
+            <Button
+              style={styles.btnSignUp}
+              // onPress={() => goToScreen(routes.LoginScreen)}
+            >
+              <Text medium style={styles.txtSignUp}>
+                {'Sign up'}
+              </Text>
+            </Button>
+          </View>
         </View>
+        <SignInSocial />
       </View>
     </KeyboardAwareScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  scroll: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
+  image: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+  },
+  back: {
+    paddingHorizontal: scale(25),
+    marginTop: scale(27),
+  },
+  container: {
+    flex: 1,
+    paddingHorizontal: scale(25),
+  },
+  title: {
+    fontSize: fontSize.fontSize34,
+    textAlign: 'left',
+    marginTop: scale(80),
+  },
+  form: {
+    marginTop: scale(30),
+  },
+  input: {
+    marginBottom: scale(25),
+  },
+  textLogin: {
+    color: colors.white,
+  },
+  footer: {
+    marginTop: scale(30),
+    alignItems: 'center',
+  },
+  txtForgotPass: {
+    fontSize: fontSize.fontSize14,
+    color: colors.orange_FE724C,
+  },
+  btnLogin: {
+    width: '80%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.yellow,
+    paddingVertical: scale(14),
+    borderRadius: radius.radius14,
+    marginTop: scale(25),
+  },
+  vwQuestion: {
+    marginTop: scale(25),
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  txtQuestion: {
+    fontSize: fontSize.fontSize14,
+    color: colors.blue_5B5B5E,
+  },
+  btnSignUp: {
+    marginLeft: scale(6),
+  },
+  txtSignUp: {
+    fontSize: fontSize.fontSize14,
+    color: colors.orange_FE724C,
+  },
+});
 
 export default LoginScreen;

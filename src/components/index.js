@@ -8,6 +8,7 @@ import {Input, InputPassword} from './Input';
 import {FastImage, ImagesViewer} from './Image';
 import LoadingComponent from './LoadingComponent';
 import Popup from './Popup';
+import SignInSocial from './SignInSocial';
 
 export {
   Text,
@@ -24,4 +25,5 @@ export {
   ImagesViewer,
   LoadingComponent,
   Popup,
+  SignInSocial,
 };

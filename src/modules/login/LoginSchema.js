@@ -1,12 +1,12 @@
 import * as yup from 'yup';
 
 let LoginSchema = yup.object().shape({
-  user_name: yup.string().trim().required('Vui lòng nhập thông tin'),
+  user_name: yup.string().trim().required('Please enter information'),
   password: yup
     .string()
     .trim()
-    .min(6, 'Mật khẩu phải có 6 ký tự trở lên')
-    .required('Vui lòng nhập thông tin'),
+    .min(6, 'Password must have 6 characters or more')
+    .required('Please enter information'),
 });
 
 export default LoginSchema;
