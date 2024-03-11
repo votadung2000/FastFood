@@ -27,11 +27,21 @@ const InputPassword = (
   ref,
 ) => {
   const [secureText, setSecureText] = useState(true);
+  const [isInput, setInput] = useState(false);
 
   const handleSecureText = () => {
     setSecureText(prev => !prev);
   };
 
+  const handleInputStart = () => {
+    setInput(true);
+  };
+
+  const onBlur = () => {
+    setInput(false);
+  };
+
+  console.log('errors[name]', errors[name], touched[name]);
   return (
     <View {...style}>
       {label && <Text style={styles.label}>{label}</Text>}
@@ -41,10 +51,17 @@ const InputPassword = (
           {...rest}
           autoCapitalize="none"
           placeholderTextColor={colors.gray_C4C4C4}
-          style={[styles.input, medium && styles.medium, inputStyle]}
+          style={[
+            styles.input,
+            medium && styles.medium,
+            isInput && styles.inputting,
+            inputStyle,
+          ]}
           secureTextEntry={secureText}
           onChangeText={handleChange(name)}
-          onBlur={handleBlur(name)}
+          onBlur={onBlur}
+          onEndEditing={handleBlur(name)}
+          onTouchStart={handleInputStart}
         />
         {value?.length ? (
           <Button onPress={handleSecureText} style={styles.btnEye}>
@@ -75,6 +92,9 @@ const styles = StyleSheet.create({
     paddingLeft: scale(20),
     paddingRight: scale(10),
     fontFamily: 'Inter-Regular',
+  },
+  inputting: {
+    borderColor: colors.orange_FE724C,
   },
   medium: {
     fontFamily: 'Inter-Medium',
