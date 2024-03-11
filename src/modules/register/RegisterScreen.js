@@ -90,6 +90,7 @@ const RegisterScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView
+        enableOnAndroid={true}
         contentContainerStyle={styles.scroll}
         showsVerticalScrollIndicator={false}>
         <ImageBackground
