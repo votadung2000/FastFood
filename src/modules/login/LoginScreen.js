@@ -15,8 +15,8 @@ import {
 import {useStore} from '@context';
 import {ApiLogin} from '@actionApi';
 import {setToken} from '@storage';
-import {colors, fontSize, radius} from '@constant';
-import {scale} from '@resolutions';
+import {colors, fontSize} from '@constant';
+import {hScale, scale} from '@resolutions';
 import routes from '@routes';
 
 import LoginSchema from './LoginSchema';
@@ -156,7 +156,7 @@ const LoginScreen = ({navigation}) => {
               style={styles.btnLogin}
               onPress={handleSubmit}>
               <Text bold style={styles.textLogin}>
-                {'ĐĂNG NHẬP'}
+                {'LOGIN'}
               </Text>
             </Button>
             <View style={styles.vwQuestion}>
@@ -227,11 +227,12 @@ const styles = StyleSheet.create({
   },
   btnLogin: {
     width: '80%',
+    height: hScale(60),
+    borderRadius: scale(30),
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.yellow,
+    backgroundColor: colors.orange_FD724C,
     paddingVertical: scale(14),
-    borderRadius: radius.radius14,
     marginTop: scale(25),
   },
   vwQuestion: {
