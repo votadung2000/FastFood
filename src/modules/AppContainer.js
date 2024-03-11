@@ -25,6 +25,7 @@ import UserScreen from './user/UserScreen';
 import SearchScreen from './search/SearchScreen';
 import DetailCardSearch from './detail_card_search/DetailCardSearch';
 import LoginScreen from './login/LoginScreen';
+import RegisterScreen from './register/RegisterScreen';
 
 import {resolutions} from '@utils';
 import {colors, fontSize} from '@constant';
@@ -229,6 +230,11 @@ const Routes = [
     id: 2,
     name: routes.LoginScreen,
     component: LoginScreen,
+  },
+  {
+    id: 3,
+    name: routes.RegisterScreen,
+    component: RegisterScreen,
   },
 ];
 

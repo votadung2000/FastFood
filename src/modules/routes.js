@@ -3,7 +3,6 @@ export default {
   RoutesNavigator: 'RoutesNavigator',
   CarouselScreen: 'CarouselScreen',
   WelcomeScreen: 'WelcomeScreen',
-  HelloScreen: 'HelloScreen',
   HomeScreen: 'HomeScreen',
   ProductsDetailScreen: 'ProductsDetailScreen',
   HeartScreen: 'HeartScreen',
@@ -13,4 +12,5 @@ export default {
   SearchScreen: 'SearchScreen',
   DetailCardSearch: 'DetailCardSearch',
   LoginScreen: 'LoginScreen',
+  RegisterScreen: 'RegisterScreen',
 };

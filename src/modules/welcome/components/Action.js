@@ -47,7 +47,7 @@ const Action = () => {
         <Text style={styles.txtRequest}>{"Don't have an account?"}</Text>
         <Button
           style={styles.btnSignUp}
-          onPress={() => goToScreen(routes.LoginScreen)}>
+          onPress={() => goToScreen(routes.RegisterScreen)}>
           <Text style={styles.txtSignUp}>{'Sign up'}</Text>
         </Button>
       </View>
