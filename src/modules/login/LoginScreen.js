@@ -247,7 +247,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.orange_FD724C,
-    paddingVertical: scale(14),
     marginTop: scale(25),
   },
   vwQuestion: {

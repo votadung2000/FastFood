@@ -60,7 +60,7 @@ const ModalForgotPass = ({isVisible, handleClose}) => {
   };
 
   const onModalHide = () => {
-    navigation.navigate(routes.VerificationCodeScreen);
+    navigation.navigate(routes.OTPScreen);
   };
 
   return (

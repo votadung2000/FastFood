@@ -13,5 +13,6 @@ export default {
   DetailCardSearch: 'DetailCardSearch',
   LoginScreen: 'LoginScreen',
   RegisterScreen: 'RegisterScreen',
-  VerificationCodeScreen: 'VerificationCodeScreen',
+  OTPScreen: 'OTPScreen',
+  ResetPasswordScreen: 'ResetPasswordScreen',
 };

@@ -26,6 +26,8 @@ import SearchScreen from './search/SearchScreen';
 import DetailCardSearch from './detail_card_search/DetailCardSearch';
 import LoginScreen from './login/LoginScreen';
 import RegisterScreen from './register/RegisterScreen';
+import OTPScreen from './otp/OTPScreen';
+import ResetPasswordScreen from './reset_password/ResetPasswordScreen';
 
 import {resolutions} from '@utils';
 import {colors, fontSize} from '@constant';
@@ -218,6 +220,11 @@ const RoutesUser = [
     name: routes.UserScreen,
     component: UserScreen,
   },
+  {
+    id: 6,
+    name: routes.OTPScreen,
+    component: OTPScreen,
+  },
 ];
 
 const Routes = [
@@ -235,6 +242,16 @@ const Routes = [
     id: 3,
     name: routes.RegisterScreen,
     component: RegisterScreen,
+  },
+  {
+    id: 4,
+    name: routes.OTPScreen,
+    component: OTPScreen,
+  },
+  {
+    id: 5,
+    name: routes.ResetPasswordScreen,
+    component: ResetPasswordScreen,
   },
 ];
 
