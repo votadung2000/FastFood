@@ -26,6 +26,7 @@ const ModalForgotPass = ({isVisible, handleClose}) => {
   const navigation = useNavigation();
 
   const [isSubmitting, setSubmitting] = useState(false);
+  const [isSuccess, setSuccess] = useState(false);
 
   const {
     values,
@@ -48,6 +49,7 @@ const ModalForgotPass = ({isVisible, handleClose}) => {
     setTimeout(() => {
       setSubmitting(false);
       resetForm();
+      setSuccess(true);
       handleClose();
     }, 500);
   };
@@ -58,7 +60,10 @@ const ModalForgotPass = ({isVisible, handleClose}) => {
   };
 
   const onModalHide = () => {
-    navigation.navigate(routes.OTPScreen);
+    if (isSuccess) {
+      setSuccess(false);
+      navigation.navigate(routes.OTPScreen);
+    }
   };
 
   return (
