@@ -1,12 +1,10 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, TextInput} from 'react-native';
 
-import {Text} from '@components';
-import {resolutions} from '@utils';
 import {colors, fontSize, radius} from '@constant';
-import {hScale} from '@resolutions';
+import {hScale, scale} from '@resolutions';
 
-const {scale} = resolutions;
+import Text from '../Text';
 
 const Input = (
   {

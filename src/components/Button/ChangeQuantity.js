@@ -3,10 +3,10 @@ import {StyleSheet, View} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 import {colors, fontSize, radius} from '@constant';
-import {resolutions} from '@utils';
-import {Button, Text} from '@components';
+import {scale} from '@resolutions';
 
-const {scale} = resolutions;
+import Button from './Button';
+import Text from '../Text';
 
 const ChangeQuantity = ({quantity, handlePlus, handleMinus}) => {
   return (

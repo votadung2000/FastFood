@@ -3,7 +3,8 @@ import {action, makeAutoObservable, runInAction} from 'mobx';
 import {ApiLogin} from '@actionApi';
 
 class UserStore {
-  user = null;
+  // user = null;
+  user = true;
 
   constructor() {
     makeAutoObservable(this, {

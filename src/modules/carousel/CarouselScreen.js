@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {View, Image, StyleSheet, Dimensions, Platform} from 'react-native';
-import RNBootSplash from 'react-native-bootsplash';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {Button, Text} from '@components';
@@ -12,10 +11,6 @@ const {width} = Dimensions.get('window');
 
 const CarouselScreen = ({navigation}) => {
   const [indexCarousel, setIndexCarousel] = useState(0);
-
-  useEffect(() => {
-    RNBootSplash.hide();
-  }, []);
 
   const handleCarousel = () => {
     if (indexCarousel + 1 === DATA_CAROUSEL?.length) {

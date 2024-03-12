@@ -4,13 +4,11 @@ import {observer} from 'mobx-react';
 
 import {Text, EmptyComponent, LoadingComponent} from '@components';
 import {fontSize} from '@constant';
-import {handleDataOdd, resolutions} from '@utils';
+import {handleDataOdd} from '@utils';
 import {useStore} from '@context';
+import {hScale, scale} from '@resolutions';
 
-import {CardProducts} from './index';
-import {hScale} from '@resolutions';
-
-const {scale} = resolutions;
+import CardProducts from './CardProducts';
 
 const Products = () => {
   const {

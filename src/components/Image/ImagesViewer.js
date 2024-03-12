@@ -1,15 +1,14 @@
 import React from 'react';
 import {StyleSheet, View, ActivityIndicator} from 'react-native';
+import {isIphoneX} from 'react-native-iphone-x-helper';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import Modal from 'react-native-modal';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {isIphoneX} from 'react-native-iphone-x-helper';
 
 import {colors} from '@constant';
-import {Button} from '@components';
-import {resolutions} from '@utils';
+import {scale} from '@resolutions';
 
-const {scale} = resolutions;
+import Button from '../Button/Button';
 
 const ImagesViewer = ({images, index, closeModal}) => {
   const imageUrls = images?.map(image => ({

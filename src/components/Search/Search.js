@@ -3,9 +3,7 @@ import {StyleSheet, View, TextInput} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {colors, fontSize, radius} from '@constant';
-import {resolutions} from '@utils';
-
-const {hScale, scale} = resolutions;
+import {hScale, scale} from '@resolutions';
 
 const Search = ({style, value, placeholder, onChangeText}) => {
   return (

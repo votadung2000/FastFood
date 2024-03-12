@@ -6,7 +6,7 @@ import {EmptyComponent, LoadingComponent} from '@components';
 import {handleDataOdd} from '@utils';
 import {useStore} from '@context';
 
-import {CardProducts} from './index';
+import CardProducts from './CardProducts';
 
 const Products = () => {
   const {

@@ -4,10 +4,9 @@ import {observer} from 'mobx-react';
 
 import {Text, Button, FastImage} from '@components';
 import {colors, fontSize, radius} from '@constant';
-import {limitedString, resolutions} from '@utils';
+import {limitedString} from '@utils';
 import {useStore} from '@context';
-
-const {scale} = resolutions;
+import {scale} from '@resolutions';
 
 const CardMenu = ({data}) => {
   const {

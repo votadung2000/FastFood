@@ -10,6 +10,7 @@ import {Notifier, NotifierComponents} from 'react-native-notifier';
 import {observer} from 'mobx-react';
 import NetInfo from '@react-native-community/netinfo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import RNBootSplash from 'react-native-bootsplash';
 
 import routes from '@routes';
 
@@ -159,6 +160,8 @@ const AppContainer = () => {
   const navigationRef = useNavigationContainerRef();
 
   useEffect(() => {
+    RNBootSplash.hide();
+
     NetInfo.addEventListener(state => {
       if (!state?.isConnected) {
         Notifier.showNotification({

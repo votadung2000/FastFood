@@ -6,12 +6,12 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {Text, Button, FastImage} from '@components';
 import {colors, fontSize, radius} from '@constant';
-import {resolutions, formatCurrency} from '@utils';
+import {formatCurrency} from '@utils';
 import {useStore} from '@context';
+import {scale} from '@resolutions';
 import routes from '@routes';
 
 const {width} = Dimensions.get('window');
-const {scale} = resolutions;
 
 const CardProducts = ({data}) => {
   const navigation = useNavigation();

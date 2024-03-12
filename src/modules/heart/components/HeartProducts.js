@@ -5,11 +5,9 @@ import {observer} from 'mobx-react';
 import {Text} from '@components';
 import {colors, fontSize} from '@constant';
 import {useStore} from '@context';
-import {resolutions} from '@utils';
+import {scale} from '@resolutions';
 
-import {CardFavorite} from './index';
-
-const {scale} = resolutions;
+import CardFavorite from './CardFavorite';
 
 const HeartProducts = () => {
   const {

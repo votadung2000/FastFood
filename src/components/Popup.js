@@ -5,7 +5,8 @@ import Modal from 'react-native-modal';
 import {colors, fontSize, radius} from '@constant';
 import {scale} from '@resolutions';
 
-import {Text, Button} from './index';
+import Button from './Button/Button';
+import Text from './Text';
 
 const Popup = ({
   isVisible,

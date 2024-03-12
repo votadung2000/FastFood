@@ -4,12 +4,10 @@ import {FlatList} from 'react-native-gesture-handler';
 import {observer} from 'mobx-react';
 
 import {EmptyComponent} from '@components';
-import {resolutions} from '@utils';
 import {useStore} from '@context';
+import {scale} from '@resolutions';
 
-import {CardMenu} from './index';
-
-const {scale} = resolutions;
+import CardMenu from './CardMenu';
 
 const Menu = () => {
   const {

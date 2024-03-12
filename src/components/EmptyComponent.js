@@ -1,11 +1,11 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
-import {Text, FastImage} from '@components';
 import {colors, fontSize} from '@constant';
-import {resolutions} from '@utils';
+import {scale} from '@resolutions';
 
-const {scale} = resolutions;
+import FastImage from './Image/FastImage';
+import Text from './Text';
 
 const EmptyComponent = ({url, title}) => {
   return (
