@@ -66,7 +66,7 @@ const InputPassword = (
           <Button onPress={handleSecureText} style={styles.btnEye}>
             <Ionicons
               size={scale(18)}
-              name={secureText ? 'eye-outline' : 'eye-off-outline'}
+              name={secureText ? 'eye-off-outline' : 'eye-outline'}
               color={colors.gray_C4C4C4}
             />
           </Button>
@@ -81,6 +81,7 @@ const InputPassword = (
 
 const styles = StyleSheet.create({
   input: {
+    width: '100%',
     height: hScale(65),
     color: colors.black,
     fontSize: fontSize.fontSize16,

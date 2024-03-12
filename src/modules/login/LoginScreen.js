@@ -229,9 +229,6 @@ const styles = StyleSheet.create({
   input: {
     marginBottom: scale(20),
   },
-  textLogin: {
-    color: colors.white,
-  },
   footer: {
     marginTop: scale(30),
     alignItems: 'center',
@@ -248,6 +245,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: colors.orange_FD724C,
     marginTop: scale(25),
+  },
+  textLogin: {
+    fontSize: fontSize.fontSize14,
+    color: colors.white,
   },
   vwQuestion: {
     marginTop: scale(25),

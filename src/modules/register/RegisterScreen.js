@@ -233,9 +233,6 @@ const styles = StyleSheet.create({
   input: {
     marginBottom: scale(20),
   },
-  textSignUp: {
-    color: colors.white,
-  },
   txtForgotPass: {
     fontSize: fontSize.fontSize14,
     color: colors.orange_FE724C,
@@ -250,6 +247,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: colors.orange_FD724C,
     paddingVertical: scale(14),
+  },
+  textSignUp: {
+    fontSize: fontSize.fontSize14,
+    color: colors.white,
   },
   vwQuestion: {
     marginTop: scale(25),

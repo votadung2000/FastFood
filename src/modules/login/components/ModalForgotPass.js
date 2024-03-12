@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {useFormik} from 'formik';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useNavigation} from '@react-navigation/native';
-import * as yup from 'yup';
+import {object, string} from 'yup';
 
 import {Modal, Text, Button, Input, Back} from '@components';
 import {colors, fontSize, radius} from '@constant';
@@ -12,16 +12,14 @@ import routes from '@routes';
 
 const initialValues = {
   user_name: '',
-  password: '',
 };
 
 const initialErrors = {
   user_name: true,
-  password: true,
 };
 
-let ForgotPassScheme = yup.object().shape({
-  user_name: yup.string().trim().required('Please enter information'),
+let ForgotPassScheme = object().shape({
+  user_name: string().trim().required('Please enter information'),
 });
 
 const ModalForgotPass = ({isVisible, handleClose}) => {
@@ -150,6 +148,7 @@ const styles = StyleSheet.create({
     marginTop: scale(25),
   },
   textConfirm: {
+    fontSize: fontSize.fontSize14,
     color: colors.white,
   },
 });
