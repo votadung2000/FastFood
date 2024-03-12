@@ -8,7 +8,6 @@ import {useNavigation, StackActions} from '@react-navigation/native';
 import {Text, Button, Back, InputPassword} from '@components';
 import {colors, fontSize} from '@constant';
 import {hScale, scale} from '@resolutions';
-import routes from '@routes';
 
 const initialValues = {
   password: '',
@@ -59,7 +58,7 @@ const ResetPasswordScreen = () => {
     setTimeout(() => {
       setSubmitting(false);
       resetForm();
-      navigation.dispatch(StackActions.replace(routes.LoginScreen));
+      navigation.dispatch(StackActions.pop(1));
     }, 500);
   };
 
