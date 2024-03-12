@@ -2,11 +2,13 @@ import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useFormik} from 'formik';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {useNavigation} from '@react-navigation/native';
 import * as yup from 'yup';
 
 import {Modal, Text, Button, Input, Back} from '@components';
 import {colors, fontSize, radius} from '@constant';
 import {hScale, scale} from '@resolutions';
+import routes from '@routes';
 
 const initialValues = {
   user_name: '',
@@ -23,6 +25,8 @@ let ForgotPassScheme = yup.object().shape({
 });
 
 const ModalForgotPass = ({isVisible, handleClose}) => {
+  const navigation = useNavigation();
+
   const [isSubmitting, setSubmitting] = useState(false);
 
   const {
@@ -42,7 +46,12 @@ const ModalForgotPass = ({isVisible, handleClose}) => {
   });
 
   const onSubmit = () => {
-    setSubmitting();
+    setSubmitting(true);
+    setTimeout(() => {
+      setSubmitting(false);
+      resetForm();
+      handleClose();
+    }, 500);
   };
 
   const onBack = () => {
@@ -50,8 +59,15 @@ const ModalForgotPass = ({isVisible, handleClose}) => {
     handleClose();
   };
 
+  const onModalHide = () => {
+    navigation.navigate(routes.VerificationCodeScreen);
+  };
+
   return (
-    <Modal isVisible={isVisible} stModal={styles.stModal}>
+    <Modal
+      isVisible={isVisible}
+      stModal={styles.stModal}
+      onModalHide={onModalHide}>
       <Back style={styles.back} handleGoBack={onBack} />
       <View style={styles.container}>
         <KeyboardAwareScrollView
