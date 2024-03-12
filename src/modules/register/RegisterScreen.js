@@ -178,7 +178,7 @@ const RegisterScreen = ({navigation}) => {
               name="avatar"
               placeholder="Select your avatar"
               value={values.avatar}
-              returnKeyType="next"
+              returnKeyType="done"
               style={styles.input}
               {...{errors, touched, handleBlur, handleChange}}
             />

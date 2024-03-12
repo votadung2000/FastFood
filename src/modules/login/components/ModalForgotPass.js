@@ -1,0 +1,141 @@
+import React, {useState} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {useFormik} from 'formik';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import * as yup from 'yup';
+
+import {Modal, Text, Button, Input, Back} from '@components';
+import {colors, fontSize, radius} from '@constant';
+import {hScale, scale} from '@resolutions';
+
+const initialValues = {
+  user_name: '',
+  password: '',
+};
+
+const initialErrors = {
+  user_name: true,
+  password: true,
+};
+
+let ForgotPassScheme = yup.object().shape({
+  user_name: yup.string().trim().required('Please enter information'),
+});
+
+const ModalForgotPass = ({isVisible, handleClose}) => {
+  const [isSubmitting, setSubmitting] = useState(false);
+
+  const {
+    values,
+    errors,
+    isValid,
+    touched,
+    handleBlur,
+    handleChange,
+    resetForm,
+    handleSubmit,
+  } = useFormik({
+    initialValues,
+    initialErrors,
+    validationSchema: ForgotPassScheme,
+    onSubmit: () => onSubmit(),
+  });
+
+  const onSubmit = () => {
+    setSubmitting();
+  };
+
+  const onBack = () => {
+    resetForm();
+    handleClose();
+  };
+
+  return (
+    <Modal isVisible={isVisible} stModal={styles.stModal}>
+      <Back style={styles.back} handleGoBack={onBack} />
+      <View style={styles.container}>
+        <KeyboardAwareScrollView
+          enableOnAndroid={true}
+          contentContainerStyle={styles.scroll}
+          showsVerticalScrollIndicator={false}>
+          <Text bold style={styles.title}>
+            {'Forgot Password'}
+          </Text>
+          <Text style={styles.warn}>
+            {'The OTP code will be sent via the email you registered with'}
+          </Text>
+          <View style={styles.vwForm}>
+            <Input
+              medium
+              name="user_name"
+              placeholder="Your username"
+              value={values.user_name}
+              returnKeyType="done"
+              style={styles.input}
+              {...{errors, touched, handleBlur, handleChange}}
+            />
+          </View>
+          <Button
+            disabled={!isValid || isSubmitting}
+            style={styles.btnConfirm}
+            onPress={handleSubmit}>
+            <Text bold style={styles.textConfirm}>
+              {'CONFIRM'}
+            </Text>
+          </Button>
+        </KeyboardAwareScrollView>
+      </View>
+    </Modal>
+  );
+};
+
+const styles = StyleSheet.create({
+  stModal: {
+    paddingHorizontal: scale(20),
+  },
+  back: {
+    position: 'absolute',
+    left: scale(25),
+    top: scale(27),
+  },
+  container: {
+    width: '100%',
+    maxHeight: '70%',
+    alignSelf: 'center',
+    backgroundColor: colors.white,
+    borderRadius: radius.radius6,
+    padding: scale(20),
+  },
+  scroll: {
+    flexGrow: 1,
+    backgroundColor: colors.white,
+  },
+  title: {
+    fontSize: fontSize.large,
+    textAlign: 'center',
+  },
+  warn: {
+    textAlign: 'center',
+    marginTop: scale(10),
+    color: colors.gray_9796A1,
+    fontSize: fontSize.fontSize14,
+  },
+  vwForm: {
+    marginTop: scale(25),
+  },
+  btnConfirm: {
+    width: '80%',
+    height: hScale(52),
+    borderRadius: scale(30),
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    backgroundColor: colors.orange_FD724C,
+    marginTop: scale(25),
+  },
+  textConfirm: {
+    color: colors.white,
+  },
+});
+
+export default ModalForgotPass;

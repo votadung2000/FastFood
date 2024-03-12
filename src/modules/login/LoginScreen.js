@@ -20,6 +20,7 @@ import {hScale, scale} from '@resolutions';
 import routes from '@routes';
 
 import LoginSchema from './LoginSchema';
+import {ModalForgotPass} from './components';
 
 const initialValues = {
   user_name: '',
@@ -39,6 +40,7 @@ const LoginScreen = ({navigation}) => {
   const refPassword = createRef();
 
   const [isSubmitting, setSubmitting] = useState(false);
+  const [modal, setModal] = useState({isVisible: false});
 
   const {
     values,
@@ -109,6 +111,14 @@ const LoginScreen = ({navigation}) => {
     refPassword.current?.focus();
   };
 
+  const handleOpenModalForgotPass = () => {
+    setModal({isVisible: true});
+  };
+
+  const handleCloseModalForgotPass = () => {
+    setModal({isVisible: false});
+  };
+
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView
@@ -151,7 +161,7 @@ const LoginScreen = ({navigation}) => {
             />
           </View>
           <View style={styles.footer}>
-            <Button>
+            <Button onPress={handleOpenModalForgotPass}>
               <Text medium style={styles.txtForgotPass}>
                 {'Forgot password?'}
               </Text>
@@ -180,6 +190,7 @@ const LoginScreen = ({navigation}) => {
           <SignInSocial />
         </View>
       </KeyboardAwareScrollView>
+      <ModalForgotPass handleClose={handleCloseModalForgotPass} {...modal} />
     </View>
   );
 };

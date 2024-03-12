@@ -9,6 +9,7 @@ import {FastImage, ImagesViewer} from './Image';
 import LoadingComponent from './LoadingComponent';
 import Popup from './Popup';
 import SignInSocial from './SignInSocial';
+import Modal from './Modal';
 
 export {
   Text,
@@ -26,4 +27,5 @@ export {
   LoadingComponent,
   Popup,
   SignInSocial,
+  Modal,
 };
