@@ -1,125 +1,30 @@
 import React, {useEffect} from 'react';
-import {Platform, StyleSheet, View} from 'react-native';
 import {
   NavigationContainer,
   useNavigationContainerRef,
 } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Notifier, NotifierComponents} from 'react-native-notifier';
 import {observer} from 'mobx-react';
 import NetInfo from '@react-native-community/netinfo';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import RNBootSplash from 'react-native-bootsplash';
 
 import routes from '@routes';
 
 import {Layout} from '@views';
+import {useStore} from '@context';
 
 import CarouselScreen from './carousel/CarouselScreen';
 import WelcomeScreen from './welcome/WelcomeScreen';
-import HomeScreen from './home/HomeScreen';
 import ProductsDetailScreen from './detail/ProductsDetailScreen';
-import HeartScreen from './heart/HeartScreen';
 import CartScreen from './cart/CartScreen';
 import UserScreen from './user/UserScreen';
-import SearchScreen from './search/SearchScreen';
 import DetailCardSearch from './detail_card_search/DetailCardSearch';
 import LoginScreen from './login/LoginScreen';
 import RegisterScreen from './register/RegisterScreen';
 import OTPScreen from './otp/OTPScreen';
 import ResetPasswordScreen from './reset_password/ResetPasswordScreen';
-
-import {resolutions} from '@utils';
-import {colors, fontSize} from '@constant';
-import {Text, TotalCart} from '@components';
-import {useStore} from '@context';
-import {wScale} from '@resolutions';
-
-const {scale, hScale} = resolutions;
-
-const styles = StyleSheet.create({
-  tabBarStyle: {
-    position: 'absolute',
-    height: hScale(52),
-    paddingBottom: 0,
-  },
-  label: {
-    textAlign: 'center',
-    fontSize: fontSize.small,
-  },
-  fcText: {
-    color: colors.orange,
-  },
-
-  containerViewTab: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  vwIconViewTab: {
-    width: wScale(25),
-    height: wScale(25),
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingBottom: Platform.OS === 'ios' ? 0 : scale(2),
-  },
-  txtLabelTB: {
-    textAlign: 'center',
-    fontSize: fontSize.small,
-  },
-  txtLabelTBFocused: {
-    color: colors.orange,
-  },
-});
-
-const ViewTabBottom = ({data, focused}) => {
-  if (data?.name === routes.CartScreen) {
-    return <TotalCart focused={focused} data={data} />;
-  }
-
-  return (
-    <View style={styles.containerViewTab}>
-      <View style={styles.vwIconViewTab}>
-        {focused ? data?.IconFocused : data?.Icon}
-      </View>
-      <Text
-        medium
-        style={[styles.txtLabelTB, focused && styles.txtLabelTBFocused]}>
-        {data.keyLabel}
-      </Text>
-    </View>
-  );
-};
-
-const Tab = createBottomTabNavigator();
-
-const BottomTabNavigator = () => {
-  return (
-    <Tab.Navigator
-      initialRouteName={routes.HomeScreen}
-      backBehavior="initialRoute"
-      screenOptions={({route}) => ({
-        headerShown: false,
-        gestureEnabled: false,
-        tabBarShowLabel: false,
-        tabBarStyle: styles.tabBarStyle,
-      })}>
-      {TabBottomArr?.map(item => {
-        return (
-          <Tab.Screen
-            key={item?.id}
-            name={item?.name}
-            component={item.component}
-            options={{
-              tabBarIcon: props => <ViewTabBottom data={item} {...props} />,
-            }}
-          />
-        );
-      })}
-    </Tab.Navigator>
-  );
-};
+import BottomNavigation from './bottom_navigation/BottomNavigation';
 
 const Stack = createNativeStackNavigator();
 
@@ -200,8 +105,8 @@ export default AppContainer;
 const RoutesUser = [
   {
     id: 1,
-    name: routes.BottomTabNavigator,
-    component: BottomTabNavigator,
+    name: routes.BottomNavigation,
+    component: BottomNavigation,
   },
   {
     id: 2,
@@ -255,46 +160,5 @@ const Routes = [
     id: 5,
     name: routes.ResetPasswordScreen,
     component: ResetPasswordScreen,
-  },
-];
-
-const TabBottomArr = [
-  {
-    id: 1,
-    name: routes.HomeScreen,
-    keyLabel: 'Home',
-    Icon: <Ionicons name="home" size={scale(22)} color={colors.gray} />,
-    IconFocused: <Ionicons name="home" size={scale(22)} color={colors.price} />,
-    component: HomeScreen,
-  },
-  {
-    id: 2,
-    name: routes.SearchScreen,
-    keyLabel: 'Search',
-    Icon: <Ionicons name="search" size={scale(24)} color={colors.gray} />,
-    IconFocused: (
-      <Ionicons name="search" size={scale(24)} color={colors.orangeSystem} />
-    ),
-    component: SearchScreen,
-  },
-  {
-    id: 3,
-    name: routes.HeartScreen,
-    keyLabel: 'Heart',
-    Icon: <Ionicons name="heart" size={scale(24)} color={colors.gray} />,
-    IconFocused: (
-      <Ionicons name="heart" size={scale(24)} color={colors.heart} />
-    ),
-    component: HeartScreen,
-  },
-  {
-    id: 4,
-    name: routes.CartScreen,
-    keyLabel: 'Cart',
-    Icon: <Ionicons name="cart" size={scale(25)} color={colors.gray} />,
-    IconFocused: (
-      <Ionicons name="cart" size={scale(25)} color={colors.orange} />
-    ),
-    component: CartScreen,
   },
 ];

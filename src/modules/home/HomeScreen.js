@@ -15,6 +15,7 @@ const HomeScreen = () => {
   const {
     categoryStore: {fetchCombineApiCategories},
     productsStore: {clearFilterPr},
+    animatedMenuStore: {isShowMenu},
   } = useStore();
 
   useEffect(() => {
@@ -28,7 +29,7 @@ const HomeScreen = () => {
   }, [indexRoute]);
 
   return (
-    <View style={styles.layout}>
+    <View style={[styles.layout, isShowMenu && styles.stBorderRadius]}>
       <View style={styles.container}>
         <Header />
         <Menu />

@@ -1,5 +1,6 @@
 export default {
   BottomTabNavigator: 'BottomTabNavigator',
+  BottomNavigation: 'BottomNavigation',
   RoutesNavigator: 'RoutesNavigator',
   CarouselScreen: 'CarouselScreen',
   WelcomeScreen: 'WelcomeScreen',

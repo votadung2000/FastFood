@@ -1,28 +1,30 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {observer} from 'mobx-react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {Text, Button} from '@components';
 import {resolutions} from '@utils';
 import {colors, fontSize} from '@constant';
-import routes from '@routes';
+import {useStore} from '@context';
 
 const {scale} = resolutions;
 
 const Header = () => {
-  const navigation = useNavigation();
+  const {
+    animatedMenuStore: {handleShowMenu},
+  } = useStore();
 
   const goToUser = () => {
-    navigation.navigate(routes.LoginScreen);
+    handleShowMenu();
   };
 
   return (
     <View style={styles.header}>
-      <Text style={styles.title}>{'Find Your\nDelicious Food'}</Text>
       <Button onPress={goToUser} style={styles.btnUser}>
         <AntDesign size={scale(22)} name="user" color={colors.black} />
       </Button>
+      <Text style={styles.title}>{'Find Your\nDelicious Food'}</Text>
     </View>
   );
 };
@@ -54,7 +56,8 @@ const styles = StyleSheet.create({
     elevation: 4,
     justifyContent: 'center',
     alignItems: 'center',
+    zIndex: 9999,
   },
 });
 
-export default Header;
+export default observer(Header);

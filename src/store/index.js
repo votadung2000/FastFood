@@ -6,6 +6,7 @@ import searchProductsStore from './searchProducts.store';
 import userStore from './user.store';
 import categoryStore from './category.store';
 import favoritesStore from './favorites.store';
+import animatedMenuStore from './animatedMenu.store';
 
 export default {
   productsStore,
@@ -16,4 +17,5 @@ export default {
   userStore,
   categoryStore,
   favoritesStore,
+  animatedMenuStore,
 };

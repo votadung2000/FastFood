@@ -1,11 +1,7 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 import {colors, radius} from '@constant';
-import {resolutions} from '@utils';
-
-const {hScale, scale} = resolutions;
-
-const width = Dimensions.get('window').width;
+import {scale} from '@resolutions';
 
 export default StyleSheet.create({
   layout: {
@@ -16,26 +12,7 @@ export default StyleSheet.create({
     flex: 1,
     marginHorizontal: scale(15),
   },
-  btnSearch: {
-    paddingLeft: scale(10),
-  },
-  search: {
-    flexDirection: 'row',
-    borderWidth: 1,
-    position: 'absolute',
-    borderRadius: radius.radius10,
-    zIndex: 9999,
-    width: width * 0.75,
-    height: hScale(40),
-    right: 0,
-    borderColor: colors.black,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingLeft: scale(10),
-  },
-  inputSearch: {
-    width: '90%',
-    height: hScale(38),
-    paddingLeft: scale(6),
+  stBorderRadius: {
+    borderRadius: radius.radius14,
   },
 });
