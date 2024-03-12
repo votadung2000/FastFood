@@ -6,7 +6,6 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Input, Text, Button, Back, SignInSocial} from '@components';
 import {colors, fontSize} from '@constant';
 import {hScale, scale} from '@resolutions';
-import routes from '@routes';
 
 import RegisterSchema from './RegisterSchema';
 
@@ -59,10 +58,6 @@ const RegisterScreen = ({navigation}) => {
     resetForm();
   };
 
-  const goToScreen = route => {
-    navigation.navigate(route);
-  };
-
   const focusUsername = () => {
     refUsername.current?.focus();
   };
@@ -101,7 +96,7 @@ const RegisterScreen = ({navigation}) => {
         <Back style={styles.back} />
         <View style={styles.content}>
           <Text bold style={styles.title}>
-            {'Login'}
+            {'Sign Up'}
           </Text>
           <View style={styles.form}>
             <Input
@@ -188,33 +183,14 @@ const RegisterScreen = ({navigation}) => {
               {...{errors, touched, handleBlur, handleChange}}
             />
           </View>
-          <View style={styles.footer}>
-            <Button>
-              <Text medium style={styles.txtForgotPass}>
-                {'Forgot password?'}
-              </Text>
-            </Button>
-            <Button
-              disabled={!isValid || isSubmitting}
-              style={styles.btnLogin}
-              onPress={handleSubmit}>
-              <Text bold style={styles.textLogin}>
-                {'LOGIN'}
-              </Text>
-            </Button>
-            <View style={styles.vwQuestion}>
-              <Text medium style={styles.txtQuestion}>
-                {"Don't have an account?"}
-              </Text>
-              <Button
-                style={styles.btnSignUp}
-                onPress={() => goToScreen(routes.RegisterScreen)}>
-                <Text medium style={styles.txtSignUp}>
-                  {'Sign up'}
-                </Text>
-              </Button>
-            </View>
-          </View>
+          <Button
+            disabled={!isValid || isSubmitting}
+            style={styles.btnSignUp}
+            onPress={handleSubmit}>
+            <Text bold style={styles.textSignUp}>
+              {'SIGN UP'}
+            </Text>
+          </Button>
           <SignInSocial />
         </View>
       </KeyboardAwareScrollView>
@@ -257,26 +233,23 @@ const styles = StyleSheet.create({
   input: {
     marginBottom: scale(20),
   },
-  textLogin: {
+  textSignUp: {
     color: colors.white,
-  },
-  footer: {
-    marginTop: scale(30),
-    alignItems: 'center',
   },
   txtForgotPass: {
     fontSize: fontSize.fontSize14,
     color: colors.orange_FE724C,
   },
-  btnLogin: {
+  btnSignUp: {
     width: '80%',
     height: hScale(60),
     borderRadius: scale(30),
+    marginTop: scale(30),
     alignItems: 'center',
     justifyContent: 'center',
+    alignSelf: 'center',
     backgroundColor: colors.orange_FD724C,
     paddingVertical: scale(14),
-    marginTop: scale(25),
   },
   vwQuestion: {
     marginTop: scale(25),
@@ -287,13 +260,6 @@ const styles = StyleSheet.create({
   txtQuestion: {
     fontSize: fontSize.fontSize14,
     color: colors.blue_5B5B5E,
-  },
-  btnSignUp: {
-    marginLeft: scale(6),
-  },
-  txtSignUp: {
-    fontSize: fontSize.fontSize14,
-    color: colors.orange_FE724C,
   },
 });
 
