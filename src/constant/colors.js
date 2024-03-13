@@ -23,6 +23,7 @@ export default {
   gray_EEEEEE: '#EEEEEE',
   gray_C4C4C4: '#C4C4C4',
   gray_D3D1D8: '#D3D1D8',
+  gray_67666D: '#67666D',
 
   // Orange
   orange: '#ffbb33',

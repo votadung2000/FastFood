@@ -1,11 +1,12 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {observer} from 'mobx-react';
 
 import {Text, Button, FastImage} from '@components';
 import {colors, fontSize, radius} from '@constant';
 import {resolutions, limitedString} from '@utils';
 import {useStore} from '@context';
+import {hScale, wScale} from '@resolutions';
 
 const {scale} = resolutions;
 
@@ -13,6 +14,8 @@ const CardMenu = ({data}) => {
   const {
     productsStore: {filterPr, fetchApiListProducts},
   } = useStore();
+
+  const isSelected = data?.id === filterPr?.category_id?.id;
 
   const handleItem = () => {
     if (filterPr?.category_id?.id !== data?.id) {
@@ -23,18 +26,17 @@ const CardMenu = ({data}) => {
   return (
     <Button
       onPress={() => handleItem()}
-      style={[
-        styles.container,
-        data?.id === filterPr?.category_id?.id
-          ? styles.upShadow
-          : styles.shadow,
-      ]}>
-      <FastImage
-        isPath
-        source={{uri: data?.image?.url}}
-        style={styles.imgMenu}
-      />
-      <Text bold style={styles.txtItem}>
+      style={[styles.container, isSelected && styles.cSelected]}>
+      <View style={styles.vwImg}>
+        <FastImage
+          isPath
+          source={{uri: data?.image?.url}}
+          style={styles.imgMenu}
+        />
+      </View>
+      <Text
+        medium
+        style={[styles.txtItem, isSelected && styles.txtItemSelected]}>
         {limitedString(data?.name, 6) || ''}
       </Text>
     </Button>
@@ -43,42 +45,41 @@ const CardMenu = ({data}) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: scale(10),
-    paddingVertical: scale(5),
-    borderRadius: radius.radius10,
+    width: wScale(60),
+    height: hScale(100),
+    borderRadius: scale(30),
+    margin: scale(2),
+    marginRight: scale(15),
+    alignItems: 'center',
+    backgroundColor: colors.white,
+    ...radius.shadow,
+  },
+  cSelected: {
+    backgroundColor: colors.orange_FE724C,
+    shadowColor: colors.orange_FE724C,
+  },
+  vwImg: {
+    width: wScale(50),
+    height: wScale(50),
+    borderRadius: scale(50),
+    marginTop: scale(5),
     justifyContent: 'center',
     alignItems: 'center',
-    margin: scale(10),
     backgroundColor: colors.white,
+    ...radius.shadow,
+    shadowColor: colors.gray_D3D1D8,
   },
   imgMenu: {
-    width: scale(42),
-    height: scale(42),
-    borderRadius: radius.radius10,
-    marginBottom: scale(8),
+    width: wScale(28),
+    height: wScale(28),
   },
   txtItem: {
+    marginTop: scale(10),
     fontSize: fontSize.smaller,
+    color: colors.gray_67666D,
   },
-  upShadow: {
-    shadowColor: colors.black,
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 4.65,
-    elevation: 8,
-  },
-  shadow: {
-    shadowColor: colors.black,
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
-    elevation: 2,
+  txtItemSelected: {
+    color: colors.white,
   },
 });
 
