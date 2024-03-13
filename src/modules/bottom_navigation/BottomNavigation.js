@@ -1,5 +1,5 @@
 import React, {useRef, useState, useEffect} from 'react';
-import {Animated, StyleSheet, View} from 'react-native';
+import {Animated, StyleSheet, View, Dimensions} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {observer} from 'mobx-react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -15,6 +15,8 @@ import HeartScreen from '../heart/HeartScreen';
 import CartScreen from '../cart/CartScreen';
 
 import {TabBottom, Menu} from './components';
+
+const {width} = Dimensions.get('window');
 
 const BottomNavigation = () => {
   const Tab = createBottomTabNavigator();
@@ -40,7 +42,7 @@ const BottomNavigation = () => {
     }).start();
 
     Animated.timing(offsetValue, {
-      toValue: showMenu ? 0 : 230,
+      toValue: showMenu ? 0 : width * 0.7,
       duration: 300,
       useNativeDriver: true,
     }).start();
