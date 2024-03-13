@@ -1,12 +1,13 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Image} from 'react-native';
 import {observer} from 'mobx-react';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {Text, Button} from '@components';
 import {resolutions} from '@utils';
-import {colors, fontSize} from '@constant';
+import {colors, fontSize, radius} from '@constant';
 import {useStore} from '@context';
+import {wScale} from '@resolutions';
 
 const {scale} = resolutions;
 
@@ -20,43 +21,78 @@ const Header = () => {
   };
 
   return (
-    <View style={styles.header}>
-      <Button onPress={goToUser} style={styles.btnUser}>
-        <AntDesign size={scale(22)} name="user" color={colors.black} />
-      </Button>
-      <Text style={styles.title}>{'Find Your\nDelicious Food'}</Text>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Button onPress={goToUser} style={styles.btnMenu}>
+          <Ionicons size={scale(22)} name="menu" color={colors.black} />
+        </Button>
+        <Button style={styles.btnAddress}>
+          <View style={styles.vwIntro}>
+            <Text medium style={styles.txtIntro}>
+              {'Deliver to'}
+            </Text>
+            <Ionicons
+              size={scale(22)}
+              name="chevron-down"
+              color={colors.black}
+            />
+          </View>
+          <Text medium style={styles.address}>
+            {'Address Demo'}
+          </Text>
+        </Button>
+        <Image source={require('@images/avatar.png')} style={styles.img} />
+      </View>
+      <Text bold style={styles.title}>
+        {'What would you like\nto order'}
+      </Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    marginTop: scale(20),
+    marginBottom: scale(10),
+  },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: scale(10),
   },
-  title: {
-    fontSize: fontSize.fontSize28,
-    lineHeight: scale(35),
-    fontWeight: '700',
-  },
-  btnUser: {
-    width: scale(40),
-    height: scale(40),
-    borderRadius: scale(40),
+  btnMenu: {
+    width: wScale(40),
+    height: wScale(40),
+    borderRadius: radius.radius10,
     backgroundColor: colors.white,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
     justifyContent: 'center',
     alignItems: 'center',
-    zIndex: 9999,
+    ...radius.shadow,
+  },
+  btnAddress: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  vwIntro: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  txtIntro: {
+    marginRight: scale(4),
+  },
+  address: {
+    color: colors.orange_FE724C,
+  },
+  img: {
+    width: wScale(40),
+    height: wScale(40),
+    borderRadius: radius.radius10,
+  },
+  title: {
+    marginTop: scale(28),
+    fontSize: fontSize.fontSize30,
   },
 });
 

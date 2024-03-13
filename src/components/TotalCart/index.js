@@ -25,9 +25,6 @@ const TotalCart = ({focused, data}) => {
       <View style={styles.vwIconViewTab}>
         {focused ? data?.IconFocused : data?.Icon}
       </View>
-      <Text medium style={[styles.label, focused && styles.fcText]}>
-        {data?.keyLabel}
-      </Text>
       {cartProducts?.length > 0 && (
         <View style={styles.badge}>
           <Text style={styles.counter}>
@@ -41,8 +38,8 @@ const TotalCart = ({focused, data}) => {
 
 const styles = StyleSheet.create({
   vwIconViewTab: {
-    width: wScale(25),
-    height: wScale(25),
+    width: wScale(28),
+    height: wScale(28),
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: Platform.OS === 'ios' ? 0 : scale(2),
@@ -52,15 +49,15 @@ const styles = StyleSheet.create({
     fontSize: fontSize.small,
   },
   badge: {
-    borderRadius: radius.radius14,
-    width: wScale(13),
-    height: wScale(13),
-    backgroundColor: colors.orange,
     position: 'absolute',
-    top: -scale(30),
-    left: scale(15),
+    width: wScale(16),
+    height: wScale(16),
+    top: -scale(16),
+    right: -scale(8),
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: radius.radius4,
+    backgroundColor: colors.yellow_FFC529,
   },
   counter: {
     fontSize: fontSize.smaller,

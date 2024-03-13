@@ -10,7 +10,7 @@ export default StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginHorizontal: scale(15),
+    marginHorizontal: scale(20),
   },
   stBorderRadius: {
     borderRadius: radius.radius14,

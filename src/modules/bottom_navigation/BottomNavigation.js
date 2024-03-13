@@ -42,7 +42,7 @@ const BottomNavigation = () => {
     }).start();
 
     Animated.timing(offsetValue, {
-      toValue: showMenu ? 0 : width * 0.7,
+      toValue: showMenu ? 0 : width * 0.6,
       duration: 300,
       useNativeDriver: true,
     }).start();
@@ -100,17 +100,21 @@ const TabBottomArr = [
     id: 1,
     name: routes.HomeScreen,
     keyLabel: 'Home',
-    Icon: <Ionicons name="home" size={scale(22)} color={colors.gray} />,
-    IconFocused: <Ionicons name="home" size={scale(22)} color={colors.price} />,
+    Icon: <Ionicons name="home" size={scale(24)} color={colors.gray_D3D1D8} />,
+    IconFocused: (
+      <Ionicons name="home" size={scale(24)} color={colors.orange_FE724C} />
+    ),
     component: HomeScreen,
   },
   {
     id: 2,
     name: routes.SearchScreen,
     keyLabel: 'Search',
-    Icon: <Ionicons name="search" size={scale(24)} color={colors.gray} />,
+    Icon: (
+      <Ionicons name="search" size={scale(26)} color={colors.gray_D3D1D8} />
+    ),
     IconFocused: (
-      <Ionicons name="search" size={scale(24)} color={colors.orangeSystem} />
+      <Ionicons name="search" size={scale(26)} color={colors.orange_FE724C} />
     ),
     component: SearchScreen,
   },
@@ -118,9 +122,9 @@ const TabBottomArr = [
     id: 3,
     name: routes.HeartScreen,
     keyLabel: 'Heart',
-    Icon: <Ionicons name="heart" size={scale(24)} color={colors.gray} />,
+    Icon: <Ionicons name="heart" size={scale(26)} color={colors.gray_D3D1D8} />,
     IconFocused: (
-      <Ionicons name="heart" size={scale(24)} color={colors.heart} />
+      <Ionicons name="heart" size={scale(26)} color={colors.orange_FE724C} />
     ),
     component: HeartScreen,
   },
@@ -128,9 +132,9 @@ const TabBottomArr = [
     id: 4,
     name: routes.CartScreen,
     keyLabel: 'Cart',
-    Icon: <Ionicons name="cart" size={scale(25)} color={colors.gray} />,
+    Icon: <Ionicons name="cart" size={scale(27)} color={colors.gray_D3D1D8} />,
     IconFocused: (
-      <Ionicons name="cart" size={scale(25)} color={colors.orange} />
+      <Ionicons name="cart" size={scale(27)} color={colors.orange_FE724C} />
     ),
     component: CartScreen,
   },
@@ -173,7 +177,7 @@ const styles = StyleSheet.create({
   },
   tabBarStyle: {
     position: 'absolute',
-    height: hScale(52),
+    height: hScale(72),
     paddingBottom: 0,
   },
   stBorderRadius: {

@@ -11,6 +11,7 @@ export default {
 
   // Black
   black: '#000000',
+  black_111719: '#111719',
 
   // Gay
   gray: '#8c8c8c',
@@ -21,6 +22,7 @@ export default {
   gray_9796A1: '#9796A1',
   gray_EEEEEE: '#EEEEEE',
   gray_C4C4C4: '#C4C4C4',
+  gray_D3D1D8: '#D3D1D8',
 
   // Orange
   orange: '#ffbb33',
@@ -46,6 +48,7 @@ export default {
   // Yellow
   yellow: '#F6C012',
   yellowSystem: '#FFD543',
+  yellow_FFC529: '#FFC529',
 
   // Purple
   purple: '#c44dff',

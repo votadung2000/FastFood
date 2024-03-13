@@ -2,7 +2,7 @@ import React from 'react';
 import {Platform, StyleSheet, View} from 'react-native';
 
 import {colors, fontSize} from '@constant';
-import {Text, TotalCart} from '@components';
+import {TotalCart} from '@components';
 import {scale, wScale} from '@resolutions';
 import routes from '@routes';
 
@@ -16,11 +16,6 @@ const TabBottom = ({data, focused}) => {
       <View style={styles.vwIconViewTab}>
         {focused ? data?.IconFocused : data?.Icon}
       </View>
-      <Text
-        medium
-        style={[styles.txtLabelTB, focused && styles.txtLabelTBFocused]}>
-        {data.keyLabel}
-      </Text>
     </View>
   );
 };
@@ -32,8 +27,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   vwIconViewTab: {
-    width: wScale(25),
-    height: wScale(25),
+    width: wScale(28),
+    height: wScale(28),
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: Platform.OS === 'ios' ? 0 : scale(2),
