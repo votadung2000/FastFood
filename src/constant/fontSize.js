@@ -1,6 +1,9 @@
+import {Dimensions} from 'react-native';
 import {RFValue} from '@resolutions';
 
-const STANDARD_SCREEN_HEIGHT = 812;
+const {height} = Dimensions.get('window');
+
+const STANDARD_SCREEN_HEIGHT = height;
 
 export const tiny = RFValue(9, STANDARD_SCREEN_HEIGHT);
 export const smaller = RFValue(11, STANDARD_SCREEN_HEIGHT);
