@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {StyleSheet, View, FlatList} from 'react-native';
+import React, {useEffect, useRef} from 'react';
+import {StyleSheet, View, Animated} from 'react-native';
 import {observer} from 'mobx-react';
 
 import {Text, EmptyComponent, LoadingComponent} from '@components';
@@ -10,7 +10,11 @@ import {scale} from '@resolutions';
 
 import CardProducts from './CardProducts';
 
-const Products = () => {
+const Products = ({animatedValue}) => {
+  const scrollViewRef = useRef(null);
+  const scrollDirection = useRef('');
+  const lastOffsetY = useRef(0);
+
   const {
     categoryStore: {categories},
     productsStore: {
@@ -46,7 +50,7 @@ const Products = () => {
       <Text bold style={styles.title}>
         {`Popular ${filterPr?.category_id?.name || ''}`}
       </Text>
-      <FlatList
+      <Animated.FlatList
         numColumns={2}
         data={handleDataOdd(products?.data)}
         showsVerticalScrollIndicator={false}
@@ -67,6 +71,22 @@ const Products = () => {
             />
           )
         }
+        ref={scrollViewRef}
+        onScroll={e => {
+          const offsetY = e.nativeEvent.contentOffset.y;
+          scrollDirection.current =
+            offsetY - lastOffsetY.current > 0 ? 'down' : 'up';
+          lastOffsetY.current = offsetY;
+          console.log('offsetY', offsetY);
+          animatedValue.setValue(offsetY);
+        }}
+        // onScrollEndDrag={() => {
+        //   scrollViewRef.current?.scrollTo({
+        //     y: scrollDirection.current === 'down' ? 100 : 0,
+        //     animated: true,
+        //   });
+        // }}
+        scrollEventThrottle={30}
       />
     </View>
   );

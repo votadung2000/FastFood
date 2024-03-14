@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Image} from 'react-native';
+import {View, StyleSheet, Image, Animated} from 'react-native';
 import {observer} from 'mobx-react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -11,7 +11,7 @@ import {wScale} from '@resolutions';
 
 const {scale} = resolutions;
 
-const Header = () => {
+const Header = ({titleHeaderAnimation}) => {
   const {
     animatedMenuStore: {handleShowMenu},
   } = useStore();
@@ -43,9 +43,9 @@ const Header = () => {
         </Button>
         <Image source={require('@images/avatar.png')} style={styles.img} />
       </View>
-      <Text bold style={styles.title}>
-        {'What would you like\nto order'}
-      </Text>
+      <Animated.View style={[styles.vwTitle, titleHeaderAnimation]}>
+        <Text style={styles.title}>{'What would you like\nto order'}</Text>
+      </Animated.View>
     </View>
   );
 };
@@ -90,9 +90,13 @@ const styles = StyleSheet.create({
     height: wScale(40),
     borderRadius: radius.radius10,
   },
+  vwTitle: {
+    justifyContent: 'center',
+  },
   title: {
-    marginTop: scale(28),
+    fontFamily: 'Inter-Bold',
     fontSize: fontSize.fontSize30,
+    color: colors.black,
   },
 });
 
