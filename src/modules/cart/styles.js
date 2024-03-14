@@ -11,6 +11,10 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
+  title: {
+    fontSize: fontSize.huge,
+    alignSelf: 'flex-end',
+  },
   back: {
     paddingHorizontal: scale(15),
   },
@@ -22,56 +26,9 @@ export default StyleSheet.create({
     paddingHorizontal: scale(15),
     height: '75%',
   },
-  vwImg: {
-    width: '20%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  img: {
-    width: scale(60),
-    height: scale(60),
-  },
-  containerItem: {
-    marginBottom: scale(15),
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: scale(5),
-    paddingVertical: scale(8),
-    backgroundColor: colors.white,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 3,
-    borderRadius: radius.radius14,
-  },
   flatList: {
     marginTop: scale(20),
     paddingHorizontal: scale(2),
-  },
-  bodyItem: {
-    flexDirection: 'column',
-    width: '76%',
-  },
-  headerItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    paddingVertical: scale(6),
-    alignItems: 'center',
-  },
-  remove: {
-    position: 'absolute',
-    right: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  priceItem: {
-    fontSize: fontSize.fontSize14,
   },
   ccStyle: {
     marginTop: scale(2),
@@ -108,9 +65,5 @@ export default StyleSheet.create({
   textLG: {
     fontSize: fontSize.large,
     color: colors.white,
-  },
-  title: {
-    fontSize: fontSize.huge,
-    alignSelf: 'flex-end',
   },
 });

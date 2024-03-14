@@ -18,6 +18,7 @@ const CardProducts = ({data}) => {
 
   const {
     productsStore: {fetchApiDetailProducts},
+    cartProductsStore: {fetchCartProduct},
   } = useStore();
 
   const handleProduct = () => {
@@ -26,7 +27,7 @@ const CardProducts = ({data}) => {
   };
 
   const handlePlusCart = () => {
-    // fetchCartProduct(item);
+    fetchCartProduct(data);
   };
 
   return (

@@ -11,12 +11,12 @@ import Text from '../Text';
 const ChangeQuantity = ({quantity, handlePlus, handleMinus}) => {
   return (
     <View style={styles.container}>
-      <Button onPress={handlePlus} style={styles.btn}>
-        <Entypo name="plus" color={colors.green} size={20} />
-      </Button>
-      <Text style={styles.total}>{quantity}</Text>
       <Button onPress={handleMinus} style={styles.btn}>
         <Entypo name="minus" color={colors.green} size={20} />
+      </Button>
+      <Text style={styles.total}>{quantity}</Text>
+      <Button onPress={handlePlus} style={styles.btn}>
+        <Entypo name="plus" color={colors.green} size={20} />
       </Button>
     </View>
   );
