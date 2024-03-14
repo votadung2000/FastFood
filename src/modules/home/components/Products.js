@@ -6,7 +6,7 @@ import {Text, EmptyComponent, LoadingComponent} from '@components';
 import {fontSize} from '@constant';
 import {handleDataOdd} from '@utils';
 import {useStore} from '@context';
-import {hScale, scale} from '@resolutions';
+import {scale} from '@resolutions';
 
 import CardProducts from './CardProducts';
 
@@ -75,6 +75,7 @@ const Products = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingBottom: scale(30),
   },
   title: {
     fontSize: fontSize.fontSize28,
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
   },
   ccSt: {
     flexGrow: 1,
-    paddingBottom: hScale(50),
+    paddingBottom: scale(50),
   },
   wrapperStyle: {
     justifyContent: 'space-around',

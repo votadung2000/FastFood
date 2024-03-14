@@ -44,7 +44,7 @@ const CardProducts = ({data}) => {
         </Text>
       </View>
       <Button onPress={() => handlePlusCart()} style={styles.plus}>
-        <AntDesign name="pluscircle" size={scale(26)} color={colors.orange} />
+        <AntDesign name="plus" size={scale(18)} color={colors.white} />
       </Button>
     </Button>
   );
@@ -92,11 +92,17 @@ const styles = StyleSheet.create({
     color: colors.gray,
   },
   plus: {
+    width: '50%',
     position: 'absolute',
     bottom: 0,
     right: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomEndRadius: radius.radius14,
+    borderTopStartRadius: radius.radius14,
     paddingHorizontal: scale(8),
     paddingVertical: scale(8),
+    backgroundColor: colors.orange_FE724C,
   },
 });
 
