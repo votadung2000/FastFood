@@ -1,56 +1,60 @@
-import React, {useEffect, useRef} from 'react';
-import {StyleSheet, View, Animated} from 'react-native';
+import React from 'react';
+import {StyleSheet, View, FlatList} from 'react-native';
 import {observer} from 'mobx-react';
 
 import {Text, EmptyComponent, LoadingComponent} from '@components';
 import {fontSize} from '@constant';
-import {handleDataOdd} from '@utils';
 import {useStore} from '@context';
 import {scale} from '@resolutions';
 
 import CardProducts from './CardProducts';
 
-const Products = ({animatedValue}) => {
-  const scrollViewRef = useRef(null);
-  const scrollDirection = useRef('');
-  const lastOffsetY = useRef(0);
+const Products = () => {
+  // const scrollViewRef = useRef(null);
+  // const scrollDirection = useRef('');
+  // const lastOffsetY = useRef(0);
 
   const {
-    categoryStore: {categories},
-    productsStore: {
-      filterPr,
-      products,
-      isLoadingProducts,
-      isFetchingProducts,
-      loadMoreListProducts,
-      fetchApiListProducts,
-    },
+    categoryStore: {isLoadingCategories, categories},
   } = useStore();
-
-  useEffect(() => {
-    fetchApiListProducts({category_id: categories?.data[0]});
-  }, []);
 
   const keyExtractor = (_, index) => index.toString();
 
   const renderItem = ({item}) => {
-    return item && Object.keys(item).length > 0 ? (
-      <CardProducts data={item} />
-    ) : null;
-  };
-
-  const onEndReached = () => {
-    if (!isFetchingProducts && products?.total > products?.data?.length) {
-      loadMoreListProducts();
-    }
+    return (
+      <View style={styles.card}>
+        <Text bold style={styles.nameCategory}>
+          {item?.name}
+        </Text>
+        <CardProducts data={item} />
+      </View>
+    );
   };
 
   return (
     <View style={styles.container}>
       <Text bold style={styles.title}>
-        {`Popular ${filterPr?.category_id?.name || ''}`}
+        {'Featured Items'}
       </Text>
-      <Animated.FlatList
+      <FlatList
+        data={categories?.data}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
+        bounces={false}
+        contentContainerStyle={styles.ccSt}
+        ListHeaderComponent={isLoadingCategories && <LoadingComponent />}
+        ListFooterComponent={isLoadingCategories && <LoadingComponent />}
+        ListEmptyComponent={
+          !isLoadingCategories && (
+            <EmptyComponent
+              title="Product's Empty"
+              // url={filterPr?.category_id?.image?.url}
+            />
+          )
+        }
+      />
+      {/* <Animated.FlatList
         numColumns={2}
         data={handleDataOdd(products?.data)}
         showsVerticalScrollIndicator={false}
@@ -87,7 +91,7 @@ const Products = ({animatedValue}) => {
         //   });
         // }}
         scrollEventThrottle={30}
-      />
+      /> */}
     </View>
   );
 };
@@ -107,6 +111,13 @@ const styles = StyleSheet.create({
   },
   wrapperStyle: {
     justifyContent: 'space-around',
+  },
+  card: {
+    marginBottom: scale(30),
+  },
+  nameCategory: {
+    fontSize: fontSize.large,
+    marginBottom: scale(10),
   },
 });
 
