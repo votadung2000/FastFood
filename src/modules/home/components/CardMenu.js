@@ -15,8 +15,6 @@ const CardMenu = ({data}) => {
     productsStore: {filterPr, fetchApiListProducts},
   } = useStore();
 
-  const isSelected = data?.id === filterPr?.category_id?.id;
-
   const handleItem = () => {
     if (filterPr?.category_id?.id !== data?.id) {
       fetchApiListProducts({category_id: data});
@@ -24,9 +22,7 @@ const CardMenu = ({data}) => {
   };
 
   return (
-    <Button
-      onPress={() => handleItem()}
-      style={[styles.container, isSelected && styles.cSelected]}>
+    <Button onPress={() => handleItem()} style={styles.container}>
       <View style={styles.vwImg}>
         <FastImage
           isPath
@@ -34,9 +30,7 @@ const CardMenu = ({data}) => {
           style={styles.imgMenu}
         />
       </View>
-      <Text
-        medium
-        style={[styles.txtItem, isSelected && styles.txtItemSelected]}>
+      <Text medium style={styles.txtItem}>
         {limitedString(data?.name, 6) || ''}
       </Text>
     </Button>
@@ -46,17 +40,13 @@ const CardMenu = ({data}) => {
 const styles = StyleSheet.create({
   container: {
     width: wScale(60),
-    height: hScale(100),
+    height: hScale(90),
     borderRadius: scale(30),
     margin: scale(2),
     marginRight: scale(15),
     alignItems: 'center',
     backgroundColor: colors.white,
     ...radius.shadow,
-  },
-  cSelected: {
-    backgroundColor: colors.orange_FE724C,
-    shadowColor: colors.orange_FE724C,
   },
   vwImg: {
     width: wScale(50),
@@ -74,12 +64,9 @@ const styles = StyleSheet.create({
     height: wScale(28),
   },
   txtItem: {
-    marginTop: scale(10),
+    marginTop: scale(6),
     fontSize: fontSize.smaller,
     color: colors.gray_67666D,
-  },
-  txtItemSelected: {
-    color: colors.white,
   },
 });
 

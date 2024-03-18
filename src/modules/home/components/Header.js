@@ -2,6 +2,7 @@ import React from 'react';
 import {View, StyleSheet, Image, Animated} from 'react-native';
 import {observer} from 'mobx-react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {Text, Button} from '@components';
 import {resolutions} from '@utils';
@@ -13,7 +14,7 @@ const {scale} = resolutions;
 
 const Header = ({titleHeaderAnimation}) => {
   const {
-    animatedMenuStore: {handleShowMenu},
+    animatedMenuStore: {isShowMenu, handleShowMenu},
   } = useStore();
 
   const goToUser = () => {
@@ -24,7 +25,11 @@ const Header = ({titleHeaderAnimation}) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Button onPress={goToUser} style={styles.btnMenu}>
-          <Ionicons size={scale(22)} name="menu" color={colors.black} />
+          <AntDesign
+            size={scale(20)}
+            name={isShowMenu ? 'menu-unfold' : 'menu-fold'}
+            color={colors.black}
+          />
         </Button>
         <Button style={styles.btnAddress}>
           <View style={styles.vwIntro}>
