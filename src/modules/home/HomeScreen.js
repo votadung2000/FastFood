@@ -4,10 +4,10 @@ import {observer} from 'mobx-react';
 import {useNavigationState, useIsFocused} from '@react-navigation/native';
 
 import {useStore} from '@context';
+import {hScale, scale} from '@resolutions';
 
 import {Products, Menu, Header} from './components';
 import styles from './styles';
-import {hScale, scale} from '@resolutions';
 
 const HomeScreen = () => {
   const isFocused = useIsFocused();

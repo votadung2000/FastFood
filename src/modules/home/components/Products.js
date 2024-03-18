@@ -1,5 +1,5 @@
-import React from 'react';
-import {StyleSheet, View, FlatList} from 'react-native';
+import React, {useRef} from 'react';
+import {StyleSheet, View, Animated} from 'react-native';
 import {observer} from 'mobx-react';
 
 import {Text, EmptyComponent, LoadingComponent} from '@components';
@@ -9,10 +9,10 @@ import {scale} from '@resolutions';
 
 import CardProducts from './CardProducts';
 
-const Products = () => {
-  // const scrollViewRef = useRef(null);
-  // const scrollDirection = useRef('');
-  // const lastOffsetY = useRef(0);
+const Products = ({animatedValue}) => {
+  const scrollViewRef = useRef(null);
+  const scrollDirection = useRef('');
+  const lastOffsetY = useRef(0);
 
   const {
     categoryStore: {isLoadingCategories, categories},
@@ -21,14 +21,18 @@ const Products = () => {
   const keyExtractor = (_, index) => index.toString();
 
   const renderItem = ({item}) => {
-    return (
-      <View style={styles.card}>
-        <Text bold style={styles.nameCategory}>
-          {item?.name}
-        </Text>
-        <CardProducts data={item} />
-      </View>
-    );
+    if (item?.products?.length > 0) {
+      return (
+        <View style={styles.card}>
+          <Text bold style={styles.nameCategory}>
+            {item?.name}
+          </Text>
+          <CardProducts data={item} />
+        </View>
+      );
+    }
+
+    return;
   };
 
   return (
@@ -36,7 +40,7 @@ const Products = () => {
       <Text bold style={styles.title}>
         {'Featured Items'}
       </Text>
-      <FlatList
+      <Animated.FlatList
         data={categories?.data}
         showsVerticalScrollIndicator={false}
         keyExtractor={keyExtractor}
@@ -46,34 +50,7 @@ const Products = () => {
         ListHeaderComponent={isLoadingCategories && <LoadingComponent />}
         ListFooterComponent={isLoadingCategories && <LoadingComponent />}
         ListEmptyComponent={
-          !isLoadingCategories && (
-            <EmptyComponent
-              title="Product's Empty"
-              // url={filterPr?.category_id?.image?.url}
-            />
-          )
-        }
-      />
-      {/* <Animated.FlatList
-        numColumns={2}
-        data={handleDataOdd(products?.data)}
-        showsVerticalScrollIndicator={false}
-        keyExtractor={keyExtractor}
-        renderItem={renderItem}
-        onEndReached={onEndReached}
-        bounces={false}
-        columnWrapperStyle={styles.wrapperStyle}
-        contentContainerStyle={styles.ccSt}
-        scrollIndicatorInsets={{right: 1}}
-        ListHeaderComponent={isLoadingProducts && <LoadingComponent />}
-        ListFooterComponent={isFetchingProducts && <LoadingComponent />}
-        ListEmptyComponent={
-          !isLoadingProducts && (
-            <EmptyComponent
-              title="Product's Empty"
-              url={filterPr?.category_id?.image?.url}
-            />
-          )
+          !isLoadingCategories && <EmptyComponent title="Product's Empty" />
         }
         ref={scrollViewRef}
         onScroll={e => {
@@ -81,17 +58,18 @@ const Products = () => {
           scrollDirection.current =
             offsetY - lastOffsetY.current > 0 ? 'down' : 'up';
           lastOffsetY.current = offsetY;
-          console.log('offsetY', offsetY);
           animatedValue.setValue(offsetY);
         }}
         // onScrollEndDrag={() => {
-        //   scrollViewRef.current?.scrollTo({
-        //     y: scrollDirection.current === 'down' ? 100 : 0,
-        //     animated: true,
-        //   });
+        //   if (scrollViewRef.current && scrollDirection.current) {
+        //     scrollViewRef.current?.scrollTo({
+        //       y: scrollDirection.current === 'down' ? hScale(80) : 0,
+        //       animated: true,
+        //     });
+        //   }
         // }}
         scrollEventThrottle={30}
-      /> */}
+      />
     </View>
   );
 };
