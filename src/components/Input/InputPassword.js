@@ -12,7 +12,6 @@ const InputPassword = (
   {
     medium,
     label,
-    value,
     name,
     touched,
     errors,
@@ -61,15 +60,13 @@ const InputPassword = (
           onEndEditing={handleBlur(name)}
           onTouchStart={handleInputStart}
         />
-        {value?.length ? (
-          <Button onPress={handleSecureText} style={styles.btnEye}>
-            <Ionicons
-              size={scale(18)}
-              name={secureText ? 'eye-off-outline' : 'eye-outline'}
-              color={colors.gray_C4C4C4}
-            />
-          </Button>
-        ) : null}
+        <Button onPress={handleSecureText} style={styles.btnEye}>
+          <Ionicons
+            size={scale(18)}
+            name={secureText ? 'eye-off-outline' : 'eye-outline'}
+            color={colors.gray_C4C4C4}
+          />
+        </Button>
       </View>
       {touched[name] && errors[name] ? (
         <Text style={styles.error}>{errors[name]}</Text>

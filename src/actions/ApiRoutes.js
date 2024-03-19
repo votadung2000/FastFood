@@ -1,6 +1,7 @@
 export default {
-  login: 'login',
-  category: 'category',
-  product: 'product',
-  favorite: 'favorite',
+  login: 'v1/login',
+  profile: 'v1/profile',
+  category: 'v1/category',
+  product: 'v1/product',
+  favorite: 'v1/favorite',
 };

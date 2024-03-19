@@ -1,7 +1,6 @@
 import React, {createRef, useState} from 'react';
 import {View, StyleSheet, ImageBackground} from 'react-native';
 import {useFormik} from 'formik';
-import {Notifier, NotifierComponents} from 'react-native-notifier';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import {
@@ -11,6 +10,7 @@ import {
   Button,
   Back,
   SignInSocial,
+  Notifer,
 } from '@components';
 import {useStore} from '@context';
 import {ApiLogin} from '@actionApi';
@@ -23,12 +23,12 @@ import LoginSchema from './LoginSchema';
 import {ModalForgotPass} from './components';
 
 const initialValues = {
-  user_name: '',
-  password: '',
+  username: 'register1',
+  password: 'register1',
 };
 
 const initialErrors = {
-  user_name: true,
+  username: true,
   password: true,
 };
 
@@ -62,42 +62,32 @@ const LoginScreen = ({navigation}) => {
     setSubmitting(true);
     try {
       let body = {
-        username: values?.user_name,
+        user_name: values?.username,
         password: values?.password,
       };
+
       let response = await ApiLogin(body);
-      if (response?.data) {
-        updateUser(response?.data);
-        setToken(response?.data?.token);
+      if (response?.data?.data) {
+        updateUser(response?.data?.data);
+        await setToken(response?.data?.data?.token);
         setSubmitting(false);
         resetForm(initialValues);
-        navigation.navigate(routes.HomeScreen);
-        Notifier.showNotification({
-          duration: 4000,
+        Notifer({
+          alertType: 'success',
           title: 'Đăng nhập thành công',
-          Component: NotifierComponents.Alert,
-          componentProps: {
-            alertType: 'success',
-          },
         });
       }
     } catch ({response}) {
       setSubmitting(false);
       if (!response) {
-        Notifier.showNotification({
+        Notifer({
+          alertType: 'warn',
           title: 'Vui lòng kiểm tra kết nối mạng',
-          Component: NotifierComponents.Alert,
-          componentProps: {
-            alertType: 'warn',
-          },
         });
       } else {
-        Notifier.showNotification({
+        Notifer({
+          alertType: 'error',
           title: 'Vui lòng thử lại',
-          Component: NotifierComponents.Alert,
-          componentProps: {
-            alertType: 'error',
-          },
         });
       }
     }
@@ -139,9 +129,9 @@ const LoginScreen = ({navigation}) => {
             <Input
               medium
               label="Username"
-              name="user_name"
+              name="username"
               placeholder="Your username"
-              value={values.user_name}
+              value={values.username}
               returnKeyType="next"
               style={styles.input}
               onSubmitEditing={focusPassword}

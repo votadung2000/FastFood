@@ -30,7 +30,7 @@ axios.interceptors.request.use(
     config.headers;
     if (!config.url.includes(ApiRoutes.login)) {
       const token = await getToken();
-      config.headers.Authorization = 'Bearer' + token;
+      config.headers.Authorization = 'Bearer ' + token;
     }
     return config;
   },
@@ -62,6 +62,13 @@ export const ApiLogin = body => {
     method: 'post',
     url: ApiRoutes.login,
     data: data,
+  });
+};
+
+export const ApiUserProfile = () => {
+  return axios({
+    method: 'get',
+    url: ApiRoutes.profile,
   });
 };
 

@@ -64,6 +64,10 @@ const RoutesNavigator = observer(() => {
 const AppContainer = () => {
   const navigationRef = useNavigationContainerRef();
 
+  const {
+    userStore: {refetchApiUserProfile},
+  } = useStore();
+
   useEffect(() => {
     RNBootSplash.hide();
 
@@ -80,6 +84,8 @@ const AppContainer = () => {
         });
       }
     });
+
+    refetchApiUserProfile();
   }, []);
 
   return (
