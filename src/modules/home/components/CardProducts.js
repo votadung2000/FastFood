@@ -7,12 +7,10 @@ import RNFastImage from 'react-native-fast-image';
 
 import {Text, Button, FastImage} from '@components';
 import {colors, fontSize, radius} from '@constant';
-import {resolutions, formatCurrency} from '@utils';
+import {formatCurrency} from '@utils';
 import {useStore} from '@context';
+import {hScale, wScale, scale} from '@resolutions';
 import routes from '@routes';
-import {hScale, wScale} from '@resolutions';
-
-const {scale} = resolutions;
 
 const CardProducts = ({data}) => {
   const navigation = useNavigation();

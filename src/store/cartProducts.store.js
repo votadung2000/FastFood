@@ -1,7 +1,8 @@
 import {action, makeAutoObservable} from 'mobx';
-import {Notifier, NotifierComponents} from 'react-native-notifier';
 
-import {formatCartProducts} from '../utils';
+import {formatCartProducts} from '@utils';
+import {Notifer} from '@components';
+
 class CartProductsStore {
   cartProducts = [];
   total = 0;
@@ -33,20 +34,14 @@ class CartProductsStore {
         this.cartProducts.push(formatCartProducts(item));
       }
       this.handleUpdateCost();
-      Notifier.showNotification({
+      Notifer({
         title: 'Thêm vào giỏ hàng thành công.',
-        Component: NotifierComponents.Alert,
-        componentProps: {
-          alertType: 'success',
-        },
+        alertType: 'success',
       });
     } catch (error) {
-      Notifier.showNotification({
+      Notifer({
         title: 'Thao tác lỗi.',
-        Component: NotifierComponents.Alert,
-        componentProps: {
-          alertType: 'info',
-        },
+        alertType: 'info',
       });
     }
   }
@@ -100,20 +95,14 @@ class CartProductsStore {
     try {
       this.cartProducts = this.cartProducts.filter(pr => pr?.id !== item?.id);
       this.handleUpdateCost();
-      Notifier.showNotification({
+      Notifer({
         title: 'Xóa sản phẩm thành công.',
-        Component: NotifierComponents.Alert,
-        componentProps: {
-          alertType: 'success',
-        },
+        alertType: 'success',
       });
     } catch (error) {
-      Notifier.showNotification({
+      Notifer({
         title: 'Thao tác lỗi.',
-        Component: NotifierComponents.Alert,
-        componentProps: {
-          alertType: 'info',
-        },
+        alertType: 'info',
       });
     }
   }

@@ -10,6 +10,7 @@ import LoadingComponent from './LoadingComponent';
 import Popup from './Popup';
 import SignInSocial from './SignInSocial';
 import Modal from './Modal';
+import Notifer from './Notifer';
 
 export {
   Text,
@@ -28,4 +29,5 @@ export {
   Popup,
   SignInSocial,
   Modal,
+  Notifer,
 };
