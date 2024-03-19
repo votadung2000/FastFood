@@ -67,8 +67,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   btnMenu: {
-    width: wScale(40),
-    height: wScale(40),
+    width: wScale(38),
+    height: wScale(38),
     borderRadius: radius.radius10,
     backgroundColor: colors.white,
     justifyContent: 'center',
@@ -91,8 +91,8 @@ const styles = StyleSheet.create({
     color: colors.orange_FE724C,
   },
   img: {
-    width: wScale(40),
-    height: wScale(40),
+    width: wScale(38),
+    height: wScale(38),
     borderRadius: radius.radius10,
   },
   vwTitle: {

@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import {View, ScrollView} from 'react-native';
+import {View, ScrollView, Image} from 'react-native';
 import {observer} from 'mobx-react';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import _uniqBy from 'lodash/uniqBy';
 
 import {
@@ -13,14 +12,11 @@ import {
   LoadingComponent,
 } from '@components';
 import {useStore} from '@context';
-import {colors} from '@constant';
-import {formatCurrency, findId, handleHeart, resolutions} from '@utils';
+import {formatCurrency, findId, handleHeart} from '@utils';
+import routes from '@routes';
 
 import {ListExtraFood} from './components';
 import styles from './styles';
-import routes from '@routes';
-
-const {scale} = resolutions;
 
 const ProductsDetailScreen = ({navigation}) => {
   const {
@@ -135,8 +131,11 @@ const ProductsDetailScreen = ({navigation}) => {
           </View>
         </View>
       </ScrollView>
-      <Button onPress={() => handlePlusCart()} style={styles.plus}>
-        <AntDesign name="shoppingcart" size={scale(24)} color={colors.white} />
+      <Button onPress={handlePlusCart} style={styles.plus}>
+        <View style={styles.vwImg}>
+          <Image source={require('@images/cart.png')} style={styles.imgCart} />
+        </View>
+        <Text style={styles.txtAdd}>{'ADD TO CART'}</Text>
       </Button>
       <Popup isVisible={Boolean(popup)} {...popup} />
     </View>

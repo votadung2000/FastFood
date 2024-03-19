@@ -1,9 +1,7 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
-import {colors, fontSize} from '@constant';
-import {resolutions} from '@utils';
-
-const {scale} = resolutions;
+import {colors, fontSize, radius} from '@constant';
+import {wScale, scale, hScale} from '@resolutions';
 
 const {height} = Dimensions.get('window');
 
@@ -19,7 +17,7 @@ export default StyleSheet.create({
     flex: 1,
   },
   back: {
-    marginHorizontal: scale(15),
+    marginHorizontal: scale(20),
   },
   header: {
     height: height * 0.6,
@@ -36,7 +34,7 @@ export default StyleSheet.create({
   },
   body: {
     flex: 1,
-    marginHorizontal: scale(15),
+    marginHorizontal: scale(20),
   },
   headerContent: {
     flexDirection: 'row',
@@ -59,21 +57,31 @@ export default StyleSheet.create({
   },
   plus: {
     position: 'absolute',
+    right: scale(20),
     bottom: scale(20),
-    right: scale(15),
-    backgroundColor: colors.orange,
-    width: scale(58),
-    height: scale(58),
-    justifyContent: 'center',
+    width: wScale(170),
+    height: hScale(52),
+    borderRadius: scale(26),
+    backgroundColor: colors.orange_FE724C,
+    flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: scale(58),
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
-    elevation: 6,
+    ...radius.shadow,
+  },
+  vwImg: {
+    width: wScale(40),
+    height: wScale(40),
+    borderRadius: radius.radius20,
+    backgroundColor: colors.white,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: scale(6),
+  },
+  imgCart: {
+    width: wScale(18),
+    height: wScale(18),
+  },
+  txtAdd: {
+    marginLeft: scale(10),
+    color: colors.white,
   },
 });
