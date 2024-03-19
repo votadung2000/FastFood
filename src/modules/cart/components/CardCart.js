@@ -2,6 +2,7 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {observer} from 'mobx-react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import RNFastImage from 'react-native-fast-image';
 
 import {Text, Button, ChangeQuantity, FastImage} from '@components';
 import {colors, fontSize, radius} from '@constant';
@@ -28,9 +29,14 @@ const CardCart = ({data}) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.vwImg}>
-        <FastImage isPath source={{uri: data?.image?.url}} style={styles.img} />
-      </View>
+      {/* <View style={styles.vwImg}> */}
+      <FastImage
+        isPath
+        source={{uri: data?.image?.url}}
+        style={styles.img}
+        resizeMode={RNFastImage.resizeMode.stretch}
+      />
+      {/* </View> */}
       <View style={styles.bodyItem}>
         <View style={styles.headerItem}>
           <Text bold>{data?.name}</Text>
@@ -82,10 +88,12 @@ const styles = StyleSheet.create({
     width: '20%',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'red',
   },
   img: {
     width: scale(60),
-    height: scale(60),
+    height: '100%',
+    borderRadius: radius.radius14,
   },
   bodyItem: {
     flexDirection: 'column',
