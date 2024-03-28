@@ -1,6 +1,5 @@
 import Text from './Text';
 import ModalLoading from './ModalLoading';
-import TotalCart from './TotalCart';
 import EmptyComponent from './EmptyComponent';
 import {Button, Back, ChangeQuantity} from './Button';
 import {Search} from './Search';
@@ -15,7 +14,6 @@ import Notifer from './Notifer';
 export {
   Text,
   ModalLoading,
-  TotalCart,
   EmptyComponent,
   Button,
   Back,
