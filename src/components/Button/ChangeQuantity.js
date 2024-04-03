@@ -8,6 +8,14 @@ import {scale, wScale} from '@resolutions';
 import Button from './Button';
 import Text from '../Text';
 
+const handleFormatQuantity = value => {
+  if (value * 1 > 9) {
+    return value;
+  } else {
+    return `0${value}`;
+  }
+};
+
 const ChangeQuantity = ({quantity, handlePlus, handleMinus}) => {
   return (
     <View style={styles.container}>
@@ -15,7 +23,7 @@ const ChangeQuantity = ({quantity, handlePlus, handleMinus}) => {
         <Entypo name="minus" color={colors.orange_FE724C} size={scale(18)} />
       </Button>
       <Text bold style={styles.total}>
-        {quantity}
+        {handleFormatQuantity(quantity)}
       </Text>
       <Button onPress={handlePlus} style={[styles.btn, styles.btnPlus]}>
         <Entypo name="plus" color={colors.white} size={scale(18)} />
