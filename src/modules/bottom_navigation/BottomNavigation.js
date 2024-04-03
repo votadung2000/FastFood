@@ -12,7 +12,6 @@ import routes from '@routes';
 import HomeScreen from '../home/HomeScreen';
 import SearchScreen from '../search/SearchScreen';
 import HeartScreen from '../heart/HeartScreen';
-import CartScreen from '../cart/CartScreen';
 
 import {TabBottom, Menu} from './components';
 
@@ -127,16 +126,6 @@ const TabBottomArr = [
       <Ionicons name="heart" size={scale(26)} color={colors.orange_FE724C} />
     ),
     component: HeartScreen,
-  },
-  {
-    id: 4,
-    name: routes.CartScreen,
-    keyLabel: 'Cart',
-    Icon: <Ionicons name="cart" size={scale(27)} color={colors.gray_D3D1D8} />,
-    IconFocused: (
-      <Ionicons name="cart" size={scale(27)} color={colors.orange_FE724C} />
-    ),
-    component: CartScreen,
   },
 ];
 

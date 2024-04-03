@@ -1,9 +1,12 @@
 import React from 'react';
 import {StyleSheet, View, Image} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {observer} from 'mobx-react';
 
 import {colors, fontSize} from '@constant';
 import {hScale, scale, wScale} from '@resolutions';
 import {Button, Text} from '@components';
+import {useStore} from '@context';
 import {
   SVG_My_Order,
   SVG_Profile,
@@ -15,8 +18,19 @@ import {
 } from '@svg';
 
 import ItemMenu from './ItemMenu';
+import routes from '@routes';
 
 const Menu = () => {
+  const navigation = useNavigation();
+
+  const {
+    cartProductsStore: {cartProducts},
+  } = useStore();
+
+  const handleNav = route => {
+    navigation.navigate(route);
+  };
+
   return (
     <View style={styles.container}>
       <Image source={require('@images/avatar.png')} style={styles.img} />
@@ -27,7 +41,12 @@ const Menu = () => {
         <Text style={styles.email}>{'demo@gmail.com'}</Text>
       </View>
       <View style={styles.menu}>
-        <ItemMenu Icon={<SVG_My_Order />} label={'My Orders'} />
+        <ItemMenu
+          label={'My Orders'}
+          count={cartProducts?.length || 0}
+          Icon={<SVG_My_Order />}
+          onPress={() => handleNav(routes.CartScreen)}
+        />
         <ItemMenu Icon={<SVG_Profile />} label={'My Profile'} />
         <ItemMenu Icon={<SVG_Delivery_Address />} label={'Delivery Address'} />
         <ItemMenu Icon={<SVG_Payment />} label={'Payment Methods'} />
@@ -94,4 +113,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Menu;
+export default observer(Menu);

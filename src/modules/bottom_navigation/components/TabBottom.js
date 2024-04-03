@@ -1,17 +1,9 @@
 import React from 'react';
 import {Platform, StyleSheet, View} from 'react-native';
 
-import {colors, fontSize} from '@constant';
 import {scale, wScale} from '@resolutions';
-import routes from '@routes';
-
-import TotalCart from './TotalCart';
 
 const TabBottom = ({data, focused}) => {
-  if (data?.name === routes.CartScreen) {
-    return <TotalCart focused={focused} data={data} />;
-  }
-
   return (
     <View style={styles.containerViewTab}>
       <View style={styles.vwIconViewTab}>
@@ -33,13 +25,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: Platform.OS === 'ios' ? 0 : scale(2),
-  },
-  txtLabelTB: {
-    textAlign: 'center',
-    fontSize: fontSize.small,
-  },
-  txtLabelTBFocused: {
-    color: colors.orange,
   },
 });
 
