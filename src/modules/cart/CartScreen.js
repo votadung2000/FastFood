@@ -1,10 +1,8 @@
 import React from 'react';
 import {View, FlatList} from 'react-native';
 import {observer} from 'mobx-react';
-import LinearGradient from 'react-native-linear-gradient';
 
 import {Text, Button, Back, EmptyComponent} from '@components';
-import {colors} from '@constant';
 import {formatCurrency} from '@utils';
 import {useStore} from '@context';
 
@@ -49,17 +47,11 @@ const CartScreen = () => {
               <Item bold label="Items" value={formatCurrency(total)} />
               <Item bold label="Discount" value={formatCurrency(discount)} />
               <Item bold label="Cost" value={formatCurrency(totalCost)} />
-              <LinearGradient
-                start={{x: 0, y: 0}}
-                end={{x: 1, y: 0}}
-                colors={[colors.yellow, colors.yellowSystem]}
-                style={styles.linearGradient}>
-                <Button onPress={() => handlePayment()} style={styles.btnLG}>
-                  <Text bold style={styles.textLG}>
-                    {'Payment & Delivery'}
-                  </Text>
-                </Button>
-              </LinearGradient>
+              <Button onPress={() => handlePayment()} style={styles.btnLG}>
+                <Text bold style={styles.textLG}>
+                  {'Payment & Delivery'}
+                </Text>
+              </Button>
             </View>
           ) : null}
         </View>

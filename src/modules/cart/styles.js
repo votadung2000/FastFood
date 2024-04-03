@@ -2,6 +2,7 @@ import {StyleSheet, Dimensions} from 'react-native';
 
 import {colors, fontSize, radius} from '@constant';
 import {resolutions} from '@utils';
+import {hScale} from '@resolutions';
 
 const {width} = Dimensions.get('window');
 const {scale} = resolutions;
@@ -37,30 +38,21 @@ export default StyleSheet.create({
     height: '25%',
     backgroundColor: colors.white,
     zIndex: 999,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 3,
-    borderTopLeftRadius: scale(30),
-    borderTopRightRadius: scale(30),
+    borderTopLeftRadius: scale(20),
+    borderTopRightRadius: scale(20),
     justifyContent: 'space-around',
+    paddingTop: scale(10),
     paddingBottom: scale(10),
-  },
-  linearGradient: {
-    width: width * 0.75,
-    borderRadius: radius.radius14,
-    alignSelf: 'center',
-    marginTop: scale(10),
+    ...radius.shadow,
   },
   btnLG: {
-    width: '100%',
-    paddingVertical: scale(10),
+    width: width * 0.75,
+    height: hScale(54),
+    borderRadius: scale(26),
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
+    backgroundColor: colors.orange_FE724C,
   },
   textLG: {
     fontSize: fontSize.large,
