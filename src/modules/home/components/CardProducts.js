@@ -25,8 +25,8 @@ const CardProducts = ({data}) => {
     navigation.navigate(routes.ProductsDetailScreen);
   };
 
-  const handlePlusCart = () => {
-    fetchCartProduct(data);
+  const handlePlusCart = item => {
+    fetchCartProduct(item);
   };
 
   const keyExtractor = (_, index) => index.toString();
@@ -50,7 +50,7 @@ const CardProducts = ({data}) => {
           <Text bold style={styles.price}>
             {`${formatCurrency(item?.price)} Đ`}
           </Text>
-          <Button onPress={handlePlusCart} style={styles.plus}>
+          <Button style={styles.plus} onPress={() => handlePlusCart(item)}>
             <AntDesign name="plus" size={scale(18)} color={colors.white} />
           </Button>
         </View>

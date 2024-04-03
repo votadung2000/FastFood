@@ -1,16 +1,34 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Image, StyleSheet, Dimensions, Platform} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {Button, Text} from '@components';
 import {hScale, scale, wScale} from '@resolutions';
 import {DATA_CAROUSEL, colors, fontSize} from '@constant';
+import {getCarousel, setCarousel} from '@storage';
 import routes from '@routes';
 
 const {width} = Dimensions.get('window');
 
-const CarouselScreen = ({navigation}) => {
+const CarouselScreen = () => {
+  const navigation = useNavigation();
+
   const [indexCarousel, setIndexCarousel] = useState(0);
+
+  useEffect(() => {
+    handleCheckFirstCarousel();
+  }, []);
+
+  const handleCheckFirstCarousel = async () => {
+    let firstCarousel = await getCarousel();
+
+    if (!firstCarousel) {
+      await setCarousel('HAD');
+    } else {
+      navigation.replace(routes.RoutesNavigator);
+    }
+  };
 
   const handleCarousel = () => {
     if (indexCarousel + 1 === DATA_CAROUSEL?.length) {
