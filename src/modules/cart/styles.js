@@ -48,7 +48,7 @@ export default StyleSheet.create({
     borderTopLeftRadius: scale(30),
     borderTopRightRadius: scale(30),
     justifyContent: 'space-around',
-    paddingVertical: scale(10),
+    paddingBottom: scale(10),
   },
   linearGradient: {
     width: width * 0.75,

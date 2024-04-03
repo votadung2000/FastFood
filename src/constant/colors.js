@@ -40,6 +40,7 @@ export default {
   // Red
   red: '#ff3b30',
   redSystem: '#DB2121',
+  red_FF3600: '#FF3600',
 
   // Tag
   heart: '#FE5D5D',

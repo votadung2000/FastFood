@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 import {colors, fontSize, radius} from '@constant';
-import {scale} from '@resolutions';
+import {scale, wScale} from '@resolutions';
 
 import Button from './Button';
 import Text from '../Text';
@@ -11,12 +11,14 @@ import Text from '../Text';
 const ChangeQuantity = ({quantity, handlePlus, handleMinus}) => {
   return (
     <View style={styles.container}>
-      <Button onPress={handleMinus} style={styles.btn}>
-        <Entypo name="minus" color={colors.green} size={20} />
+      <Button onPress={handleMinus} style={[styles.btn, styles.btnMinus]}>
+        <Entypo name="minus" color={colors.orange_FE724C} size={scale(18)} />
       </Button>
-      <Text style={styles.total}>{quantity}</Text>
-      <Button onPress={handlePlus} style={styles.btn}>
-        <Entypo name="plus" color={colors.green} size={20} />
+      <Text bold style={styles.total}>
+        {quantity}
+      </Text>
+      <Button onPress={handlePlus} style={[styles.btn, styles.btnPlus]}>
+        <Entypo name="plus" color={colors.white} size={scale(18)} />
       </Button>
     </View>
   );
@@ -27,25 +29,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '35%',
   },
   btn: {
-    paddingHorizontal: scale(5),
-    paddingVertical: scale(3),
-    borderRadius: radius.radius2,
+    width: wScale(30),
+    height: wScale(30),
+    borderRadius: scale(30),
     backgroundColor: colors.white,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 3,
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...radius.shadow,
+  },
+  btnMinus: {
+    borderWidth: scale(1),
+    borderColor: colors.orange_FE724C,
+  },
+  btnPlus: {
+    backgroundColor: colors.orange_FE724C,
   },
   total: {
     fontSize: fontSize.fontSize14,
-    paddingHorizontal: scale(10),
+    paddingHorizontal: scale(15),
     textAlign: 'center',
   },
 });

@@ -8,7 +8,7 @@ import {Text, Button, ChangeQuantity, FastImage} from '@components';
 import {colors, fontSize, radius} from '@constant';
 import {formatCurrency} from '@utils';
 import {useStore} from '@context';
-import {scale} from '@resolutions';
+import {scale, wScale} from '@resolutions';
 
 const CardCart = ({data}) => {
   const {
@@ -29,36 +29,37 @@ const CardCart = ({data}) => {
 
   return (
     <View style={styles.container}>
-      {/* <View style={styles.vwImg}> */}
       <FastImage
         isPath
         source={{uri: data?.image?.url}}
         style={styles.img}
         resizeMode={RNFastImage.resizeMode.stretch}
       />
-      {/* </View> */}
       <View style={styles.bodyItem}>
         <View style={styles.headerItem}>
           <Text bold>{data?.name}</Text>
           <Button onPress={() => handleRemove(data)} style={styles.remove}>
             <MaterialCommunityIcons
               name="delete-sweep"
-              color={colors.graySystem2}
-              size={24}
+              color={colors.red_FF3600}
+              size={scale(24)}
             />
           </Button>
         </View>
         <View style={styles.headerItem}>
+          <View>
+            <Text bold style={styles.priceItem}>
+              {`${formatCurrency(data?.price)} `}
+              <Text bold style={styles.unit}>
+                {'Đ'}
+              </Text>
+            </Text>
+          </View>
           <ChangeQuantity
             quantity={data?.quantity}
             handlePlus={() => handlePlus(data)}
             handleMinus={() => handleMinus(data)}
           />
-          <View>
-            <Text bold style={styles.priceItem}>{`${formatCurrency(
-              data?.price,
-            )} Đ`}</Text>
-          </View>
         </View>
       </View>
     </View>
@@ -70,9 +71,9 @@ const styles = StyleSheet.create({
     marginBottom: scale(15),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: scale(5),
-    paddingVertical: scale(8),
+    paddingLeft: scale(10),
+    paddingRight: scale(10),
+    paddingVertical: scale(10),
     backgroundColor: colors.white,
     shadowColor: '#000',
     shadowOffset: {
@@ -91,29 +92,30 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
   },
   img: {
-    width: scale(60),
-    height: '100%',
+    width: wScale(82),
+    height: wScale(82),
     borderRadius: radius.radius14,
   },
   bodyItem: {
+    flexGrow: 1,
+    marginLeft: scale(20),
     flexDirection: 'column',
-    width: '76%',
+    justifyContent: 'space-between',
   },
   headerItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '100%',
-    paddingVertical: scale(6),
     alignItems: 'center',
   },
   remove: {
-    position: 'absolute',
-    right: 0,
     justifyContent: 'center',
     alignItems: 'center',
   },
   priceItem: {
-    fontSize: fontSize.fontSize14,
+    fontSize: fontSize.big,
+  },
+  unit: {
+    color: colors.orange_FE724C,
   },
 });
 
