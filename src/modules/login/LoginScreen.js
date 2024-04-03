@@ -68,7 +68,6 @@ const LoginScreen = ({navigation}) => {
 
       let response = await ApiLogin(body);
       if (response?.data?.data) {
-        updateUser(response?.data?.data);
         await setToken(response?.data?.data?.token);
         setSubmitting(false);
         resetForm(initialValues);
@@ -76,6 +75,7 @@ const LoginScreen = ({navigation}) => {
           alertType: 'success',
           title: 'Đăng nhập thành công',
         });
+        updateUser(response?.data?.data);
       }
     } catch ({response}) {
       setSubmitting(false);

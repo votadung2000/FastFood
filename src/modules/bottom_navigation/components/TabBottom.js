@@ -2,9 +2,10 @@ import React from 'react';
 import {Platform, StyleSheet, View} from 'react-native';
 
 import {colors, fontSize} from '@constant';
-import {TotalCart} from '@components';
 import {scale, wScale} from '@resolutions';
 import routes from '@routes';
+
+import TotalCart from './TotalCart';
 
 const TabBottom = ({data, focused}) => {
   if (data?.name === routes.CartScreen) {
