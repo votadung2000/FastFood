@@ -8,7 +8,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Text, Button, FastImage} from '@components';
 import {colors, fontSize, radius} from '@constant';
 import {useStore} from '@context';
-import {formatCurrency, limitedString, resolutions} from '@utils';
+import {formatCurrency, resolutions} from '@utils';
 import routes from '@routes';
 
 const {scale} = resolutions;
@@ -35,14 +35,20 @@ const CardFavorite = ({data}) => {
 
   return (
     <Button onPress={() => handleProduct()} style={styles.container}>
-      <FastImage isPath source={{uri: data?.image?.url}} style={styles.img} />
+      <FastImage
+        isPath
+        source={{uri: data?.product?.image?.url}}
+        style={styles.img}
+      />
       <View style={styles.content}>
-        <Text bold style={[styles.txtItem, styles.txtName]}>
-          {limitedString(data?.name, 10)}
+        <Text bold numberOfLines={1} style={[styles.txtItem, styles.txtName]}>
+          {data?.product?.name}
         </Text>
-        <Text style={[styles.txtItem, styles.txtTaste]}>{data?.taste}</Text>
+        <Text style={[styles.txtItem, styles.txtTaste]}>
+          {data?.product?.taste}
+        </Text>
         <Text bold style={styles.txtItem}>{`${formatCurrency(
-          data?.price,
+          data?.product?.price,
         )} Đ`}</Text>
       </View>
       <View style={styles.footer}>
