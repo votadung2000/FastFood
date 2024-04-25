@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {observer} from 'mobx-react';
 
 import {colors, fontSize} from '@constant';
 import {hScale, scale, wScale} from '@resolutions';
-import {Button, Text} from '@components';
+import {Button, Text, Popup} from '@components';
 import {useStore} from '@context';
 import {
   SVG_My_Order,
@@ -16,19 +16,43 @@ import {
   SVG_Setting,
   SVG_Helps,
 } from '@svg';
+import routes from '@routes';
 
 import ItemMenu from './ItemMenu';
-import routes from '@routes';
+import {clearToken} from '@storage';
 
 const Menu = () => {
   const navigation = useNavigation();
 
   const {
+    userStore: {user, updateUser},
     cartProductsStore: {cartProducts},
   } = useStore();
 
+  const [popup, setPopup] = useState(null);
+
   const handleNav = route => {
     navigation.navigate(route);
+  };
+
+  const handleConfirmLogOut = () => {
+    setPopup({
+      title: 'Attention',
+      accept: 'Sign Out',
+      content: 'Do you want to sign out?',
+      handleAccept: handleAccept,
+      handleCancel: handleCancel,
+    });
+  };
+
+  const handleAccept = async () => {
+    await clearToken();
+    updateUser(null);
+    setPopup(null);
+  };
+
+  const handleCancel = () => {
+    setPopup(null);
   };
 
   return (
@@ -36,9 +60,9 @@ const Menu = () => {
       <Image source={require('@images/avatar.png')} style={styles.img} />
       <View style={styles.vwInfo}>
         <Text bold style={styles.name}>
-          {'Name Demo'}
+          {user?.name || ''}
         </Text>
-        <Text style={styles.email}>{'demo@gmail.com'}</Text>
+        <Text style={styles.email}>{user?.email || ''}</Text>
       </View>
       <View style={styles.menu}>
         <ItemMenu
@@ -54,13 +78,14 @@ const Menu = () => {
         <ItemMenu Icon={<SVG_Setting />} label={'Settings'} />
         <ItemMenu Icon={<SVG_Helps />} label={'Helps & FAQs'} />
       </View>
-      <Button style={styles.btnLogOut}>
+      <Button style={styles.btnLogOut} onPress={handleConfirmLogOut}>
         <Image
           source={require('@images/log_out.png')}
           style={styles.imgLogOut}
         />
         <Text style={styles.txtLogOut}>{'Log Out'}</Text>
       </Button>
+      <Popup isVisible={Boolean(popup)} {...popup} />
     </View>
   );
 };

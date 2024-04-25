@@ -13,7 +13,6 @@ import {
   Notifer,
 } from '@components';
 import {useStore} from '@context';
-import {ApiLogin} from '@actionApi';
 import {setToken} from '@storage';
 import {colors, fontSize} from '@constant';
 import {hScale, scale} from '@resolutions';
@@ -34,7 +33,7 @@ const initialErrors = {
 
 const LoginScreen = ({navigation}) => {
   const {
-    userStore: {updateUser},
+    userStore: {fetchLogin, fetchApiUserProfile},
   } = useStore();
 
   const refPassword = createRef();
@@ -66,16 +65,16 @@ const LoginScreen = ({navigation}) => {
         password: values?.password,
       };
 
-      let response = await ApiLogin(body);
-      if (response?.data?.data) {
-        await setToken(response?.data?.data?.token);
+      let response = await fetchLogin(body);
+      if (response) {
+        await setToken(response?.token);
         setSubmitting(false);
         resetForm(initialValues);
         Notifer({
           alertType: 'success',
           title: 'Đăng nhập thành công',
         });
-        updateUser(response?.data?.data);
+        await fetchApiUserProfile();
       }
     } catch ({response}) {
       setSubmitting(false);

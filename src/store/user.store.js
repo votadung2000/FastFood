@@ -8,7 +8,7 @@ class UserStore {
 
   constructor() {
     makeAutoObservable(this, {
-      fetchUser: action.bound,
+      fetchLogin: action.bound,
       fetchApiUserProfile: action.bound,
       refetchApiUserProfile: action.bound,
 
@@ -20,12 +20,12 @@ class UserStore {
     this.user = params;
   }
 
-  async fetchUser(data) {
+  async fetchLogin(data) {
     try {
       let response = await ApiLogin(data);
-      runInAction(() => {
-        this.user = response.data;
-      });
+      if (response.data?.data) {
+        return response.data?.data;
+      }
     } catch (error) {}
   }
 
