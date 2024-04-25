@@ -5,6 +5,7 @@ import {useNavigationState, useIsFocused} from '@react-navigation/native';
 
 import {useStore} from '@context';
 import {hScale, scale} from '@resolutions';
+import {Notifer} from '@components';
 
 import {Products, Menu, Header} from './components';
 import styles from './styles';
