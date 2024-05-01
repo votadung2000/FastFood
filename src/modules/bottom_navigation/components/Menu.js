@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Image} from 'react-native';
+import {StyleSheet, View, Image, ScrollView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {observer} from 'mobx-react';
 
@@ -56,46 +56,59 @@ const Menu = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Image source={require('@images/avatar.png')} style={styles.img} />
-      <View style={styles.vwInfo}>
-        <Text bold style={styles.name}>
-          {user?.name || ''}
-        </Text>
-        <Text style={styles.email}>{user?.email || ''}</Text>
+    <ScrollView
+      bounces
+      style={styles.scroll}
+      showsVerticalScrollIndicator={false}>
+      <View style={styles.container}>
+        <Image source={require('@images/avatar.png')} style={styles.img} />
+        <View style={styles.vwInfo}>
+          <Text bold style={styles.name}>
+            {user?.name || ''}
+          </Text>
+          <Text style={styles.email}>{user?.email || ''}</Text>
+        </View>
+        <View style={styles.menu}>
+          <ItemMenu
+            label={'My Orders'}
+            count={cartProducts?.length || 0}
+            Icon={<SVG_My_Order />}
+            onPress={() => handleNav(routes.CartScreen)}
+          />
+          <ItemMenu Icon={<SVG_Profile />} label={'My Profile'} />
+          <ItemMenu
+            Icon={<SVG_Delivery_Address />}
+            label={'Delivery Address'}
+          />
+          <ItemMenu Icon={<SVG_Payment />} label={'Payment Methods'} />
+          <ItemMenu Icon={<SVG_Contact />} label={'Contact Us'} />
+          <ItemMenu Icon={<SVG_Setting />} label={'Settings'} />
+          <ItemMenu Icon={<SVG_Helps />} label={'Helps & FAQs'} />
+        </View>
+        <Button style={styles.btnLogOut} onPress={handleConfirmLogOut}>
+          <Image
+            source={require('@images/log_out.png')}
+            style={styles.imgLogOut}
+          />
+          <Text style={styles.txtLogOut}>{'Log Out'}</Text>
+        </Button>
+        <Popup isVisible={Boolean(popup)} {...popup} />
       </View>
-      <View style={styles.menu}>
-        <ItemMenu
-          label={'My Orders'}
-          count={cartProducts?.length || 0}
-          Icon={<SVG_My_Order />}
-          onPress={() => handleNav(routes.CartScreen)}
-        />
-        <ItemMenu Icon={<SVG_Profile />} label={'My Profile'} />
-        <ItemMenu Icon={<SVG_Delivery_Address />} label={'Delivery Address'} />
-        <ItemMenu Icon={<SVG_Payment />} label={'Payment Methods'} />
-        <ItemMenu Icon={<SVG_Contact />} label={'Contact Us'} />
-        <ItemMenu Icon={<SVG_Setting />} label={'Settings'} />
-        <ItemMenu Icon={<SVG_Helps />} label={'Helps & FAQs'} />
-      </View>
-      <Button style={styles.btnLogOut} onPress={handleConfirmLogOut}>
-        <Image
-          source={require('@images/log_out.png')}
-          style={styles.imgLogOut}
-        />
-        <Text style={styles.txtLogOut}>{'Log Out'}</Text>
-      </Button>
-      <Popup isVisible={Boolean(popup)} {...popup} />
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  scroll: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
   container: {
     flex: 1,
     backgroundColor: colors.white,
     marginLeft: scale(20),
     marginTop: scale(50),
+    paddingBottom: scale(30),
   },
   img: {
     width: wScale(90),
@@ -117,10 +130,10 @@ const styles = StyleSheet.create({
     marginTop: scale(30),
   },
   btnLogOut: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: scale(30),
+    // position: 'absolute',
+    // left: 0,
+    // right: 0,
+    // bottom: scale(30),
     width: wScale(120),
     height: hScale(44),
     borderRadius: scale(22),
