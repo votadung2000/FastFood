@@ -3,7 +3,14 @@ import {View, StyleSheet, ImageBackground} from 'react-native';
 import {useFormik} from 'formik';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-import {Input, Text, Button, Back, SignInSocial} from '@components';
+import {
+  Input,
+  Text,
+  Button,
+  Back,
+  SignInSocial,
+  ModalLoading,
+} from '@components';
 import {colors, fontSize} from '@constant';
 import {hScale, scale} from '@resolutions';
 
@@ -35,7 +42,7 @@ const RegisterScreen = ({navigation}) => {
   const refAddress = createRef();
   const redAvatar = createRef();
 
-  const [isSubmitting, setSubmitting] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const {
     values,
@@ -54,8 +61,15 @@ const RegisterScreen = ({navigation}) => {
   });
 
   const onSubmit = () => {
-    setSubmitting(true);
-    resetForm();
+    setLoading({isVisible: true});
+    setTimeout(() => {
+      setLoading({
+        isVisible: false,
+        onModalHide: async () => {
+          resetForm(initialValues);
+        },
+      });
+    }, 2000);
   };
 
   const focusUsername = () => {
@@ -184,7 +198,7 @@ const RegisterScreen = ({navigation}) => {
             />
           </View>
           <Button
-            disabled={!isValid || isSubmitting}
+            disabled={!isValid}
             style={styles.btnSignUp}
             onPress={handleSubmit}>
             <Text bold style={styles.textSignUp}>
@@ -194,6 +208,7 @@ const RegisterScreen = ({navigation}) => {
           <SignInSocial />
         </View>
       </KeyboardAwareScrollView>
+      <ModalLoading {...loading} />
     </View>
   );
 };

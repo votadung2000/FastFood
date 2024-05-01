@@ -11,6 +11,7 @@ import {
   Back,
   SignInSocial,
   Notifer,
+  ModalLoading,
 } from '@components';
 import {useStore} from '@context';
 import {setToken} from '@storage';
@@ -38,7 +39,7 @@ const LoginScreen = ({navigation}) => {
 
   const refPassword = createRef();
 
-  const [isSubmitting, setSubmitting] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState({isVisible: false});
 
   const {
@@ -58,7 +59,7 @@ const LoginScreen = ({navigation}) => {
   });
 
   const onSubmit = async () => {
-    setSubmitting(true);
+    setLoading({isVisible: true});
     try {
       let body = {
         user_name: values?.username,
@@ -68,16 +69,20 @@ const LoginScreen = ({navigation}) => {
       let response = await fetchLogin(body);
       if (response) {
         await setToken(response?.token);
-        setSubmitting(false);
-        resetForm(initialValues);
-        Notifer({
-          alertType: 'success',
-          title: 'Đăng nhập thành công',
+        setLoading({
+          isVisible: false,
+          onModalHide: async () => {
+            resetForm(initialValues);
+            Notifer({
+              alertType: 'success',
+              title: 'Đăng nhập thành công',
+            });
+            await fetchApiUserProfile();
+          },
         });
-        await fetchApiUserProfile();
       }
     } catch ({response}) {
-      setSubmitting(false);
+      setLoading({isVisible: false});
       if (!response) {
         Notifer({
           alertType: 'warn',
@@ -156,7 +161,7 @@ const LoginScreen = ({navigation}) => {
               </Text>
             </Button>
             <Button
-              disabled={!isValid || isSubmitting}
+              disabled={!isValid}
               style={styles.btnLogin}
               onPress={handleSubmit}>
               <Text bold style={styles.textLogin}>
@@ -180,6 +185,7 @@ const LoginScreen = ({navigation}) => {
         </View>
       </KeyboardAwareScrollView>
       <ModalForgotPass handleClose={handleCloseModalForgotPass} {...modal} />
+      <ModalLoading {...loading} />
     </View>
   );
 };
@@ -206,6 +212,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     paddingHorizontal: scale(25),
+    paddingBottom: scale(50),
   },
   title: {
     fontSize: fontSize.fontSize34,

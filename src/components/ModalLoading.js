@@ -4,14 +4,14 @@ import Modal from 'react-native-modal';
 
 import {colors} from '@constant';
 
-const ModalLoading = ({isVisible}) => {
+const ModalLoading = ({...rest}) => {
   return (
     <Modal
-      isVisible={isVisible}
       style={styles.modal}
       backdropOpacity={0.72}
       animationIn="fadeIn"
-      animationOut="fadeOut">
+      animationOut="fadeOut"
+      {...rest}>
       <View style={styles.container}>
         <ActivityIndicator size="small" color={colors.gray} />
       </View>
@@ -27,9 +27,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    margin: 0,
-    height: 100,
-    backgroundColor: 'red',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
