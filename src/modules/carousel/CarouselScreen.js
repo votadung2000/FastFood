@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, Image, StyleSheet, Dimensions, Platform} from 'react-native';
+import {
+  View,
+  Image,
+  StyleSheet,
+  Dimensions,
+  Platform,
+  ScrollView,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
@@ -40,37 +47,43 @@ const CarouselScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.card}>
-        <Image
-          source={DATA_CAROUSEL[indexCarousel]?.image}
-          style={styles.imgCard}
-          resizeMode="contain"
-        />
-        <View style={styles.vwDes}>
-          <Text style={styles.title}>
-            {DATA_CAROUSEL[indexCarousel]?.title}
-          </Text>
-          <Text style={styles.context}>
-            {DATA_CAROUSEL[indexCarousel]?.context}
-          </Text>
+    <ScrollView
+      bounces
+      style={styles.scroll}
+      showsVerticalScrollIndicator={false}>
+      <View style={styles.container}>
+        <View style={styles.card}>
+          <Image
+            source={DATA_CAROUSEL[indexCarousel]?.image}
+            style={styles.imgCard}
+            resizeMode="contain"
+          />
+          <View style={styles.vwDes}>
+            <Text style={styles.title}>
+              {DATA_CAROUSEL[indexCarousel]?.title}
+            </Text>
+            <Text style={styles.context}>
+              {DATA_CAROUSEL[indexCarousel]?.context}
+            </Text>
+          </View>
         </View>
+        <Button style={styles.btnNext} onPress={handleCarousel}>
+          <AntDesign name="arrowright" size={wScale(28)} color={colors.white} />
+        </Button>
       </View>
-      <Button style={styles.btnNext} onPress={handleCarousel}>
-        <AntDesign name="arrowright" size={wScale(28)} color={colors.white} />
-      </Button>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  safeArea: {
+  scroll: {
     flex: 1,
     backgroundColor: colors.white,
   },
   container: {
     flex: 1,
     backgroundColor: colors.white,
+    paddingBottom: scale(50),
     ...Platform.select({
       android: {
         paddingTop: scale(50),
