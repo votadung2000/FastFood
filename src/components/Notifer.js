@@ -1,24 +1,34 @@
-// import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Notifier, NotifierComponents} from 'react-native-notifier';
-// import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {colors, fontSize} from '@constant';
-// import {hScale} from '@resolutions';
+import {wScale} from '@resolutions';
 
 const Notifer = ({alertType, title, des}) => {
-  const getTileStyle = () => {
+  const getInfo = () => {
     if (alertType === 'error') {
-      return styles.titleError;
+      return {
+        style: styles.titleError,
+        image: require('../../assets/images/notifer_error.png'),
+      };
     }
     if (alertType === 'success') {
-      return styles.titleSuccess;
+      return {
+        style: styles.titleSuccess,
+        image: require('../../assets/images/notifer_success.png'),
+      };
     }
     if (alertType === 'warn') {
-      return styles.titleWarn;
+      return {
+        style: styles.titleWarn,
+        image: require('../../assets/images/notifer_warn.png'),
+      };
     }
     if (alertType === 'info') {
-      return styles.titleInfo;
+      return {
+        style: styles.titleInfo,
+        image: require('../../assets/images/notifer_info.png'),
+      };
     }
   };
 
@@ -27,30 +37,26 @@ const Notifer = ({alertType, title, des}) => {
       return Notifier.showNotification({
         title: title,
         description: des,
-        // Component: NotifierComponents.Alert,
         Component: NotifierComponents.Notification,
         componentProps: {
           alertType: alertType || 'info', // error(red), success(green), warn(orange) and info(blue)
-          titleStyle: getTileStyle(),
-          // titleStyle: styles.titleStyle,
+          titleStyle: getInfo()?.style,
           descriptionStyle: styles.desStyle,
-          imageSource: require('../../assets/images/avatar.png'),
+          imageSource: getInfo()?.image,
+          imageStyle: styles.imageStyle,
         },
-        // containerStyle: styles.ccSt
       });
     } else {
       return Notifier.showNotification({
         title: title,
-        // Component: NotifierComponents.Alert,
         Component: NotifierComponents.Notification,
         componentProps: {
           alertType: alertType || 'info',
-          titleStyle: getTileStyle(),
-          // titleStyle: styles.titleStyle,
+          titleStyle: getInfo()?.style,
           descriptionStyle: styles.desStyle,
-          imageSource: require('../../assets/images/avatar.png'),
+          imageSource: getInfo()?.image,
+          imageStyle: styles.imageStyle,
         },
-        // containerStyle: styles.ccSt
       });
     }
   }
@@ -65,6 +71,10 @@ const styles = StyleSheet.create({
   titleStyle: {
     color: colors.white,
     fontFamily: 'Inter-Regular',
+  },
+  imageStyle: {
+    width: wScale(24),
+    height: wScale(24),
   },
   titleError: {
     fontSize: fontSize.fontSize16,
