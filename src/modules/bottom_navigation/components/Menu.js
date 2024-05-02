@@ -37,6 +37,7 @@ const Menu = () => {
 
   const handleConfirmLogOut = () => {
     setPopup({
+      isVisible: true,
       title: 'Attention',
       accept: 'Sign Out',
       content: 'Do you want to sign out?',
@@ -46,13 +47,17 @@ const Menu = () => {
   };
 
   const handleAccept = async () => {
-    await clearToken();
-    updateUser(null);
-    setPopup(null);
+    setPopup({
+      isVisible: false,
+      onModalHide: async () => {
+        await clearToken();
+        updateUser(null);
+      },
+    });
   };
 
   const handleCancel = () => {
-    setPopup(null);
+    setPopup({isVisible: false});
   };
 
   return (
@@ -92,7 +97,7 @@ const Menu = () => {
           />
           <Text style={styles.txtLogOut}>{'Log Out'}</Text>
         </Button>
-        <Popup isVisible={Boolean(popup)} {...popup} />
+        <Popup {...popup} />
       </View>
     </ScrollView>
   );

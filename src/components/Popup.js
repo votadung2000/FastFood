@@ -1,15 +1,15 @@
 import React, {memo} from 'react';
 import {StyleSheet, View} from 'react-native';
-import Modal from 'react-native-modal';
+// import Modal from 'react-native-modal';
 
 import {colors, fontSize, radius} from '@constant';
 import {scale} from '@resolutions';
 
 import Button from './Button/Button';
 import Text from './Text';
+import Modal from './Modal';
 
 const Popup = ({
-  isVisible,
   Icon,
   title,
   content,
@@ -18,16 +18,10 @@ const Popup = ({
   require,
   handleCancel,
   handleAccept,
+  ...rest
 }) => {
   return (
-    <Modal
-      useNativeDriver
-      hideModalContentWhileAnimating
-      isVisible={isVisible}
-      style={styles.modal}
-      animationIn="slideInUp"
-      animationOut="slideOutDown"
-      backdropTransitionOutTiming={0}>
+    <Modal stModal={styles.modal} {...rest}>
       <View style={styles.container}>
         <View style={styles.content}>
           {Icon && Icon}
