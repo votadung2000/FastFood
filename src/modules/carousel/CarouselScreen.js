@@ -48,7 +48,7 @@ const CarouselScreen = () => {
 
   return (
     <ScrollView
-      bounces
+      bounces={false}
       style={styles.scroll}
       showsVerticalScrollIndicator={false}>
       <View style={styles.container}>

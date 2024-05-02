@@ -80,7 +80,11 @@ const Menu = () => {
             Icon={<SVG_My_Order />}
             onPress={() => handleNav(routes.CartScreen)}
           />
-          <ItemMenu Icon={<SVG_Profile />} label={'My Profile'} />
+          <ItemMenu
+            label={'My Profile'}
+            Icon={<SVG_Profile />}
+            onPress={() => handleNav(routes.ProfileScreen)}
+          />
           <ItemMenu
             Icon={<SVG_Delivery_Address />}
             label={'Delivery Address'}

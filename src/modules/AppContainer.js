@@ -18,7 +18,7 @@ import CarouselScreen from './carousel/CarouselScreen';
 import WelcomeScreen from './welcome/WelcomeScreen';
 import ProductsDetailScreen from './detail/ProductsDetailScreen';
 import CartScreen from './cart/CartScreen';
-import UserScreen from './user/UserScreen';
+import ProfileScreen from './profile/ProfileScreen';
 import DetailCardSearch from './detail_card_search/DetailCardSearch';
 import LoginScreen from './login/LoginScreen';
 import RegisterScreen from './register/RegisterScreen';
@@ -131,8 +131,8 @@ const RoutesUser = [
   },
   {
     id: 5,
-    name: routes.UserScreen,
-    component: UserScreen,
+    name: routes.ProfileScreen,
+    component: ProfileScreen,
   },
   {
     id: 6,

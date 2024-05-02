@@ -9,7 +9,7 @@ export default {
   HeartScreen: 'HeartScreen',
   CartScreen: 'CartScreen',
   Logging: 'Logging',
-  UserScreen: 'UserScreen',
+  ProfileScreen: 'ProfileScreen',
   SearchScreen: 'SearchScreen',
   DetailCardSearch: 'DetailCardSearch',
   LoginScreen: 'LoginScreen',
