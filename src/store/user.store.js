@@ -1,16 +1,18 @@
 import {action, makeAutoObservable, runInAction} from 'mobx';
 
-import {ApiLogin, ApiUserProfile} from '@actionApi';
+import {ApiLogin, ApiUserProfile, ApiRegister} from '@actionApi';
 import {getToken} from '@storage';
+import {Notifer} from '@components';
 
 class UserStore {
   user = null;
 
   constructor() {
     makeAutoObservable(this, {
-      fetchLogin: action.bound,
+      fetchApiLogin: action.bound,
       fetchApiUserProfile: action.bound,
       refetchApiUserProfile: action.bound,
+      fetchApiRegister: action.bound,
 
       updateUser: action.bound,
     });
@@ -20,13 +22,11 @@ class UserStore {
     this.user = params;
   }
 
-  async fetchLogin(data) {
-    try {
-      let response = await ApiLogin(data);
-      if (response.data?.data) {
-        return response.data?.data;
-      }
-    } catch (error) {}
+  async fetchApiLogin(data) {
+    let response = await ApiLogin(data);
+    if (response.data?.data) {
+      return response.data?.data;
+    }
   }
 
   async fetchApiUserProfile() {
@@ -35,13 +35,25 @@ class UserStore {
       runInAction(() => {
         this.user = response?.data?.data;
       });
-    } catch (error) {}
+    } catch ({response}) {
+      Notifer({
+        alertType: 'error',
+        title: response?.data?.message || '',
+      });
+    }
   }
 
   async refetchApiUserProfile() {
     let token = await getToken();
     if (token) {
       this.fetchApiUserProfile();
+    }
+  }
+
+  async fetchApiRegister(data) {
+    let response = await ApiRegister(data);
+    if (response.data?.data) {
+      return response.data?.data;
     }
   }
 }

@@ -2,6 +2,7 @@ import React, {createRef, useState} from 'react';
 import {View, StyleSheet, ImageBackground} from 'react-native';
 import {useFormik} from 'formik';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {observer} from 'mobx-react';
 
 import {
   Input,
@@ -34,7 +35,7 @@ const initialErrors = {
 
 const LoginScreen = ({navigation}) => {
   const {
-    userStore: {fetchLogin, fetchApiUserProfile},
+    userStore: {fetchApiLogin, fetchApiUserProfile},
   } = useStore();
 
   const refPassword = createRef();
@@ -66,7 +67,7 @@ const LoginScreen = ({navigation}) => {
         password: values?.password,
       };
 
-      let response = await fetchLogin(body);
+      let response = await fetchApiLogin(body);
       if (response) {
         await setToken(response?.token);
         setLoading({
@@ -75,7 +76,7 @@ const LoginScreen = ({navigation}) => {
             resetForm(initialValues);
             Notifer({
               alertType: 'success',
-              title: 'Đăng nhập thành công',
+              title: 'Login Successfully!',
             });
             await fetchApiUserProfile();
           },
@@ -91,7 +92,7 @@ const LoginScreen = ({navigation}) => {
       } else {
         Notifer({
           alertType: 'error',
-          title: 'Vui lòng thử lại',
+          title: response?.data?.message || '',
         });
       }
     }
@@ -265,4 +266,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default observer(LoginScreen);

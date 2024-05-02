@@ -37,7 +37,6 @@ const Input = (
       {label && <Text style={styles.label}>{label}</Text>}
       <TextInput
         ref={ref}
-        {...rest}
         autoCapitalize="none"
         placeholderTextColor={colors.gray_C4C4C4}
         style={[
@@ -52,6 +51,7 @@ const Input = (
         onBlur={onBlur}
         onEndEditing={handleBlur(name)}
         onTouchStart={handleInputStart}
+        {...rest}
       />
       {touched[name] && errors[name] ? (
         <Text style={styles.error}>{errors[name]}</Text>

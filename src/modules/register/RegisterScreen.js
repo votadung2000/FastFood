@@ -2,6 +2,8 @@ import React, {createRef, useState} from 'react';
 import {View, StyleSheet, ImageBackground} from 'react-native';
 import {useFormik} from 'formik';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {observer} from 'mobx-react';
+import {useNavigation} from '@react-navigation/native';
 
 import {
   Input,
@@ -10,37 +12,45 @@ import {
   Back,
   SignInSocial,
   ModalLoading,
+  Notifer,
 } from '@components';
 import {colors, fontSize} from '@constant';
 import {hScale, scale} from '@resolutions';
+import {useStore} from '@context';
 
 import RegisterSchema from './RegisterSchema';
+import routes from '@routes';
 
 const initialValues = {
   name: '',
   user_name: '',
   password: '',
+  re_password: '',
   phone_number: '',
   email: '',
-  address: '',
-  avatar: '',
 };
 
 const initialErrors = {
   name: true,
   user_name: true,
   password: true,
+  re_password: true,
   phone_number: true,
   email: true,
 };
 
-const RegisterScreen = ({navigation}) => {
+const RegisterScreen = () => {
   const refUsername = createRef();
   const refPassword = createRef();
+  const refRePassword = createRef();
   const refPhoneNumber = createRef();
   const refEmail = createRef();
-  const refAddress = createRef();
-  const redAvatar = createRef();
+
+  const navigation = useNavigation();
+
+  const {
+    userStore: {fetchApiRegister},
+  } = useStore();
 
   const [loading, setLoading] = useState(false);
 
@@ -60,16 +70,46 @@ const RegisterScreen = ({navigation}) => {
     onSubmit: () => onSubmit(),
   });
 
-  const onSubmit = () => {
-    setLoading({isVisible: true});
-    setTimeout(() => {
-      setLoading({
-        isVisible: false,
-        onModalHide: async () => {
-          resetForm(initialValues);
-        },
-      });
-    }, 2000);
+  const onSubmit = async () => {
+    try {
+      setLoading({isVisible: true});
+
+      let body = {
+        name: values.name,
+        user_name: values.user_name,
+        password: values.password,
+        phone_number: values.phone_number,
+        email: values.email,
+      };
+
+      let response = await fetchApiRegister(body);
+      if (response) {
+        setLoading({
+          isVisible: false,
+          onModalHide: async () => {
+            resetForm(initialValues);
+            Notifer({
+              alertType: 'success',
+              title: 'Register Successfully!',
+            });
+            navigation.navigate(routes.LoginScreen);
+          },
+        });
+      }
+    } catch ({response}) {
+      setLoading({isVisible: false});
+      if (!response) {
+        Notifer({
+          alertType: 'warn',
+          title: 'Vui lòng kiểm tra kết nối mạng',
+        });
+      } else {
+        Notifer({
+          alertType: 'error',
+          title: response?.data?.message || '',
+        });
+      }
+    }
   };
 
   const focusUsername = () => {
@@ -79,6 +119,9 @@ const RegisterScreen = ({navigation}) => {
   const focusPassword = () => {
     refPassword.current?.focus();
   };
+  const focusRePassword = () => {
+    refRePassword.current?.focus();
+  };
 
   const focusPhoneNumber = () => {
     refPhoneNumber.current?.focus();
@@ -86,14 +129,6 @@ const RegisterScreen = ({navigation}) => {
 
   const focusEmail = () => {
     refEmail.current?.focus();
-  };
-
-  const focusAddress = () => {
-    refAddress.current?.focus();
-  };
-
-  const focusAvatar = () => {
-    redAvatar.current?.focus();
   };
 
   return (
@@ -145,6 +180,18 @@ const RegisterScreen = ({navigation}) => {
               value={values.password}
               returnKeyType="next"
               style={styles.input}
+              onSubmitEditing={focusRePassword}
+              {...{errors, touched, handleBlur, handleChange}}
+            />
+            <Input
+              medium
+              ref={refRePassword}
+              label="Re-Password"
+              name="re_password"
+              placeholder="Enter your password again"
+              value={values.re_password}
+              returnKeyType="next"
+              style={styles.input}
               onSubmitEditing={focusPhoneNumber}
               {...{errors, touched, handleBlur, handleChange}}
             />
@@ -170,30 +217,7 @@ const RegisterScreen = ({navigation}) => {
               value={values.email}
               returnKeyType="next"
               style={styles.input}
-              onSubmitEditing={focusAddress}
-              {...{errors, touched, handleBlur, handleChange}}
-            />
-            <Input
-              medium
-              ref={refAddress}
-              label="Address"
-              name="address"
-              placeholder="Enter your address"
-              value={values.address}
-              returnKeyType="next"
-              style={styles.input}
-              onSubmitEditing={focusAvatar}
-              {...{errors, touched, handleBlur, handleChange}}
-            />
-            <Input
-              medium
-              ref={redAvatar}
-              label="Avatar"
-              name="avatar"
-              placeholder="Select your avatar"
-              value={values.avatar}
-              returnKeyType="done"
-              style={styles.input}
+              onSubmitEditing={handleSubmit}
               {...{errors, touched, handleBlur, handleChange}}
             />
           </View>
@@ -279,4 +303,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegisterScreen;
+export default observer(RegisterScreen);

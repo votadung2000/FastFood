@@ -7,7 +7,7 @@ import {
 import Config from 'react-native-config';
 import axios from 'axios';
 
-import {getToken} from '@storage';
+import {clearToken, getToken} from '@storage';
 
 import ApiRoutes from './ApiRoutes';
 
@@ -28,7 +28,10 @@ axios.interceptors.request.use(
   async config => {
     config.baseURL = Config.API_HOST_V1;
     config.headers;
-    if (!config.url.includes(ApiRoutes.login)) {
+    if (
+      !config.url.includes(ApiRoutes.login) &&
+      !config.url.includes(ApiRoutes.register)
+    ) {
       const token = await getToken();
       config.headers.Authorization = 'Bearer ' + token;
     }
@@ -43,13 +46,17 @@ axios.interceptors.response.use(
   response => {
     return response;
   },
-  error => {
+  async error => {
     if (__DEV__) {
       if (!error?.response) {
         console.log(error);
       } else {
         const {config, status, data} = error?.response || {};
         console.log(`URL: ${config?.url}\n`, `STATUS: ${status}\n`, data);
+
+        if (status === 400 && data?.error_key === 'ERR_TOKEN_NOT_FOUND') {
+          await clearToken();
+        }
       }
     }
     return Promise.reject(error);
@@ -61,6 +68,15 @@ export const ApiLogin = body => {
   return axios({
     method: 'post',
     url: ApiRoutes.login,
+    data: data,
+  });
+};
+
+export const ApiRegister = body => {
+  let data = {...body, ...infoDevices};
+  return axios({
+    method: 'post',
+    url: ApiRoutes.register,
     data: data,
   });
 };
