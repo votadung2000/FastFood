@@ -7,8 +7,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {colors} from '@constant';
 import {scale} from '@resolutions';
 
-import Button from '../Button/Button';
-import Modal from '../Modal';
+import Button from '../Buttons/Button';
+import Modal from '../Modals/Modal';
 
 const ImagesViewer = ({images, index, closeModal, ...rest}) => {
   const imageUrls = images?.map(ele => {

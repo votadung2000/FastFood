@@ -5,7 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {colors, fontSize, radius} from '@constant';
 import {hScale, scale} from '@resolutions';
 
-import Button from '../Button/Button';
+import Button from '../Buttons/Button';
 import Text from '../Text';
 
 const InputPassword = (

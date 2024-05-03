@@ -11,6 +11,7 @@ import findBgLg from './findBgLg';
 import randomImgEmpty from './randomImgEmpty';
 import checkIfValidUUID from './checkIfValidUUID';
 import differentData from './differentData';
+import formatImage from './formatImage';
 
 export {
   resolutions,
@@ -26,4 +27,5 @@ export {
   randomImgEmpty,
   checkIfValidUUID,
   differentData,
+  formatImage,
 };

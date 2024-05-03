@@ -5,9 +5,9 @@ import {StyleSheet, View} from 'react-native';
 import {colors, fontSize, radius} from '@constant';
 import {scale} from '@resolutions';
 
-import Button from './Button/Button';
+import Button from './Buttons/Button';
 import Text from './Text';
-import Modal from './Modal';
+import Modal from './Modals/Modal';
 
 const Popup = ({
   Icon,

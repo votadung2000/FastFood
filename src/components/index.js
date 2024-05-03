@@ -1,31 +1,34 @@
 import Text from './Text';
-import ModalLoading from './ModalLoading';
+import {Modal, ModalLoading, ModalSelect} from './Modals';
 import EmptyComponent from './EmptyComponent';
-import {Button, Back, ChangeQuantity} from './Button';
+import {Button, Back, ChangeQuantity, ButtonCamAndLib} from './Buttons';
 import {Search} from './Search';
 import {Input, InputPassword} from './Input';
 import {FastImage, ImagesViewer} from './Image';
 import LoadingComponent from './LoadingComponent';
+import Loading from './Loading';
 import Popup from './Popup';
 import SignInSocial from './SignInSocial';
-import Modal from './Modal';
 import Notifer from './Notifer';
 
 export {
   Text,
+  Modal,
   ModalLoading,
+  ModalSelect,
   EmptyComponent,
   Button,
   Back,
   ChangeQuantity,
+  ButtonCamAndLib,
   Search,
   Input,
   InputPassword,
   FastImage,
   ImagesViewer,
   LoadingComponent,
+  Loading,
   Popup,
   SignInSocial,
-  Modal,
   Notifer,
 };

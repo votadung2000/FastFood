@@ -5,7 +5,7 @@ import {hScale, scale} from '@resolutions';
 import {colors, fontSize, radius} from '@constant';
 import {SVG_Facebook, SVG_Google} from '@svg';
 
-import Button from './Button/Button';
+import Button from './Buttons/Button';
 import Text from './Text';
 
 const SignInSocial = () => {

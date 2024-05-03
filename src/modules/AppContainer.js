@@ -37,6 +37,7 @@ const RoutesNavigator = observer(() => {
   return (
     <Layout>
       <Stack.Navigator
+        initialRouteName={routes.EditProfileScreen}
         screenOptions={{
           headerShown: false,
           gestureEnabled: false,

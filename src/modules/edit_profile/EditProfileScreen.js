@@ -4,6 +4,7 @@ import {useFormik} from 'formik';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {observer} from 'mobx-react';
 import {useNavigation} from '@react-navigation/native';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 import {
   Input,
@@ -13,6 +14,7 @@ import {
   ImagesViewer,
   ModalLoading,
   Notifer,
+  ButtonCamAndLib,
 } from '@components';
 import {colors, fontSize, radius} from '@constant';
 import {hScale, scale, wScale} from '@resolutions';
@@ -153,6 +155,21 @@ const EditProfileScreen = () => {
         <Back style={styles.back} />
         <Button style={styles.btnImg} onPress={handleZoomAvatar}>
           <Image source={require('@images/avatar.png')} style={styles.img} />
+          <ButtonCamAndLib
+            Icon={
+              <View style={styles.vwIcon}>
+                <Entypo
+                  name="camera"
+                  size={scale(16)}
+                  color={colors.gray_B3B3B3}
+                />
+              </View>
+            }
+            stContainer={styles.stContainerIcon}
+          />
+          {/* <View style={styles.vwIcon}>
+                <Entypo name="camera" size={scale(18)} color={colors.gray_B3B3B3} />
+              </View> */}
         </Button>
         <View style={styles.content}>
           <View style={styles.form}>
@@ -268,6 +285,22 @@ const styles = StyleSheet.create({
     width: wScale(90),
     height: wScale(90),
     borderRadius: scale(90),
+  },
+  stContainerIcon: {
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  vwIcon: {
+    width: wScale(40),
+    height: wScale(40),
+    borderRadius: scale(40),
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.white,
+    ...radius.shadow,
   },
   content: {
     flex: 1,
