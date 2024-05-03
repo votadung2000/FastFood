@@ -5,7 +5,15 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {observer} from 'mobx-react';
 import {useNavigation} from '@react-navigation/native';
 
-import {Input, Text, Button, Back, ModalLoading, Notifer} from '@components';
+import {
+  Input,
+  Text,
+  Button,
+  Back,
+  ImagesViewer,
+  ModalLoading,
+  Notifer,
+} from '@components';
 import {colors, fontSize, radius} from '@constant';
 import {hScale, scale, wScale} from '@resolutions';
 import {useStore} from '@context';
@@ -33,6 +41,7 @@ const EditProfileScreen = () => {
   } = useStore();
 
   const [loading, setLoading] = useState(false);
+  const [zoom, setZoom] = useState({isVisible: false});
 
   const initialValues = {
     name: user?.name || '',
@@ -116,6 +125,17 @@ const EditProfileScreen = () => {
     refAddress.current?.focus();
   };
 
+  const handleZoomAvatar = () => {
+    setZoom({
+      isVisible: true,
+      images: [{source: require('@images/avatar.png')}],
+    });
+  };
+
+  const handleCloseZoom = () => {
+    setZoom({isVisible: false});
+  };
+
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView
@@ -129,9 +149,9 @@ const EditProfileScreen = () => {
           style={styles.image}
         />
         <Back style={styles.back} />
-        <View style={styles.vwImg}>
+        <Button style={styles.btnImg} onPress={handleZoomAvatar}>
           <Image source={require('@images/avatar.png')} style={styles.img} />
-        </View>
+        </Button>
         <View style={styles.content}>
           <View style={styles.form}>
             <Input
@@ -206,6 +226,7 @@ const EditProfileScreen = () => {
         </View>
       </KeyboardAwareScrollView>
       <ModalLoading {...loading} />
+      <ImagesViewer {...zoom} closeModal={handleCloseZoom} />
     </View>
   );
 };
@@ -230,7 +251,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: scale(25),
     marginTop: scale(27),
   },
-  vwImg: {
+  btnImg: {
     width: wScale(110),
     height: wScale(110),
     borderRadius: scale(110),

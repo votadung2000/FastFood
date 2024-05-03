@@ -2,18 +2,28 @@ import React from 'react';
 import {StyleSheet, View, ActivityIndicator} from 'react-native';
 import {isIphoneX} from 'react-native-iphone-x-helper';
 import ImageViewer from 'react-native-image-zoom-viewer';
-import Modal from 'react-native-modal';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {colors} from '@constant';
 import {scale} from '@resolutions';
 
 import Button from '../Button/Button';
+import Modal from '../Modal';
 
-const ImagesViewer = ({images, index, closeModal}) => {
-  const imageUrls = images?.map(image => ({
-    url: image,
-  }));
+const ImagesViewer = ({images, index, closeModal, ...rest}) => {
+  const imageUrls = images?.map(ele => {
+    if (ele?.uri) {
+      return {url: ele?.uri};
+    }
+    if (ele?.source) {
+      return {
+        url: '',
+        props: {
+          source: ele?.source,
+        },
+      };
+    }
+  });
 
   const renderHeader = () => (
     <View style={styles.header}>
@@ -32,29 +42,21 @@ const ImagesViewer = ({images, index, closeModal}) => {
   );
 
   return (
-    <Modal
-      useNativeDriver
-      isVisible={true}
-      onBackButtonPress={closeModal}
-      onBackdropPress={closeModal}
-      style={styles.modal}>
+    <Modal {...rest}>
       <ImageViewer
         useNativeDriver
         enableSwipeDown
         index={index || 0}
         imageUrls={imageUrls}
-        onCancel={closeModal}
         loadingRender={loadingRender}
         renderHeader={renderHeader}
+        backgroundColor="rgba(0, 0, 0, 0.5)"
       />
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
-  modal: {
-    margin: 0,
-  },
   header: {
     zIndex: 999,
     position: 'absolute',

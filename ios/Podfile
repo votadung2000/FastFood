@@ -1,9 +1,20 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+require_relative '../node_modules/react-native-permissions/scripts/setup'
 
 # platform :ios, '11.0'
 platform :ios, min_ios_version_supported
 prepare_react_native_project!
+
+setup_permissions([
+  'Camera',
+  # 'LocationAccuracy',
+  # 'LocationAlways',
+  # 'LocationWhenInUse',
+  'Notifications',
+  'PhotoLibrary',
+  'PhotoLibraryAddOnly',
+])
 
 target 'fastfood' do
   config = use_native_modules!

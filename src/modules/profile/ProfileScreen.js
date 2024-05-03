@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
   StyleSheet,
   ImageBackground,
@@ -9,7 +9,7 @@ import {
 import {observer} from 'mobx-react';
 import {useNavigation, useFocusEffect} from '@react-navigation/native';
 
-import {Back, Button, Text} from '@components';
+import {Back, Button, ImagesViewer, Text} from '@components';
 import {colors, fontSize, radius} from '@constant';
 import {scale, wScale} from '@resolutions';
 import {useStore} from '@context';
@@ -24,6 +24,8 @@ const ProfileScreen = () => {
     userStore: {user, refetchApiUserProfile},
   } = useStore();
 
+  const [zoom, setZoom] = useState({isVisible: false});
+
   useFocusEffect(
     useCallback(() => {
       refetchApiUserProfile();
@@ -32,6 +34,17 @@ const ProfileScreen = () => {
 
   const handleNav = route => {
     navigation.navigate(route);
+  };
+
+  const handleZoomAvatar = () => {
+    setZoom({
+      isVisible: true,
+      images: [{source: require('@images/avatar.png')}],
+    });
+  };
+
+  const handleCloseZoom = () => {
+    setZoom({isVisible: false});
   };
 
   return (
@@ -46,9 +59,9 @@ const ProfileScreen = () => {
           style={styles.image}
         />
         <Back style={styles.back} />
-        <View style={styles.vwImg}>
+        <Button style={styles.btnImg} onPress={handleZoomAvatar}>
           <Image source={require('@images/avatar.png')} style={styles.img} />
-        </View>
+        </Button>
         <Button
           style={styles.btnEdit}
           onPress={() => handleNav(routes.EditProfileScreen)}>
@@ -78,6 +91,7 @@ const ProfileScreen = () => {
           />
         </View>
       </ScrollView>
+      <ImagesViewer {...zoom} closeModal={handleCloseZoom} />
     </View>
   );
 };
@@ -97,7 +111,7 @@ const styles = StyleSheet.create({
     marginTop: scale(27),
     paddingHorizontal: scale(25),
   },
-  vwImg: {
+  btnImg: {
     width: wScale(110),
     height: wScale(110),
     borderRadius: scale(110),
