@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {
   StyleSheet,
   ImageBackground,
@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from 'react-native';
 import {observer} from 'mobx-react';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
 
 import {Back, Button, Text} from '@components';
 import {colors, fontSize, radius} from '@constant';
@@ -21,8 +21,14 @@ const ProfileScreen = () => {
   const navigation = useNavigation();
 
   const {
-    userStore: {user},
+    userStore: {user, refetchApiUserProfile},
   } = useStore();
+
+  useFocusEffect(
+    useCallback(() => {
+      refetchApiUserProfile();
+    }, []),
+  );
 
   const handleNav = route => {
     navigation.navigate(route);

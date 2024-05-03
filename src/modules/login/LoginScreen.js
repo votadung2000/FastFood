@@ -87,7 +87,7 @@ const LoginScreen = ({navigation}) => {
       if (!response) {
         Notifer({
           alertType: 'warn',
-          title: 'Vui lòng kiểm tra kết nối mạng',
+          title: 'Please check your network connection',
         });
       } else {
         Notifer({

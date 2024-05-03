@@ -1,6 +1,11 @@
 import {action, makeAutoObservable, runInAction} from 'mobx';
 
-import {ApiLogin, ApiUserProfile, ApiRegister} from '@actionApi';
+import {
+  ApiLogin,
+  ApiUserProfile,
+  ApiRegister,
+  ApiUpdateProfile,
+} from '@actionApi';
 import {getToken} from '@storage';
 import {Notifer} from '@components';
 
@@ -13,6 +18,7 @@ class UserStore {
       fetchApiUserProfile: action.bound,
       refetchApiUserProfile: action.bound,
       fetchApiRegister: action.bound,
+      fetchApiUpdateProfile: action.bound,
 
       updateUser: action.bound,
     });
@@ -52,6 +58,13 @@ class UserStore {
 
   async fetchApiRegister(data) {
     let response = await ApiRegister(data);
+    if (response.data?.data) {
+      return response.data?.data;
+    }
+  }
+
+  async fetchApiUpdateProfile(data) {
+    let response = await ApiUpdateProfile(data);
     if (response.data?.data) {
       return response.data?.data;
     }

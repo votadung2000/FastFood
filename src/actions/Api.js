@@ -88,6 +88,14 @@ export const ApiUserProfile = () => {
   });
 };
 
+export const ApiUpdateProfile = data => {
+  return axios({
+    method: 'patch',
+    url: ApiRoutes.updateProfile,
+    data: data,
+  });
+};
+
 export const ApiListCategories = () => {
   return axios({
     method: 'get',

@@ -11,7 +11,9 @@ const ItemCard = ({label, value, style}) => {
     <View {...style}>
       {label && <Text style={styles.label}>{label}</Text>}
       <View style={styles.vwValue}>
-        <Text style={styles.txtValue}>{value}</Text>
+        <Text medium style={styles.txtValue}>
+          {value}
+        </Text>
       </View>
     </View>
   );
