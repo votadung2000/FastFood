@@ -40,7 +40,7 @@ const ButtonCamAndLib = ({
     setPopup({isVisible: false});
   };
 
-  const handleConfirm = () => {
+  const handleAccept = () => {
     openSettings();
   };
 
@@ -51,8 +51,8 @@ const ButtonCamAndLib = ({
       content: 'Confirm permission to use the gallery and camera',
       cancel: 'Cancel',
       handleCancel: handleCancel,
-      confirm: 'Confirm',
-      handleConfirm: handleConfirm,
+      accept: 'Confirm',
+      handleAccept: handleAccept,
     });
   };
 

@@ -5,7 +5,7 @@ const OPTION_IMAGE = {
   },
   LIBRARY: {
     id: 2,
-    name: 'Library',
+    name: 'Gallery',
   },
 };
 

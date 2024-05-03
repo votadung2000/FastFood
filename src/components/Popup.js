@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     width: '50%',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: scale(5),
+    paddingVertical: scale(8),
   },
   w100: {
     width: '100%',

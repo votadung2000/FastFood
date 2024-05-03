@@ -1,7 +1,13 @@
 import Text from './Text';
 import {Modal, ModalLoading, ModalSelect} from './Modals';
 import EmptyComponent from './EmptyComponent';
-import {Button, Back, ChangeQuantity, ButtonCamAndLib} from './Buttons';
+import {
+  Button,
+  Back,
+  ChangeQuantity,
+  ButtonCamAndLib,
+  ButtonOpenURL,
+} from './Buttons';
 import {Search} from './Search';
 import {Input, InputPassword} from './Input';
 import {FastImage, ImagesViewer} from './Image';
@@ -21,6 +27,7 @@ export {
   Back,
   ChangeQuantity,
   ButtonCamAndLib,
+  ButtonOpenURL,
   Search,
   Input,
   InputPassword,

@@ -24,7 +24,7 @@ const ModalSelect = ({
     const isSelect = value?.id === item?.id;
     return (
       <Button key={item?.id} style={styles.btn} onPress={() => onSelect(item)}>
-        <Text style={[styles.txtBtn, isSelect && styles.txtBtnSelect, stName]}>
+        <Text medium style={[isSelect && styles.txtBtnSelect, stName]}>
           {item[labelValue] || ''}
         </Text>
       </Button>
@@ -68,12 +68,10 @@ const styles = StyleSheet.create({
   },
   stFL: {},
   btn: {
-    marginBottom: scale(10),
+    marginBottom: scale(15),
+    paddingBottom: scale(2),
     borderBottomWidth: 0.5,
-    borderBottomColor: colors.gray_616772,
-  },
-  txtBtn: {
-    color: colors.gray_9796A1,
+    borderBottomColor: colors.gray_C4C4C4,
   },
   txtBtnSelect: {
     color: colors.orange_FE724C,
