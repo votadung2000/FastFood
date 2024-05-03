@@ -14,17 +14,18 @@ import routes from '@routes';
 import {Layout} from '@views';
 import {useStore} from '@context';
 
-import CarouselScreen from './carousel/CarouselScreen';
-import WelcomeScreen from './welcome/WelcomeScreen';
-import ProductsDetailScreen from './detail/ProductsDetailScreen';
-import CartScreen from './cart/CartScreen';
-import ProfileScreen from './profile/ProfileScreen';
-import DetailCardSearch from './detail_card_search/DetailCardSearch';
-import LoginScreen from './login/LoginScreen';
-import RegisterScreen from './register/RegisterScreen';
-import OTPScreen from './otp/OTPScreen';
-import ResetPasswordScreen from './reset_password/ResetPasswordScreen';
-import BottomNavigation from './bottom_navigation/BottomNavigation';
+import CarouselScreen from './carousel';
+import WelcomeScreen from './welcome';
+import ProductsDetailScreen from './detail';
+import CartScreen from './cart';
+import ProfileScreen from './profile';
+import EditProfileScreen from './edit_profile';
+import DetailCardSearch from './detail_card_search';
+import LoginScreen from './login';
+import RegisterScreen from './register';
+import OTPScreen from './otp';
+import ResetPasswordScreen from './reset_password';
+import BottomNavigation from './bottom_navigation';
 
 const Stack = createNativeStackNavigator();
 
@@ -138,6 +139,11 @@ const RoutesUser = [
     id: 6,
     name: routes.OTPScreen,
     component: OTPScreen,
+  },
+  {
+    id: 6,
+    name: routes.EditProfileScreen,
+    component: EditProfileScreen,
   },
 ];
 

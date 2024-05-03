@@ -10,6 +10,7 @@ export default {
   CartScreen: 'CartScreen',
   Logging: 'Logging',
   ProfileScreen: 'ProfileScreen',
+  EditProfileScreen: 'EditProfileScreen',
   SearchScreen: 'SearchScreen',
   DetailCardSearch: 'DetailCardSearch',
   LoginScreen: 'LoginScreen',
