@@ -74,6 +74,7 @@ const ModalForgotPass = ({isVisible, handleClose}) => {
       <Back style={styles.back} handleGoBack={onBack} />
       <View style={styles.container}>
         <KeyboardAwareScrollView
+          bounces={false}
           enableOnAndroid={true}
           contentContainerStyle={styles.scroll}
           showsVerticalScrollIndicator={false}>

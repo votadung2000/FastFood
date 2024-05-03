@@ -87,6 +87,7 @@ const OTPScreen = () => {
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView
+        bounces={false}
         enableOnAndroid={true}
         contentContainerStyle={styles.scroll}
         showsVerticalScrollIndicator={false}>

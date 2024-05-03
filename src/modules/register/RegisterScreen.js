@@ -17,9 +17,9 @@ import {
 import {colors, fontSize} from '@constant';
 import {hScale, scale} from '@resolutions';
 import {useStore} from '@context';
+import routes from '@routes';
 
 import RegisterSchema from './RegisterSchema';
-import routes from '@routes';
 
 const initialValues = {
   name: '',
@@ -134,7 +134,8 @@ const RegisterScreen = () => {
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView
-        enableOnAndroid={true}
+        bounces={false}
+        enableOnAndroid={false}
         contentContainerStyle={styles.scroll}
         showsVerticalScrollIndicator={false}>
         <ImageBackground
