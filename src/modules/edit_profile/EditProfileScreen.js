@@ -19,6 +19,7 @@ import {hScale, scale, wScale} from '@resolutions';
 import {useStore} from '@context';
 
 import EditProfileSchema from './EditProfileSchema';
+import {differentData} from '@utils';
 
 const initialErrors = {
   name: true,
@@ -78,8 +79,9 @@ const EditProfileScreen = () => {
         email: values.email,
         address: values.address,
       };
+      let diffData = differentData(body, initialValues);
 
-      let response = await fetchApiUpdateProfile(body);
+      let response = await fetchApiUpdateProfile(diffData);
       if (response) {
         setLoading({
           isVisible: false,

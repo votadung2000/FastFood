@@ -10,6 +10,7 @@ import handleHeart from './handleHeart';
 import findBgLg from './findBgLg';
 import randomImgEmpty from './randomImgEmpty';
 import checkIfValidUUID from './checkIfValidUUID';
+import differentData from './differentData';
 
 export {
   resolutions,
@@ -24,4 +25,5 @@ export {
   findBgLg,
   randomImgEmpty,
   checkIfValidUUID,
+  differentData,
 };
