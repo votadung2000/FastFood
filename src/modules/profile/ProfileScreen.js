@@ -61,7 +61,11 @@ const ProfileScreen = () => {
         <Back style={styles.back} />
         <Button style={styles.btnImg} onPress={handleZoomAvatar}>
           {user?.avatar ? (
-            <FastImage source={{uri: user?.avatar?.uri}} style={styles.img} />
+            <FastImage
+              isPath
+              source={{uri: user?.avatar?.url}}
+              style={styles.img}
+            />
           ) : (
             <Image source={require('@images/avatar.png')} style={styles.img} />
           )}

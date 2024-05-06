@@ -4,7 +4,7 @@ import {observer} from 'mobx-react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import {Text, Button} from '@components';
+import {Text, Button, FastImage} from '@components';
 import {resolutions} from '@utils';
 import {colors, fontSize, radius} from '@constant';
 import {useStore} from '@context';
@@ -15,6 +15,7 @@ const {scale} = resolutions;
 const Header = ({titleHeaderAnimation}) => {
   const {
     animatedMenuStore: {isShowMenu, handleShowMenu},
+    userStore: {user},
   } = useStore();
 
   const goToUser = () => {
@@ -46,7 +47,15 @@ const Header = ({titleHeaderAnimation}) => {
             {'Address Demo'}
           </Text>
         </Button>
-        <Image source={require('@images/avatar.png')} style={styles.img} />
+        {user?.avatar ? (
+          <FastImage
+            isPath
+            source={{uri: user?.avatar?.url}}
+            style={styles.img}
+          />
+        ) : (
+          <Image source={require('@images/avatar.png')} style={styles.img} />
+        )}
       </View>
       <Animated.View style={[styles.vwTitle, titleHeaderAnimation]}>
         <Text style={styles.title}>{'What would you like\nto order'}</Text>

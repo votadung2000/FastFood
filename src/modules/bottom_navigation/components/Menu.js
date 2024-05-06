@@ -5,7 +5,7 @@ import {observer} from 'mobx-react';
 
 import {colors, fontSize} from '@constant';
 import {hScale, scale, wScale} from '@resolutions';
-import {Button, Text, Popup} from '@components';
+import {Button, Text, FastImage, Popup} from '@components';
 import {useStore} from '@context';
 import {
   SVG_My_Order,
@@ -66,7 +66,15 @@ const Menu = () => {
       style={styles.scroll}
       showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
-        <Image source={require('@images/avatar.png')} style={styles.img} />
+        {user?.avatar ? (
+          <FastImage
+            isPath
+            source={{uri: user?.avatar?.url}}
+            style={styles.img}
+          />
+        ) : (
+          <Image source={require('@images/avatar.png')} style={styles.img} />
+        )}
         <View style={styles.vwInfo}>
           <Text bold style={styles.name}>
             {user?.name || ''}
@@ -139,10 +147,6 @@ const styles = StyleSheet.create({
     marginTop: scale(30),
   },
   btnLogOut: {
-    // position: 'absolute',
-    // left: 0,
-    // right: 0,
-    // bottom: scale(30),
     width: wScale(120),
     height: hScale(44),
     borderRadius: scale(22),

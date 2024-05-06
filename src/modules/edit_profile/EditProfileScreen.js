@@ -54,7 +54,7 @@ const EditProfileScreen = () => {
     phone_number: user?.phone_number || '',
     email: user?.email || '',
     address: user?.address || '',
-    avatar: '',
+    avatar: user?.avatar || '',
   };
 
   const {
@@ -181,7 +181,18 @@ const EditProfileScreen = () => {
         <Back style={styles.back} />
         <Button style={styles.btnImg} onPress={handleZoomAvatar}>
           {values?.avatar ? (
-            <FastImage source={{uri: values?.avatar?.uri}} style={styles.img} />
+            values?.avatar?.uri ? (
+              <FastImage
+                source={{uri: values?.avatar?.uri}}
+                style={styles.img}
+              />
+            ) : (
+              <FastImage
+                isPath
+                source={{uri: values?.avatar?.url}}
+                style={styles.img}
+              />
+            )
           ) : (
             <Image source={require('@images/avatar.png')} style={styles.img} />
           )}
