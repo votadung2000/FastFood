@@ -7,6 +7,7 @@ import userStore from './user.store';
 import categoryStore from './category.store';
 import favoritesStore from './favorites.store';
 import animatedMenuStore from './animatedMenu.store';
+import uploadImgStore from './uploadImg.store';
 
 export default {
   productsStore,
@@ -18,4 +19,5 @@ export default {
   categoryStore,
   favoritesStore,
   animatedMenuStore,
+  uploadImgStore,
 };

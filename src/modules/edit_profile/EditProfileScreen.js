@@ -15,6 +15,7 @@ import {
   ModalLoading,
   Notifer,
   ButtonCamAndLib,
+  FastImage,
 } from '@components';
 import {colors, fontSize, radius} from '@constant';
 import {hScale, scale, wScale} from '@resolutions';
@@ -41,6 +42,7 @@ const EditProfileScreen = () => {
 
   const {
     userStore: {user, fetchApiUpdateProfile},
+    uploadImgStore: {fetchApiUploadImg},
   } = useStore();
 
   const [loading, setLoading] = useState(false);
@@ -52,6 +54,7 @@ const EditProfileScreen = () => {
     phone_number: user?.phone_number || '',
     email: user?.email || '',
     address: user?.address || '',
+    avatar: '',
   };
 
   const {
@@ -63,23 +66,46 @@ const EditProfileScreen = () => {
     handleChange,
     resetForm,
     handleSubmit,
+    setFieldValue,
   } = useFormik({
     initialValues,
     initialErrors,
     validationSchema: EditProfileSchema,
-    onSubmit: () => onSubmit(),
+    onSubmit: () => handleUploadImg(),
   });
 
-  const onSubmit = async () => {
+  const handleUploadImg = async () => {
     try {
       setLoading({isVisible: true});
+      let response = await fetchApiUploadImg(values.avatar);
+      if (response) {
+        handleUpdateProfile(response);
+      }
+    } catch ({response}) {
+      setLoading({isVisible: false});
+      if (!response) {
+        Notifer({
+          alertType: 'warn',
+          title: 'Please check your network connection',
+        });
+      } else {
+        Notifer({
+          alertType: 'error',
+          title: response?.data?.message || '',
+        });
+      }
+    }
+  };
 
+  const handleUpdateProfile = async img => {
+    try {
       let body = {
         name: values.name,
         user_name: values.user_name,
         phone_number: values.phone_number,
         email: values.email,
         address: values.address,
+        avatar_id: img?.id,
       };
       let diffData = differentData(body, initialValues);
 
@@ -154,8 +180,14 @@ const EditProfileScreen = () => {
         />
         <Back style={styles.back} />
         <Button style={styles.btnImg} onPress={handleZoomAvatar}>
-          <Image source={require('@images/avatar.png')} style={styles.img} />
+          {values?.avatar ? (
+            <FastImage source={{uri: values?.avatar?.uri}} style={styles.img} />
+          ) : (
+            <Image source={require('@images/avatar.png')} style={styles.img} />
+          )}
           <ButtonCamAndLib
+            multiple={false}
+            name="avatar"
             Icon={
               <View style={styles.vwIcon}>
                 <Entypo
@@ -166,6 +198,7 @@ const EditProfileScreen = () => {
               </View>
             }
             stContainer={styles.stContainerIcon}
+            {...{setFieldValue}}
           />
         </Button>
         <View style={styles.content}>

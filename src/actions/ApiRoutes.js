@@ -6,4 +6,5 @@ export default {
   category: 'v1/category',
   product: 'v1/product',
   favorite: 'v1/favorite',
+  uploadImg: 'v1/upload',
 };

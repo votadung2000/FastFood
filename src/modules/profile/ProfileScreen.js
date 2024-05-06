@@ -9,7 +9,7 @@ import {
 import {observer} from 'mobx-react';
 import {useNavigation, useFocusEffect} from '@react-navigation/native';
 
-import {Back, Button, ImagesViewer, Text} from '@components';
+import {Back, Button, ImagesViewer, FastImage, Text} from '@components';
 import {colors, fontSize, radius} from '@constant';
 import {scale, wScale} from '@resolutions';
 import {useStore} from '@context';
@@ -60,7 +60,11 @@ const ProfileScreen = () => {
         />
         <Back style={styles.back} />
         <Button style={styles.btnImg} onPress={handleZoomAvatar}>
-          <Image source={require('@images/avatar.png')} style={styles.img} />
+          {user?.avatar ? (
+            <FastImage source={{uri: user?.avatar?.uri}} style={styles.img} />
+          ) : (
+            <Image source={require('@images/avatar.png')} style={styles.img} />
+          )}
         </Button>
         <Button
           style={styles.btnEdit}
