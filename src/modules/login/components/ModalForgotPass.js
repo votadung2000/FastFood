@@ -11,15 +11,18 @@ import {hScale, scale} from '@resolutions';
 import routes from '@routes';
 
 const initialValues = {
-  user_name: '',
+  email: '',
 };
 
 const initialErrors = {
-  user_name: true,
+  email: true,
 };
 
 let ForgotPassScheme = object().shape({
-  user_name: string().trim().required('Please enter information'),
+  email: string()
+    .trim()
+    .email('Incorrect email')
+    .required('Please enter email'),
 });
 
 const ModalForgotPass = ({isVisible, handleClose}) => {
@@ -87,9 +90,9 @@ const ModalForgotPass = ({isVisible, handleClose}) => {
           <View style={styles.vwForm}>
             <Input
               medium
-              name="user_name"
-              placeholder="Your username"
-              value={values.user_name}
+              name="email"
+              placeholder="Enter your email"
+              value={values.email}
               returnKeyType="done"
               style={styles.input}
               {...{errors, touched, handleBlur, handleChange}}
