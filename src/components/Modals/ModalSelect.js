@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, FlatList} from 'react-native';
 
-import {colors, radius} from '@constant';
+import {colors, fontSize, radius} from '@constant';
 import {scale} from '@resolutions';
 
 import Modal from './Modal';
@@ -24,6 +24,7 @@ const ModalSelect = ({
     const isSelect = value?.id === item?.id;
     return (
       <Button key={item?.id} style={styles.btn} onPress={() => onSelect(item)}>
+        {item?.Icon && <View style={styles.vwIcon}>{item?.Icon}</View>}
         <Text medium style={[isSelect && styles.txtBtnSelect, stName]}>
           {item[labelValue] || ''}
         </Text>
@@ -32,7 +33,7 @@ const ModalSelect = ({
   };
 
   return (
-    <Modal {...rest}>
+    <Modal stModal={styles.stModal} {...rest}>
       <View style={styles.container}>
         {title && (
           <Text bold style={styles.title}>
@@ -53,25 +54,39 @@ const ModalSelect = ({
 };
 
 const styles = StyleSheet.create({
+  stModal: {
+    justifyContent: 'flex-end',
+  },
   container: {
-    width: '70%',
+    width: '100%',
     maxHeight: '70%',
     alignSelf: 'center',
     backgroundColor: colors.white,
     paddingHorizontal: scale(20),
     paddingVertical: scale(10),
-    borderRadius: radius.radius6,
+    borderTopStartRadius: radius.radius20,
+    borderTopEndRadius: radius.radius20,
   },
   title: {
+    fontSize: fontSize.large,
     textAlign: 'center',
+    marginTop: scale(10),
     marginBottom: scale(20),
   },
   stFL: {},
   btn: {
-    marginBottom: scale(15),
-    paddingBottom: scale(2),
+    width: '70%',
+    marginBottom: scale(20),
+    paddingBottom: scale(10),
     borderBottomWidth: 0.5,
     borderBottomColor: colors.gray_C4C4C4,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+  },
+  vwIcon: {
+    marginRight: scale(20),
   },
   txtBtnSelect: {
     color: colors.orange_FE724C,

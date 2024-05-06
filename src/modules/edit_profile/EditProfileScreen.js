@@ -167,9 +167,6 @@ const EditProfileScreen = () => {
             }
             stContainer={styles.stContainerIcon}
           />
-          {/* <View style={styles.vwIcon}>
-                <Entypo name="camera" size={scale(18)} color={colors.gray_B3B3B3} />
-              </View> */}
         </Button>
         <View style={styles.content}>
           <View style={styles.form}>
