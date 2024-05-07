@@ -7,6 +7,8 @@ const MyWeb = ({uri}) => {
     <WebView
       useWebKit
       originWhitelist={['*']}
+      bounces={false}
+      showsVerticalScrollIndicator={false}
       source={{uri}}
       style={styles.container}
     />
