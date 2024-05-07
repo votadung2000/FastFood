@@ -16,6 +16,7 @@ import Loading from './Loading';
 import Popup from './Popup';
 import SignInSocial from './SignInSocial';
 import Notifer from './Notifer';
+import Switch from './Switch';
 
 export {
   Text,
@@ -38,4 +39,5 @@ export {
   Popup,
   SignInSocial,
   Notifer,
+  Switch,
 };

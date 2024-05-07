@@ -25,6 +25,8 @@ export default {
   gray_D3D1D8: '#D3D1D8',
   gray_67666D: '#67666D',
   gray_B3B3B3: '#B3B3B3',
+  gray_BDBDBD: '#BDBDBD',
+  gray_E0E0E0: '#E0E0E0',
 
   // Orange
   orange: '#ffbb33',

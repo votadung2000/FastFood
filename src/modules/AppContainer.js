@@ -39,6 +39,7 @@ const RoutesNavigator = observer(() => {
   return (
     <Layout>
       <Stack.Navigator
+        initialRouteName={routes.SettingScreen}
         screenOptions={{
           headerShown: false,
           gestureEnabled: false,
