@@ -17,4 +17,6 @@ export default {
   RegisterScreen: 'RegisterScreen',
   OTPScreen: 'OTPScreen',
   ResetPasswordScreen: 'ResetPasswordScreen',
+  SettingScreen: 'SettingScreen',
+  ChangePasswordScreen: 'ChangePasswordScreen',
 };

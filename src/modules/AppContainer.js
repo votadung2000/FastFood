@@ -26,6 +26,8 @@ import RegisterScreen from './register';
 import OTPScreen from './otp';
 import ResetPasswordScreen from './reset_password';
 import BottomNavigation from './bottom_navigation';
+import SettingScreen from './setting';
+import ChangePasswordScreen from './change_password';
 
 const Stack = createNativeStackNavigator();
 
@@ -141,9 +143,19 @@ const RoutesUser = [
     component: OTPScreen,
   },
   {
-    id: 6,
+    id: 7,
     name: routes.EditProfileScreen,
     component: EditProfileScreen,
+  },
+  {
+    id: 8,
+    name: routes.SettingScreen,
+    component: SettingScreen,
+  },
+  {
+    id: 9,
+    name: routes.ChangePasswordScreen,
+    component: ChangePasswordScreen,
   },
 ];
 

@@ -99,7 +99,11 @@ const Menu = () => {
           />
           <ItemMenu Icon={<SVG_Payment />} label={'Payment Methods'} />
           <ItemMenu Icon={<SVG_Contact />} label={'Contact Us'} />
-          <ItemMenu Icon={<SVG_Setting />} label={'Settings'} />
+          <ItemMenu
+            label={'Settings'}
+            Icon={<SVG_Setting />}
+            onPress={() => handleNav(routes.SettingScreen)}
+          />
           <ItemMenu Icon={<SVG_Helps />} label={'Helps & FAQs'} />
         </View>
         <Button style={styles.btnLogOut} onPress={handleConfirmLogOut}>
@@ -133,13 +137,13 @@ const styles = StyleSheet.create({
     borderRadius: scale(90),
   },
   vwInfo: {
-    marginTop: scale(20),
+    marginTop: scale(10),
   },
   name: {
     fontSize: fontSize.big,
   },
   email: {
-    marginTop: scale(8),
+    marginTop: scale(4),
     color: colors.gray_9796A1,
     fontSize: fontSize.small,
   },
