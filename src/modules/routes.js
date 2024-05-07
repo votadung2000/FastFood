@@ -19,4 +19,5 @@ export default {
   ResetPasswordScreen: 'ResetPasswordScreen',
   SettingScreen: 'SettingScreen',
   ChangePasswordScreen: 'ChangePasswordScreen',
+  PrivacyPolicyScreen: 'PrivacyPolicyScreen',
 };

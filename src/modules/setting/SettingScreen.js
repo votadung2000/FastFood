@@ -54,7 +54,7 @@ const SettingScreen = () => {
               color={colors.graySystem1}
             />
           }
-          // onPress={() => handleNav(routes.PrivacyPolicyScreen)}
+          onPress={() => handleNav(routes.PrivacyPolicyScreen)}
         />
         <CardPermission
           title={'Change Password'}

@@ -28,6 +28,7 @@ import ResetPasswordScreen from './reset_password';
 import BottomNavigation from './bottom_navigation';
 import SettingScreen from './setting';
 import ChangePasswordScreen from './change_password';
+import PrivacyPolicyScreen from './privacy_policy';
 
 const Stack = createNativeStackNavigator();
 
@@ -39,7 +40,6 @@ const RoutesNavigator = observer(() => {
   return (
     <Layout>
       <Stack.Navigator
-        initialRouteName={routes.SettingScreen}
         screenOptions={{
           headerShown: false,
           gestureEnabled: false,
@@ -157,6 +157,11 @@ const RoutesUser = [
     id: 9,
     name: routes.ChangePasswordScreen,
     component: ChangePasswordScreen,
+  },
+  {
+    id: 10,
+    name: routes.PrivacyPolicyScreen,
+    component: PrivacyPolicyScreen,
   },
 ];
 
