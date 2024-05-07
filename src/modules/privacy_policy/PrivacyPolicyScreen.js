@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     marginTop: scale(10),
-    paddingHorizontal: scale(25),
+    paddingHorizontal: scale(10),
   },
 });
 
