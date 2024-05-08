@@ -79,11 +79,13 @@ const ModalForgotPass = ({isVisible, handleClose}) => {
       <Back
         style={[
           styles.back,
-          ...Platform.select({
-            ios: {
-              top: scale(insets?.top),
-            },
-          }),
+          {
+            ...Platform.select({
+              ios: {
+                top: scale(insets?.top),
+              },
+            }),
+          },
         ]}
         handleGoBack={onBack}
       />
@@ -95,11 +97,13 @@ const ModalForgotPass = ({isVisible, handleClose}) => {
         <View
           style={[
             styles.container,
-            ...Platform.select({
-              ios: {
-                marginTop: scale(insets?.top),
-              },
-            }),
+            {
+              ...Platform.select({
+                ios: {
+                  marginTop: scale(insets?.top),
+                },
+              }),
+            },
           ]}>
           <View style={styles.content}>
             <Text bold style={styles.title}>
