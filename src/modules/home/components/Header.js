@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
   },
   vwTitle: {
     justifyContent: 'center',
+    marginTop: scale(10),
   },
   title: {
     fontFamily: 'Inter-Bold',

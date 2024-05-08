@@ -17,9 +17,7 @@ const CardPermission = ({
     return (
       <View style={styles.container}>
         <Button disabled={disabled} style={styles.content} onPress={onPress}>
-          <Text medium style={styles.title}>
-            {title}
-          </Text>
+          <Text style={styles.title}>{title}</Text>
           {Icon && Icon}
         </Button>
       </View>
@@ -29,9 +27,7 @@ const CardPermission = ({
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Text medium style={styles.title}>
-          {title}
-        </Text>
+        <Text style={styles.title}>{title}</Text>
         <Switch isOn={isOn} handleActionSwitch={handleActionSwitch} />
       </View>
     </View>
