@@ -68,22 +68,14 @@ const CardCart = ({data}) => {
 
 const styles = StyleSheet.create({
   container: {
+    margin: 1,
     marginBottom: scale(15),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingLeft: scale(10),
-    paddingRight: scale(10),
-    paddingVertical: scale(10),
+    padding: scale(10),
     backgroundColor: colors.white,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 3,
     borderRadius: radius.radius14,
+    ...radius.shadow,
   },
   vwImg: {
     width: '20%',

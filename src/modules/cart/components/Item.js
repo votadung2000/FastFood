@@ -20,7 +20,7 @@ export default React.memo(Item);
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: scale(20),
+    paddingHorizontal: scale(25),
     justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',

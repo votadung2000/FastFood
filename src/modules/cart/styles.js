@@ -21,16 +21,13 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
   },
   body: {
-    paddingHorizontal: scale(15),
+    paddingHorizontal: scale(25),
     height: '75%',
   },
   flatList: {
     marginTop: scale(20),
-    paddingHorizontal: scale(2),
   },
-  ccStyle: {
-    marginTop: scale(2),
-  },
+  ccStyle: {},
   footer: {
     height: '25%',
     backgroundColor: colors.white,
@@ -46,6 +43,7 @@ export default StyleSheet.create({
     width: width * 0.75,
     height: hScale(54),
     borderRadius: scale(26),
+    marginTop: scale(10),
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
