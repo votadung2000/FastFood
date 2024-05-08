@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Platform} from 'react-native';
 import {useFormik} from 'formik';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useNavigation} from '@react-navigation/native';
 import {object, string} from 'yup';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {Modal, Text, Button, Input, Back} from '@components';
 import {colors, fontSize, radius} from '@constant';
-import {hScale, scale} from '@resolutions';
+import {hScale, scale, wScale} from '@resolutions';
 import routes from '@routes';
 
 const initialValues = {
@@ -27,6 +28,7 @@ let ForgotPassScheme = object().shape({
 
 const ModalForgotPass = ({isVisible, handleClose}) => {
   const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
 
   const [isSubmitting, setSubmitting] = useState(false);
   const [isSuccess, setSuccess] = useState(false);
@@ -74,64 +76,89 @@ const ModalForgotPass = ({isVisible, handleClose}) => {
       isVisible={isVisible}
       stModal={styles.stModal}
       onModalHide={onModalHide}>
-      <Back style={styles.back} handleGoBack={onBack} />
-      <View style={styles.container}>
-        <KeyboardAwareScrollView
-          bounces={false}
-          enableOnAndroid={true}
-          contentContainerStyle={styles.scroll}
-          showsVerticalScrollIndicator={false}>
-          <Text bold style={styles.title}>
-            {'Forgot Password'}
-          </Text>
-          <Text style={styles.warn}>
-            {'The OTP code will be sent via the email you registered with'}
-          </Text>
-          <View style={styles.vwForm}>
-            <Input
-              medium
-              name="email"
-              placeholder="Enter your email"
-              value={values.email}
-              returnKeyType="done"
-              style={styles.input}
-              {...{errors, touched, handleBlur, handleChange}}
-            />
-          </View>
-          <Button
-            disabled={!isValid || isSubmitting}
-            style={styles.btnConfirm}
-            onPress={handleSubmit}>
-            <Text bold style={styles.textConfirm}>
-              {'CONFIRM'}
+      <Back
+        style={[
+          styles.back,
+          ...Platform.select({
+            ios: {
+              top: scale(insets?.top),
+            },
+          }),
+        ]}
+        handleGoBack={onBack}
+      />
+      <KeyboardAwareScrollView
+        bounces={false}
+        enableOnAndroid={true}
+        contentContainerStyle={styles.scroll}
+        showsVerticalScrollIndicator={false}>
+        <View
+          style={[
+            styles.container,
+            ...Platform.select({
+              ios: {
+                marginTop: scale(insets?.top),
+              },
+            }),
+          ]}>
+          <View style={styles.content}>
+            <Text bold style={styles.title}>
+              {'Forgot Password'}
             </Text>
-          </Button>
-        </KeyboardAwareScrollView>
-      </View>
+            <Text style={styles.warn}>
+              {'The OTP code will be sent via the email you registered with'}
+            </Text>
+            <View style={styles.vwForm}>
+              <Input
+                medium
+                name="email"
+                placeholder="Enter your email"
+                value={values.email}
+                returnKeyType="done"
+                style={styles.input}
+                {...{errors, touched, handleBlur, handleChange}}
+              />
+            </View>
+            <Button
+              disabled={!isValid || isSubmitting}
+              style={styles.btnConfirm}
+              onPress={handleSubmit}>
+              <Text bold style={styles.textConfirm}>
+                {'CONFIRM'}
+              </Text>
+            </Button>
+          </View>
+        </View>
+      </KeyboardAwareScrollView>
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
   stModal: {
-    paddingHorizontal: scale(20),
+    paddingHorizontal: scale(25),
   },
   back: {
     position: 'absolute',
-    left: scale(25),
-    top: scale(27),
   },
   container: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  scroll: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: scale(15),
+    paddingBottom: scale(15),
+  },
+  content: {
     width: '100%',
-    maxHeight: '70%',
     alignSelf: 'center',
     backgroundColor: colors.white,
     borderRadius: radius.radius6,
     padding: scale(20),
-  },
-  scroll: {
-    flexGrow: 1,
-    backgroundColor: colors.white,
   },
   title: {
     fontSize: fontSize.large,
@@ -147,7 +174,7 @@ const styles = StyleSheet.create({
     marginTop: scale(25),
   },
   btnConfirm: {
-    width: '80%',
+    width: wScale(180),
     height: hScale(52),
     borderRadius: scale(30),
     alignItems: 'center',
