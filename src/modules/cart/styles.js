@@ -16,6 +16,12 @@ export default StyleSheet.create({
     fontSize: fontSize.huge,
     alignSelf: 'flex-end',
     marginRight: scale(15),
+    marginTop: scale(20),
+  },
+  emptyImg: {
+    width: scale(150),
+    height: scale(150),
+    marginBottom: scale(8),
   },
   container: {
     flex: 1,

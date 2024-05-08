@@ -21,6 +21,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: scale(15),
+    marginTop: scale(20),
   },
   search: {
     marginBottom: scale(20),

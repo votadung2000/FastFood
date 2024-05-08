@@ -7,9 +7,10 @@ import {scale} from '@resolutions';
 import FastImage from './Image/FastImage';
 import Text from './Text';
 
-const EmptyComponent = ({url, title}) => {
+const EmptyComponent = ({url, title, Icon}) => {
   return (
     <View style={styles.emptyContainer}>
+      {Icon && Icon}
       {url && <FastImage isPath source={{uri: url}} style={styles.emptyImg} />}
       <Text bold style={styles.txtEmpty}>
         {title || "Product's Empty"}

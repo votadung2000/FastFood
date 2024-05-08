@@ -14,6 +14,7 @@ export default StyleSheet.create({
     fontSize: fontSize.huge,
     alignSelf: 'flex-end',
     marginRight: scale(15),
+    marginTop: scale(20),
   },
   body: {
     flexDirection: 'row',

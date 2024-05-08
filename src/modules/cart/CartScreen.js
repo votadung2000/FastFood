@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, FlatList} from 'react-native';
+import {View, FlatList, Image} from 'react-native';
 import {observer} from 'mobx-react';
 
 import {Text, Button, EmptyComponent} from '@components';
@@ -30,7 +30,15 @@ const CartScreen = () => {
         {'Your Heart'}
       </Text>
       {cartProducts?.length === 0 ? (
-        <EmptyComponent title="Cart's Empty" img={'cart_empty'} />
+        <EmptyComponent
+          title="Cart's Empty"
+          Icon={
+            <Image
+              source={require('@images/cart_empty.png')}
+              style={styles.emptyImg}
+            />
+          }
+        />
       ) : (
         <View style={styles.container}>
           <View style={styles.body}>
