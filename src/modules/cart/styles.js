@@ -28,22 +28,22 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
   },
   body: {
+    flex: 5,
     paddingHorizontal: scale(25),
-    height: '75%',
   },
   flatList: {
     marginTop: scale(20),
   },
   ccStyle: {},
   footer: {
-    height: '25%',
+    flexGrow: 1,
     backgroundColor: colors.white,
     zIndex: 999,
     borderTopLeftRadius: scale(20),
     borderTopRightRadius: scale(20),
-    justifyContent: 'space-around',
     paddingTop: scale(10),
     paddingBottom: scale(10),
+    margin: scale(1),
     ...radius.shadow,
   },
   btnLG: {

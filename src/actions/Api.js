@@ -125,3 +125,11 @@ export const ApiFavorites = params => {
     params,
   });
 };
+
+export const ApiCreateOrder = data => {
+  return axios({
+    method: 'post',
+    url: ApiRoutes.order,
+    data: data,
+  });
+};

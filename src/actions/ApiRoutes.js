@@ -7,4 +7,5 @@ export default {
   product: 'v1/product',
   favorite: 'v1/favorite',
   uploadImg: 'v1/upload',
+  order: 'v1/order',
 };
