@@ -2,7 +2,7 @@ import React from 'react';
 import {View, FlatList} from 'react-native';
 import {observer} from 'mobx-react';
 
-import {Text, Button, Back, EmptyComponent} from '@components';
+import {Text, Button, EmptyComponent} from '@components';
 import {formatCurrency} from '@utils';
 import {useStore} from '@context';
 
@@ -26,7 +26,9 @@ const CartScreen = () => {
 
   return (
     <View style={styles.layout}>
-      <Back title={'Your Order'} stTitle={styles.title} />
+      <Text bold style={styles.title}>
+        {'Your Heart'}
+      </Text>
       {cartProducts?.length === 0 ? (
         <EmptyComponent title="Cart's Empty" img={'cart_empty'} />
       ) : (

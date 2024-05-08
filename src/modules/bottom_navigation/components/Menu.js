@@ -86,7 +86,7 @@ const Menu = () => {
             label={'My Orders'}
             count={cartProducts?.length || 0}
             Icon={<SVG_My_Order />}
-            onPress={() => handleNav(routes.CartScreen)}
+            onPress={() => handleNav(routes.OrderScreen)}
           />
           <ItemMenu
             label={'My Profile'}

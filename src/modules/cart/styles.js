@@ -15,6 +15,7 @@ export default StyleSheet.create({
   title: {
     fontSize: fontSize.huge,
     alignSelf: 'flex-end',
+    marginRight: scale(15),
   },
   container: {
     flex: 1,

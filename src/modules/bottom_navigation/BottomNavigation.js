@@ -9,9 +9,11 @@ import {hScale, scale} from '@resolutions';
 import {useStore} from '@context';
 import routes from '@routes';
 
-import HomeScreen from '../home/HomeScreen';
-import SearchScreen from '../search/SearchScreen';
-import HeartScreen from '../heart/HeartScreen';
+import HomeScreen from '../home';
+import SearchScreen from '../search';
+import CartScreen from '../cart';
+import HeartScreen from '../heart';
+import NotificationScreen from '../notification';
 
 import {TabBottom, Menu} from './components';
 
@@ -119,6 +121,16 @@ const TabBottomArr = [
   },
   {
     id: 3,
+    name: routes.CartScreen,
+    keyLabel: 'Cart',
+    Icon: <Ionicons name="cart" size={scale(26)} color={colors.gray_D3D1D8} />,
+    IconFocused: (
+      <Ionicons name="cart" size={scale(26)} color={colors.orange_FE724C} />
+    ),
+    component: CartScreen,
+  },
+  {
+    id: 4,
     name: routes.HeartScreen,
     keyLabel: 'Heart',
     Icon: <Ionicons name="heart" size={scale(26)} color={colors.gray_D3D1D8} />,
@@ -126,6 +138,26 @@ const TabBottomArr = [
       <Ionicons name="heart" size={scale(26)} color={colors.orange_FE724C} />
     ),
     component: HeartScreen,
+  },
+  {
+    id: 5,
+    name: routes.NotificationScreen,
+    keyLabel: 'Notification',
+    Icon: (
+      <Ionicons
+        name="notifications"
+        size={scale(26)}
+        color={colors.gray_D3D1D8}
+      />
+    ),
+    IconFocused: (
+      <Ionicons
+        name="notifications"
+        size={scale(26)}
+        color={colors.orange_FE724C}
+      />
+    ),
+    component: NotificationScreen,
   },
 ];
 

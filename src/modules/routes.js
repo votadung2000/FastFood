@@ -20,4 +20,6 @@ export default {
   SettingScreen: 'SettingScreen',
   ChangePasswordScreen: 'ChangePasswordScreen',
   PrivacyPolicyScreen: 'PrivacyPolicyScreen',
+  NotificationScreen: 'NotificationScreen',
+  OrderScreen: 'OrderScreen',
 };
