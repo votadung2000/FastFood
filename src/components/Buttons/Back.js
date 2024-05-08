@@ -60,6 +60,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     zIndex: 999,
+    marginTop: scale(15),
+    paddingHorizontal: scale(25),
   },
   btn: {
     width: wScale(38),

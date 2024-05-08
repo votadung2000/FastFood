@@ -178,7 +178,7 @@ const EditProfileScreen = () => {
           resizeMode="stretch"
           style={styles.image}
         />
-        <Back style={styles.back} />
+        <Back />
         <Button style={styles.btnImg} onPress={handleZoomAvatar}>
           {values?.avatar ? (
             values?.avatar?.uri ? (
@@ -306,10 +306,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     alignItems: 'center',
-  },
-  back: {
-    paddingHorizontal: scale(25),
-    marginTop: scale(27),
   },
   btnImg: {
     width: wScale(110),

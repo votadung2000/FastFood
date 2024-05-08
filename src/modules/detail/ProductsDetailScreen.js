@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, ScrollView, Image} from 'react-native';
 import {observer} from 'mobx-react';
-import _uniqBy from 'lodash/uniqBy';
+// import _uniqBy from 'lodash/uniqBy';
 
 import {
   Text,
@@ -12,27 +12,27 @@ import {
   LoadingComponent,
 } from '@components';
 import {useStore} from '@context';
-import {formatCurrency, findId, handleHeart} from '@utils';
+import {formatCurrency, handleHeart} from '@utils';
 import routes from '@routes';
 
-import {ListExtraFood} from './components';
+// import {ListExtraFood} from './components';
 import styles from './styles';
 
 const ProductsDetailScreen = ({navigation}) => {
   const {
-    productsDetailStore: {extraFood, productDetail},
+    // productsDetailStore: {extraFood, productDetail},
     cartProductsStore: {fetchCartProduct},
     heartProductsStore: {allHeartProducts, addHeartProduct},
     productsStore: {product},
     userStore: {user},
   } = useStore();
 
-  const [extra, setExtra] = useState(null);
+  // const [extra, setExtra] = useState(null);
   const [popup, setPopup] = useState(null);
 
   const handleFavorite = () => {
     if (user) {
-      addHeartProduct(productDetail);
+      addHeartProduct(product);
     } else {
       setPopup({
         title: 'Attention',
@@ -47,7 +47,7 @@ const ProductsDetailScreen = ({navigation}) => {
 
   const handlePlusCart = () => {
     if (user) {
-      fetchCartProduct(productDetail);
+      fetchCartProduct(product);
     } else {
       setPopup({
         title: 'Attention',
@@ -69,23 +69,23 @@ const ProductsDetailScreen = ({navigation}) => {
     setPopup(null);
   };
 
-  const handleExtraFood = item => {
-    if (extra && extra.length > 0) {
-      if (findId(extra, item?.id)) {
-        const newData = extra.filter(ext => ext?.id !== item?.id);
-        setExtra(newData);
-      } else {
-        setExtra(_uniqBy([...extra, item], 'id'));
-      }
-    } else {
-      setExtra([item]);
-    }
-  };
+  // const handleExtraFood = item => {
+  //   if (extra && extra.length > 0) {
+  //     if (findId(extra, item?.id)) {
+  //       const newData = extra.filter(ext => ext?.id !== item?.id);
+  //       setExtra(newData);
+  //     } else {
+  //       setExtra(_uniqBy([...extra, item], 'id'));
+  //     }
+  //   } else {
+  //     setExtra([item]);
+  //   }
+  // };
 
   if (!product) {
     return (
       <View style={styles.layout}>
-        <Back heart style={styles.back} />
+        <Back heart />
         <LoadingComponent />
       </View>
     );
@@ -101,7 +101,6 @@ const ProductsDetailScreen = ({navigation}) => {
         <View style={styles.container}>
           <Back
             heart
-            style={styles.back}
             favorite={handleHeart(product?.id, allHeartProducts)}
             handleFavorite={handleFavorite}
           />
@@ -122,11 +121,11 @@ const ProductsDetailScreen = ({navigation}) => {
               </Text>
             </View>
             <Text style={styles.txtContent}>{product?.taste || ''}</Text>
-            <ListExtraFood
+            {/* <ListExtraFood
               data={extraFood}
               handleExtraFood={handleExtraFood}
               extra={extra}
-            />
+            /> */}
             <Text style={styles.txtContent}>{product?.description || ''}</Text>
           </View>
         </View>

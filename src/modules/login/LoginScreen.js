@@ -126,7 +126,7 @@ const LoginScreen = ({navigation}) => {
           resizeMode="stretch"
           style={styles.image}
         />
-        <Back style={styles.back} />
+        <Back />
         <View style={styles.content}>
           <Text bold style={styles.title}>
             {'Login'}
@@ -207,10 +207,6 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
   },
-  back: {
-    paddingHorizontal: scale(25),
-    marginTop: scale(27),
-  },
   content: {
     flex: 1,
     paddingHorizontal: scale(25),
@@ -219,7 +215,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: fontSize.fontSize34,
     textAlign: 'left',
-    marginTop: scale(80),
+    marginTop: scale(50),
   },
   form: {
     marginTop: scale(25),

@@ -9,7 +9,7 @@ import {colors} from '@constant';
 const PrivacyPolicyScreen = () => {
   return (
     <View style={styles.container}>
-      <Back title={'Privacy Policy'} style={styles.back} />
+      <Back title={'Privacy Policy'} />
       <View style={styles.content}>
         <MyWeb uri={Config.API_PRIVACY_POLICY} />
       </View>
@@ -21,10 +21,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white,
-  },
-  back: {
-    marginTop: scale(27),
-    paddingHorizontal: scale(25),
   },
   content: {
     flex: 1,

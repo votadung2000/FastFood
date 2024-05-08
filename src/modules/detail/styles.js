@@ -16,9 +16,6 @@ export default StyleSheet.create({
   container: {
     flex: 1,
   },
-  back: {
-    marginHorizontal: scale(20),
-  },
   header: {
     height: height * 0.6,
     justifyContent: 'center',

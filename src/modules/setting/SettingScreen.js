@@ -28,7 +28,7 @@ const SettingScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Back title={'Setting'} style={styles.back} />
+      <Back title={'Setting'} />
       <View style={styles.content}>
         <CardPermission
           title={'Notification'}
@@ -84,10 +84,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white,
-  },
-  back: {
-    marginTop: scale(27),
-    paddingHorizontal: scale(25),
   },
   content: {
     paddingHorizontal: scale(25),

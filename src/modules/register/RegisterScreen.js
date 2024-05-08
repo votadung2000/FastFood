@@ -143,7 +143,7 @@ const RegisterScreen = () => {
           resizeMode="stretch"
           style={styles.image}
         />
-        <Back style={styles.back} />
+        <Back />
         <View style={styles.content}>
           <Text bold style={styles.title}>
             {'Sign Up'}
@@ -253,10 +253,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     alignItems: 'center',
-  },
-  back: {
-    paddingHorizontal: scale(25),
-    marginTop: scale(27),
   },
   content: {
     flex: 1,

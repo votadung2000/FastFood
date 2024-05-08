@@ -16,9 +16,6 @@ export default StyleSheet.create({
     fontSize: fontSize.huge,
     alignSelf: 'flex-end',
   },
-  back: {
-    paddingHorizontal: scale(15),
-  },
   container: {
     flex: 1,
     justifyContent: 'space-between',

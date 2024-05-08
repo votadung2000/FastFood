@@ -49,16 +49,16 @@ const ProfileScreen = () => {
 
   return (
     <View style={styles.container}>
+      <ImageBackground
+        source={require('@images/bg_profile.png')}
+        resizeMode="stretch"
+        style={styles.image}
+      />
       <ScrollView
         bounces={false}
         style={styles.scroll}
         showsVerticalScrollIndicator={false}>
-        <ImageBackground
-          source={require('@images/bg_profile.png')}
-          resizeMode="stretch"
-          style={styles.image}
-        />
-        <Back style={styles.back} />
+        <Back />
         <Button style={styles.btnImg} onPress={handleZoomAvatar}>
           {user?.avatar ? (
             <FastImage
@@ -107,17 +107,13 @@ const ProfileScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.red,
   },
   image: {
     position: 'absolute',
     width: '100%',
     height: '100%',
     alignItems: 'center',
-  },
-  back: {
-    marginTop: scale(27),
-    paddingHorizontal: scale(25),
   },
   btnImg: {
     width: wScale(110),
@@ -149,7 +145,6 @@ const styles = StyleSheet.create({
   },
   scroll: {
     flexGrow: 1,
-    marginTop: scale(20),
   },
   content: {
     flex: 1,
