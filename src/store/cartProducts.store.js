@@ -5,9 +5,9 @@ import {Notifer} from '@components';
 
 class CartProductsStore {
   cartProducts = [];
-  total = 0;
+  subtotal = 0;
   discount = 0;
-  totalCost = 0;
+  total = 0;
 
   constructor() {
     makeAutoObservable(this, {
@@ -54,15 +54,15 @@ class CartProductsStore {
         let totalArr = this.cartProducts.map(
           pr => parseInt(pr?.price, 10) * parseInt(pr?.quantity, 10),
         );
-        this.total = totalArr.reduce(reducer);
+        this.subtotal = totalArr.reduce(reducer);
       } else {
-        this.total = 0;
+        this.subtotal = 0;
       }
     } catch (error) {}
   }
 
   updateCost() {
-    this.totalCost = this.total - this.discount;
+    this.total = this.subtotal - this.discount;
   }
 
   handleUpdateCost() {

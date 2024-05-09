@@ -1,17 +1,24 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
-import {resolutions} from '@utils';
 import {Text} from '@components';
 import {colors, fontSize} from '@constant';
+import {resolutions} from '@utils';
 
 const {scale} = resolutions;
 
 const Item = ({label, value, bold}) => {
   return (
     <View style={styles.container}>
-      <Text style={[styles.txt, styles.txtLeft]}>{label}</Text>
-      <Text bold={bold} style={styles.txt}>{`${value} Đ`}</Text>
+      <Text medium style={styles.label}>
+        {label}
+      </Text>
+      <View style={styles.vwValue}>
+        <Text medium style={styles.value}>
+          {value}
+        </Text>
+        <Text style={styles.unit}>{'Đ'}</Text>
+      </View>
     </View>
   );
 };
@@ -20,17 +27,27 @@ export default React.memo(Item);
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: scale(25),
     justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: scale(5),
+    marginBottom: scale(15),
+    paddingBottom: scale(10),
+    borderBottomWidth: scale(1),
+    borderBottomColor: colors.gray_F2EAEA,
   },
-  txt: {
-    fontSize: fontSize.fontSize16,
-    color: colors.black,
+  label: {},
+  vwValue: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  txtLeft: {
-    color: colors.gray,
+  value: {
+    fontSize: fontSize.big,
+    textAlign: 'center',
+  },
+  unit: {
+    color: colors.gray_9796A1,
+    textAlign: 'center',
+    marginLeft: scale(2),
   },
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, FlatList, Image} from 'react-native';
+import {View, ScrollView, Image} from 'react-native';
 import {observer} from 'mobx-react';
 
 import {Text, Button, EmptyComponent} from '@components';
@@ -11,23 +11,17 @@ import styles from './styles';
 
 const CartScreen = () => {
   const {
-    cartProductsStore: {cartProducts, total, discount, totalCost},
+    cartProductsStore: {cartProducts, subtotal, discount, total},
   } = useStore();
 
   const handlePayment = () => {
     alert('Handle Payment');
   };
 
-  const keyExtractor = (_, index) => index.toString();
-
-  const renderItem = ({item}) => {
-    return <CardCart data={item} />;
-  };
-
   return (
     <View style={styles.layout}>
       <Text bold style={styles.title}>
-        {'Your Heart'}
+        {'Your Cart'}
       </Text>
       {cartProducts?.length === 0 ? (
         <EmptyComponent
@@ -42,27 +36,32 @@ const CartScreen = () => {
       ) : (
         <View style={styles.container}>
           <View style={styles.body}>
-            <FlatList
-              data={cartProducts}
-              keyExtractor={keyExtractor}
-              renderItem={renderItem}
+            <ScrollView
               bounces={false}
-              style={styles.flatList}
-              contentContainerStyle={styles.ccStyle}
               showsVerticalScrollIndicator={false}
-            />
+              style={styles.scroll}>
+              {cartProducts?.map((item, index) => {
+                return <CardCart key={index?.toString()} data={item} />;
+              })}
+              {cartProducts?.length ? (
+                <View style={styles.vwCurrency}>
+                  <Item label="Subtotal" value={formatCurrency(subtotal)} />
+                  {false && (
+                    <Item label="Tax and Fees" value={formatCurrency(0)} />
+                  )}
+                  {false && <Item label="Delivery" value={formatCurrency(0)} />}
+                  <Item label="Discount" value={formatCurrency(discount)} />
+                  <Item label="Total" value={formatCurrency(total)} />
+                </View>
+              ) : null}
+            </ScrollView>
           </View>
           {cartProducts?.length ? (
-            <View style={styles.footer}>
-              <Item bold label="Items" value={formatCurrency(total)} />
-              <Item bold label="Discount" value={formatCurrency(discount)} />
-              <Item bold label="Cost" value={formatCurrency(totalCost)} />
-              <Button onPress={() => handlePayment()} style={styles.btnLG}>
-                <Text bold style={styles.textLG}>
-                  {'Payment & Delivery'}
-                </Text>
-              </Button>
-            </View>
+            <Button onPress={() => handlePayment()} style={styles.btnCheckout}>
+              <Text bold style={styles.txtCheckout}>
+                {'CHECKOUT'}
+              </Text>
+            </Button>
           ) : null}
         </View>
       )}

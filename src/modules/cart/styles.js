@@ -1,6 +1,6 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
-import {colors, fontSize, radius} from '@constant';
+import {colors, fontSize} from '@constant';
 import {resolutions} from '@utils';
 import {hScale} from '@resolutions';
 
@@ -11,6 +11,7 @@ export default StyleSheet.create({
   layout: {
     flex: 1,
     backgroundColor: colors.white,
+    paddingBottom: hScale(72),
   },
   title: {
     fontSize: fontSize.huge,
@@ -27,36 +28,34 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
   },
-  body: {
-    flex: 5,
-    paddingHorizontal: scale(25),
+  scroll: {
+    flex: 1,
   },
-  flatList: {
+  body: {
+    flex: 1,
+    paddingHorizontal: scale(25),
     marginTop: scale(20),
   },
-  ccStyle: {},
-  footer: {
-    flexGrow: 1,
-    backgroundColor: colors.white,
-    zIndex: 999,
-    borderTopLeftRadius: scale(20),
-    borderTopRightRadius: scale(20),
-    paddingTop: scale(10),
-    paddingBottom: scale(10),
-    margin: scale(1),
-    ...radius.shadow,
+  vwCurrency: {
+    marginTop: scale(20),
+    paddingBottom: scale(30),
   },
-  btnLG: {
+  vwFooter: {
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  btnCheckout: {
     width: width * 0.75,
     height: hScale(54),
     borderRadius: scale(26),
-    marginTop: scale(10),
+    marginTop: scale(20),
+    marginBottom: scale(20),
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: colors.orange_FE724C,
   },
-  textLG: {
+  txtCheckout: {
     fontSize: fontSize.large,
     color: colors.white,
   },

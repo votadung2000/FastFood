@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {observer} from 'mobx-react';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import RNFastImage from 'react-native-fast-image';
 
 import {Text, Button, ChangeQuantity, FastImage} from '@components';
@@ -37,23 +37,23 @@ const CardCart = ({data}) => {
       />
       <View style={styles.bodyItem}>
         <View style={styles.headerItem}>
-          <Text bold>{data?.name}</Text>
+          <Text bold style={styles.name}>
+            {data?.name}
+          </Text>
           <Button onPress={() => handleRemove(data)} style={styles.remove}>
-            <MaterialCommunityIcons
-              name="delete-sweep"
+            <AntDesign
+              name="close"
               color={colors.red_FF3600}
-              size={scale(24)}
+              size={scale(20)}
             />
           </Button>
         </View>
         <View style={styles.headerItem}>
-          <View>
-            <Text bold style={styles.priceItem}>
+          <View style={styles.vwCurrency}>
+            <Text medium style={styles.priceItem}>
               {`${formatCurrency(data?.price)} `}
-              <Text bold style={styles.unit}>
-                {'Đ'}
-              </Text>
             </Text>
+            <Text style={styles.unit}>{'Đ'}</Text>
           </View>
           <ChangeQuantity
             quantity={data?.quantity}
@@ -99,15 +99,26 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  name: {
+    fontSize: fontSize.large,
+  },
+  vwCurrency: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   remove: {
     justifyContent: 'center',
     alignItems: 'center',
   },
   priceItem: {
     fontSize: fontSize.big,
+    textAlign: 'center',
   },
   unit: {
-    color: colors.orange_FE724C,
+    color: colors.gray_9796A1,
+    textAlign: 'center',
+    marginLeft: scale(2),
   },
 });
 
