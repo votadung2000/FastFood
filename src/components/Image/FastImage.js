@@ -74,6 +74,7 @@ const FastImage = ({
 const styles = StyleSheet.create({
   img: {
     width: '100%',
+    borderRadius: radius.radius6,
   },
   error: {
     paddingVertical: scale(5),

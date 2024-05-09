@@ -20,8 +20,8 @@ const CardProducts = ({data}) => {
     cartProductsStore: {fetchCartProduct},
   } = useStore();
 
-  const handleProduct = () => {
-    fetchApiDetailProducts(data?.id);
+  const handleProduct = item => {
+    fetchApiDetailProducts(item?.id);
     navigation.navigate(routes.ProductsDetailScreen);
   };
 
@@ -33,7 +33,7 @@ const CardProducts = ({data}) => {
 
   const renderItem = ({item}) => {
     return (
-      <Button onPress={handleProduct} style={styles.card}>
+      <Button style={styles.card} onPress={() => handleProduct(item)}>
         <FastImage
           isPath
           style={styles.img}

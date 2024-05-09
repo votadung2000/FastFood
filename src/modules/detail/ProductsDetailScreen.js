@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {View, ScrollView, Image} from 'react-native';
 import {observer} from 'mobx-react';
+import RNFastImage from 'react-native-fast-image';
 // import _uniqBy from 'lodash/uniqBy';
 
 import {
@@ -117,7 +118,7 @@ const ProductsDetailScreen = ({navigation}) => {
                 {product?.name || ''}
               </Text>
               <Text bold style={[styles.txtTitle, styles.price]}>
-                {`${formatCurrency(product?.price)} VNĐ`}
+                {`${formatCurrency(product?.price)} Đ`}
               </Text>
             </View>
             <Text style={styles.txtContent}>{product?.taste || ''}</Text>
