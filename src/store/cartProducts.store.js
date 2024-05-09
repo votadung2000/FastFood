@@ -12,12 +12,15 @@ class CartProductsStore {
   constructor() {
     makeAutoObservable(this, {
       fetchCartProduct: action.bound,
+
       updateTotal: action.bound,
       updateDiscount: action.bound,
       updateCost: action.bound,
       plusProducts: action.bound,
       minusProducts: action.bound,
       removeProducts: action.bound,
+
+      clearCart: action.bound,
     });
   }
 
@@ -105,6 +108,13 @@ class CartProductsStore {
         alertType: 'info',
       });
     }
+  }
+
+  clearCart() {
+    this.cartProducts = [];
+    this.subtotal = 0;
+    this.discount = 0;
+    this.total = 0;
   }
 }
 

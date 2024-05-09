@@ -40,7 +40,7 @@ const LoginScreen = ({navigation}) => {
 
   const refPassword = createRef();
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState({isVisible: false});
   const [modal, setModal] = useState({isVisible: false});
 
   const {

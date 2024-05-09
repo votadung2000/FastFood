@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, ScrollView, Image} from 'react-native';
 import {observer} from 'mobx-react';
 
-import {Text, Button, EmptyComponent} from '@components';
+import {Text, Button, EmptyComponent, Notifer, ModalLoading} from '@components';
 import {formatCurrency} from '@utils';
 import {useStore} from '@context';
 
@@ -11,11 +11,54 @@ import styles from './styles';
 
 const CartScreen = () => {
   const {
-    cartProductsStore: {cartProducts, subtotal, discount, total},
+    cartProductsStore: {cartProducts, subtotal, discount, total, clearCart},
+    orderStore: {fetchApiCreateOrder},
+    userStore: {user},
   } = useStore();
 
-  const handlePayment = () => {
-    alert('Handle Payment');
+  const [loading, setLoading] = useState({isVisible: false});
+
+  const handlePayment = async () => {
+    setLoading({isVisible: true});
+    try {
+      let body = {
+        user_id: user?.id,
+        total: total,
+        products: cartProducts?.map(ele => ({
+          id: ele?.id,
+          name: ele?.name,
+          quantity: ele?.quantity,
+          price: ele?.price,
+        })),
+      };
+
+      let response = await fetchApiCreateOrder(body);
+      if (response) {
+        setLoading({
+          isVisible: false,
+          onModalHide: async () => {
+            Notifer({
+              alertType: 'success',
+              title: 'Order Successfully!',
+            });
+            clearCart();
+          },
+        });
+      }
+    } catch ({response}) {
+      setLoading({isVisible: false});
+      if (!response) {
+        Notifer({
+          alertType: 'warn',
+          title: 'Please check your network connection',
+        });
+      } else {
+        Notifer({
+          alertType: 'error',
+          title: response?.data?.message || '',
+        });
+      }
+    }
   };
 
   return (
@@ -65,6 +108,7 @@ const CartScreen = () => {
           ) : null}
         </View>
       )}
+      <ModalLoading {...loading} />
     </View>
   );
 };
