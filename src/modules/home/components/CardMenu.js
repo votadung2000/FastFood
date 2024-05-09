@@ -1,24 +1,27 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {observer} from 'mobx-react';
+import {useNavigation} from '@react-navigation/native';
 
 import {Text, Button, FastImage} from '@components';
 import {colors, fontSize, radius} from '@constant';
 import {resolutions, limitedString} from '@utils';
 import {useStore} from '@context';
 import {hScale, wScale} from '@resolutions';
+import routes from '@routes';
 
 const {scale} = resolutions;
 
 const CardMenu = ({data}) => {
+  const navigation = useNavigation();
+
   const {
-    productsStore: {filterPr, fetchApiListProducts},
+    productsStore: {fetchApiListProducts},
   } = useStore();
 
   const handleItem = () => {
-    if (filterPr?.category_id?.id !== data?.id) {
-      fetchApiListProducts({category_id: data});
-    }
+    fetchApiListProducts({category_id: data});
+    navigation.navigate(routes.DetailCardSearch);
   };
 
   return (

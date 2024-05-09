@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {observer} from 'mobx-react';
 import debounce from 'lodash/debounce';
 
-import {Text, Search, Back} from '@components';
+import {Search, Back} from '@components';
 import {useStore} from '@context';
 
 import {Products} from './components';
@@ -35,18 +35,18 @@ const DetailCardSearch = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Back handleGoBack={handleGoBack} />
-        <Text style={styles.title}>
-          {`Popular ${filterPr?.category_id?.name || ''}`}
-        </Text>
-      </View>
-      <Search
-        value={txtSearch}
-        placeholder={'Search'}
-        onChangeText={onChangeText}
+      <Back
+        title={`Popular ${filterPr?.category_id?.name || ''}`}
+        handleGoBack={handleGoBack}
       />
-      <Products />
+      <View style={styles.content}>
+        <Search
+          value={txtSearch}
+          placeholder={'Search'}
+          onChangeText={onChangeText}
+        />
+        <Products />
+      </View>
     </View>
   );
 };

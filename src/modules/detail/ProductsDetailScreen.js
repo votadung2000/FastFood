@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {View, ScrollView, Image} from 'react-native';
 import {observer} from 'mobx-react';
-import RNFastImage from 'react-native-fast-image';
 // import _uniqBy from 'lodash/uniqBy';
 
 import {

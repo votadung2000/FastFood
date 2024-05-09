@@ -28,19 +28,11 @@ const Search = ({style, value, placeholder, onChangeText}) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.white,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 3,
     alignItems: 'center',
     flexDirection: 'row',
-    borderRadius: radius.radius6,
-    marginBottom: scale(10),
+    borderRadius: radius.radius10,
+    backgroundColor: colors.white,
+    ...radius.shadow,
   },
   icon: {
     position: 'absolute',
@@ -51,7 +43,7 @@ const styles = StyleSheet.create({
     color: colors.black,
     fontSize: fontSize.normal,
     backgroundColor: colors.systemGray3,
-    height: hScale(38),
+    height: hScale(48),
     width: '100%',
     paddingLeft: scale(40),
   },

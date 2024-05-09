@@ -4,6 +4,7 @@ import {observer} from 'mobx-react';
 
 import {EmptyComponent, LoadingComponent} from '@components';
 import {handleDataOdd} from '@utils';
+import {scale} from '@resolutions';
 import {useStore} from '@context';
 
 import CardProducts from './CardProducts';
@@ -43,6 +44,7 @@ const Products = () => {
         renderItem={renderItem}
         onEndReached={onEndReached}
         bounces={false}
+        contentContainerStyle={styles.ccSt}
         columnWrapperStyle={styles.wrapperStyle}
         scrollIndicatorInsets={{right: 1}}
         ListHeaderComponent={isLoadingProducts && <LoadingComponent />}
@@ -63,6 +65,10 @@ const Products = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: scale(25),
+  },
+  ccSt: {
+    flexGrow: 1,
   },
   wrapperStyle: {
     justifyContent: 'space-around',
