@@ -14,7 +14,7 @@ export default StyleSheet.create({
     paddingBottom: hScale(72),
   },
   title: {
-    fontSize: fontSize.huge,
+    fontSize: fontSize.fontSize30,
     alignSelf: 'flex-end',
     marginRight: scale(15),
     marginTop: scale(20),

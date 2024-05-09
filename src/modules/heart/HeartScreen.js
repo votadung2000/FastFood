@@ -32,7 +32,7 @@ const HeartScreen = () => {
   return (
     <View style={styles.container}>
       <Text bold style={styles.title}>
-        {'Your Heart'}
+        {'Favorite'}
       </Text>
       <View style={styles.body}>
         <Menu />

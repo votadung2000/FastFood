@@ -7,6 +7,7 @@ import {handleDataOdd} from '@utils';
 import {useStore} from '@context';
 
 import CardProducts from './CardProducts';
+import {scale} from '@resolutions';
 
 const Products = () => {
   const {
@@ -43,6 +44,7 @@ const Products = () => {
         renderItem={renderItem}
         onEndReached={onEndReached}
         bounces={false}
+        contentContainerStyle={styles.ccSt}
         columnWrapperStyle={styles.wrapperStyle}
         scrollIndicatorInsets={{right: 1}}
         ListHeaderComponent={isLoadingProducts && <LoadingComponent />}
@@ -63,6 +65,10 @@ const Products = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  ccSt: {
+    flexGrow: 1,
+    paddingBottom: scale(100),
   },
   wrapperStyle: {
     justifyContent: 'space-around',

@@ -42,7 +42,7 @@ const SearchScreen = ({navigation}) => {
   const handleFetchSearch = useCallback(
     debounce(text => {
       fetchApiListProducts({name: text});
-    }, 400),
+    }, 600),
     [],
   );
 
@@ -54,7 +54,9 @@ const SearchScreen = ({navigation}) => {
   return (
     <View style={styles.layout}>
       <View style={styles.container}>
-        <Text style={styles.title}>{'Discover\nNew Flavors'}</Text>
+        <Text bold style={styles.title}>
+          {'Discover\nNew Flavors'}
+        </Text>
         <Search
           value={txtSearch}
           placeholder={'Search'}

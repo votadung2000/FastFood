@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
     paddingVertical: scale(8),
   },
   emptyImg: {
-    width: scale(100),
-    height: scale(100),
+    width: scale(150),
+    height: scale(150),
     marginBottom: scale(8),
   },
   txtEmpty: {

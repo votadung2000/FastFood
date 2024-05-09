@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     paddingLeft: scale(10),
   },
   title: {
-    fontSize: fontSize.big,
+    fontSize: fontSize.fontSize30,
   },
 });
 

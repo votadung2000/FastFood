@@ -64,7 +64,7 @@ const CartScreen = () => {
   return (
     <View style={styles.layout}>
       <Text bold style={styles.title}>
-        {'Your Cart'}
+        {'Cart'}
       </Text>
       {cartProducts?.length === 0 ? (
         <EmptyComponent

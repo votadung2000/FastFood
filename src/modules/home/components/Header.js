@@ -58,7 +58,9 @@ const Header = ({titleHeaderAnimation}) => {
         )}
       </View>
       <Animated.View style={[styles.vwTitle, titleHeaderAnimation]}>
-        <Text style={styles.title}>{'What would you like\nto order'}</Text>
+        <Text bold style={styles.title}>
+          {'What would you like\nto order'}
+        </Text>
       </Animated.View>
     </View>
   );
@@ -109,7 +111,6 @@ const styles = StyleSheet.create({
     marginTop: scale(10),
   },
   title: {
-    fontFamily: 'Inter-Bold',
     fontSize: fontSize.fontSize30,
     color: colors.black,
   },

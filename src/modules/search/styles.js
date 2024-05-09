@@ -14,9 +14,8 @@ export default StyleSheet.create({
     flex: 1,
   },
   title: {
-    fontSize: fontSize.fontSize28,
+    fontSize: fontSize.fontSize30,
     marginBottom: scale(15),
-    fontWeight: '700',
   },
   container: {
     flex: 1,

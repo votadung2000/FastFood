@@ -11,7 +11,7 @@ export default StyleSheet.create({
     backgroundColor: colors.white,
   },
   title: {
-    fontSize: fontSize.huge,
+    fontSize: fontSize.fontSize30,
     alignSelf: 'flex-end',
     marginRight: scale(15),
     marginTop: scale(20),
