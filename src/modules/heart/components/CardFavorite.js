@@ -35,20 +35,14 @@ const CardFavorite = ({data}) => {
 
   return (
     <Button onPress={() => handleProduct()} style={styles.container}>
-      <FastImage
-        isPath
-        source={{uri: data?.product?.image?.url}}
-        style={styles.img}
-      />
+      <FastImage isPath source={{uri: data?.image?.url}} style={styles.img} />
       <View style={styles.content}>
         <Text bold numberOfLines={1} style={[styles.txtItem, styles.txtName]}>
-          {data?.product?.name}
+          {data?.name}
         </Text>
-        <Text style={[styles.txtItem, styles.txtTaste]}>
-          {data?.product?.taste}
-        </Text>
+        <Text style={[styles.txtItem, styles.txtTaste]}>{data?.taste}</Text>
         <Text bold style={styles.txtItem}>{`${formatCurrency(
-          data?.product?.price,
+          data?.price,
         )} Đ`}</Text>
       </View>
       <View style={styles.footer}>

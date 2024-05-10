@@ -17,6 +17,7 @@ export default StyleSheet.create({
     marginTop: scale(20),
   },
   body: {
+    flex: 1,
     flexDirection: 'row',
   },
 });

@@ -37,9 +37,9 @@ class FavoritesStore {
       }
       this.filterFavorites = newFilter;
 
-      let response = await ApiFavorites({user_id: 9, ...filter});
+      let response = await ApiFavorites(filter);
       runInAction(() => {
-        this.favorites = response.data;
+        this.favorites = response.data?.data?.map(ele => ele?.product);
         this.isLoadingFavorites = false;
       });
     } catch (error) {
@@ -68,12 +68,13 @@ class FavoritesStore {
       }
       this.filterFavorites = newFilter;
 
-      let response = await ApiFavorites({user_id: 9, ...filter});
+      let response = await ApiFavorites(filter);
       runInAction(() => {
-        this.favorites = {
+        let temporaryFavorites = {
           ...response?.data,
           data: [...this.favorites, ...response?.data?.data],
         };
+        this.favorites = temporaryFavorites?.map(ele => ele?.product);
         this.isFetchingFavorites = false;
       });
     } catch (error) {

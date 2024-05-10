@@ -5,7 +5,7 @@ import {observer} from 'mobx-react';
 import {Text} from '@components';
 import {colors, fontSize} from '@constant';
 import {useStore} from '@context';
-import {scale} from '@resolutions';
+import {hScale, scale} from '@resolutions';
 
 import CardFavorite from './CardFavorite';
 
@@ -25,7 +25,7 @@ const HeartProducts = () => {
       <View style={styles.emptyContainer}>
         <Image source={{uri: 'hearts_empty'}} style={styles.emptyImg} />
         <Text bold style={styles.txtEmpty}>
-          {"Heart's Empty"}
+          {"Favorite's Empty"}
         </Text>
       </View>
     );
@@ -37,7 +37,7 @@ const HeartProducts = () => {
         {filterFavorites?.category_id?.name || 'All'}
       </Text>
       <FlatList
-        data={favorites?.data}
+        data={favorites}
         showsVerticalScrollIndicator={false}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
@@ -58,11 +58,14 @@ const styles = StyleSheet.create({
     fontSize: fontSize.normal,
     marginTop: scale(5),
     marginBottom: scale(10),
+    marginLeft: scale(10),
   },
   containerStyle: {
+    flexGrow: 1,
     paddingHorizontal: scale(10),
     paddingVertical: scale(1),
     marginTop: scale(5),
+    paddingBottom: hScale(72),
   },
   emptyContainer: {
     flex: 1,
@@ -70,8 +73,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   emptyImg: {
-    width: scale(100),
-    height: scale(100),
+    width: scale(150),
+    height: scale(150),
     marginBottom: scale(8),
   },
   txtEmpty: {
