@@ -16,7 +16,7 @@ const Back = ({
   style,
   handleFavorite,
   heart,
-  favorite,
+  isFavorite,
   title,
   stTitle,
   handleGoBack,
@@ -37,12 +37,12 @@ const Back = ({
         <Ionicons name="chevron-back" size={scale(22)} color={colors.black} />
       </Button>
       {heart && (
-        <Button onPress={handleFavorite} style={styles.heart}>
-          <Ionicons
-            name={favorite ? 'heart' : 'heart-outline'}
-            size={scale(28)}
-            color={colors.heart}
-          />
+        <Button
+          onPress={handleFavorite}
+          style={[styles.vwFavorite, isFavorite && styles.vwIsFavorite]}>
+          <View style={styles.vwIconFavorite}>
+            <Ionicons name="heart" size={scale(20)} color={colors.white} />
+          </View>
         </Button>
       )}
       {title && (
@@ -77,6 +77,26 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: fontSize.fontSize30,
+  },
+  vwFavorite: {
+    position: 'absolute',
+    top: scale(15),
+    right: scale(15),
+    width: wScale(28),
+    height: wScale(28),
+    borderRadius: scale(28),
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+  },
+  vwIsFavorite: {
+    backgroundColor: colors.orange_FE724C,
+  },
+  vwIconFavorite: {
+    width: wScale(20),
+    height: wScale(20),
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

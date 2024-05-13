@@ -12,7 +12,7 @@ import {
   LoadingComponent,
 } from '@components';
 import {useStore} from '@context';
-import {formatCurrency, handleHeart} from '@utils';
+import {formatCurrency} from '@utils';
 import routes from '@routes';
 
 // import {ListExtraFood} from './components';
@@ -22,7 +22,7 @@ const ProductsDetailScreen = ({navigation}) => {
   const {
     // productsDetailStore: {extraFood, productDetail},
     cartProductsStore: {fetchCartProduct},
-    heartProductsStore: {allHeartProducts, addHeartProduct},
+    heartProductsStore: {addHeartProduct},
     productsStore: {product},
     userStore: {user},
   } = useStore();
@@ -101,7 +101,7 @@ const ProductsDetailScreen = ({navigation}) => {
         <View style={styles.container}>
           <Back
             heart
-            favorite={handleHeart(product?.id, allHeartProducts)}
+            isFavorite={product?.is_favorite}
             handleFavorite={handleFavorite}
           />
           <View style={styles.header}>
