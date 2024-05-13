@@ -3,13 +3,14 @@ import {StyleSheet, View, Dimensions} from 'react-native';
 import {observer} from 'mobx-react';
 import {useNavigation} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import RNFastImage from 'react-native-fast-image';
 
 import {Text, Button, FastImage} from '@components';
 import {colors, fontSize, radius} from '@constant';
 import {formatCurrency} from '@utils';
 import {useStore} from '@context';
-import {scale} from '@resolutions';
+import {wScale, scale} from '@resolutions';
 import routes from '@routes';
 
 const {width} = Dimensions.get('window');
@@ -52,6 +53,12 @@ const CardProducts = ({data}) => {
         <Button onPress={handlePlusCart} style={styles.plus}>
           <AntDesign name="plus" size={scale(18)} color={colors.white} />
         </Button>
+      </View>
+      <View
+        style={[styles.vwFavorite, data?.is_favorite && styles.vwIsFavorite]}>
+        <View style={styles.vwIconFavorite}>
+          <Ionicons name="heart" size={scale(20)} color={colors.white} />
+        </View>
       </View>
     </Button>
   );
@@ -114,6 +121,26 @@ const styles = StyleSheet.create({
     borderTopStartRadius: radius.radius14,
     paddingVertical: scale(10),
     backgroundColor: colors.orange_FE724C,
+  },
+  vwFavorite: {
+    position: 'absolute',
+    top: scale(15),
+    right: scale(15),
+    width: wScale(28),
+    height: wScale(28),
+    borderRadius: scale(28),
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+  },
+  vwIsFavorite: {
+    backgroundColor: colors.orange_FE724C,
+  },
+  vwIconFavorite: {
+    width: wScale(20),
+    height: wScale(20),
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
