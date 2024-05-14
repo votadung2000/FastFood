@@ -79,9 +79,6 @@ const styles = StyleSheet.create({
     fontSize: fontSize.fontSize30,
   },
   vwFavorite: {
-    position: 'absolute',
-    top: scale(15),
-    right: scale(15),
     width: wScale(28),
     height: wScale(28),
     borderRadius: scale(28),
