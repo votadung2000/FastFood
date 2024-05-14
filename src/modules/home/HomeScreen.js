@@ -1,7 +1,7 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useRef, useCallback} from 'react';
 import {View, Animated} from 'react-native';
 import {observer} from 'mobx-react';
-import {useNavigationState, useIsFocused} from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native';
 
 import {useStore} from '@context';
 
@@ -9,9 +9,6 @@ import {Products, Menu, Header} from './components';
 import styles from './styles';
 
 const HomeScreen = () => {
-  const isFocused = useIsFocused();
-  const indexRoute = useNavigationState(state => state?.index);
-
   const animatedValue = useRef(new Animated.Value(0)).current;
 
   const {
@@ -20,15 +17,15 @@ const HomeScreen = () => {
     animatedMenuStore: {isShowMenu},
   } = useStore();
 
-  useEffect(() => {
-    if (isFocused) {
+  useFocusEffect(
+    useCallback(() => {
       fetchCombineApiCategories();
 
       return () => {
         clearFilterPr();
       };
-    }
-  }, [indexRoute]);
+    }, []),
+  );
 
   // const titleHeaderAnimation = {
   //   transform: [

@@ -1,6 +1,6 @@
 import {action, makeAutoObservable, runInAction} from 'mobx';
 
-import {ApiFavorites} from '@actionApi';
+import {ApiFavorites, ApiCDFavorite} from '@actionApi';
 
 import userStore from './user.store';
 
@@ -18,6 +18,8 @@ class FavoritesStore {
   constructor() {
     makeAutoObservable(this, {
       fetchApiListFavorites: action.bound,
+      fetchApiCDFavorite: action.bound,
+
       loadMoreListFavorites: action.bound,
 
       clearFilterFavorites: action.bound,
@@ -81,6 +83,13 @@ class FavoritesStore {
       runInAction(() => {
         this.isFetchingFavorites = false;
       });
+    }
+  }
+
+  async fetchApiCDFavorite(params) {
+    let response = await ApiCDFavorite(params);
+    if (response?.data?.data) {
+      return response?.data?.data;
     }
   }
 

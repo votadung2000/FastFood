@@ -126,6 +126,14 @@ export const ApiFavorites = params => {
   });
 };
 
+export const ApiCDFavorite = data => {
+  return axios({
+    method: 'post',
+    url: ApiRoutes.favorite + '/cd_favorite',
+    data,
+  });
+};
+
 export const ApiCreateOrder = data => {
   return axios({
     method: 'post',

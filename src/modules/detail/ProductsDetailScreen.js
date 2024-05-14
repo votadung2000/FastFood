@@ -8,65 +8,69 @@ import {
   Back,
   Button,
   FastImage,
-  Popup,
+  Notifer,
+  ModalLoading,
   LoadingComponent,
 } from '@components';
 import {useStore} from '@context';
 import {formatCurrency} from '@utils';
-import routes from '@routes';
 
 // import {ListExtraFood} from './components';
 import styles from './styles';
 
-const ProductsDetailScreen = ({navigation}) => {
+const ProductsDetailScreen = () => {
   const {
     // productsDetailStore: {extraFood, productDetail},
     cartProductsStore: {fetchCartProduct},
-    heartProductsStore: {addHeartProduct},
-    productsStore: {product},
+    favoritesStore: {fetchApiCDFavorite},
+    productsStore: {product, fetchApiDetailProducts},
     userStore: {user},
   } = useStore();
 
+  const [loading, setLoading] = useState({isVisible: false});
   // const [extra, setExtra] = useState(null);
-  const [popup, setPopup] = useState(null);
 
-  const handleFavorite = () => {
-    if (user) {
-      addHeartProduct(product);
-    } else {
-      setPopup({
-        title: 'Attention',
-        accept: 'Accept',
-        content:
-          'You need to login before adding products to favorites.\nSign in now!',
-        handleAccept: handleAccept,
-        handleCancel: handleCancel,
-      });
+  const handleFavorite = async () => {
+    setLoading({isVisible: true});
+    try {
+      let body = {
+        user_id: user?.id,
+        product_id: product?.id,
+      };
+
+      let response = await fetchApiCDFavorite(body);
+      if (response) {
+        setLoading({
+          isVisible: false,
+          onModalHide: async () => {
+            Notifer({
+              alertType: 'success',
+              title: product.is_favorite
+                ? 'Delete Favorites Successfully!'
+                : 'Create Favorites Successfully!',
+            });
+            await fetchApiDetailProducts(product?.id);
+          },
+        });
+      }
+    } catch ({response}) {
+      setLoading({isVisible: false});
+      if (!response) {
+        Notifer({
+          alertType: 'warn',
+          title: 'Please check your network connection',
+        });
+      } else {
+        Notifer({
+          alertType: 'error',
+          title: response?.data?.message || '',
+        });
+      }
     }
   };
 
   const handlePlusCart = () => {
-    if (user) {
-      fetchCartProduct(product);
-    } else {
-      setPopup({
-        title: 'Attention',
-        accept: 'Accept',
-        content:
-          'You need to login before adding products to cart.\nSign in now!',
-        handleAccept: handleAccept,
-        handleCancel: handleCancel,
-      });
-    }
-  };
-
-  const handleAccept = () => {
-    setPopup(null);
-    navigation.navigate(routes.LoginScreen);
-  };
-
-  const handleCancel = () => {
-    setPopup(null);
+    fetchCartProduct(product);
   };
 
   // const handleExtraFood = item => {
@@ -136,7 +140,7 @@ const ProductsDetailScreen = ({navigation}) => {
         </View>
         <Text style={styles.txtAdd}>{'ADD TO CART'}</Text>
       </Button>
-      <Popup isVisible={Boolean(popup)} {...popup} />
+      <ModalLoading {...loading} />
     </View>
   );
 };

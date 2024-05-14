@@ -7,9 +7,10 @@ class HeartProductsStore {
 
   constructor() {
     makeAutoObservable(this, {
+      fetchHeartProduct: action.bound,
+
       addHeartProduct: action.bound,
       removeHeartProducts: action.bound,
-      fetchHeartProduct: action.bound,
     });
   }
 
