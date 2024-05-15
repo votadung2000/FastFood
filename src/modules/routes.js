@@ -22,4 +22,6 @@ export default {
   PrivacyPolicyScreen: 'PrivacyPolicyScreen',
   NotificationScreen: 'NotificationScreen',
   OrderScreen: 'OrderScreen',
+  UpcomingOrderScreen: 'UpcomingOrderScreen',
+  HistoryOrderScreen: 'HistoryOrderScreen',
 };

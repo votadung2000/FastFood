@@ -9,6 +9,7 @@ import STATUS_NOTIFY, {
   checkStatusReadNotify,
   checkStatusOnNotify,
 } from './statusNotify';
+import TAB_ORDER, {DATA_TAB_ORDER} from './dataTabOrder';
 
 export {
   colors,
@@ -21,4 +22,6 @@ export {
   STATUS_SETTING_NOTIFY,
   checkStatusReadNotify,
   checkStatusOnNotify,
+  TAB_ORDER,
+  DATA_TAB_ORDER,
 };

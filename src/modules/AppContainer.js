@@ -31,6 +31,8 @@ import ChangePasswordScreen from './change_password';
 import PrivacyPolicyScreen from './privacy_policy';
 import NotificationScreen from './notification';
 import OrderScreen from './order';
+import UpcomingOrderScreen from './upcoming_order';
+import HistoryOrderScreen from './history_order';
 
 const Stack = createNativeStackNavigator();
 
@@ -174,6 +176,16 @@ const RoutesUser = [
     id: 12,
     name: routes.OrderScreen,
     component: OrderScreen,
+  },
+  {
+    id: 13,
+    name: routes.UpcomingOrderScreen,
+    component: UpcomingOrderScreen,
+  },
+  {
+    id: 14,
+    name: routes.HistoryOrderScreen,
+    component: HistoryOrderScreen,
   },
 ];
 

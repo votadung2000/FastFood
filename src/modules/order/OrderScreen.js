@@ -1,14 +1,44 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {StyleSheet, View} from 'react-native';
+import {observer} from 'mobx-react';
+
+import {Back} from '@components';
+import {TAB_ORDER, colors} from '@constant';
+import {scale} from '@resolutions';
+import {useStore} from '@context';
+
+import TopTabs from './TopTabs';
+import UpcomingOrderScreen from '../upcoming_order';
+import HistoryOrderScreen from '../history_order';
 
 const OrderScreen = () => {
+  const {
+    orderStore: {tab},
+  } = useStore();
+
   return (
-    <View>
-      <Text>OrderScreen</Text>
+    <View style={styles.container}>
+      <Back title={'My Order'} />
+      <TopTabs />
+      <View style={styles.content}>
+        {TAB_ORDER.UPCOMING.id === tab?.id ? (
+          <UpcomingOrderScreen />
+        ) : (
+          <HistoryOrderScreen />
+        )}
+      </View>
     </View>
   );
 };
 
-export default OrderScreen;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
+  content: {
+    marginTop: scale(20),
+  },
+});
 
-const styles = StyleSheet.create({});
+export default observer(OrderScreen);
