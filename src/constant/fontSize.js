@@ -17,5 +17,6 @@ export const huge = RFValue(24, STANDARD_SCREEN_HEIGHT);
 export const fontSize28 = RFValue(28, STANDARD_SCREEN_HEIGHT);
 export const fontSize30 = RFValue(30, STANDARD_SCREEN_HEIGHT);
 export const fontSize34 = RFValue(34, STANDARD_SCREEN_HEIGHT);
+export const fontSize40 = RFValue(40, STANDARD_SCREEN_HEIGHT);
 export const fontSize46 = RFValue(46, STANDARD_SCREEN_HEIGHT);
 export const hugest = RFValue(56, STANDARD_SCREEN_HEIGHT);

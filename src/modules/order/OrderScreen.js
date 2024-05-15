@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   content: {
+    flex: 1,
     marginTop: scale(20),
   },
 });

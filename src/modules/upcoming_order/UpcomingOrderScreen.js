@@ -1,14 +1,39 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {StyleSheet, View, FlatList} from 'react-native';
+import {scale} from '@resolutions';
+
+import Card from './Card';
 
 const UpcomingOrderScreen = () => {
+  const keyExtractor = (_, index) => index.toString();
+
+  const renderItem = () => {
+    return <Card />;
+  };
+
   return (
-    <View>
-      <Text>UpcomingOrderScreen</Text>
+    <View style={styles.container}>
+      <FlatList
+        data={[1, 2, 3]}
+        bounces={false}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
+        contentContainerStyle={styles.ccSt}
+      />
     </View>
   );
 };
 
-export default UpcomingOrderScreen;
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    paddingHorizontal: scale(25),
+  },
+  ccSt: {
+    paddingBottom: scale(50),
+    padding: scale(1),
+  },
+});
 
-const styles = StyleSheet.create({});
+export default UpcomingOrderScreen;
