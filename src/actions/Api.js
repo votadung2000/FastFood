@@ -141,3 +141,11 @@ export const ApiCreateOrder = data => {
     data: data,
   });
 };
+
+export const ApiListOrder = params => {
+  return axios({
+    method: 'get',
+    url: ApiRoutes.order,
+    params,
+  });
+};

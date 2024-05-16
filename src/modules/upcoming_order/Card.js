@@ -4,13 +4,23 @@ import DeviceInfo from 'react-native-device-info';
 
 import {Button, Text} from '@components';
 import {hScale, scale, wScale} from '@resolutions';
-import {colors, fontSize, radius} from '@constant';
+import {
+  checkStatusWaitingOrder,
+  colors,
+  findStatusOrder,
+  fontSize,
+  radius,
+} from '@constant';
 
 let appName = DeviceInfo.getApplicationName();
 
-const Card = () => {
+const Card = ({data}) => {
+  const handleCard = () => {
+    console.log('handleCard');
+  };
+
   return (
-    <Button style={styles.container}>
+    <Button style={styles.container} onPress={handleCard}>
       <View style={styles.vwHeader}>
         <View style={styles.vwHeaderLeft}>
           <View style={styles.vwLogo}>
@@ -21,14 +31,14 @@ const Card = () => {
           </View>
           <View style={styles.vwContentHeader}>
             <Text medium style={styles.txtItem}>
-              {`${3} items`}
+              {`${data?.order_item?.length || 0} items`}
             </Text>
             <Text bold style={styles.txtBrand}>
               {`${appName}`}
             </Text>
           </View>
         </View>
-        <Text style={styles.txtId}>{`#${1}`}</Text>
+        <Text style={styles.txtId}>{`#${data?.id || 0}`}</Text>
       </View>
       <View style={styles.vwBody}>
         <View style={styles.vwBodyTime}>
@@ -47,14 +57,20 @@ const Card = () => {
             {'Now'}
           </Text>
           <Text medium style={styles.txtStatus}>
-            {'Food on the way'}
+            {findStatusOrder(data?.status)?.name || ''}
           </Text>
         </View>
       </View>
-      <View style={styles.vwFooter}>
-        <Button style={[styles.btnAction, styles.btnCancel]}>
-          <Text medium>{'Cancel'}</Text>
-        </Button>
+      <View
+        style={[
+          styles.vwFooter,
+          !checkStatusWaitingOrder(data?.status) && styles.anoFooter,
+        ]}>
+        {checkStatusWaitingOrder(data?.status) && (
+          <Button style={[styles.btnAction, styles.btnCancel]}>
+            <Text medium>{'Cancel'}</Text>
+          </Button>
+        )}
         <Button style={[styles.btnAction, styles.btnTrackOrder]}>
           <Text medium style={styles.txtTrackOrder}>
             {'Track Order'}
@@ -140,6 +156,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginTop: scale(15),
+  },
+  anoFooter: {
+    justifyContent: 'flex-end',
   },
   btnAction: {
     width: '48%',
