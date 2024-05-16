@@ -20,8 +20,8 @@ export default StyleSheet.create({
     marginTop: scale(20),
   },
   emptyImg: {
-    width: scale(150),
-    height: scale(150),
+    width: scale(120),
+    height: scale(120),
     marginBottom: scale(8),
   },
   container: {

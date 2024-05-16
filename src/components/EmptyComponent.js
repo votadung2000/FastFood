@@ -7,7 +7,7 @@ import {scale} from '@resolutions';
 import FastImage from './Image/FastImage';
 import Text from './Text';
 
-const EmptyComponent = ({url, title, Icon}) => {
+const EmptyComponent = ({url, title, des, Icon}) => {
   return (
     <View style={styles.emptyContainer}>
       {Icon && Icon}
@@ -15,6 +15,7 @@ const EmptyComponent = ({url, title, Icon}) => {
       <Text bold style={styles.txtEmpty}>
         {title || "Product's Empty"}
       </Text>
+      {des && <Text style={styles.txtDes}>{des}</Text>}
     </View>
   );
 };
@@ -29,11 +30,16 @@ const styles = StyleSheet.create({
   emptyImg: {
     width: scale(150),
     height: scale(150),
-    marginBottom: scale(8),
   },
   txtEmpty: {
-    color: colors.graySystem2,
     fontSize: fontSize.large,
+    marginTop: scale(12),
+  },
+  txtDes: {
+    color: colors.gray_9796A1,
+    fontSize: fontSize.fontSize14,
+    marginTop: scale(12),
+    textAlign: 'center',
   },
 });
 

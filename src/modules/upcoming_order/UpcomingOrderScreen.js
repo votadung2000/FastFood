@@ -1,17 +1,18 @@
-import React, { useCallback } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
-import { observer } from 'mobx-react';
+import React, {useCallback} from 'react';
+import {StyleSheet, View, FlatList} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
+import {observer} from 'mobx-react';
 
-import { EmptyComponent } from '@components'
-import { scale } from '@resolutions';
-import { useStore } from '@context';
+import {EmptyComponent} from '@components';
+import {scale} from '@resolutions';
+import {useStore} from '@context';
 
 import Card from './Card';
+import {SVG_Order_Empty} from '@svg';
 
 const UpcomingOrderScreen = () => {
   const {
-    orderStore: { orders, isLoadingOrders, fetchApiListOrder },
+    orderStore: {orders, isLoadingOrders, fetchApiListOrder},
   } = useStore();
 
   useFocusEffect(
@@ -22,7 +23,7 @@ const UpcomingOrderScreen = () => {
 
   const keyExtractor = (_, index) => index.toString();
 
-  const renderItem = ({ item }) => {
+  const renderItem = ({item}) => {
     return <Card data={item} />;
   };
 
@@ -36,7 +37,15 @@ const UpcomingOrderScreen = () => {
         renderItem={renderItem}
         contentContainerStyle={styles.ccSt}
         ListEmptyComponent={
-          !isLoadingOrders && <EmptyComponent title="Product's Empty" />
+          !isLoadingOrders && (
+            <EmptyComponent
+              title="No upcoming orders"
+              Icon={<SVG_Order_Empty width={scale(120)} height={scale(120)} />}
+              des={
+                'No upcoming orders have been placed yet.\nDiscover and order now.'
+              }
+            />
+          )
         }
       />
     </View>

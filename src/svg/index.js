@@ -7,6 +7,7 @@ import SVG_Payment from './SVG_Payment.svg';
 import SVG_Contact from './SVG_Contact.svg';
 import SVG_Setting from './SVG_Setting.svg';
 import SVG_Helps from './SVG_Helps.svg';
+import SVG_Order_Empty from './SVG_Order_Empty.svg';
 
 export {
   SVG_Facebook,
@@ -18,4 +19,5 @@ export {
   SVG_Contact,
   SVG_Setting,
   SVG_Helps,
+  SVG_Order_Empty,
 };
