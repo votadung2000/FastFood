@@ -37,9 +37,11 @@ export default {
   orange_FFC529: '#FFC529',
   orange_FFE8A8: '#FFE8A8',
   orange_FD724C: '#FD724C',
+  orange_FF3600: '#FF3600',
 
   // Green
   green: '#33cc33',
+  green_4EE476: '#4EE476',
 
   // Red
   red: '#ff3b30',

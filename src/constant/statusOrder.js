@@ -44,4 +44,11 @@ export const checkStatusWaitingOrder = status => {
   return false;
 };
 
+export const checkStatusCancelOrder = status => {
+  if (STATUS_ORDER.CANCELED.status === status) {
+    return true;
+  }
+  return false;
+};
+
 export default STATUS_ORDER;

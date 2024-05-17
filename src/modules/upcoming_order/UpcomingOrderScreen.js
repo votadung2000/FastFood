@@ -6,9 +6,9 @@ import {observer} from 'mobx-react';
 import {EmptyComponent} from '@components';
 import {scale} from '@resolutions';
 import {useStore} from '@context';
+import {SVG_Order_Empty} from '@svg';
 
 import Card from './Card';
-import {SVG_Order_Empty} from '@svg';
 
 const UpcomingOrderScreen = () => {
   const {

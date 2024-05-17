@@ -12,6 +12,7 @@ import randomImgEmpty from './randomImgEmpty';
 import checkIfValidUUID from './checkIfValidUUID';
 import differentData from './differentData';
 import formatImage from './formatImage';
+import currencyUs from './currencyUs';
 
 export {
   resolutions,
@@ -28,4 +29,5 @@ export {
   checkIfValidUUID,
   differentData,
   formatImage,
+  currencyUs,
 };

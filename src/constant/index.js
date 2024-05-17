@@ -15,6 +15,7 @@ import STATUS_ORDER, {
   DATA_STATUS_ORDER,
   findStatusOrder,
   checkStatusWaitingOrder,
+  checkStatusCancelOrder,
 } from './statusOrder';
 
 export {
@@ -34,4 +35,5 @@ export {
   DATA_STATUS_ORDER,
   findStatusOrder,
   checkStatusWaitingOrder,
+  checkStatusCancelOrder,
 };
