@@ -14,6 +14,8 @@ class OrderStore {
       fetchApiCreateOrder: action.bound,
       fetchApiListOrder: action.bound,
 
+      initTab: action.bound,
+
       handleTabSwitch: action.bound,
     });
   }
@@ -42,6 +44,10 @@ class OrderStore {
 
   handleTabSwitch(item) {
     this.tab = item;
+  }
+
+  initTab() {
+    this.tab = TAB_ORDER.UPCOMING;
   }
 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {observer} from 'mobx-react';
 
@@ -13,8 +13,14 @@ import HistoryOrderScreen from '../history_order';
 
 const OrderScreen = () => {
   const {
-    orderStore: {tab},
+    orderStore: {tab, initTab},
   } = useStore();
+
+  useEffect(() => {
+    return () => {
+      initTab();
+    };
+  }, []);
 
   return (
     <View style={styles.container}>
