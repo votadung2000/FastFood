@@ -17,7 +17,7 @@ const HistoryOrderScreen = () => {
 
   useFocusEffect(
     useCallback(() => {
-      fetchApiListOrder();
+      fetchApiListOrder({is_history: true});
     }, []),
   );
 

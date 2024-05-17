@@ -17,7 +17,7 @@ const UpcomingOrderScreen = () => {
 
   useFocusEffect(
     useCallback(() => {
-      fetchApiListOrder();
+      fetchApiListOrder({is_upcoming: true});
     }, []),
   );
 
