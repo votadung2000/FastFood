@@ -5,14 +5,13 @@ import {observer} from 'mobx-react';
 import {Text, EmptyComponent, LoadingComponent} from '@components';
 import {fontSize} from '@constant';
 import {useStore} from '@context';
-import {scale} from '@resolutions';
+import {hScale, scale} from '@resolutions';
 
 import CardProducts from './CardProducts';
 
 const Products = ({animatedValue}) => {
   const scrollViewRef = useRef(null);
   const scrollDirection = useRef('');
-  const lastOffsetY = useRef(0);
 
   const {
     categoryStore: {isLoadingCategories, categories},
@@ -35,12 +34,27 @@ const Products = ({animatedValue}) => {
     return;
   };
 
+  const handleScrollEndDrag = () => {
+    if (scrollViewRef.current && scrollDirection.current) {
+      scrollViewRef.current.scrollTo({
+        y: scrollDirection.current === 'down' ? hScale(80) : 0,
+        animated: true,
+      });
+    }
+  };
+
+  const onScroll = Animated.event(
+    [{nativeEvent: {contentOffset: {y: animatedValue}}}],
+    {useNativeDriver: false},
+  );
+
   return (
     <View style={styles.container}>
       <Text bold style={styles.title}>
         {'Featured Items'}
       </Text>
       <Animated.FlatList
+        ref={scrollViewRef}
         data={categories?.data}
         showsVerticalScrollIndicator={false}
         keyExtractor={keyExtractor}
@@ -52,23 +66,9 @@ const Products = ({animatedValue}) => {
         ListEmptyComponent={
           !isLoadingCategories && <EmptyComponent title="Product's Empty" />
         }
-        ref={scrollViewRef}
-        onScroll={e => {
-          const offsetY = e.nativeEvent.contentOffset.y;
-          scrollDirection.current =
-            offsetY - lastOffsetY.current > 0 ? 'down' : 'up';
-          lastOffsetY.current = offsetY;
-          animatedValue.setValue(offsetY);
-        }}
-        // onScrollEndDrag={() => {
-        //   if (scrollViewRef.current && scrollDirection.current) {
-        //     scrollViewRef.current?.scrollTo({
-        //       y: scrollDirection.current === 'down' ? hScale(80) : 0,
-        //       animated: true,
-        //     });
-        //   }
-        // }}
-        scrollEventThrottle={30}
+        onScroll={onScroll}
+        handleScrollEndDrag={handleScrollEndDrag}
+        scrollEventThrottle={16}
       />
     </View>
   );
