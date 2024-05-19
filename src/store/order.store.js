@@ -1,6 +1,6 @@
 import {makeAutoObservable, action, runInAction} from 'mobx';
 
-import {ApiCreateOrder, ApiListOrder} from '@actionApi';
+import {ApiCreateOrder, ApiListOrder, ApiUpdateOrder} from '@actionApi';
 import {TAB_ORDER} from '@constant';
 
 class OrderStore {
@@ -13,6 +13,7 @@ class OrderStore {
     makeAutoObservable(this, {
       fetchApiCreateOrder: action.bound,
       fetchApiListOrder: action.bound,
+      fetchApiUpdateOrder: action.bound,
 
       initTab: action.bound,
 
@@ -39,6 +40,17 @@ class OrderStore {
       runInAction(() => {
         this.isLoadingOrders = false;
       });
+    }
+  }
+
+  async fetchApiUpdateOrder(params) {
+    const {id, ...restParams} = params;
+    let response = await ApiUpdateOrder({
+      id: id,
+      data: restParams,
+    });
+    if (response.data?.data) {
+      return response.data?.data;
     }
   }
 

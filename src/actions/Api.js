@@ -149,3 +149,11 @@ export const ApiListOrder = params => {
     params,
   });
 };
+
+export const ApiUpdateOrder = ({id, data}) => {
+  return axios({
+    method: 'patch',
+    url: `${ApiRoutes.order}/${id}`,
+    data,
+  });
+};

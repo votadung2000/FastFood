@@ -1,22 +1,68 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View, Image} from 'react-native';
+import {observer} from 'mobx-react';
 import DeviceInfo from 'react-native-device-info';
 
-import {Button, Text} from '@components';
+import {Button, Text, Notifer, ModalLoading} from '@components';
 import {hScale, scale, wScale} from '@resolutions';
 import {
+  STATUS_ORDER,
   checkStatusWaitingOrder,
   colors,
   findStatusOrder,
   fontSize,
   radius,
 } from '@constant';
+import {useStore} from '@context';
 
 let appName = DeviceInfo.getApplicationName();
 
 const Card = ({data}) => {
+  const {
+    orderStore: {fetchApiUpdateOrder, fetchApiListOrder},
+  } = useStore();
+
+  const [loading, setLoading] = useState({isVisible: false});
+
   const handleCard = () => {
     console.log('handleCard');
+  };
+
+  const handleCancel = async () => {
+    setLoading({isVisible: true});
+    try {
+      let body = {
+        id: data?.id,
+        status: STATUS_ORDER.CANCELED.status,
+      };
+
+      let response = await fetchApiUpdateOrder(body);
+      if (response) {
+        setLoading({
+          isVisible: false,
+          onModalHide: async () => {
+            Notifer({
+              alertType: 'success',
+              title: 'Order Canceled Successfully!',
+            });
+            await fetchApiListOrder({is_upcoming: true});
+          },
+        });
+      }
+    } catch ({response}) {
+      setLoading({isVisible: false});
+      if (!response) {
+        Notifer({
+          alertType: 'warn',
+          title: 'Please check your network connection',
+        });
+      } else {
+        Notifer({
+          alertType: 'error',
+          title: response?.data?.message || '',
+        });
+      }
+    }
   };
 
   return (
@@ -67,7 +113,9 @@ const Card = ({data}) => {
           !checkStatusWaitingOrder(data?.status) && styles.anoFooter,
         ]}>
         {checkStatusWaitingOrder(data?.status) && (
-          <Button style={[styles.btnAction, styles.btnCancel]}>
+          <Button
+            style={[styles.btnAction, styles.btnCancel]}
+            onPress={handleCancel}>
             <Text medium>{'Cancel'}</Text>
           </Button>
         )}
@@ -77,6 +125,7 @@ const Card = ({data}) => {
           </Text>
         </Button>
       </View>
+      <ModalLoading {...loading} />
     </Button>
   );
 };
@@ -180,4 +229,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Card;
+export default observer(Card);

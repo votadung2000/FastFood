@@ -11,6 +11,7 @@ import {
   fontSize,
   radius,
   checkStatusCancelOrder,
+  STATUS_ORDER,
 } from '@constant';
 import {currencyUs} from '@utils';
 
@@ -34,7 +35,13 @@ const Card = ({data}) => {
           <View style={styles.vwContentHeader}>
             <View style={styles.vwInfoItem}>
               <Text medium style={styles.txtTimeEnd}>
-                {moment(new Date(new Date())).format('DD MMM, HH:mm')}
+                {moment(
+                  new Date(
+                    data?.status === STATUS_ORDER.CANCELED
+                      ? data?.canceled_at
+                      : data?.completed_at,
+                  ),
+                ).format('DD MMM, HH:mm')}
               </Text>
               <View style={styles.dotItem} />
               <Text medium style={styles.txtItem}>
