@@ -3,7 +3,7 @@ import {StyleSheet, View, Image} from 'react-native';
 import {observer} from 'mobx-react';
 import DeviceInfo from 'react-native-device-info';
 
-import {Button, Text, Notifer, ModalLoading} from '@components';
+import {Button, Text, Popup, Notifer, ModalLoading} from '@components';
 import {hScale, scale, wScale} from '@resolutions';
 import {
   STATUS_ORDER,
@@ -23,9 +23,33 @@ const Card = ({data}) => {
   } = useStore();
 
   const [loading, setLoading] = useState({isVisible: false});
+  const [popup, setPopup] = useState({isVisible: false});
 
   const handleCard = () => {
     console.log('handleCard');
+  };
+
+  const handleConfirm = () => {
+    setPopup({
+      isVisible: true,
+      title: 'Attention',
+      content: 'Do you want to cancel the order?',
+      cancel: 'Cancel',
+      handleCancel: () => {
+        setPopup({isVisible: false});
+      },
+      accept: 'Confirm',
+      handleAccept: handleAccept,
+    });
+  };
+
+  const handleAccept = async () => {
+    setPopup({
+      isVisible: false,
+      onModalHide: () => {
+        handleCancel();
+      },
+    });
   };
 
   const handleCancel = async () => {
@@ -115,7 +139,7 @@ const Card = ({data}) => {
         {checkStatusWaitingOrder(data?.status) && (
           <Button
             style={[styles.btnAction, styles.btnCancel]}
-            onPress={handleCancel}>
+            onPress={handleConfirm}>
             <Text medium>{'Cancel'}</Text>
           </Button>
         )}
@@ -126,6 +150,7 @@ const Card = ({data}) => {
         </Button>
       </View>
       <ModalLoading {...loading} />
+      <Popup {...popup} />
     </Button>
   );
 };
