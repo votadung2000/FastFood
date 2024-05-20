@@ -96,6 +96,7 @@ const Menu = () => {
           <ItemMenu
             Icon={<SVG_Delivery_Address />}
             label={'Delivery Address'}
+            onPress={() => handleNav(routes.DeliveryAddressScreen)}
           />
           <ItemMenu Icon={<SVG_Payment />} label={'Payment Methods'} />
           <ItemMenu Icon={<SVG_Contact />} label={'Contact Us'} />
