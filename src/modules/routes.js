@@ -24,4 +24,5 @@ export default {
   OrderScreen: 'OrderScreen',
   UpcomingOrderScreen: 'UpcomingOrderScreen',
   HistoryOrderScreen: 'HistoryOrderScreen',
+  OrderDetailsScreen: 'OrderDetailsScreen',
 };

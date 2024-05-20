@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Image} from 'react-native';
 import {observer} from 'mobx-react';
+import {useNavigation} from '@react-navigation/native';
 import DeviceInfo from 'react-native-device-info';
 
 import {Button, Text, Popup, Notifer, ModalLoading} from '@components';
@@ -14,19 +15,23 @@ import {
   radius,
 } from '@constant';
 import {useStore} from '@context';
+import routes from '@routes';
 
 let appName = DeviceInfo.getApplicationName();
 
 const Card = ({data}) => {
+  const navigation = useNavigation();
+
   const {
-    orderStore: {fetchApiUpdateOrder, fetchApiListOrder},
+    orderStore: {fetchApiUpdateOrder, fetchApiListOrder, handleOrderDetails},
   } = useStore();
 
   const [loading, setLoading] = useState({isVisible: false});
   const [popup, setPopup] = useState({isVisible: false});
 
   const handleCard = () => {
-    console.log('handleCard');
+    handleOrderDetails(data);
+    navigation.navigate(routes.OrderDetailsScreen);
   };
 
   const handleConfirm = () => {

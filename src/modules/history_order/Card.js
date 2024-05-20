@@ -1,5 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Image} from 'react-native';
+import {observer} from 'mobx-react';
+import {useNavigation} from '@react-navigation/native';
 import DeviceInfo from 'react-native-device-info';
 import moment from 'moment';
 
@@ -14,12 +16,21 @@ import {
   STATUS_ORDER,
 } from '@constant';
 import {currencyUs} from '@utils';
+import {useStore} from '@context';
+import routes from '@routes';
 
 let appName = DeviceInfo.getApplicationName();
 
 const Card = ({data}) => {
+  const navigation = useNavigation();
+
+  const {
+    orderStore: {handleOrderDetails},
+  } = useStore();
+
   const handleCard = () => {
-    console.log('handleCard');
+    handleOrderDetails(data);
+    navigation.navigate(routes.OrderDetailsScreen);
   };
 
   return (
@@ -197,4 +208,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Card;
+export default observer(Card);

@@ -9,6 +9,8 @@ class OrderStore {
   orders = null;
   isLoadingOrders = false;
 
+  order = null;
+
   constructor() {
     makeAutoObservable(this, {
       fetchApiCreateOrder: action.bound,
@@ -16,6 +18,7 @@ class OrderStore {
       fetchApiUpdateOrder: action.bound,
 
       initTab: action.bound,
+      handleOrderDetails: action.bound,
 
       handleTabSwitch: action.bound,
     });
@@ -52,6 +55,10 @@ class OrderStore {
     if (response.data?.data) {
       return response.data?.data;
     }
+  }
+
+  handleOrderDetails(item) {
+    this.order = item;
   }
 
   handleTabSwitch(item) {

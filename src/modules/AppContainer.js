@@ -33,6 +33,7 @@ import NotificationScreen from './notification';
 import OrderScreen from './order';
 import UpcomingOrderScreen from './upcoming_order';
 import HistoryOrderScreen from './history_order';
+import OrderDetailsScreen from './order_details';
 
 const Stack = createNativeStackNavigator();
 
@@ -186,6 +187,11 @@ const RoutesUser = [
     id: 14,
     name: routes.HistoryOrderScreen,
     component: HistoryOrderScreen,
+  },
+  {
+    id: 15,
+    name: routes.OrderDetailsScreen,
+    component: OrderDetailsScreen,
   },
 ];
 
