@@ -1,33 +1,41 @@
+import colors from './colors';
+
 const STATUS_ORDER = {
   WAITING: {
     id: 1,
     name: 'Waiting for processing',
     status: 1,
+    color: colors.order_waiting,
   },
   PROCESSED: {
     id: 2,
     name: 'Order has been processed',
     status: 2,
+    color: colors.order_processed,
   },
   DELIVERING: {
     id: 3,
     name: 'Order is being delivered',
     status: 3,
+    color: colors.order_delivering,
   },
   DELIVERED: {
     id: 4,
     name: 'Order has been delivered',
     status: 4,
+    color: colors.order_delivered,
   },
   COMPLETED: {
     id: 5,
     name: 'Order has been completed',
     status: 5,
+    color: colors.order_completed,
   },
   CANCELED: {
     id: 6,
     name: 'Order has been canceled',
     status: -1,
+    color: colors.order_canceled,
   },
 };
 

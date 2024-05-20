@@ -74,8 +74,9 @@ const Card = ({data}) => {
                 medium
                 style={[
                   styles.txtStatus,
-                  checkStatusCancelOrder(data?.status) &&
-                    styles.txtStatusCancel,
+                  {
+                    color: findStatusOrder(data?.status)?.color,
+                  },
                 ]}>
                 {findStatusOrder(data?.status)?.name || ''}
               </Text>

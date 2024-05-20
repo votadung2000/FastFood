@@ -60,4 +60,12 @@ export default {
 
   // Purple
   purple: '#c44dff',
+
+  // Status Order
+  order_waiting: '#FFCC00',
+  order_processed: '#3366FF',
+  order_delivering: '#FF9900',
+  order_delivered: '#33CC33',
+  order_completed: '#00CC99',
+  order_canceled: '#FF3300',
 };

@@ -131,7 +131,14 @@ const Card = ({data}) => {
           <Text medium style={styles.txtLabelBody}>
             {'Now'}
           </Text>
-          <Text medium style={styles.txtStatus}>
+          <Text
+            medium
+            style={[
+              styles.txtStatus,
+              {
+                color: findStatusOrder(data?.status)?.color,
+              },
+            ]}>
             {findStatusOrder(data?.status)?.name || ''}
           </Text>
         </View>

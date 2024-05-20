@@ -10,7 +10,6 @@ import {
   findStatusOrder,
   fontSize,
   radius,
-  checkStatusCancelOrder,
   STATUS_ORDER,
 } from '@constant';
 
@@ -41,14 +40,18 @@ const Header = ({data}) => {
             <View
               style={[
                 styles.dotStatus,
-                checkStatusCancelOrder(data?.status) && styles.dotStatusCancel,
+                {
+                  backgroundColor: findStatusOrder(data?.status)?.color,
+                },
               ]}
             />
             <Text
               medium
               style={[
                 styles.txtStatus,
-                checkStatusCancelOrder(data?.status) && styles.txtStatusCancel,
+                {
+                  color: findStatusOrder(data?.status)?.color,
+                },
               ]}>
               {findStatusOrder(data?.status)?.name || ''}
             </Text>
@@ -114,15 +117,9 @@ const styles = StyleSheet.create({
     marginRight: scale(4),
     backgroundColor: colors.green_4EE476,
   },
-  dotStatusCancel: {
-    backgroundColor: colors.orange_FF3600,
-  },
   txtStatus: {
     fontSize: fontSize.small,
     color: colors.green_4EE476,
-  },
-  txtStatusCancel: {
-    color: colors.orange_FF3600,
   },
 });
 
