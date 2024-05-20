@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
   },
   vwHeaderLeft: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
   imgLogo: {
     width: '100%',

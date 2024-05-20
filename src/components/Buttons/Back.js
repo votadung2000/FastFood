@@ -1,14 +1,17 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import {StyleSheet, View, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {observer} from 'mobx-react';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {colors, fontSize, radius} from '../../constant';
+import {colors, fontSize, radius} from '@constant';
 import {resolutions} from '@utils';
 import {wScale} from '@resolutions';
+import {useStore} from '@context';
 
 import Button from './Button';
 import Text from '../Text';
+import FastImage from '../Image/FastImage';
 
 const {scale} = resolutions;
 
@@ -23,6 +26,10 @@ const Back = ({
 }) => {
   const navigation = useNavigation();
 
+  const {
+    userStore: {user},
+  } = useStore();
+
   const goBack = () => {
     if (handleGoBack) {
       handleGoBack();
@@ -36,6 +43,22 @@ const Back = ({
       <Button onPress={() => goBack()} style={styles.btn}>
         <Ionicons name="chevron-back" size={scale(22)} color={colors.black} />
       </Button>
+      {title && (
+        <>
+          <Text bold style={[styles.title, stTitle]}>
+            {title}
+          </Text>
+          {user?.avatar ? (
+            <FastImage
+              isPath
+              source={{uri: user?.avatar?.url}}
+              style={styles.img}
+            />
+          ) : (
+            <Image source={require('@images/avatar.png')} style={styles.img} />
+          )}
+        </>
+      )}
       {heart && (
         <Button
           onPress={handleFavorite}
@@ -44,11 +67,6 @@ const Back = ({
             <Ionicons name="heart" size={scale(20)} color={colors.white} />
           </View>
         </Button>
-      )}
-      {title && (
-        <Text bold style={[styles.title, stTitle]}>
-          {title}
-        </Text>
       )}
     </View>
   );
@@ -76,7 +94,12 @@ const styles = StyleSheet.create({
     paddingLeft: scale(10),
   },
   title: {
-    fontSize: fontSize.fontSize30,
+    fontSize: fontSize.large,
+  },
+  img: {
+    width: wScale(38),
+    height: wScale(38),
+    borderRadius: radius.radius10,
   },
   vwFavorite: {
     width: wScale(28),
@@ -97,4 +120,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default React.memo(Back);
+export default observer(Back);

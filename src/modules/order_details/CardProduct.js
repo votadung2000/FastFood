@@ -1,64 +1,39 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {observer} from 'mobx-react';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import RNFastImage from 'react-native-fast-image';
 
-import {Text, Button, ChangeQuantity, FastImage} from '@components';
+import {Text, FastImage} from '@components';
 import {colors, fontSize, radius} from '@constant';
 import {currencyUs} from '@utils';
-import {useStore} from '@context';
 import {scale, wScale} from '@resolutions';
 
-const CardCart = ({data}) => {
-  const {
-    cartProductsStore: {plusProducts, minusProducts, removeProducts},
-  } = useStore();
-
-  const handleRemove = item => {
-    removeProducts(item);
-  };
-
-  const handlePlus = item => {
-    plusProducts(item);
-  };
-
-  const handleMinus = item => {
-    minusProducts(item);
-  };
-
+const CardProduct = ({data}) => {
   return (
     <View style={styles.container}>
       <FastImage
         isPath
-        source={{uri: data?.image?.url}}
+        source={{uri: data?.product?.image?.url}}
         style={styles.img}
         resizeMode={RNFastImage.resizeMode.stretch}
       />
       <View style={styles.bodyItem}>
         <View style={styles.headerItem}>
-          <Text bold style={styles.name}>
-            {data?.name}
-          </Text>
-          <Button onPress={() => handleRemove(data)} style={styles.remove}>
-            <AntDesign
-              name="close"
-              color={colors.red_FF3600}
-              size={scale(20)}
-            />
-          </Button>
+          <View>
+            <Text bold style={styles.name}>
+              {data?.product?.name || ''}
+            </Text>
+            <Text style={styles.taste}>{data?.product?.taste || ''}</Text>
+          </View>
         </View>
         <View style={styles.headerItem}>
           <Text medium style={styles.priceItem}>
             {`${currencyUs(data?.price)} `}
           </Text>
-          <ChangeQuantity
-            quantity={data?.quantity}
-            handlePlus={() => handlePlus(data)}
-            handleMinus={() => handleMinus(data)}
-          />
         </View>
       </View>
+      <Text medium style={styles.txQuantity}>
+        {`x${data?.quantity || ''}`}
+      </Text>
     </View>
   );
 };
@@ -66,7 +41,7 @@ const CardCart = ({data}) => {
 const styles = StyleSheet.create({
   container: {
     margin: 1,
-    marginBottom: scale(15),
+    marginTop: scale(10),
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: scale(10),
@@ -99,14 +74,20 @@ const styles = StyleSheet.create({
   name: {
     fontSize: fontSize.large,
   },
-  remove: {
-    justifyContent: 'center',
-    alignItems: 'center',
+  taste: {
+    marginTop: scale(4),
+    fontSize: fontSize.small,
+    color: colors.gray_9796A1,
   },
   priceItem: {
     textAlign: 'center',
     color: colors.orange_FE724C,
   },
+  txQuantity: {
+    fontSize: fontSize.large,
+    alignSelf: 'center',
+    marginRight: scale(8),
+  },
 });
 
-export default observer(CardCart);
+export default CardProduct;

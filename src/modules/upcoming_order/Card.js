@@ -113,7 +113,7 @@ const Card = ({data}) => {
             </Text>
           </View>
         </View>
-        <Text style={styles.txtId}>{`#${data?.id || 0}`}</Text>
+        <Text style={styles.txtId}>{`#${data?.id || ''}`}</Text>
       </View>
       <View style={styles.vwBody}>
         <View style={styles.vwBodyTime}>
@@ -182,6 +182,7 @@ const styles = StyleSheet.create({
   },
   vwHeaderLeft: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
   imgLogo: {
     width: '100%',

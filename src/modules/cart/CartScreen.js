@@ -3,7 +3,6 @@ import {View, ScrollView, Image} from 'react-native';
 import {observer} from 'mobx-react';
 
 import {Text, Button, EmptyComponent, Notifer, ModalLoading} from '@components';
-import {formatCurrency} from '@utils';
 import {useStore} from '@context';
 
 import {CardCart, Item} from './components';
@@ -88,13 +87,11 @@ const CartScreen = () => {
               })}
               {cartProducts?.length ? (
                 <View style={styles.vwCurrency}>
-                  <Item label="Subtotal" value={formatCurrency(subtotal)} />
-                  {false && (
-                    <Item label="Tax and Fees" value={formatCurrency(0)} />
-                  )}
-                  {false && <Item label="Delivery" value={formatCurrency(0)} />}
-                  <Item label="Discount" value={formatCurrency(discount)} />
-                  <Item label="Total" value={formatCurrency(total)} />
+                  <Item label="Subtotal" value={subtotal} />
+                  {false && <Item label="Tax and Fees" value={0} />}
+                  {false && <Item label="Delivery" value={0} />}
+                  <Item label="Discount" value={discount} />
+                  <Item label="Total" value={total} />
                 </View>
               ) : null}
             </ScrollView>

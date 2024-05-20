@@ -1,14 +1,106 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View, ScrollView} from 'react-native';
+import {observer} from 'mobx-react';
+
+import {Back, Button, Text} from '@components';
+import {colors, radius} from '@constant';
+import {hScale, scale} from '@resolutions';
+import {useStore} from '@context';
+
+import Header from './Header';
+import InfoStore from './InfoStore';
+import OrdersFood from './OrdersFood';
+import Item from './Item';
 
 const OrderDetailsScreen = () => {
+  const {
+    orderStore: {order},
+  } = useStore();
+
   return (
-    <View>
-      <Text>OrderDetailsScreen</Text>
+    <View style={styles.container}>
+      <Back title={'Order Details'} />
+      <ScrollView
+        bounces={false}
+        showsVerticalScrollIndicator={false}
+        style={styles.scroll}>
+        <View style={styles.content}>
+          <Header data={order} />
+          <InfoStore />
+          <OrdersFood data={order} />
+          <Item
+            label="Total"
+            value={order?.total}
+            stContainer={styles.stContainerItem}
+          />
+        </View>
+        <View style={styles.vwFooter}>
+          <Button style={[styles.btnAction, styles.btnRate]}>
+            <Text medium style={styles.txtRate}>
+              {'Rate'}
+            </Text>
+          </Button>
+          <Button style={[styles.btnAction, styles.btnReOrder]}>
+            <Text medium style={styles.txtReOrder}>
+              {'Re-Order'}
+            </Text>
+          </Button>
+        </View>
+      </ScrollView>
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
+  scroll: {
+    flex: 1,
+  },
+  content: {
+    flex: 1,
+    marginTop: scale(20),
+    paddingHorizontal: scale(25),
+    paddingBottom: hScale(50),
+  },
+  stContainerItem: {
+    marginTop: scale(20),
+  },
+  vwFooter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: scale(15),
+    paddingHorizontal: scale(25),
+  },
+  anoFooter: {
+    justifyContent: 'flex-end',
+  },
+  btnAction: {
+    width: '48%',
+    height: hScale(54),
+    borderRadius: scale(27),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  btnRate: {
+    borderWidth: scale(1),
+    borderColor: colors.orange_FE724C,
+    backgroundColor: colors.white,
+    ...radius.shadow,
+  },
+  txtRate: {
+    color: colors.orange_FE724C,
+  },
+  btnReOrder: {
+    backgroundColor: colors.orange_FE724C,
+    ...radius.shadow,
+  },
+  txtReOrder: {
+    color: colors.white,
+  },
+});
 
-export default OrderDetailsScreen;
+export default observer(OrderDetailsScreen);

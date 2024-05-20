@@ -4,11 +4,10 @@ import {StyleSheet, View} from 'react-native';
 import {Text} from '@components';
 import {colors} from '@constant';
 import {currencyUs} from '@utils';
-import {scale} from '@resolutions';
 
-const Item = ({label, value, bold}) => {
+const Item = ({label, value, stContainer}) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, stContainer]}>
       <Text medium style={styles.label}>
         {label}
       </Text>
@@ -26,10 +25,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: scale(15),
-    paddingBottom: scale(10),
-    borderBottomWidth: scale(1),
-    borderBottomColor: colors.gray_F2EAEA,
   },
   label: {},
   value: {
