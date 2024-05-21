@@ -11,6 +11,8 @@ class OrderStore {
 
   order = null;
 
+  rating = null;
+
   constructor() {
     makeAutoObservable(this, {
       fetchApiCreateOrder: action.bound,
@@ -19,6 +21,7 @@ class OrderStore {
 
       initTab: action.bound,
       handleOrderDetails: action.bound,
+      fetchRating: action.bound,
 
       handleTabSwitch: action.bound,
     });
@@ -59,6 +62,10 @@ class OrderStore {
 
   handleOrderDetails(item) {
     this.order = item;
+  }
+
+  fetchRating(item) {
+    this.rating = item;
   }
 
   handleTabSwitch(item) {

@@ -26,4 +26,5 @@ export default {
   HistoryOrderScreen: 'HistoryOrderScreen',
   OrderDetailsScreen: 'OrderDetailsScreen',
   DeliveryAddressScreen: 'DeliveryAddressScreen',
+  RatingScreen: 'RatingScreen',
 };

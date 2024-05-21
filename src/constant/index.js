@@ -22,6 +22,7 @@ import TYPE_DELIVERY_ADDRESS, {
   DATA_TYPE_DELIVERY_ADDRESS,
   findTypeDeliveryAddress,
 } from './typeDeliveryAddress';
+import TYPE_RATING, {DATA_TYPE_RATING, findTypeRating} from './typeRating';
 
 export {
   colors,
@@ -44,4 +45,7 @@ export {
   TYPE_DELIVERY_ADDRESS,
   DATA_TYPE_DELIVERY_ADDRESS,
   findTypeDeliveryAddress,
+  TYPE_RATING,
+  DATA_TYPE_RATING,
+  findTypeRating,
 };

@@ -18,6 +18,7 @@ import SignInSocial from './SignInSocial';
 import Notifer from './Notifer';
 import Switch from './Switch';
 import MyWeb from './MyWeb';
+import Stars from './Stars';
 
 export {
   Text,
@@ -42,4 +43,5 @@ export {
   Notifer,
   Switch,
   MyWeb,
+  Stars,
 };

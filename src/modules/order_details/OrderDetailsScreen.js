@@ -1,11 +1,13 @@
 import React from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import {observer} from 'mobx-react';
+import {useNavigation} from '@react-navigation/native';
 
 import {Back, Button, Text} from '@components';
 import {colors, radius} from '@constant';
 import {hScale, scale} from '@resolutions';
 import {useStore} from '@context';
+import routes from '@routes';
 
 import Header from './Header';
 import InfoStore from './InfoStore';
@@ -13,9 +15,16 @@ import OrdersFood from './OrdersFood';
 import Item from './Item';
 
 const OrderDetailsScreen = () => {
+  const navigation = useNavigation();
+
   const {
-    orderStore: {order},
+    orderStore: {order, fetchRating},
   } = useStore();
+
+  const handleRating = () => {
+    fetchRating(order);
+    navigation.navigate(routes.RatingScreen);
+  };
 
   return (
     <View style={styles.container}>
@@ -35,7 +44,9 @@ const OrderDetailsScreen = () => {
           />
         </View>
         <View style={styles.vwFooter}>
-          <Button style={[styles.btnAction, styles.btnRate]}>
+          <Button
+            style={[styles.btnAction, styles.btnRate]}
+            onPress={handleRating}>
             <Text medium style={styles.txtRate}>
               {'Rate'}
             </Text>
@@ -63,7 +74,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: scale(20),
     paddingHorizontal: scale(25),
-    paddingBottom: hScale(50),
   },
   stContainerItem: {
     marginTop: scale(20),
@@ -72,8 +82,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: scale(15),
+    marginTop: scale(50),
     paddingHorizontal: scale(25),
+    paddingBottom: hScale(50),
   },
   anoFooter: {
     justifyContent: 'flex-end',

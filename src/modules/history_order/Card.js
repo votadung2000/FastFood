@@ -12,7 +12,6 @@ import {
   findStatusOrder,
   fontSize,
   radius,
-  checkStatusCancelOrder,
   STATUS_ORDER,
 } from '@constant';
 import {currencyUs} from '@utils';
@@ -25,12 +24,17 @@ const Card = ({data}) => {
   const navigation = useNavigation();
 
   const {
-    orderStore: {handleOrderDetails},
+    orderStore: {handleOrderDetails, fetchRating},
   } = useStore();
 
   const handleCard = () => {
     handleOrderDetails(data);
     navigation.navigate(routes.OrderDetailsScreen);
+  };
+
+  const handleRating = () => {
+    fetchRating(data);
+    navigation.navigate(routes.RatingScreen);
   };
 
   return (
@@ -66,8 +70,9 @@ const Card = ({data}) => {
               <View
                 style={[
                   styles.dotStatus,
-                  checkStatusCancelOrder(data?.status) &&
-                    styles.dotStatusCancel,
+                  {
+                    backgroundColor: findStatusOrder(data?.status)?.color,
+                  },
                 ]}
               />
               <Text
@@ -86,7 +91,9 @@ const Card = ({data}) => {
         <Text style={styles.txtPrice}>{`${currencyUs(data?.total)}`}</Text>
       </View>
       <View style={styles.vwFooter}>
-        <Button style={[styles.btnAction, styles.btnRate]}>
+        <Button
+          style={[styles.btnAction, styles.btnRate]}
+          onPress={handleRating}>
           <Text medium>{'Rate'}</Text>
         </Button>
         <Button style={[styles.btnAction, styles.btnReOrder]}>
@@ -171,15 +178,9 @@ const styles = StyleSheet.create({
     marginRight: scale(4),
     backgroundColor: colors.green_4EE476,
   },
-  dotStatusCancel: {
-    backgroundColor: colors.orange_FF3600,
-  },
   txtStatus: {
     fontSize: fontSize.small,
     color: colors.green_4EE476,
-  },
-  txtStatusCancel: {
-    color: colors.orange_FF3600,
   },
   vwFooter: {
     flexDirection: 'row',

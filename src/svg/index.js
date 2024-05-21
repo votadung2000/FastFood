@@ -10,6 +10,8 @@ import SVG_Helps from './SVG_Helps.svg';
 import SVG_Order_Empty from './SVG_Order_Empty.svg';
 import SVG_Type_Home from './SVG_Type_Home';
 import SVG_Type_Office from './SVG_Type_Office';
+import SVG_Star_Empty from './SVG_Star_Empty';
+import SVG_Star_Full from './SVG_Star_Full';
 
 export {
   SVG_Facebook,
@@ -24,4 +26,6 @@ export {
   SVG_Order_Empty,
   SVG_Type_Home,
   SVG_Type_Office,
+  SVG_Star_Empty,
+  SVG_Star_Full,
 };
