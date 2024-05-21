@@ -1,7 +1,8 @@
 import {action, makeAutoObservable} from 'mobx';
 
 import {formatCartProducts} from '@utils';
-import {Notifer} from '@components';
+
+import Notifer from '../components/Notifer';
 
 class CartProductsStore {
   cartProducts = [];

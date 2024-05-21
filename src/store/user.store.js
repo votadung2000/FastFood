@@ -7,7 +7,8 @@ import {
   ApiUpdateProfile,
 } from '@actionApi';
 import {getToken} from '@storage';
-import {Notifer} from '@components';
+
+import Notifer from '../components/Notifer';
 
 class UserStore {
   user = null;
