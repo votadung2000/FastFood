@@ -18,6 +18,11 @@ import STATUS_ORDER, {
   checkStatusCancelOrder,
 } from './statusOrder';
 
+import TYPE_DELIVERY_ADDRESS, {
+  DATA_TYPE_DELIVERY_ADDRESS,
+  findTypeDeliveryAddress,
+} from './typeDeliveryAddress';
+
 export {
   colors,
   fontSize,
@@ -36,4 +41,7 @@ export {
   findStatusOrder,
   checkStatusWaitingOrder,
   checkStatusCancelOrder,
+  TYPE_DELIVERY_ADDRESS,
+  DATA_TYPE_DELIVERY_ADDRESS,
+  findTypeDeliveryAddress,
 };
