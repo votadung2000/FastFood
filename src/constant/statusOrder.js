@@ -59,4 +59,14 @@ export const checkStatusCancelOrder = status => {
   return false;
 };
 
+export const checkStatusFinishOrder = status => {
+  if (
+    STATUS_ORDER.COMPLETED.status === status ||
+    STATUS_ORDER.CANCELED.status === status
+  ) {
+    return true;
+  }
+  return false;
+};
+
 export default STATUS_ORDER;

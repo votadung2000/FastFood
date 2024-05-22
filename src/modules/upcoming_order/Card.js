@@ -52,12 +52,12 @@ const Card = ({data}) => {
     setPopup({
       isVisible: false,
       onModalHide: () => {
-        handleCancel();
+        handleCancelOrder();
       },
     });
   };
 
-  const handleCancel = async () => {
+  const handleCancelOrder = async () => {
     setLoading({isVisible: true});
     try {
       let body = {

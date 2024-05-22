@@ -16,6 +16,7 @@ import STATUS_ORDER, {
   findStatusOrder,
   checkStatusWaitingOrder,
   checkStatusCancelOrder,
+  checkStatusFinishOrder,
 } from './statusOrder';
 
 import TYPE_DELIVERY_ADDRESS, {
@@ -42,6 +43,7 @@ export {
   findStatusOrder,
   checkStatusWaitingOrder,
   checkStatusCancelOrder,
+  checkStatusFinishOrder,
   TYPE_DELIVERY_ADDRESS,
   DATA_TYPE_DELIVERY_ADDRESS,
   findTypeDeliveryAddress,
