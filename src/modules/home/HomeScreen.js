@@ -5,6 +5,7 @@ import {useFocusEffect} from '@react-navigation/native';
 
 import {useStore} from '@context';
 import {hScale, scale} from '@resolutions';
+import {Location} from '@components';
 
 import {Products, Menu, Header} from './components';
 import styles from './styles';
@@ -69,6 +70,7 @@ const HomeScreen = () => {
         <Menu />
         <Products animatedValue={animatedValue} />
       </View>
+      <Location />
     </View>
   );
 };

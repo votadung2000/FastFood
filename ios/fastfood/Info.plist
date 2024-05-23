@@ -28,6 +28,13 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>New Exception Domain</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
 			<key>localhost</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
@@ -36,13 +43,13 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>$(PRODUCT_NAME) need permission to access the camera.</string>
+	<string>$(PRODUCT_NAME) needs permission to access the camera.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Your location data will be securely stored and will not be shared without your consent. Please grant location access to enjoy the full functionality of $(PRODUCT_NAME)</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string>Your location data will be securely stored and will not be shared without your consent. Please grant location access to enjoy the full functionality of $(PRODUCT_NAME)</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>App will access your camera and album to update your profile picture</string>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
+	<string>$(PRODUCT_NAME) needs permission to access the library.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
@@ -77,6 +84,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
