@@ -1,15 +1,19 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, View, FlatList} from 'react-native';
 import {observer} from 'mobx-react';
+import {useNavigation} from '@react-navigation/native';
 
 import {Back, Button, Text, LoadingComponent} from '@components';
 import {hScale, scale} from '@resolutions';
 import {colors, radius} from '@constant';
 import {useStore} from '@context';
+import routes from '@routes';
 
 import Card from './Card';
 
 const DeliveryAddressScreen = () => {
+  const navigation = useNavigation();
+
   const {
     deliveryAddressStore: {address, isLoadingAddress, fetchApiListAddress},
   } = useStore();
@@ -22,6 +26,10 @@ const DeliveryAddressScreen = () => {
 
   const renderItem = ({item}) => {
     return <Card data={item} />;
+  };
+
+  const navScreen = () => {
+    navigation.navigate(routes.CreateDeliveryAddressScreen);
   };
 
   return (
@@ -40,7 +48,7 @@ const DeliveryAddressScreen = () => {
             isLoadingAddress ? (
               <LoadingComponent />
             ) : (
-              <Button style={styles.btnAction}>
+              <Button style={styles.btnAction} onPress={navScreen}>
                 <Text medium style={styles.txtAction}>
                   {'ADD NEW ADDRESS'}
                 </Text>

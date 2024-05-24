@@ -36,6 +36,7 @@ import HistoryOrderScreen from './history_order';
 import OrderDetailsScreen from './order_details';
 import DeliveryAddressScreen from './delivery_address';
 import RatingScreen from './rating';
+import CreateDeliveryAddressScreen from './create_delivery_address';
 
 const Stack = createNativeStackNavigator();
 
@@ -204,6 +205,11 @@ const RoutesUser = [
     id: 17,
     name: routes.RatingScreen,
     component: RatingScreen,
+  },
+  {
+    id: 18,
+    name: routes.CreateDeliveryAddressScreen,
+    component: CreateDeliveryAddressScreen,
   },
 ];
 
