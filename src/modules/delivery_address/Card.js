@@ -9,15 +9,17 @@ const Card = ({data}) => {
   return (
     <View style={styles.container}>
       <View style={styles.vwIcon}>
-        <View style={styles.vwBgIcon}>{findTypeDeliveryAddress(2)?.Icon}</View>
+        <View style={styles.vwBgIcon}>
+          {findTypeDeliveryAddress(data?.type)?.Icon}
+        </View>
       </View>
       <View style={styles.vwContent}>
-        <Text bold>{`${findTypeDeliveryAddress(2)?.name || ''}`}</Text>
+        <Text bold>{`${findTypeDeliveryAddress(data?.type)?.name || ''}`}</Text>
         <Text medium style={styles.txtGlobal}>
-          {`${'542-154-5184'}`}
+          {`${data?.id || ''}`}
         </Text>
         <Text medium style={styles.txtGlobal}>
-          {`${'4261 Kembery Drive, Chicago, LSA'}`}
+          {`${data?.street_address || ''}`}
         </Text>
       </View>
     </View>
@@ -58,6 +60,7 @@ const styles = StyleSheet.create({
     borderRadius: radius.radius10,
   },
   vwContent: {
+    width: '80%',
     marginLeft: scale(18),
     justifyContent: 'center',
     alignItems: 'flex-start',

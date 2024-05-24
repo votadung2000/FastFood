@@ -157,3 +157,11 @@ export const ApiUpdateOrder = ({id, data}) => {
     data,
   });
 };
+
+export const ApiDeliveryAddress = params => {
+  return axios({
+    method: 'get',
+    url: ApiRoutes.deliveryAddress,
+    params,
+  });
+};

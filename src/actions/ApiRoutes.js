@@ -8,4 +8,5 @@ export default {
   favorite: 'v1/favorite',
   uploadImg: 'v1/upload',
   order: 'v1/order',
+  deliveryAddress: 'v1/delivery_address',
 };

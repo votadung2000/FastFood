@@ -9,6 +9,7 @@ import favoritesStore from './favorites.store';
 import animatedMenuStore from './animatedMenu.store';
 import uploadImgStore from './uploadImg.store';
 import orderStore from './order.store';
+import deliveryAddressStore from './deliveryAddress.store';
 
 export default {
   productsStore,
@@ -22,4 +23,5 @@ export default {
   animatedMenuStore,
   uploadImgStore,
   orderStore,
+  deliveryAddressStore,
 };

@@ -1,13 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View, FlatList} from 'react-native';
+import {observer} from 'mobx-react';
 
-import {Back, Button, Text} from '@components';
+import {Back, Button, Text, LoadingComponent} from '@components';
 import {hScale, scale} from '@resolutions';
 import {colors, radius} from '@constant';
+import {useStore} from '@context';
 
 import Card from './Card';
 
 const DeliveryAddressScreen = () => {
+  const {
+    deliveryAddressStore: {address, isLoadingAddress, fetchApiListAddress},
+  } = useStore();
+
+  useEffect(() => {
+    fetchApiListAddress();
+  }, []);
+
   const keyExtractor = (_, index) => index?.toString();
 
   const renderItem = ({item}) => {
@@ -20,17 +30,22 @@ const DeliveryAddressScreen = () => {
       <View style={styles.content}>
         <FlatList
           bounces={false}
-          data={[1, 2, 3]}
+          data={address}
           keyExtractor={keyExtractor}
           renderItem={renderItem}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.ccSt}
+          ListHeaderComponent={isLoadingAddress && <LoadingComponent />}
           ListFooterComponent={
-            <Button style={styles.btnAction}>
-              <Text medium style={styles.txtAction}>
-                {'ADD NEW ADDRESS'}
-              </Text>
-            </Button>
+            isLoadingAddress ? (
+              <LoadingComponent />
+            ) : (
+              <Button style={styles.btnAction}>
+                <Text medium style={styles.txtAction}>
+                  {'ADD NEW ADDRESS'}
+                </Text>
+              </Button>
+            )
           }
         />
       </View>
@@ -69,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DeliveryAddressScreen;
+export default observer(DeliveryAddressScreen);
