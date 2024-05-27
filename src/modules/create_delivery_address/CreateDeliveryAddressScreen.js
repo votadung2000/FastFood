@@ -256,7 +256,7 @@ const CreateDeliveryAddressScreen = () => {
         enableOnAndroid={false}
         contentContainerStyle={styles.scroll}
         showsVerticalScrollIndicator={false}>
-        <Back title={'Create Delivery Address'} />
+        <Back title={'Delivery Address'} />
         <View style={styles.content}>
           <View>
             <Text medium style={styles.title}>
