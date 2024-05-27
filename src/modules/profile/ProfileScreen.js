@@ -107,7 +107,6 @@ const ProfileScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.red,
   },
   image: {
     position: 'absolute',

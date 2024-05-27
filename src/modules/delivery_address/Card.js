@@ -1,9 +1,11 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import moment from 'moment';
 
 import {Text} from '@components';
 import {scale, wScale} from '@resolutions';
 import {colors, findTypeDeliveryAddress, fontSize, radius} from '@constant';
+import {formatNaturalNumber} from '@utils';
 
 const Card = ({data}) => {
   return (
@@ -16,7 +18,9 @@ const Card = ({data}) => {
       <View style={styles.vwContent}>
         <Text bold>{`${findTypeDeliveryAddress(data?.type)?.name || ''}`}</Text>
         <Text medium style={styles.txtGlobal}>
-          {`${data?.id || ''}`}
+          {`${formatNaturalNumber(data?.id) || ''}-${moment(
+            new Date(data?.created_at),
+          ).format('DD-MM-YY')}`}
         </Text>
         <Text medium style={styles.txtGlobal}>
           {`${data?.street_address || ''}`}

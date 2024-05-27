@@ -18,6 +18,7 @@ const Input = (
     onChangeText,
     handleChange,
     handleBlur,
+    Icon,
     ...rest
   },
   ref,
@@ -35,24 +36,27 @@ const Input = (
   return (
     <View {...style}>
       {label && <Text style={styles.label}>{label}</Text>}
-      <TextInput
-        ref={ref}
-        autoCapitalize="none"
-        placeholderTextColor={colors.gray_C4C4C4}
-        style={[
-          styles.input,
-          medium && styles.medium,
-          isInput && styles.inputting,
-          inputStyle,
-        ]}
-        onChangeText={
-          onChangeText ? text => onChangeText(text) : handleChange(name)
-        }
-        onBlur={onBlur}
-        onEndEditing={handleBlur(name)}
-        onTouchStart={handleInputStart}
-        {...rest}
-      />
+      <View style={styles.content}>
+        <TextInput
+          ref={ref}
+          autoCapitalize="none"
+          placeholderTextColor={colors.gray_C4C4C4}
+          style={[
+            styles.input,
+            medium && styles.medium,
+            isInput && styles.inputting,
+            inputStyle,
+          ]}
+          onChangeText={
+            onChangeText ? text => onChangeText(text) : handleChange(name)
+          }
+          onBlur={onBlur}
+          onEndEditing={handleBlur(name)}
+          onTouchStart={handleInputStart}
+          {...rest}
+        />
+        {Icon && Icon}
+      </View>
       {touched[name] && errors[name] ? (
         <Text style={styles.error}>{errors[name]}</Text>
       ) : null}
@@ -61,8 +65,12 @@ const Input = (
 };
 
 const styles = StyleSheet.create({
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+  },
   input: {
-    height: hScale(65),
+    height: hScale(64),
     color: colors.black,
     fontSize: fontSize.fontSize16,
     borderColor: colors.gray_EEEEEE,

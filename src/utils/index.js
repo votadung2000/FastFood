@@ -13,6 +13,7 @@ import checkIfValidUUID from './checkIfValidUUID';
 import differentData from './differentData';
 import formatImage from './formatImage';
 import currencyUs from './currencyUs';
+import formatNaturalNumber from './formatNaturalNumber';
 
 export {
   resolutions,
@@ -30,4 +31,5 @@ export {
   differentData,
   formatImage,
   currencyUs,
+  formatNaturalNumber,
 };

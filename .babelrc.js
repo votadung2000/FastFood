@@ -7,6 +7,7 @@ const plugins = [
       alias: {
         '@api': './src/actions/Data',
         '@actionApi': './src/actions/Api',
+        '@actionApiLocation': './src/actions/ApiLocation',
         '@components': './src/components',
         '@constant': './src/constant',
         '@context': './src/context',

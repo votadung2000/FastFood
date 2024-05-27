@@ -11,6 +11,7 @@ import {
 import {Search} from './Search';
 import {Input, InputPassword} from './Input';
 import {FastImage, ImagesViewer} from './Image';
+import {SelectType, SelectDefault} from './Selects';
 import LoadingComponent from './LoadingComponent';
 import Loading from './Loading';
 import Popup from './Popup';
@@ -37,6 +38,8 @@ export {
   InputPassword,
   FastImage,
   ImagesViewer,
+  SelectType,
+  SelectDefault,
   LoadingComponent,
   Loading,
   Popup,

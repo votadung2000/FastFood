@@ -25,6 +25,12 @@ import TYPE_DELIVERY_ADDRESS, {
 } from './typeDeliveryAddress';
 import TYPE_RATING, {DATA_TYPE_RATING, findTypeRating} from './typeRating';
 
+import DEFAULT_DELIVERY_ADDRESS, {
+  DATA_DEFAULT_DELIVERY_ADDRESS,
+  findDefaultDeliveryAddress,
+  checkDefaultDeliveryAddress,
+} from './defaultDeliveryAddress';
+
 export {
   colors,
   fontSize,
@@ -50,4 +56,8 @@ export {
   TYPE_RATING,
   DATA_TYPE_RATING,
   findTypeRating,
+  DEFAULT_DELIVERY_ADDRESS,
+  DATA_DEFAULT_DELIVERY_ADDRESS,
+  findDefaultDeliveryAddress,
+  checkDefaultDeliveryAddress,
 };

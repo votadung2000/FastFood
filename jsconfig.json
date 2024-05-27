@@ -8,6 +8,9 @@
       "@actionApi": [
         "./src/actions/Api"
       ],
+      "@actionApiLocation": [
+        "./src/actions/ApiLocation"
+      ],
       "@components": [
         "./src/components"
       ],

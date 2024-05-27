@@ -7,11 +7,18 @@ import {
   check,
   request,
 } from 'react-native-permissions';
+import {observer} from 'mobx-react';
 import Geolocation from '@react-native-community/geolocation';
+
+import {useStore} from '@context';
 
 import Popup from './Popup';
 
-const Location = () => {
+const Location = ({handleCancelLocation}) => {
+  const {
+    locationStore: {handleUpdateLocation},
+  } = useStore();
+
   const [popup, setPopup] = useState({isVisible: false});
 
   useEffect(() => {
@@ -26,6 +33,9 @@ const Location = () => {
       cancel: 'Cancel',
       handleCancel: () => {
         setPopup({isVisible: false});
+        if (handleCancelLocation) {
+          handleCancelLocation();
+        }
       },
       accept: 'Confirm',
       handleAccept: () => {
@@ -72,18 +82,21 @@ const Location = () => {
     }
   };
 
-  const handleGetGeolocation = () => {
+  const handleGetGeolocation = async () => {
     Geolocation.getCurrentPosition(
       position => {
-        console.log('position', position);
+        let body = {
+          lat: position?.coords?.latitude,
+          lon: position?.coords?.longitude,
+        };
+
+        handleUpdateLocation(body);
       },
-      error => {
-        console.log('error', error?.message);
-      },
+      error => {},
       {
         timeout: 2000,
-        maximumAge: 30000,
-        enableHighAccuracy: true,
+        maximumAge: 10000,
+        enableHighAccuracy: false,
       },
     );
   };
@@ -91,4 +104,4 @@ const Location = () => {
   return <Popup {...popup} />;
 };
 
-export default Location;
+export default observer(Location);
