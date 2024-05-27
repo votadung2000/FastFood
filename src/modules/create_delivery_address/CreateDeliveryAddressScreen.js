@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useFormik} from 'formik';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -21,21 +21,12 @@ import {
   DATA_TYPE_DELIVERY_ADDRESS,
   DEFAULT_DELIVERY_ADDRESS,
   colors,
+  findDefaultDeliveryAddress,
+  findTypeDeliveryAddress,
   fontSize,
 } from '@constant';
 import {hScale, scale} from '@resolutions';
 import {useStore} from '@context';
-
-const initialValues = {
-  recipient_name: '',
-  phone_number: '',
-  street_address: '',
-  city: '',
-  country: '',
-  postal_code: '',
-  type: '',
-  default: DEFAULT_DELIVERY_ADDRESS.NOT_DEFAULT,
-};
 
 const initialErrors = {
   recipient_name: true,
@@ -58,10 +49,36 @@ const CreateDeliveryAddressScreen = () => {
       fetchApiLocationWithGeolocation,
       fetchApiLocationWithAddress,
     },
-    deliveryAddressStore: {fetchApiListAddress, fetchApiCreateAddress},
+    deliveryAddressStore: {
+      detailAddress,
+      fetchApiListAddress,
+      fetchApiCreateAddress,
+      clearDetailAddress,
+    },
   } = useStore();
 
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      clearDetailAddress();
+    };
+  }, []);
+
+  const initialValues = {
+    recipient_name: detailAddress?.recipient_name || '',
+    phone_number: detailAddress?.phone_number || '',
+    street_address: detailAddress?.street_address || '',
+    city: detailAddress?.city || '',
+    country: detailAddress?.country || '',
+    postal_code: detailAddress?.postal_code || '',
+    type: findTypeDeliveryAddress(detailAddress?.type) || '',
+    default:
+      findDefaultDeliveryAddress(detailAddress?.default) ||
+      DEFAULT_DELIVERY_ADDRESS.NOT_DEFAULT,
+    lat: detailAddress?.lat || '',
+    lon: detailAddress?.lon || '',
+  };
 
   const {
     values,

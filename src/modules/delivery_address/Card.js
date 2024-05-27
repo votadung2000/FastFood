@@ -1,15 +1,37 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {observer} from 'mobx-react';
 import moment from 'moment';
 
-import {Text} from '@components';
+import {Text, Button} from '@components';
 import {scale, wScale} from '@resolutions';
-import {colors, findTypeDeliveryAddress, fontSize, radius} from '@constant';
+import {
+  DEFAULT_DELIVERY_ADDRESS,
+  checkDefaultDeliveryAddress,
+  findTypeDeliveryAddress,
+  colors,
+  fontSize,
+  radius,
+} from '@constant';
 import {formatNaturalNumber} from '@utils';
+import {useStore} from '@context';
+import routes from '@routes';
 
 const Card = ({data}) => {
+  const navigation = useNavigation();
+
+  const {
+    deliveryAddressStore: {fetchApiDetailAddress},
+  } = useStore();
+
+  const handleDetail = () => {
+    fetchApiDetailAddress(data);
+    navigation.navigate(routes.CreateDeliveryAddressScreen);
+  };
+
   return (
-    <View style={styles.container}>
+    <Button style={styles.container} onPress={handleDetail}>
       <View style={styles.vwIcon}>
         <View style={styles.vwBgIcon}>
           {findTypeDeliveryAddress(data?.type)?.Icon}
@@ -25,8 +47,15 @@ const Card = ({data}) => {
         <Text medium style={styles.txtGlobal}>
           {`${data?.street_address || ''}`}
         </Text>
+        {checkDefaultDeliveryAddress(data?.default) && (
+          <View style={styles.vwType}>
+            <Text style={styles.txtType}>
+              {DEFAULT_DELIVERY_ADDRESS.DEFAULT.name}
+            </Text>
+          </View>
+        )}
       </View>
-    </View>
+    </Button>
   );
 };
 
@@ -74,6 +103,18 @@ const styles = StyleSheet.create({
     fontSize: fontSize.small,
     color: colors.gray_9796A1,
   },
+  vwType: {
+    marginTop: scale(8),
+    borderWidth: scale(1),
+    borderColor: colors.orange_FE724C,
+    paddingHorizontal: scale(10),
+    paddingVertical: scale(4),
+    borderRadius: radius.radius4,
+  },
+  txtType: {
+    fontSize: fontSize.small,
+    color: colors.orange_FE724C,
+  },
 });
 
-export default Card;
+export default observer(Card);

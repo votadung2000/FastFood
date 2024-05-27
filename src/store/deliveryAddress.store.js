@@ -6,9 +6,15 @@ class DeliveryAddressStore {
   address = null;
   isLoadingAddress = false;
 
+  detailAddress = null;
+
   constructor() {
     makeAutoObservable(this, {
       fetchApiListAddress: action.bound,
+      fetchApiCreateAddress: action.bound,
+      fetchApiDetailAddress: action.bound,
+
+      clearDetailAddress: action.bound,
     });
   }
 
@@ -32,6 +38,14 @@ class DeliveryAddressStore {
     if (response) {
       return response?.data;
     }
+  }
+
+  async fetchApiDetailAddress(item) {
+    this.detailAddress = item;
+  }
+
+  clearDetailAddress() {
+    this.detailAddress = null;
   }
 }
 
