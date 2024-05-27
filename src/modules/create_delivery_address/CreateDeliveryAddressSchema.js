@@ -7,6 +7,7 @@ let CreateDeliveryAddressSchema = object().shape({
   city: string().trim().required('Please enter city'),
   country: string().trim().required('Please enter country'),
   postal_code: string().trim().required('Please enter postal code'),
+  type: object().required('Please select address type'),
 });
 
 export default CreateDeliveryAddressSchema;

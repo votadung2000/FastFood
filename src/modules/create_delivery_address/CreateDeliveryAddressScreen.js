@@ -44,6 +44,7 @@ const initialErrors = {
   city: true,
   country: true,
   postal_code: true,
+  type: true,
 };
 
 import CreateDeliveryAddressSchema from './CreateDeliveryAddressSchema';
@@ -53,9 +54,11 @@ const CreateDeliveryAddressScreen = () => {
 
   const {
     locationStore: {
+      geolocation,
       fetchApiLocationWithGeolocation,
       fetchApiLocationWithAddress,
     },
+    deliveryAddressStore: {fetchApiListAddress, fetchApiCreateAddress},
   } = useStore();
 
   const [loading, setLoading] = useState(false);
@@ -63,7 +66,6 @@ const CreateDeliveryAddressScreen = () => {
   const {
     values,
     errors,
-    isValid,
     touched,
     handleBlur,
     handleChange,
@@ -77,7 +79,54 @@ const CreateDeliveryAddressScreen = () => {
     onSubmit: () => onSubmit(),
   });
 
-  const onSubmit = () => {};
+  const onSubmit = async () => {
+    try {
+      setLoading({isVisible: true});
+
+      let body = {
+        recipient_name: values.recipient_name,
+        phone_number: values.phone_number,
+        street_address: values.street_address,
+        city: values.city,
+        country: values.country,
+        postal_code: values.postal_code,
+        type: values.type?.type,
+        default: values.default?.type,
+        lat: geolocation?.lat,
+        lon: geolocation?.lon,
+      };
+
+      let response = await fetchApiCreateAddress(body);
+
+      if (response) {
+        setLoading({
+          isVisible: false,
+          onModalHide: async () => {
+            resetForm(initialValues);
+            Notifer({
+              alertType: 'success',
+              title: 'Create Successfully!',
+            });
+            await fetchApiListAddress();
+            navigation.goBack();
+          },
+        });
+      }
+    } catch ({response}) {
+      setLoading({isVisible: false});
+      if (!response) {
+        Notifer({
+          alertType: 'warn',
+          title: 'Please check your network connection',
+        });
+      } else {
+        Notifer({
+          alertType: 'error',
+          title: response?.data?.message || '',
+        });
+      }
+    }
+  };
 
   const handleAutoGetLocation = async () => {
     try {
@@ -113,7 +162,7 @@ const CreateDeliveryAddressScreen = () => {
       }
     } catch ({response}) {
       setLoading({isVisible: false});
-      if (!response) {
+      if (!response?.data?.error) {
         Notifer({
           alertType: 'warn',
           title: 'Please check your network connection',
@@ -121,7 +170,7 @@ const CreateDeliveryAddressScreen = () => {
       } else {
         Notifer({
           alertType: 'error',
-          title: response?.data?.message || '',
+          title: response?.data?.error?.message || '',
         });
       }
     }
@@ -280,19 +329,16 @@ const CreateDeliveryAddressScreen = () => {
               name="type"
               value={values.type}
               data={DATA_TYPE_DELIVERY_ADDRESS}
-              {...{setFieldValue}}
+              {...{errors, touched, setFieldValue}}
             />
             <SelectDefault
               name="default"
               value={values.default}
               stContainer={styles.stSelectDefault}
-              {...{setFieldValue}}
+              {...{errors, touched, setFieldValue}}
             />
           </View>
-          <Button
-            disabled={!isValid}
-            style={styles.btnComplete}
-            onPress={handleSubmit}>
+          <Button style={styles.btnComplete} onPress={handleSubmit}>
             <Text bold style={styles.txtComplete}>
               {'COMPLETE'}
             </Text>

@@ -7,7 +7,7 @@ const DEFAULT_DELIVERY_ADDRESS = {
   NOT_DEFAULT: {
     id: 2,
     name: 'Not Default',
-    type: 2,
+    type: -1,
   },
 };
 

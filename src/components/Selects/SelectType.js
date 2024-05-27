@@ -7,7 +7,7 @@ import {hScale, scale} from '@resolutions';
 import Button from '../Buttons/Button';
 import Text from '../Text';
 
-const SelectType = ({name, value, data, setFieldValue}) => {
+const SelectType = ({name, value, touched, errors, data, setFieldValue}) => {
   const handleSelect = item => {
     if (setFieldValue) {
       setFieldValue(name, item);
@@ -16,31 +16,39 @@ const SelectType = ({name, value, data, setFieldValue}) => {
 
   return (
     <View style={styles.container}>
-      <Text medium>{'Address type: '}</Text>
-      <View style={styles.content}>
-        {data?.map((ele, index) => {
-          let isSelected = value?.id === ele?.id;
+      <View style={styles.containerContent}>
+        <Text medium>{'Address type: '}</Text>
+        <View style={styles.content}>
+          {data?.map((ele, index) => {
+            let isSelected = value?.id === ele?.id;
 
-          return (
-            <Button
-              key={index?.toString()}
-              style={[styles.btnEle, isSelected && styles.btnEleSelected]}
-              onPress={() => handleSelect(ele)}>
-              <Text
-                medium
-                style={[styles.txtEle, isSelected && styles.txtEleSelected]}>
-                {ele?.name || ''}
-              </Text>
-            </Button>
-          );
-        })}
+            return (
+              <Button
+                key={index?.toString()}
+                style={[styles.btnEle, isSelected && styles.btnEleSelected]}
+                onPress={() => handleSelect(ele)}>
+                <Text
+                  medium
+                  style={[styles.txtEle, isSelected && styles.txtEleSelected]}>
+                  {ele?.name || ''}
+                </Text>
+              </Button>
+            );
+          })}
+        </View>
       </View>
+      {touched[name] && errors[name] ? (
+        <Text style={styles.error}>{errors[name]}</Text>
+      ) : null}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  containerContent: {
     height: hScale(64),
     borderColor: colors.gray_EEEEEE,
     borderWidth: 1,
@@ -75,6 +83,11 @@ const styles = StyleSheet.create({
   },
   txtEleSelected: {
     color: colors.orange_FE724C,
+  },
+  error: {
+    color: colors.redSystem,
+    fontSize: fontSize.smaller,
+    marginTop: scale(5),
   },
 });
 

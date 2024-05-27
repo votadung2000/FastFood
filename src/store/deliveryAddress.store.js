@@ -1,6 +1,6 @@
 import {action, makeAutoObservable, runInAction} from 'mobx';
 
-import {ApiDeliveryAddress} from '@actionApi';
+import {ApiDeliveryAddress, ApiCreateAddress} from '@actionApi';
 
 class DeliveryAddressStore {
   address = null;
@@ -24,6 +24,13 @@ class DeliveryAddressStore {
       runInAction(() => {
         this.isLoadingAddress = false;
       });
+    }
+  }
+
+  async fetchApiCreateAddress(params) {
+    let response = await ApiCreateAddress(params);
+    if (response) {
+      return response?.data;
     }
   }
 }

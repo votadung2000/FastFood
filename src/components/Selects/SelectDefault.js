@@ -5,6 +5,7 @@ import {
   DEFAULT_DELIVERY_ADDRESS,
   checkDefaultDeliveryAddress,
   colors,
+  fontSize,
   radius,
 } from '@constant';
 import {hScale, scale} from '@resolutions';
@@ -12,7 +13,14 @@ import {hScale, scale} from '@resolutions';
 import Text from '../Text';
 import Switch from '../Switch';
 
-const SelectDefault = ({name, value, setFieldValue, stContainer}) => {
+const SelectDefault = ({
+  name,
+  value,
+  touched,
+  errors,
+  setFieldValue,
+  stContainer,
+}) => {
   const handleActionSwitch = () => {
     if (setFieldValue) {
       if (checkDefaultDeliveryAddress(value?.type)) {
@@ -25,17 +33,25 @@ const SelectDefault = ({name, value, setFieldValue, stContainer}) => {
 
   return (
     <View style={[styles.container, stContainer]}>
-      <Text medium>{'Set as default address:'}</Text>
-      <Switch
-        isOn={checkDefaultDeliveryAddress(value?.type)}
-        handleActionSwitch={handleActionSwitch}
-      />
+      <View style={styles.content}>
+        <Text medium>{'Set as default address:'}</Text>
+        <Switch
+          isOn={checkDefaultDeliveryAddress(value?.type)}
+          handleActionSwitch={handleActionSwitch}
+        />
+      </View>
+      {touched[name] && errors[name] ? (
+        <Text style={styles.error}>{errors[name]}</Text>
+      ) : null}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  content: {
     height: hScale(64),
     borderColor: colors.gray_EEEEEE,
     borderWidth: 1,
@@ -46,11 +62,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  content: {
-    flexGrow: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
+  error: {
+    color: colors.redSystem,
+    fontSize: fontSize.smaller,
+    marginTop: scale(5),
   },
 });
 

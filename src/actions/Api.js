@@ -165,3 +165,11 @@ export const ApiDeliveryAddress = params => {
     params,
   });
 };
+
+export const ApiCreateAddress = data => {
+  return axios({
+    method: 'post',
+    url: ApiRoutes.deliveryAddress,
+    data,
+  });
+};
