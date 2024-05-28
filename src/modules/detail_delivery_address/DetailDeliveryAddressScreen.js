@@ -27,19 +27,7 @@ import {
 } from '@constant';
 import {hScale, scale} from '@resolutions';
 import {useStore} from '@context';
-
-const initialValues = {
-  recipient_name: '',
-  phone_number: '',
-  street_address: '',
-  city: '',
-  country: '',
-  postal_code: '',
-  type: '',
-  default: DEFAULT_DELIVERY_ADDRESS.NOT_DEFAULT,
-  lat: '',
-  lon: '',
-};
+import {differentData} from '@utils';
 
 const initialErrors = {
   recipient_name: true,
@@ -66,6 +54,8 @@ const DetailDeliveryAddressScreen = () => {
       detailAddress,
       fetchApiListAddress,
       fetchApiCreateAddress,
+      fetchApiUpdateAddress,
+      fetchApiDetailAddress,
       clearDetailAddress,
     },
   } = useStore();
@@ -74,26 +64,24 @@ const DetailDeliveryAddressScreen = () => {
 
   useEffect(() => {
     if (detailAddress) {
-      setFieldValue('recipient_name', detailAddress.recipient_name || '');
-      setFieldValue('phone_number', detailAddress.phone_number || '');
-      setFieldValue('street_address', detailAddress.street_address || '');
-      setFieldValue('city', detailAddress.city || '');
-      setFieldValue('country', detailAddress.country || '');
-      setFieldValue('postal_code', detailAddress.postal_code || '');
-      setFieldValue('type', findTypeDeliveryAddress(detailAddress.type) || '');
-      setFieldValue(
-        'default',
-        findDefaultDeliveryAddress(detailAddress.default) ||
-          DEFAULT_DELIVERY_ADDRESS.NOT_DEFAULT,
-      );
-      setFieldValue('lat', detailAddress.lat || '');
-      setFieldValue('lon', detailAddress.lon || '');
+      setValues(initialValues);
     }
-
-    return () => {
-      clearDetailAddress();
-    };
   }, [detailAddress]);
+
+  const initialValues = {
+    recipient_name: detailAddress?.recipient_name || '',
+    phone_number: detailAddress?.phone_number || '',
+    street_address: detailAddress?.street_address || '',
+    city: detailAddress?.city || '',
+    country: detailAddress?.country || '',
+    postal_code: detailAddress?.postal_code || '',
+    type: findTypeDeliveryAddress(detailAddress?.type) || '',
+    default:
+      findDefaultDeliveryAddress(detailAddress?.default) ||
+      DEFAULT_DELIVERY_ADDRESS.NOT_DEFAULT,
+    lat: detailAddress?.lat || '',
+    lon: detailAddress?.lon || '',
+  };
 
   const {
     values,
@@ -104,14 +92,17 @@ const DetailDeliveryAddressScreen = () => {
     resetForm,
     handleSubmit,
     setFieldValue,
+    setValues,
   } = useFormik({
     initialValues,
     initialErrors,
     validationSchema: DetailDeliveryAddressSchema,
-    onSubmit: () => onSubmit(),
+    onSubmit: () => {
+      detailAddress ? onSubmitUpdate() : onSubmitCreate();
+    },
   });
 
-  const onSubmit = async () => {
+  const onSubmitCreate = async () => {
     try {
       setLoading({isVisible: true});
 
@@ -140,7 +131,88 @@ const DetailDeliveryAddressScreen = () => {
               title: 'Create Successfully!',
             });
             await fetchApiListAddress();
-            navigation.goBack();
+            goBack();
+          },
+        });
+      }
+    } catch ({response}) {
+      setLoading({isVisible: false});
+      if (!response) {
+        Notifer({
+          alertType: 'warn',
+          title: 'Please check your network connection',
+        });
+      } else {
+        Notifer({
+          alertType: 'error',
+          title: response?.data?.message || '',
+        });
+      }
+    }
+  };
+
+  const onSubmitUpdate = async () => {
+    try {
+      setLoading({isVisible: true});
+
+      let diffData = differentData(values, initialValues);
+
+      let body = {
+        id: detailAddress?.id,
+      };
+
+      if (diffData?.recipient_name) {
+        body.recipient_name = diffData?.recipient_name;
+      }
+
+      if (diffData?.phone_number) {
+        body.phone_number = diffData?.phone_number;
+      }
+
+      if (diffData?.street_address) {
+        body.street_address = diffData?.street_address;
+      }
+
+      if (diffData?.city) {
+        body.city = diffData?.city;
+      }
+
+      if (diffData?.country) {
+        body.country = diffData?.country;
+      }
+
+      if (diffData?.postal_code) {
+        body.postal_code = diffData?.postal_code;
+      }
+
+      if (diffData?.type) {
+        body.type = diffData?.type?.type;
+      }
+
+      if (diffData?.default) {
+        body.default = diffData?.default?.type;
+      }
+
+      if (diffData?.lat) {
+        body.lat = diffData?.lat * 1;
+      }
+
+      if (diffData?.lon) {
+        body.lon = diffData?.lon * 1;
+      }
+
+      let response = await fetchApiUpdateAddress(body);
+
+      if (response) {
+        setLoading({
+          isVisible: false,
+          onModalHide: async () => {
+            resetForm(initialValues);
+            Notifer({
+              alertType: 'success',
+              title: 'Update Successfully!',
+            });
+            await fetchApiDetailAddress(detailAddress?.id);
           },
         });
       }
@@ -189,6 +261,8 @@ const DetailDeliveryAddressScreen = () => {
         setFieldValue('city', response?.address?.city);
         setFieldValue('country', response?.address?.country);
         setFieldValue('postal_code', response?.address?.postcode);
+        setFieldValue('lat', response?.lat);
+        setFieldValue('lon', response?.lon);
 
         setLoading({isVisible: false});
       }
@@ -241,6 +315,8 @@ const DetailDeliveryAddressScreen = () => {
         setFieldValue('city', response[0]?.address?.city);
         setFieldValue('country', response[0]?.address?.country);
         setFieldValue('postal_code', response[0]?.address?.postcode);
+        setFieldValue('lat', response[0]?.lat);
+        setFieldValue('lon', response[0]?.lon);
 
         setLoading({isVisible: false});
       }
@@ -260,7 +336,8 @@ const DetailDeliveryAddressScreen = () => {
     }
   };
 
-  const handleCancelLocation = () => {
+  const goBack = () => {
+    clearDetailAddress();
     navigation.goBack();
   };
 
@@ -377,7 +454,7 @@ const DetailDeliveryAddressScreen = () => {
           </Button>
         </View>
       </KeyboardAwareScrollView>
-      <Location handleCancelLocation={handleCancelLocation} />
+      <Location handleCancelLocation={goBack} />
       <ModalLoading {...loading} />
     </View>
   );

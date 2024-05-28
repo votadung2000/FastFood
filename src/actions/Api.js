@@ -187,3 +187,11 @@ export const ApiCreateAddress = data => {
     data,
   });
 };
+
+export const ApiUpdateAddress = ({id, data}) => {
+  return axios({
+    method: 'patch',
+    url: `${ApiRoutes.deliveryAddress}/${id}`,
+    data,
+  });
+};

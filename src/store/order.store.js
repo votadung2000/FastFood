@@ -58,7 +58,7 @@ class OrderStore {
   async fetchApiUpdateOrder(params) {
     const {id, ...restParams} = params;
     let response = await ApiUpdateOrder({
-      id: id,
+      id,
       data: restParams,
     });
     if (response.data?.data) {
