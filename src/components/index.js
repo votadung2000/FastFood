@@ -15,6 +15,7 @@ import {SelectType, SelectDefault} from './Selects';
 import LoadingComponent from './LoadingComponent';
 import Loading from './Loading';
 import Popup from './Popup';
+import PopupMenu from './PopupMenu';
 import SignInSocial from './SignInSocial';
 import Notifer from './Notifer';
 import Switch from './Switch';
@@ -43,6 +44,7 @@ export {
   LoadingComponent,
   Loading,
   Popup,
+  PopupMenu,
   SignInSocial,
   Notifer,
   Switch,

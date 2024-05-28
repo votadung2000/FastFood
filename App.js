@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {NotifierWrapper} from 'react-native-notifier';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {MenuProvider} from 'react-native-popup-menu';
 
 import {Context} from '@context';
 import store from '@store';
@@ -13,7 +14,9 @@ const App = () => {
     <Context.Provider value={store}>
       <GestureHandlerRootView style={styles.gesView}>
         <NotifierWrapper>
-          <AppContainer />
+          <MenuProvider>
+            <AppContainer />
+          </MenuProvider>
         </NotifierWrapper>
       </GestureHandlerRootView>
     </Context.Provider>

@@ -5,6 +5,7 @@ import radius from './radius';
 import DATA_CAROUSEL from './dataCarousel';
 import OPTION_IMAGE, {DATA_OPTION_IMAGE} from './dataOptionImage';
 import TAB_ORDER, {DATA_TAB_ORDER} from './dataTabOrder';
+import POPUP_MENU, {DATA_POPUP_MENU} from './dataPopupMenu';
 
 import STATUS_NOTIFY, {
   STATUS_SETTING_NOTIFY,
@@ -40,6 +41,8 @@ export {
   DATA_OPTION_IMAGE,
   TAB_ORDER,
   DATA_TAB_ORDER,
+  POPUP_MENU,
+  DATA_POPUP_MENU,
   STATUS_NOTIFY,
   STATUS_SETTING_NOTIFY,
   checkStatusReadNotify,

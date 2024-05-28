@@ -4,7 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import {observer} from 'mobx-react';
 import moment from 'moment';
 
-import {Text, Button} from '@components';
+import {Text, Button, PopupMenu} from '@components';
 import {scale, wScale} from '@resolutions';
 import {
   DEFAULT_DELIVERY_ADDRESS,
@@ -13,6 +13,7 @@ import {
   colors,
   fontSize,
   radius,
+  DATA_POPUP_MENU,
 } from '@constant';
 import {formatNaturalNumber} from '@utils';
 import {useStore} from '@context';
@@ -54,6 +55,9 @@ const Card = ({data}) => {
             </Text>
           </View>
         )}
+        <View style={styles.vwMenu}>
+          <PopupMenu dataMenu={DATA_POPUP_MENU} />
+        </View>
       </View>
     </Button>
   );
@@ -62,7 +66,6 @@ const Card = ({data}) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'center',
     marginBottom: scale(20),
     padding: scale(15),
     backgroundColor: colors.white,
@@ -76,6 +79,7 @@ const styles = StyleSheet.create({
     borderRadius: radius.radius10,
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
     backgroundColor: colors.white,
     ...radius.shadow,
   },
@@ -93,7 +97,7 @@ const styles = StyleSheet.create({
     borderRadius: radius.radius10,
   },
   vwContent: {
-    width: '80%',
+    flexGrow: 1,
     marginLeft: scale(18),
     justifyContent: 'center',
     alignItems: 'flex-start',
@@ -114,6 +118,13 @@ const styles = StyleSheet.create({
   txtType: {
     fontSize: fontSize.small,
     color: colors.orange_FE724C,
+  },
+  vwMenu: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    alignItems: 'flex-end',
+    alignSelf: 'flex-end',
   },
 });
 
