@@ -195,3 +195,10 @@ export const ApiUpdateAddress = ({id, data}) => {
     data,
   });
 };
+
+export const ApiDeleteAddress = id => {
+  return axios({
+    method: 'delete',
+    url: `${ApiRoutes.deliveryAddress}/${id}`,
+  });
+};

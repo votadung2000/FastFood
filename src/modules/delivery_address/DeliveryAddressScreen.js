@@ -29,7 +29,7 @@ const DeliveryAddressScreen = () => {
   };
 
   const navScreen = () => {
-    navigation.navigate(routes.CreateDeliveryAddressScreen);
+    navigation.navigate(routes.DetailDeliveryAddressScreen);
   };
 
   return (

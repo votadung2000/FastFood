@@ -5,6 +5,7 @@ import {
   ApiCreateAddress,
   ApiDetailDeliveryAddress,
   ApiUpdateAddress,
+  ApiDeleteAddress,
 } from '@actionApi';
 
 class DeliveryAddressStore {
@@ -19,6 +20,7 @@ class DeliveryAddressStore {
       fetchApiCreateAddress: action.bound,
       fetchApiDetailAddress: action.bound,
       fetchApiUpdateAddress: action.bound,
+      fetchApiDeleteAddress: action.bound,
 
       clearDetailAddress: action.bound,
     });
@@ -64,6 +66,13 @@ class DeliveryAddressStore {
         this.detailAddress = response.data?.data;
       });
     } catch (error) {}
+  }
+
+  async fetchApiDeleteAddress(id) {
+    let response = await ApiDeleteAddress(id);
+    if (response) {
+      return response?.data;
+    }
   }
 
   clearDetailAddress() {

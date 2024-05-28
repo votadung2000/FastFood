@@ -30,14 +30,31 @@ const ItemCard = ({data, onSelect}) => {
   );
 };
 
-const PopupMenu = ({dataMenu, onSelectMenu}) => {
-  const {} = useStore();
+const PopupMenu = ({data, dataMenu, onSelectMenu}) => {
+  const {
+    deliveryAddressStore: {fetchApiDeleteAddress, fetchApiListAddress},
+  } = useStore();
 
   const [loading, setLoading] = useState({isVisible: false});
 
-  const checkDeleted = () => {
+  const checkDeleted = async () => {
     try {
       setLoading({isVisible: true});
+
+      let response = await fetchApiDeleteAddress(data?.id);
+
+      if (response) {
+        setLoading({
+          isVisible: false,
+          onModalHide: async () => {
+            Notifer({
+              alertType: 'success',
+              title: 'Delete Successfully!',
+            });
+            await fetchApiListAddress();
+          },
+        });
+      }
     } catch ({response}) {
       setLoading({isVisible: false});
       if (!response) {

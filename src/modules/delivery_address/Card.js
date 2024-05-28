@@ -56,7 +56,12 @@ const Card = ({data}) => {
           </View>
         )}
         <View style={styles.vwMenu}>
-          <PopupMenu dataMenu={DATA_POPUP_MENU} />
+          <PopupMenu
+            dataMenu={DATA_POPUP_MENU}
+            data={{
+              id: data?.id,
+            }}
+          />
         </View>
       </View>
     </Button>
