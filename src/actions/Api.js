@@ -150,6 +150,13 @@ export const ApiListOrder = params => {
   });
 };
 
+export const ApiDetailOrder = id => {
+  return axios({
+    method: 'get',
+    url: `${ApiRoutes.order}/${id}`,
+  });
+};
+
 export const ApiUpdateOrder = ({id, data}) => {
   return axios({
     method: 'patch',
@@ -163,6 +170,13 @@ export const ApiDeliveryAddress = params => {
     method: 'get',
     url: ApiRoutes.deliveryAddress,
     params,
+  });
+};
+
+export const ApiDetailDeliveryAddress = id => {
+  return axios({
+    method: 'get',
+    url: `${ApiRoutes.deliveryAddress}/${id}`,
   });
 };
 

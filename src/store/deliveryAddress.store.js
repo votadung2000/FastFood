@@ -1,6 +1,10 @@
 import {action, makeAutoObservable, runInAction} from 'mobx';
 
-import {ApiDeliveryAddress, ApiCreateAddress} from '@actionApi';
+import {
+  ApiDeliveryAddress,
+  ApiCreateAddress,
+  ApiDetailDeliveryAddress,
+} from '@actionApi';
 
 class DeliveryAddressStore {
   address = null;
@@ -40,8 +44,13 @@ class DeliveryAddressStore {
     }
   }
 
-  async fetchApiDetailAddress(item) {
-    this.detailAddress = item;
+  async fetchApiDetailAddress(id) {
+    try {
+      let response = await ApiDetailDeliveryAddress(id);
+      runInAction(() => {
+        this.detailAddress = response.data?.data;
+      });
+    } catch (error) {}
   }
 
   clearDetailAddress() {

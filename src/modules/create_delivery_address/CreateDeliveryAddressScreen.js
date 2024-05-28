@@ -28,6 +28,19 @@ import {
 import {hScale, scale} from '@resolutions';
 import {useStore} from '@context';
 
+const initialValues = {
+  recipient_name: '',
+  phone_number: '',
+  street_address: '',
+  city: '',
+  country: '',
+  postal_code: '',
+  type: '',
+  default: DEFAULT_DELIVERY_ADDRESS.NOT_DEFAULT,
+  lat: '',
+  lon: '',
+};
+
 const initialErrors = {
   recipient_name: true,
   phone_number: true,
@@ -60,25 +73,27 @@ const CreateDeliveryAddressScreen = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    if (detailAddress) {
+      setFieldValue('recipient_name', detailAddress.recipient_name || '');
+      setFieldValue('phone_number', detailAddress.phone_number || '');
+      setFieldValue('street_address', detailAddress.street_address || '');
+      setFieldValue('city', detailAddress.city || '');
+      setFieldValue('country', detailAddress.country || '');
+      setFieldValue('postal_code', detailAddress.postal_code || '');
+      setFieldValue('type', findTypeDeliveryAddress(detailAddress.type) || '');
+      setFieldValue(
+        'default',
+        findDefaultDeliveryAddress(detailAddress.default) ||
+          DEFAULT_DELIVERY_ADDRESS.NOT_DEFAULT,
+      );
+      setFieldValue('lat', detailAddress.lat || '');
+      setFieldValue('lon', detailAddress.lon || '');
+    }
+
     return () => {
       clearDetailAddress();
     };
-  }, []);
-
-  const initialValues = {
-    recipient_name: detailAddress?.recipient_name || '',
-    phone_number: detailAddress?.phone_number || '',
-    street_address: detailAddress?.street_address || '',
-    city: detailAddress?.city || '',
-    country: detailAddress?.country || '',
-    postal_code: detailAddress?.postal_code || '',
-    type: findTypeDeliveryAddress(detailAddress?.type) || '',
-    default:
-      findDefaultDeliveryAddress(detailAddress?.default) ||
-      DEFAULT_DELIVERY_ADDRESS.NOT_DEFAULT,
-    lat: detailAddress?.lat || '',
-    lon: detailAddress?.lon || '',
-  };
+  }, [detailAddress]);
 
   const {
     values,
