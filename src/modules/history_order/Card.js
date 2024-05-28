@@ -24,11 +24,11 @@ const Card = ({data}) => {
   const navigation = useNavigation();
 
   const {
-    orderStore: {handleOrderDetails, fetchRating},
+    orderStore: {fetchApiDetailOrder, fetchRating},
   } = useStore();
 
   const handleCard = () => {
-    handleOrderDetails(data);
+    fetchApiDetailOrder(data?.id);
     navigation.navigate(routes.OrderDetailsScreen);
   };
 

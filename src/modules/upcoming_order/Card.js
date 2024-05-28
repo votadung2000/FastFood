@@ -23,14 +23,14 @@ const Card = ({data}) => {
   const navigation = useNavigation();
 
   const {
-    orderStore: {fetchApiUpdateOrder, fetchApiListOrder, handleOrderDetails},
+    orderStore: {fetchApiUpdateOrder, fetchApiListOrder, fetchApiDetailOrder},
   } = useStore();
 
   const [loading, setLoading] = useState({isVisible: false});
   const [popup, setPopup] = useState({isVisible: false});
 
   const handleCard = () => {
-    handleOrderDetails(data);
+    fetchApiDetailOrder(data?.id);
     navigation.navigate(routes.OrderDetailsScreen);
   };
 
