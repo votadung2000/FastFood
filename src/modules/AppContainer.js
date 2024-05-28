@@ -36,7 +36,7 @@ import HistoryOrderScreen from './history_order';
 import OrderDetailsScreen from './order_details';
 import DeliveryAddressScreen from './delivery_address';
 import RatingScreen from './rating';
-import CreateDeliveryAddressScreen from './create_delivery_address';
+import DetailDeliveryAddressScreen from './detail_delivery_address';
 
 const Stack = createNativeStackNavigator();
 
@@ -208,8 +208,8 @@ const RoutesUser = [
   },
   {
     id: 18,
-    name: routes.CreateDeliveryAddressScreen,
-    component: CreateDeliveryAddressScreen,
+    name: routes.DetailDeliveryAddressScreen,
+    component: DetailDeliveryAddressScreen,
   },
 ];
 

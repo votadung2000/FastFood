@@ -27,5 +27,5 @@ export default {
   OrderDetailsScreen: 'OrderDetailsScreen',
   DeliveryAddressScreen: 'DeliveryAddressScreen',
   RatingScreen: 'RatingScreen',
-  CreateDeliveryAddressScreen: 'CreateDeliveryAddressScreen',
+  DetailDeliveryAddressScreen: 'DetailDeliveryAddressScreen',
 };

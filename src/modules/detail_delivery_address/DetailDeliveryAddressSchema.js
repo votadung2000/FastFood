@@ -1,6 +1,6 @@
 import {object, string} from 'yup';
 
-let CreateDeliveryAddressSchema = object().shape({
+let DetailDeliveryAddressSchema = object().shape({
   recipient_name: string().trim().required('Please enter recipient name'),
   phone_number: string().trim().required('Please enter phone number'),
   street_address: string().trim().required('Please enter street address'),
@@ -10,4 +10,4 @@ let CreateDeliveryAddressSchema = object().shape({
   type: object().required('Please select address type'),
 });
 
-export default CreateDeliveryAddressSchema;
+export default DetailDeliveryAddressSchema;

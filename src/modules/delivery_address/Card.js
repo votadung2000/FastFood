@@ -27,7 +27,7 @@ const Card = ({data}) => {
 
   const handleDetail = () => {
     fetchApiDetailAddress(data?.id);
-    navigation.navigate(routes.CreateDeliveryAddressScreen);
+    navigation.navigate(routes.DetailDeliveryAddressScreen);
   };
 
   return (

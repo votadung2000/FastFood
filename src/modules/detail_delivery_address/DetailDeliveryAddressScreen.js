@@ -51,9 +51,9 @@ const initialErrors = {
   type: true,
 };
 
-import CreateDeliveryAddressSchema from './CreateDeliveryAddressSchema';
+import DetailDeliveryAddressSchema from './DetailDeliveryAddressSchema';
 
-const CreateDeliveryAddressScreen = () => {
+const DetailDeliveryAddressScreen = () => {
   const navigation = useNavigation();
 
   const {
@@ -107,7 +107,7 @@ const CreateDeliveryAddressScreen = () => {
   } = useFormik({
     initialValues,
     initialErrors,
-    validationSchema: CreateDeliveryAddressSchema,
+    validationSchema: DetailDeliveryAddressSchema,
     onSubmit: () => onSubmit(),
   });
 
@@ -467,4 +467,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default observer(CreateDeliveryAddressScreen);
+export default observer(DetailDeliveryAddressScreen);
