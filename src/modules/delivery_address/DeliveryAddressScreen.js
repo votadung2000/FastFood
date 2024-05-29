@@ -43,7 +43,6 @@ const DeliveryAddressScreen = () => {
           renderItem={renderItem}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.ccSt}
-          ListHeaderComponent={isLoadingAddress && <LoadingComponent />}
           ListFooterComponent={
             isLoadingAddress ? (
               <LoadingComponent />
