@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {StyleSheet, View, Image, ScrollView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native';
 import {observer} from 'mobx-react';
 
 import {colors, fontSize} from '@constant';
@@ -26,10 +27,16 @@ const Menu = () => {
 
   const {
     userStore: {user, updateUser},
-    cartProductsStore: {cartProducts},
+    orderStore: {orders, fetchApiListOrder},
   } = useStore();
 
   const [popup, setPopup] = useState(null);
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchApiListOrder({is_upcoming: true});
+    }, []),
+  );
 
   const handleNav = route => {
     navigation.navigate(route);
@@ -84,7 +91,7 @@ const Menu = () => {
         <View style={styles.menu}>
           <ItemMenu
             label={'My Orders'}
-            count={cartProducts?.length || 0}
+            count={orders?.length || 0}
             Icon={<SVG_My_Order />}
             onPress={() => handleNav(routes.OrderScreen)}
           />
