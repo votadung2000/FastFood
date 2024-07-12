@@ -14,6 +14,7 @@ const {scale} = resolutions;
 
 const Header = ({titleHeaderAnimation}) => {
   const {
+    deliveryAddressStore: {currentAddress},
     animatedMenuStore: {isShowMenu, handleShowMenu},
     userStore: {user},
   } = useStore();
@@ -44,7 +45,7 @@ const Header = ({titleHeaderAnimation}) => {
             />
           </View>
           <Text medium style={styles.address}>
-            {'Address Demo'}
+            {currentAddress?.street_address || ''}
           </Text>
         </Button>
         {user?.avatar ? (
@@ -99,6 +100,7 @@ const styles = StyleSheet.create({
     marginRight: scale(4),
   },
   address: {
+    textAlign: 'center',
     color: colors.orange_FE724C,
   },
   img: {

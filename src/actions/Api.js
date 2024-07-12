@@ -196,6 +196,13 @@ export const ApiUpdateAddress = ({id, data}) => {
   });
 };
 
+export const ApiCurrentAddress = () => {
+  return axios({
+    method: 'get',
+    url: ApiRoutes.currentDeliveryAddress,
+  });
+};
+
 export const ApiDeleteAddress = id => {
   return axios({
     method: 'delete',

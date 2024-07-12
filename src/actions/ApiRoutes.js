@@ -9,6 +9,7 @@ export default {
   uploadImg: 'v1/upload',
   order: 'v1/order',
   deliveryAddress: 'v1/delivery_address',
+  currentDeliveryAddress: 'v1/delivery_address/default',
 
   nominatim_reverse: 'reverse',
   nominatim_search: 'search',

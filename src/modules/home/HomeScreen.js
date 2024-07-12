@@ -16,12 +16,14 @@ const HomeScreen = () => {
   const {
     categoryStore: {fetchCombineApiCategories},
     productsStore: {clearFilterPr},
+    deliveryAddressStore: {fetchApiCurrentAddress},
     animatedMenuStore: {isShowMenu},
   } = useStore();
 
   useFocusEffect(
     useCallback(() => {
       fetchCombineApiCategories();
+      fetchApiCurrentAddress();
 
       return () => {
         clearFilterPr();

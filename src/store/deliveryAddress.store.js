@@ -6,6 +6,7 @@ import {
   ApiDetailDeliveryAddress,
   ApiUpdateAddress,
   ApiDeleteAddress,
+  ApiCurrentAddress,
 } from '@actionApi';
 
 class DeliveryAddressStore {
@@ -14,6 +15,8 @@ class DeliveryAddressStore {
 
   detailAddress = null;
 
+  currentAddress = null;
+
   constructor() {
     makeAutoObservable(this, {
       fetchApiListAddress: action.bound,
@@ -21,6 +24,7 @@ class DeliveryAddressStore {
       fetchApiDetailAddress: action.bound,
       fetchApiUpdateAddress: action.bound,
       fetchApiDeleteAddress: action.bound,
+      fetchApiCurrentAddress: action.bound,
 
       clearDetailAddress: action.bound,
     });
@@ -73,6 +77,15 @@ class DeliveryAddressStore {
     if (response) {
       return response?.data;
     }
+  }
+
+  async fetchApiCurrentAddress() {
+    try {
+      let response = await ApiCurrentAddress();
+      runInAction(() => {
+        this.currentAddress = response.data?.data;
+      });
+    } catch (error) {}
   }
 
   clearDetailAddress() {
