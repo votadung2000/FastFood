@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React, {useCallback} from 'react';
 import {StyleSheet, View, FlatList} from 'react-native';
 import {observer} from 'mobx-react';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
 
 import {Back, Button, Text, LoadingComponent} from '@components';
 import {hScale, scale} from '@resolutions';
@@ -18,9 +18,11 @@ const DeliveryAddressScreen = () => {
     deliveryAddressStore: {address, isLoadingAddress, fetchApiListAddress},
   } = useStore();
 
-  useEffect(() => {
-    fetchApiListAddress();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      fetchApiListAddress();
+    }, []),
+  );
 
   const keyExtractor = (_, index) => index?.toString();
 
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
     width: '80%',
     height: hScale(54),
     borderRadius: scale(27),
-    marginTop: scale(20),
+    marginBottom: scale(20),
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',

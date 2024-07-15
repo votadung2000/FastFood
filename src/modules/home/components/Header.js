@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     ...radius.shadow,
   },
   btnAddress: {
+    width: '65%',
     justifyContent: 'center',
     alignItems: 'center',
   },

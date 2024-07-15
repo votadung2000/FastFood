@@ -125,12 +125,12 @@ const DetailDeliveryAddressScreen = () => {
         setLoading({
           isVisible: false,
           onModalHide: async () => {
-            resetForm(initialValues);
             Notifer({
               alertType: 'success',
               title: 'Create Successfully!',
             });
             await fetchApiListAddress();
+            resetForm(initialValues);
             goBack();
           },
         });
@@ -207,12 +207,13 @@ const DetailDeliveryAddressScreen = () => {
         setLoading({
           isVisible: false,
           onModalHide: async () => {
-            resetForm(initialValues);
             Notifer({
               alertType: 'success',
               title: 'Update Successfully!',
             });
             await fetchApiDetailAddress(detailAddress?.id);
+            resetForm(initialValues);
+            goBack();
           },
         });
       }
