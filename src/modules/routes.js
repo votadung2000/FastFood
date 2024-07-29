@@ -28,4 +28,5 @@ export default {
   DeliveryAddressScreen: 'DeliveryAddressScreen',
   RatingScreen: 'RatingScreen',
   DetailDeliveryAddressScreen: 'DetailDeliveryAddressScreen',
+  HelpsAndFAQsScreen: 'HelpsAndFAQsScreen',
 };

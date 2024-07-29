@@ -37,6 +37,7 @@ import OrderDetailsScreen from './order_details';
 import DeliveryAddressScreen from './delivery_address';
 import RatingScreen from './rating';
 import DetailDeliveryAddressScreen from './detail_delivery_address';
+import HelpsAndFAQsScreen from './helps_and_faqs';
 
 const Stack = createNativeStackNavigator();
 
@@ -210,6 +211,11 @@ const RoutesUser = [
     id: 18,
     name: routes.DetailDeliveryAddressScreen,
     component: DetailDeliveryAddressScreen,
+  },
+  {
+    id: 19,
+    name: routes.HelpsAndFAQsScreen,
+    component: HelpsAndFAQsScreen,
   },
 ];
 

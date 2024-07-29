@@ -112,7 +112,11 @@ const Menu = () => {
             Icon={<SVG_Setting />}
             onPress={() => handleNav(routes.SettingScreen)}
           />
-          <ItemMenu Icon={<SVG_Helps />} label={'Helps & FAQs'} />
+          <ItemMenu
+            label={'Helps & FAQs'}
+            Icon={<SVG_Helps />}
+            onPress={() => handleNav(routes.HelpsAndFAQsScreen)}
+          />
         </View>
         <Button style={styles.btnLogOut} onPress={handleConfirmLogOut}>
           <Image
