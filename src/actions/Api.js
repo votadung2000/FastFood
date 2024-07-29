@@ -217,3 +217,11 @@ export const ApiDeleteAddress = id => {
     url: `${ApiRoutes.deliveryAddress}/${id}`,
   });
 };
+
+export const ApiListFAQs = params => {
+  return axios({
+    method: 'get',
+    url: ApiRoutes.faq,
+    params,
+  });
+};

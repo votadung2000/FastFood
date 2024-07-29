@@ -11,6 +11,7 @@ export default {
   deliveryAddress: 'v1/delivery_address',
   currentDeliveryAddress: 'v1/delivery_address/default',
   updatePassword: 'v1/update_password',
+  faq: 'v1/helps_and_faqs',
 
   nominatim_reverse: 'reverse',
   nominatim_search: 'search',

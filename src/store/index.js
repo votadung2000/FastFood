@@ -11,6 +11,7 @@ import uploadImgStore from './uploadImg.store';
 import orderStore from './order.store';
 import deliveryAddressStore from './deliveryAddress.store';
 import locationStore from './location.store';
+import faqStore from './faq.store';
 
 export default {
   productsStore,
@@ -26,4 +27,5 @@ export default {
   orderStore,
   deliveryAddressStore,
   locationStore,
+  faqStore,
 };
