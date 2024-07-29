@@ -9,6 +9,7 @@ import Text from '../Text';
 const Input = (
   {
     medium,
+    isTouchStart,
     label,
     name,
     touched,
@@ -26,7 +27,9 @@ const Input = (
   const [isInput, setInput] = useState(false);
 
   const handleInputStart = () => {
-    setInput(true);
+    if (!isTouchStart) {
+      setInput(true);
+    }
   };
 
   const onBlur = () => {

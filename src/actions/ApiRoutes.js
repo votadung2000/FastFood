@@ -10,6 +10,7 @@ export default {
   order: 'v1/order',
   deliveryAddress: 'v1/delivery_address',
   currentDeliveryAddress: 'v1/delivery_address/default',
+  updatePassword: 'v1/update_password',
 
   nominatim_reverse: 'reverse',
   nominatim_search: 'search',

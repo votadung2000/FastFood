@@ -96,6 +96,14 @@ export const ApiUpdateProfile = data => {
   });
 };
 
+export const ApiUpdatePassword = data => {
+  return axios({
+    method: 'patch',
+    url: ApiRoutes.updatePassword,
+    data: data,
+  });
+};
+
 export const ApiListCategories = () => {
   return axios({
     method: 'get',

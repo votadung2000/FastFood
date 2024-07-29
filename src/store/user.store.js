@@ -5,6 +5,7 @@ import {
   ApiUserProfile,
   ApiRegister,
   ApiUpdateProfile,
+  ApiUpdatePassword,
 } from '@actionApi';
 import {getToken} from '@storage';
 
@@ -20,6 +21,7 @@ class UserStore {
       refetchApiUserProfile: action.bound,
       fetchApiRegister: action.bound,
       fetchApiUpdateProfile: action.bound,
+      fetchApiUpdatePassword: action.bound,
 
       updateUser: action.bound,
     });
@@ -66,6 +68,13 @@ class UserStore {
 
   async fetchApiUpdateProfile(data) {
     let response = await ApiUpdateProfile(data);
+    if (response.data?.data) {
+      return response.data?.data;
+    }
+  }
+
+  async fetchApiUpdatePassword(data) {
+    let response = await ApiUpdatePassword(data);
     if (response.data?.data) {
       return response.data?.data;
     }
