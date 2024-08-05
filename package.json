@@ -1,5 +1,5 @@
 {
-  "name": "fastfood",
+  "name": "app",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -17,6 +17,7 @@
     "@react-native-community/clipboard": "^1.5.1",
     "@react-native-community/geolocation": "^3.2.1",
     "@react-native-community/netinfo": "^9.3.7",
+    "@react-native-firebase/app": "^20.3.0",
     "@react-navigation/bottom-tabs": "^6.0.9",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
