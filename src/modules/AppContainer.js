@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {Platform} from 'react-native';
 import {
   NavigationContainer,
   useNavigationContainerRef,
@@ -6,6 +7,7 @@ import {
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Notifier, NotifierComponents} from 'react-native-notifier';
 import {observer} from 'mobx-react';
+import {PERMISSIONS, request} from 'react-native-permissions';
 import NetInfo from '@react-native-community/netinfo';
 import RNBootSplash from 'react-native-bootsplash';
 
@@ -99,6 +101,12 @@ const AppContainer = () => {
     });
 
     refetchApiUserProfile();
+
+    if (Platform.OS === 'ios') {
+      request(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY)
+        .then(result => console.log(result))
+        .catch(error => console.log(error));
+    }
   }, []);
 
   return (

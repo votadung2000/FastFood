@@ -50,6 +50,8 @@
 	<string>Your location data will be securely stored and will not be shared without your consent. Please grant location access to enjoy the full functionality of $(PRODUCT_NAME)</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) needs permission to access the library.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Your data will be used to deliver personalized promos and offers to you</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
