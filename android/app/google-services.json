@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "854885262077",
+    "project_id": "vtdfastfood",
+    "storage_bucket": "vtdfastfood.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854885262077:android:ae19ee546f826346355494",
+        "android_client_info": {
+          "package_name": "vtd.fastfood"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvyy-4jTGz5DaGF73B57l9DmtzPojk1R0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
