@@ -1,6 +1,4 @@
-import Text from './Text';
 import {Modal, ModalLoading, ModalSelect} from './Modals';
-import EmptyComponent from './EmptyComponent';
 import {
   Button,
   Back,
@@ -8,10 +6,18 @@ import {
   ButtonCamAndLib,
   ButtonOpenURL,
 } from './Buttons';
+import {
+  logAppOpen,
+  logViewItem,
+  logAddToWishlist,
+  logAddToCart,
+} from './Analytics';
 import {Search} from './Search';
 import {Input, InputPassword} from './Input';
 import {FastImage, ImagesViewer} from './Image';
 import {SelectType, SelectDefault} from './Selects';
+import Text from './Text';
+import EmptyComponent from './EmptyComponent';
 import LoadingComponent from './LoadingComponent';
 import Loading from './Loading';
 import Popup from './Popup';
@@ -34,6 +40,10 @@ export {
   ChangeQuantity,
   ButtonCamAndLib,
   ButtonOpenURL,
+  logAppOpen,
+  logViewItem,
+  logAddToWishlist,
+  logAddToCart,
   Search,
   Input,
   InputPassword,

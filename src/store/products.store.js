@@ -1,6 +1,7 @@
 import {action, makeAutoObservable, runInAction} from 'mobx';
 
 import {ApiListProducts, ApiDetailProduct} from '@actionApi';
+import {logViewItem} from '@components';
 
 const initFilter = {
   page: 1,
@@ -88,6 +89,7 @@ class ProductsStore {
     try {
       let response = await ApiDetailProduct(id);
       runInAction(() => {
+        logViewItem(response?.data?.data);
         this.product = response?.data?.data;
       });
     } catch (error) {}

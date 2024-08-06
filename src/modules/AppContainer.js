@@ -15,6 +15,7 @@ import routes from '@routes';
 
 import {Layout} from '@views';
 import {useStore} from '@context';
+import {logAppOpen} from '@components';
 
 import CarouselScreen from './carousel';
 import WelcomeScreen from './welcome';
@@ -47,6 +48,10 @@ const RoutesNavigator = observer(() => {
   const {
     userStore: {user},
   } = useStore();
+
+  useEffect(() => {
+    logAppOpen();
+  }, []);
 
   return (
     <Layout>

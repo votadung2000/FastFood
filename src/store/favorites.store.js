@@ -1,8 +1,10 @@
 import {action, makeAutoObservable, runInAction} from 'mobx';
 
 import {ApiFavorites, ApiCDFavorite} from '@actionApi';
+import {logAddToWishlist} from '@components';
 
 import userStore from './user.store';
+import productsStore from './products.store';
 
 const initFilter = {
   page: 1,
@@ -89,6 +91,9 @@ class FavoritesStore {
   async fetchApiCDFavorite(params) {
     let response = await ApiCDFavorite(params);
     if (response?.data?.data) {
+      if (!productsStore?.product?.is_favorite) {
+        logAddToWishlist(productsStore?.product);
+      }
       return response?.data?.data;
     }
   }

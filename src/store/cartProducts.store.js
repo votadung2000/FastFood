@@ -1,6 +1,7 @@
 import {action, makeAutoObservable} from 'mobx';
 
 import {formatCartProducts} from '@utils';
+import {logAddToCart} from '@components';
 
 import Notifer from '../components/Notifer';
 
@@ -42,6 +43,7 @@ class CartProductsStore {
         title: 'Thêm vào giỏ hàng thành công.',
         alertType: 'success',
       });
+      logAddToCart(item);
     } catch (error) {
       Notifer({
         title: 'Thao tác lỗi.',
