@@ -31,14 +31,15 @@ target 'fastfood' do
 
   pod 'react-native-config', :path => '../node_modules/react-native-config'
 
-  pod 'RNFBAnalytics', :path => '../node_modules/@react-native-firebase/analytics'
-
   pod 'Firebase', :modular_headers => true
   pod 'FirebaseCoreInternal', :modular_headers => true
   pod 'GoogleUtilities', :modular_headers => true
   pod 'FirebaseCore', :modular_headers => true
+  pod 'FirebaseInstallations', :modular_headers => true
+  pod 'GoogleDataTransport', :modular_headers => true
+  pod 'FirebaseCoreExtension', :modular_headers => true
+  pod 'nanopb', :modular_headers => true
   
-
   target 'fastfoodTests' do
     inherit! :complete
     # Pods for testing
