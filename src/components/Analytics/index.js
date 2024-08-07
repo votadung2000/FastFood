@@ -5,39 +5,31 @@ export const logAppOpen = async () => {
 };
 
 export const logViewItem = async data => {
-  let body = [
-    {
-      item_id: JSON.stringify(data?.id),
-      item_name: data?.name,
-      item_category: JSON.stringify(data?.category_id),
-    },
-  ];
-  await analytics().logViewItem({items: body});
-  // await analytics().logEvent('logViewItem', {
-  //   product_id: JSON.stringify(data?.id),
-  //   product_name: data?.name,
-  //   product_category: JSON.stringify(data?.category_id),
-  // });
+  let body = {
+    product_id: JSON.stringify(data?.id),
+    product_name: data?.name,
+    product_category: JSON.stringify(data?.category_id),
+  };
+
+  await analytics().logEvent('logViewItem', body);
 };
 
 export const logAddToWishlist = async data => {
-  let body = [
-    {
-      item_id: JSON.stringify(data?.id),
-      item_name: data?.name,
-      item_category: JSON.stringify(data?.category_id),
-    },
-  ];
-  await analytics().logAddToWishlist({items: body});
+  let body = {
+    product_id: JSON.stringify(data?.id),
+    product_name: data?.name,
+    product_category: JSON.stringify(data?.category_id),
+  };
+
+  await analytics().logEvent('logAddToWishlist', body);
 };
 
 export const logAddToCart = async data => {
-  let body = [
-    {
-      item_id: JSON.stringify(data?.id),
-      item_name: data?.name,
-      item_category: JSON.stringify(data?.category_id),
-    },
-  ];
-  await analytics().logAddToCart({items: body});
+  let body = {
+    product_id: JSON.stringify(data?.id),
+    product_name: data?.name,
+    product_category: JSON.stringify(data?.category_id),
+  };
+
+  await analytics().logEvent('logAddToCart', body);
 };
