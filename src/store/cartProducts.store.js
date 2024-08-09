@@ -1,8 +1,8 @@
 import {action, makeAutoObservable} from 'mobx';
 
 import {formatCartProducts} from '@utils';
-import {logAddToCart} from '@components';
 
+import {logAddToCart} from '../components/Analytics';
 import Notifer from '../components/Notifer';
 
 class CartProductsStore {

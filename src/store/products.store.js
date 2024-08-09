@@ -1,7 +1,8 @@
 import {action, makeAutoObservable, runInAction} from 'mobx';
 
 import {ApiListProducts, ApiDetailProduct} from '@actionApi';
-import {logViewItem} from '@components';
+
+import {logViewItem} from '../components/Analytics';
 
 const initFilter = {
   page: 1,

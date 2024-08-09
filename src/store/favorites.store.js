@@ -1,7 +1,7 @@
 import {action, makeAutoObservable, runInAction} from 'mobx';
 
 import {ApiFavorites, ApiCDFavorite} from '@actionApi';
-import {logAddToWishlist} from '@components';
+import {logAddToWishlist} from '../components/Analytics';
 
 import userStore from './user.store';
 import productsStore from './products.store';
