@@ -11,7 +11,7 @@ export const logViewItem = async data => {
     product_category: JSON.stringify(data?.category_id),
   };
 
-  await analytics().logEvent('logViewItem', body);
+  await analytics().logEvent('view_item', body);
 };
 
 export const logAddToWishlist = async data => {
@@ -21,7 +21,7 @@ export const logAddToWishlist = async data => {
     product_category: JSON.stringify(data?.category_id),
   };
 
-  await analytics().logEvent('logAddToWishlist', body);
+  await analytics().logEvent('add_to_wishlist', body);
 };
 
 export const logAddToCart = async data => {
@@ -31,5 +31,5 @@ export const logAddToCart = async data => {
     product_category: JSON.stringify(data?.category_id),
   };
 
-  await analytics().logEvent('logAddToCart', body);
+  await analytics().logEvent('add_to_cart', body);
 };
