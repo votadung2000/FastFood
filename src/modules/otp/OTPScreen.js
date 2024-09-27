@@ -125,7 +125,7 @@ const OTPScreen = () => {
           </View>
           <View style={styles.footer}>
             <Text medium style={styles.txtQuestion}>
-              {"Don't have an account?"}
+              {"I don't receive a code!"}
             </Text>
             {countOTP <= 0 ? (
               <Button style={styles.btnResend} onPress={handleResend}>
