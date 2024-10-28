@@ -3,11 +3,14 @@ import axios from 'axios';
 
 import ApiRoutes from './ApiRoutes';
 
+let appName = "FOOD HUB";
+
 const axiosLocation = axios.create();
 
 axiosLocation.interceptors.request.use(
   async config => {
     config.baseURL = Config.API_LOCATION;
+    config.headers['User-Agent'] = appName
     return config;
   },
   error => {
