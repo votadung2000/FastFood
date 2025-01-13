@@ -1,29 +1,32 @@
-import React, {useRef, useCallback} from 'react';
-import {View, Animated} from 'react-native';
-import {observer} from 'mobx-react';
-import {useFocusEffect} from '@react-navigation/native';
+import React, { useRef, useCallback } from 'react';
+import { View, Animated } from 'react-native';
+import { observer } from 'mobx-react';
+import { useFocusEffect } from '@react-navigation/native';
 
-import {useStore} from '@context';
-import {hScale, scale} from '@resolutions';
-import {Location} from '@components';
+import { useStore } from '@context';
+import { hScale, scale } from '@resolutions';
+import { Location } from '@components';
+import { useFetchConcurrentRequests } from '@hooks'
 
-import {Products, Menu, Header} from './components';
+import { Products, Menu, Header } from './components';
 import styles from './styles';
 
 const HomeScreen = () => {
   const animatedValue = useRef(new Animated.Value(0)).current;
 
   const {
-    categoryStore: {fetchCombineApiCategories},
-    productsStore: {clearFilterPr},
-    deliveryAddressStore: {fetchApiCurrentAddress},
-    animatedMenuStore: {isShowMenu},
+    categoryStore: { fetchCombineApiCategories },
+    productsStore: { clearFilterPr },
+    deliveryAddressStore: { fetchApiCurrentAddress },
+    animatedMenuStore: { isShowMenu },
   } = useStore();
 
   useFocusEffect(
     useCallback(() => {
-      fetchCombineApiCategories();
-      fetchApiCurrentAddress();
+      useFetchConcurrentRequests([
+        fetchCombineApiCategories,
+        fetchApiCurrentAddress,
+      ])
 
       return () => {
         clearFilterPr();

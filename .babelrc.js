@@ -11,6 +11,7 @@ const plugins = [
         '@components': './src/components',
         '@constant': './src/constant',
         '@context': './src/context',
+        '@hooks': './src/hooks',
         '@modules': './src/modules',
         '@store': './src/store',
         '@utils': './src/utils',
