@@ -1,5 +1,3 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
-
 # 🍔 FastFood
 
 A fast and convenient food ordering app, built with React Native & TypeScript. Users can easily browse menus, place orders, and track deliveries — all in one smooth mobile experience.
