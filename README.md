@@ -13,7 +13,7 @@ A fast and convenient food ordering app, built with React Native & TypeScript. U
   <img src="./assets/intro/wellcome_screen.png" width="300" />
 </p>
 
-## 📱 App Screenshots
+## 📱 App Screenshots 
 
 | ![](./assets/intro/login_screen.png) | ![](./assets/intro/sign_up_screen.png) | ![](./assets/intro/forgot_email_screen.png) | ![](./assets/intro/home_screen.png) | ![](./assets/intro/search_screen.png) |
 |:--:|:--:|:--:|:--:|:--:|
